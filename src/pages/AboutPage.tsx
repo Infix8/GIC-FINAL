@@ -26,23 +26,20 @@ const AboutPage = () => {
             <section className="section">
                 {/* Header */}
                 <div className="section-header-new about-animate">
-                    <span className="section-number font-mono text-xs text-white/30 tracking-widest">[ABOUT]</span>
                     <h1 className="section-title-new">ABOUT THE CONCLAVE</h1>
                 </div>
 
                 {/* Mission */}
-                <div className="about-animate mb-16" style={{ maxWidth: '900px' }}>
-                    <p className="mission-text">
-                        The primary mission of SMEC's Global Innovation Summit – 2026 is to{' '}
-                        <span className="text-rose">accelerate deep-tech innovations and entrepreneurship</span>,
-                        connecting promising teams with funding, mentorship, and strategic partners.
+                <div className="about-animate mb-16 w-full">
+                    <p className="mission-text text-justify" style={{ fontSize: 'clamp(1.1rem, 2.2vw, 1.8rem)' }}>
+                        The primary mission of <span style={{ fontWeight: 600, color: 'var(--color-accent)' }}>SMEC’s Global Innovators Conclave 2026</span> is to foster{' '}
+                        <span className="text-rose">deep-tech innovation and entrepreneurship</span> by creating a robust ecosystem that connects high-potential teams with funding opportunities, expert mentorship, and strategic industry partnerships.
                     </p>
                 </div>
 
                 {/* Info Cards */}
                 <div className="about-grid about-animate">
                     <div className="about-card-new card-hover-effect">
-                        <span className="card-number font-mono text-xs text-white/30">[A]</span>
                         <h3 className="card-title">Organized By</h3>
                         <p className="card-highlight">St. Martin's Engineering College</p>
                         <p className="card-detail">UGC Autonomous Institution</p>
@@ -50,7 +47,6 @@ const AboutPage = () => {
                     </div>
 
                     <div className="about-card-new card-hover-effect">
-                        <span className="card-number font-mono text-xs text-white/30">[B]</span>
                         <h3 className="card-title">Recognition</h3>
                         <p className="card-highlight">ARIIA & NIRF Ranked</p>
                         <p className="card-detail">Top Institution for Innovation</p>
@@ -58,7 +54,6 @@ const AboutPage = () => {
                     </div>
 
                     <div className="about-card-new card-hover-effect">
-                        <span className="card-number font-mono text-xs text-white/30">[C]</span>
                         <h3 className="card-title">Vision</h3>
                         <p className="card-highlight">"Raising Minds For Global Impact"</p>
                         <p className="card-detail">Fostering Innovation</p>

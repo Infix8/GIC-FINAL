@@ -77,27 +77,27 @@ const SponsorsPage = () => {
     return (
         <div ref={pageRef} className="page-container sponsors-reveal-page">
             <section className="section min-h-screen flex flex-col justify-center items-center text-center relative overflow-hidden">
-                
+
                 {/* Decorative circles */}
                 <div className="sponsor-circle absolute top-16 right-16 w-40 h-40 rounded-full border opacity-20"
-                     style={{ borderColor: 'var(--color-accent)', borderWidth: '2px' }} />
+                    style={{ borderColor: 'var(--color-accent)', borderWidth: '2px' }} />
                 <div className="sponsor-circle absolute bottom-32 left-16 w-24 h-24 rounded-full opacity-30"
-                     style={{ background: 'var(--color-accent)' }} />
+                    style={{ background: 'var(--color-accent)' }} />
                 <div className="sponsor-circle absolute top-1/4 left-1/4 w-8 h-8 rounded-full opacity-40"
-                     style={{ background: 'var(--color-accent)' }} />
+                    style={{ background: 'var(--color-accent)' }} />
                 <div className="sponsor-circle absolute bottom-1/4 right-1/3 w-12 h-12 rounded-full border opacity-25"
-                     style={{ borderColor: 'var(--color-accent)', borderWidth: '1px' }} />
+                    style={{ borderColor: 'var(--color-accent)', borderWidth: '1px' }} />
 
                 {/* Section label */}
-                <span 
-                    className="section-label font-mono tracking-widest mb-8" 
-                    style={{ 
+                <span
+                    className="section-label font-mono tracking-widest mb-8"
+                    style={{
                         color: 'var(--color-text-muted)',
                         fontSize: 'var(--text-xs)',
                         letterSpacing: '0.2em',
                     }}
                 >
-                    [04] SPONSORS
+                    SPONSORS
                 </span>
 
                 {/* Main heading with ScrollReveal blur animation */}
@@ -115,7 +115,7 @@ const SponsorsPage = () => {
                 </ScrollReveal>
 
                 {/* Animated line */}
-                <div 
+                <div
                     ref={lineRef}
                     className="my-4"
                     style={{
@@ -127,9 +127,9 @@ const SponsorsPage = () => {
                 />
 
                 {/* Subtitle */}
-                <p 
-                    className="max-w-xl" 
-                    style={{ 
+                <p
+                    className="max-w-xl"
+                    style={{
                         color: 'var(--color-text-muted)',
                         fontFamily: 'var(--font-primary)',
                         fontSize: 'var(--text-body-l)',
@@ -159,7 +159,7 @@ const SponsorsPage = () => {
                 {/* Partner tiers preview */}
                 <div className="partner-tiers mt-16 flex gap-8 flex-wrap justify-center">
                     {['Platinum', 'Gold', 'Silver'].map((tier) => (
-                        <div 
+                        <div
                             key={tier}
                             className="partner-tier px-8 py-4 border transition-all duration-300 cursor-pointer hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] hover:-translate-y-1"
                             style={{
@@ -177,9 +177,9 @@ const SponsorsPage = () => {
 
                 {/* Contact CTA */}
                 <div className="contact-cta mt-16">
-                    <p 
-                        className="mb-4" 
-                        style={{ 
+                    <p
+                        className="mb-4"
+                        style={{
                             color: 'var(--color-text-muted)',
                             fontFamily: 'var(--font-primary)',
                             fontSize: 'var(--text-small)',
@@ -187,10 +187,10 @@ const SponsorsPage = () => {
                     >
                         Interested in sponsoring?
                     </p>
-                    <a 
+                    <a
                         href="mailto:sponsors@smec.edu.in"
                         className="inline-flex items-center gap-2 transition-all duration-300 hover:text-[var(--color-accent)]"
-                        style={{ 
+                        style={{
                             color: 'var(--color-text-primary)',
                             fontFamily: 'var(--font-primary)',
                             fontSize: 'var(--text-body-l)',
@@ -199,7 +199,7 @@ const SponsorsPage = () => {
                     >
                         sponsors@smec.edu.in
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                            <path d="M5 12h14M12 5l7 7-7 7" />
                         </svg>
                     </a>
                 </div>

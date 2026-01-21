@@ -66,7 +66,7 @@ const structureItems = [
 
 const Structure = () => {
     // Add unique IDs to initial items to track instances
-    const [items, setItems] = useState(() => 
+    const [items, setItems] = useState(() =>
         structureItems.map((item, index) => ({ ...item, uniqueId: `init-${index}` }))
     );
     const uniqueIdCounter = useRef(0);
@@ -74,7 +74,7 @@ const Structure = () => {
     const q = gsap.utils.selector(sectionRef);
     const flipState = useRef<Flip.FlipState | null>(null);
     const isAnimating = useRef(false);
-    
+
     // We need to track direction for the transformOrigin logic
     const directionRef = useRef<"next" | "prev">("next");
 
@@ -89,13 +89,13 @@ const Structure = () => {
 
     const rotateCards = (forward: boolean) => {
         if (isAnimating.current) return;
-        
+
         isAnimating.current = true; // Block interaction immediately
         directionRef.current = forward ? "next" : "prev";
 
         // Capture specific state of visible cards
         flipState.current = Flip.getState(q(".structure-card"));
-        
+
         setItems(prev => {
             const newItems = [...prev];
             if (forward) {
@@ -124,38 +124,38 @@ const Structure = () => {
             duration: 0.6,
             ease: "power2.inOut",
             absolute: true, // absoluteOnLeave in demo, but absolute: true handles layout too
-            
+
             targets: q(".structure-card"), // Explicit targets
-            
+
             onEnter: (elements) => {
-                return gsap.fromTo(elements, 
-                    { 
-                        opacity: 0, 
-                        scale: 0, 
-                    }, 
-                    { 
-                        opacity: 1, 
-                        scale: 1, 
+                return gsap.fromTo(elements,
+                    {
+                        opacity: 0,
+                        scale: 0,
+                    },
+                    {
+                        opacity: 1,
+                        scale: 1,
                         duration: 0.6,
                         transformOrigin: isNext ? "bottom right" : "bottom left"
                     }
                 );
             },
-            
+
             onLeave: (elements) => {
-                return gsap.to(elements, { 
-                    opacity: 0, 
-                    scale: 0, 
+                return gsap.to(elements, {
+                    opacity: 0,
+                    scale: 0,
                     duration: 0.6,
                     transformOrigin: isNext ? "bottom left" : "bottom right",
                 });
             },
-            
+
             onComplete: () => {
                 isAnimating.current = false;
             }
         });
-        
+
         flipState.current = null;
     }, [items]);
 
@@ -165,7 +165,7 @@ const Structure = () => {
             if (!isAnimating.current) {
                 rotateCards(true);
             }
-        }, 3000); 
+        }, 3000);
 
         return () => clearInterval(interval);
     }, []);
@@ -182,23 +182,23 @@ const Structure = () => {
     ];
 
     return (
-        <section 
-            ref={sectionRef} 
-            className="min-h-screen py-16 px-6 md:px-12 flex flex-col items-center justify-center overflow-hidden relative" 
+        <section
+            ref={sectionRef}
+            className="min-h-screen py-16 px-6 md:px-12 flex flex-col items-center justify-center overflow-hidden relative"
             id="structure"
             style={{
                 background: 'linear-gradient(180deg, #0a0a0f 0%, #0d0d14 50%, #0a0a0f 100%)'
             }}
         >
             {/* Ambient background glow - dimmed */}
-            <div 
+            <div
                 className="absolute top-1/3 left-1/4 w-[400px] h-[400px] rounded-full pointer-events-none"
                 style={{
                     background: 'radial-gradient(circle, rgba(121, 105, 157, 0.08) 0%, transparent 70%)',
                     filter: 'blur(60px)'
                 }}
             />
-            <div 
+            <div
                 className="absolute bottom-1/3 right-1/4 w-[350px] h-[350px] rounded-full pointer-events-none"
                 style={{
                     background: 'radial-gradient(circle, rgba(99, 187, 132, 0.06) 0%, transparent 70%)',
@@ -208,19 +208,13 @@ const Structure = () => {
 
             {/* Section Header */}
             <div className="w-full text-center z-10 mb-10 md:mb-14 flex-shrink-0">
-                <span 
-                    className="font-mono text-xs tracking-[0.3em] block mb-3 uppercase"
-                    style={{ color: '#8B7BB5' }}
-                >
-                    [04] Structure
-                </span>
-                <h2 
+                <h2
                     className="text-4xl md:text-6xl font-bold tracking-tight"
                     style={{ color: '#EAEAEA' }}
                 >
                     Event Structure
                 </h2>
-                <p 
+                <p
                     className="mt-4 text-lg max-w-2xl mx-auto"
                     style={{ color: 'rgba(234, 234, 234, 0.6)' }}
                 >
@@ -233,25 +227,24 @@ const Structure = () => {
                 {visibleItems.map((item, index) => {
                     const gradientIndex = parseInt(item.number) - 1;
                     const isCenter = index === 1;
-                    
+
                     return (
-                        <div 
-                            key={item.uniqueId} 
+                        <div
+                            key={item.uniqueId}
                             data-flip-id={item.uniqueId}
-                            className={`structure-card relative w-1/3 min-w-[300px] h-full p-6 md:p-8 rounded-3xl flex flex-col gap-4 overflow-hidden ${
-                                isCenter ? 'scale-105 z-10' : 'scale-100'
-                            }`}
-                            style={{ 
+                            className={`structure-card relative w-1/3 min-w-[300px] h-full p-6 md:p-8 rounded-3xl flex flex-col gap-4 overflow-hidden ${isCenter ? 'scale-105 z-10' : 'scale-100'
+                                }`}
+                            style={{
                                 cursor: 'default',
                                 background: gradients[gradientIndex],
-                                boxShadow: isCenter 
+                                boxShadow: isCenter
                                     ? `0 25px 60px ${shadowColors[gradientIndex]}, 0 10px 30px rgba(0,0,0,0.3)`
                                     : `0 15px 40px ${shadowColors[gradientIndex]}, 0 5px 20px rgba(0,0,0,0.2)`,
                                 border: '1px solid rgba(255,255,255,0.2)'
                             }}
                         >
                             {/* Shine overlay effect */}
-                            <div 
+                            <div
                                 className="absolute inset-0 pointer-events-none"
                                 style={{
                                     background: 'linear-gradient(135deg, rgba(255,255,255,0.25) 0%, transparent 50%, rgba(0,0,0,0.1) 100%)',
@@ -260,9 +253,9 @@ const Structure = () => {
                             />
 
                             {/* Number badge */}
-                            <div 
+                            <div
                                 className="relative flex-shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center font-mono text-2xl font-bold self-start"
-                                style={{ 
+                                style={{
                                     background: 'rgba(255,255,255,0.25)',
                                     backdropFilter: 'blur(10px)',
                                     color: 'white',
@@ -274,23 +267,23 @@ const Structure = () => {
                             </div>
 
                             {/* Title */}
-                            <h3 
+                            <h3
                                 className="relative text-xl md:text-2xl font-bold leading-tight"
-                                style={{ 
+                                style={{
                                     color: 'white',
                                     textShadow: '0 2px 8px rgba(0,0,0,0.2)'
                                 }}
                             >
                                 {item.title.map((part, i) => (
-                                    <span 
+                                    <span
                                         key={i}
-                                        style={{ 
-                                            color: item.highlights.includes(i) 
-                                                ? 'rgba(255,255,255,1)' 
+                                        style={{
+                                            color: item.highlights.includes(i)
+                                                ? 'rgba(255,255,255,1)'
                                                 : 'rgba(255,255,255,0.85)',
                                             fontWeight: item.highlights.includes(i) ? 800 : 700,
-                                            textShadow: item.highlights.includes(i) 
-                                                ? '0 0 20px rgba(255,255,255,0.5)' 
+                                            textShadow: item.highlights.includes(i)
+                                                ? '0 0 20px rgba(255,255,255,0.5)'
                                                 : '0 2px 8px rgba(0,0,0,0.2)'
                                         }}
                                     >
@@ -298,26 +291,26 @@ const Structure = () => {
                                     </span>
                                 ))}
                             </h3>
-                            
+
                             {/* Description */}
-                            <p 
+                            <p
                                 className="relative text-sm md:text-base leading-relaxed"
-                                style={{ 
+                                style={{
                                     color: 'rgba(255,255,255,0.9)',
                                     textShadow: '0 1px 3px rgba(0,0,0,0.15)'
                                 }}
                             >
                                 {item.description}
                             </p>
-                            
+
                             {/* Details */}
-                            <div 
+                            <div
                                 className="relative mt-auto space-y-2.5 pt-4"
                                 style={{ borderTop: '1px solid rgba(255,255,255,0.2)' }}
                             >
                                 {item.details.slice(0, 2).map((detail, i) => (
-                                    <p 
-                                        key={i} 
+                                    <p
+                                        key={i}
                                         className="text-xs md:text-sm leading-relaxed flex items-start gap-2"
                                         style={{ color: 'rgba(255,255,255,0.8)' }}
                                     >
@@ -333,10 +326,10 @@ const Structure = () => {
 
             {/* Controls with Progress Dots */}
             <div className="mt-14 flex items-center gap-8 z-20">
-                <button 
+                <button
                     onClick={() => rotateCards(false)}
                     className="w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95"
-                    style={{ 
+                    style={{
                         background: 'rgba(255,255,255,0.1)',
                         border: '1px solid rgba(255,255,255,0.2)',
                         backdropFilter: 'blur(10px)',
@@ -351,28 +344,28 @@ const Structure = () => {
                 {/* Progress dots */}
                 <div className="flex gap-2">
                     {structureItems.map((_, i) => (
-                        <div 
+                        <div
                             key={i}
                             className="w-2.5 h-2.5 rounded-full transition-all duration-500"
                             style={{
-                                background: items[0].number === structureItems[i].number 
+                                background: items[0].number === structureItems[i].number
                                     ? gradients[i]
                                     : 'rgba(255,255,255,0.2)',
-                                boxShadow: items[0].number === structureItems[i].number 
-                                    ? `0 0 15px ${shadowColors[i]}` 
+                                boxShadow: items[0].number === structureItems[i].number
+                                    ? `0 0 15px ${shadowColors[i]}`
                                     : 'none',
-                                transform: items[0].number === structureItems[i].number 
-                                    ? 'scale(1.3)' 
+                                transform: items[0].number === structureItems[i].number
+                                    ? 'scale(1.3)'
                                     : 'scale(1)'
                             }}
                         />
                     ))}
                 </div>
 
-                <button 
+                <button
                     onClick={() => rotateCards(true)}
                     className="w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95"
-                    style={{ 
+                    style={{
                         background: 'rgba(255,255,255,0.1)',
                         border: '1px solid rgba(255,255,255,0.2)',
                         backdropFilter: 'blur(10px)',

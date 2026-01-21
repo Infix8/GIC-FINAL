@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
                     <p className="text-[#EAEAEA]/40 text-sm">
                         © 2026 St. Martin's Engineering College. All rights reserved.
                     </p>
-                    
+
                     {/* Legal Links */}
                     <div className="flex items-center gap-4 text-sm">
                         <Link to="/terms" className="text-[#EAEAEA]/40 hover:text-[#8B7BB5] transition-colors">

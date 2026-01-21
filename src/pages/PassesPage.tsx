@@ -48,23 +48,22 @@ const PassesPage = () => {
         <div ref={pageRef} className="page-container">
             <section className="section">
                 <div className="section-header-new pass-animate">
-                    <span className="section-number font-mono text-xs tracking-widest">[PASSES]</span>
                     <h1 className="section-title-new">GET YOUR PASS</h1>
                 </div>
 
                 <p className="pass-animate text-lg mb-12 max-w-2xl" style={{ color: 'var(--color-text-secondary)' }}>
-                    Early bird pricing available! Secure your spot at India's biggest 
+                    Early bird pricing available! Secure your spot at India's biggest
                     innovation summit.
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {passes.map((pass, index) => (
-                        <div 
-                            key={index} 
+                        <div
+                            key={index}
                             className={`pass-animate pass-card card-hover-effect ${pass.popular ? 'popular' : ''}`}
                         >
                             {pass.popular && (
-                                <span 
+                                <span
                                     className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-xs px-4 py-1 rounded-full"
                                     style={{ background: 'var(--color-accent)' }}
                                 >
@@ -86,11 +85,10 @@ const PassesPage = () => {
                             </ul>
                             <button
                                 onClick={() => navigate('/about')}
-                                className={`mt-8 w-full py-3 rounded-lg font-medium transition-all ${
-                                    pass.popular
+                                className={`mt-8 w-full py-3 rounded-lg font-medium transition-all ${pass.popular
                                         ? 'text-white'
                                         : 'border'
-                                }`}
+                                    }`}
                                 style={pass.popular
                                     ? { background: 'var(--color-accent)' }
                                     : { background: 'rgba(107, 91, 149, 0.05)', borderColor: 'rgba(7, 7, 7, 0.1)', color: 'var(--color-text-primary)' }

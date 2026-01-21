@@ -53,12 +53,11 @@ const AccommodationPage = () => {
         <div ref={pageRef} className="page-container">
             <section className="section">
                 <div className="section-header-new acc-animate">
-                    <span className="section-number font-mono text-xs tracking-widest">[STAY]</span>
                     <h1 className="section-title-new">ACCOMMODATION</h1>
                 </div>
 
                 <p className="acc-animate text-lg mb-12 max-w-2xl" style={{ color: 'var(--color-text-secondary)' }}>
-                    Partner hotels offering special rates for Conclave attendees. 
+                    Partner hotels offering special rates for Conclave attendees.
                     Book early for the best availability.
                 </p>
 
@@ -70,7 +69,7 @@ const AccommodationPage = () => {
                                     <h3 className="text-xl font-bold" style={{ color: 'var(--color-text-primary)' }}>{hotel.name}</h3>
                                     <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>{hotel.distance}</p>
                                 </div>
-                                <span 
+                                <span
                                     className="text-xs px-2 py-1 rounded"
                                     style={{ background: 'rgba(107, 91, 149, 0.15)', color: 'var(--color-accent)' }}
                                 >
@@ -80,8 +79,8 @@ const AccommodationPage = () => {
                             <p className="text-2xl font-bold mb-4" style={{ color: 'var(--color-accent)' }}>{hotel.price}</p>
                             <div className="flex flex-wrap gap-2">
                                 {hotel.amenities.map((amenity, i) => (
-                                    <span 
-                                        key={i} 
+                                    <span
+                                        key={i}
                                         className="text-xs px-2 py-1 rounded"
                                         style={{ background: 'rgba(7, 7, 7, 0.05)', color: 'var(--color-text-secondary)' }}
                                     >
@@ -89,7 +88,7 @@ const AccommodationPage = () => {
                                     </span>
                                 ))}
                             </div>
-                            <button 
+                            <button
                                 className="mt-6 w-full py-2 rounded-lg text-sm transition-all"
                                 style={{ background: 'rgba(107, 91, 149, 0.05)', border: '1px solid rgba(7, 7, 7, 0.1)', color: 'var(--color-text-primary)' }}
                             >
@@ -105,14 +104,14 @@ const AccommodationPage = () => {
                         <div className="rounded-xl p-6 card-hover-effect" style={{ background: 'rgba(107, 91, 149, 0.05)', border: '1px solid rgba(7, 7, 7, 0.1)' }}>
                             <h4 className="font-medium mb-2" style={{ color: 'var(--color-accent)' }}>By Air</h4>
                             <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
-                                Rajiv Gandhi International Airport (HYD) - 25 km from venue. 
+                                Rajiv Gandhi International Airport (HYD) - 25 km from venue.
                                 Taxi/cab services available.
                             </p>
                         </div>
                         <div className="rounded-xl p-6 card-hover-effect" style={{ background: 'rgba(107, 91, 149, 0.05)', border: '1px solid rgba(7, 7, 7, 0.1)' }}>
                             <h4 className="font-medium mb-2" style={{ color: 'var(--color-accent)' }}>By Train</h4>
                             <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
-                                Secunderabad/Hyderabad Station - 15 km from venue. 
+                                Secunderabad/Hyderabad Station - 15 km from venue.
                                 Metro connectivity available.
                             </p>
                         </div>

@@ -71,33 +71,32 @@ const eventsData: EventData[] = [
             "360 Selected Participants",
             "60 Industry Mentors",
             "30 Hours Continuous",
-            "4 Technology Streams"
+            "4 Engineering Roles"
         ],
         keyDetails: [
             { label: "Total Participants", value: "360 (via LinkedIn, CV & GitHub review)" },
             { label: "Team Size", value: "6 members per team" },
             { label: "Duration", value: "30 hours continuous" },
             { label: "Total Mentors", value: "60" },
-            { label: "Mentoring Streams", value: "4 Priority Areas" },
+            { label: "Engineering Roles", value: "4 Specialized Roles" },
             { label: "Total Teams", value: "60 teams" }
         ],
         fullDetails: [
             {
-                title: "Technology Streams (Priority Areas)",
+                title: "Engineering Roles",
                 content: [
-                    "Priority 1: Frontend Development",
-                    "Priority 2: Backend Development", 
-                    "Priority 3: DevOps & Cloud Infrastructure",
-                    "Priority 4: Artificial Intelligence"
+                    "Role 1: Frontend Engineer",
+                    "Role 2: Backend Engineer",
+                    "Role 3: DevOps & Cloud Engineer",
+                    "Role 4: AI/ML Engineer"
                 ]
             },
             {
                 title: "Team Composition Requirements",
                 content: [
                     "Each team consists of 6 members",
-                    "Teams must select TWO streams with priority rankings",
-                    "MANDATORY: At least 1 member from every priority stream must be included in each team",
-                    "Team composition strategy based on selected priorities"
+                    "Teams must select TWO primary roles with priority rankings",
+                    "MANDATORY: The top ten teams from each problem statement will be selected."
                 ]
             },
             {
@@ -106,32 +105,7 @@ const eventsData: EventData[] = [
                     "LinkedIn Profile Review",
                     "CV/Resume Evaluation",
                     "GitHub Profile Analysis",
-                    "Technical skill assessment based on priority streams"
-                ]
-            },
-            {
-                title: "Sprint 1 Milestone Requirements (11:00 - 18:00)",
-                content: [
-                    "Prospective solution documentation",
-                    "System architecture design",
-                    "Mock dashboard or mock application (e.g., frontend interface prototype)"
-                ]
-            },
-            {
-                title: "Problem Statement Framework",
-                content: [
-                    "Source: Companies within participating categories provide problem statements",
-                    "Quality Criteria: Baseline specifications and MVP acceptance criteria defined",
-                    "Customer Opportunity: If MVP meets standard specs, company becomes first customer",
-                    "Documentation: Memorandum of Understanding (MOU) required"
-                ]
-            },
-            {
-                title: "Company Hiring Integration",
-                content: [
-                    "Companies specify number of available internships or Pre-Placement Offers (PPOs)",
-                    "Selected participants assessed against company-defined baselines",
-                    "Upon meeting requirements, MOU finalized for placement"
+                    "Technical skill assessment based on specific engineering roles"
                 ]
             },
             {
@@ -139,15 +113,7 @@ const eventsData: EventData[] = [
                 content: [
                     "Proof of Concepts (PoCs)",
                     "Pre-Placement Offers (PPOs)",
-                    "Internship Opportunities",
-                    "Direct hiring by partner companies"
-                ]
-            },
-            {
-                title: "Platform Sponsors",
-                content: [
-                    "Hack2Skill - Hackathon management platform",
-                    "Unstop - Community and platform engagement"
+                    "Internship Opportunities"
                 ]
             },
             {
@@ -171,10 +137,8 @@ const eventsData: EventData[] = [
             day1: [
                 { time: "09:30 - 10:00", activity: "Inauguration", details: "Opening ceremony and welcome address", type: "Ceremony" },
                 { time: "10:00 - 10:30", activity: "Problem Statement Announcement", details: "Teams receive their assigned problem statements from partner companies", type: "Briefing" },
-                { time: "11:00 - 18:00", activity: "SPRINT 1 (7 hours)", details: "Problem-solving phase with mandatory milestone delivery: Solution docs, Architecture, Mock UI", type: "Sprint" },
-                { time: "18:00 - 19:00", activity: "Mentor Checking (Milestone 1)", details: "Mentors evaluate milestone completion and track progress against deliverables", type: "Evaluation" },
                 { time: "19:00 - 20:00", activity: "Tech-Related Event", details: "Engagement activity or technical showcase for participants", type: "Activity" },
-                { time: "20:00 - 00:00", activity: "SPRINT 2 (4 hours)", details: "Continued development phase - building on Sprint 1 foundations", type: "Sprint" }
+                { time: "20:00 - 00:00", activity: "SPRINT 2 (4 hours)", details: "Development phase - building on initial concepts", type: "Sprint" }
             ],
             day2: [
                 { time: "00:00 - 01:00", activity: "Campfire and Networking", details: "Team bonding, networking session, and informal discussions", type: "Networking" },
@@ -596,7 +560,7 @@ const EventsPage = () => {
     // Entry animation
     useEffect(() => {
         if (selectedEvent) return;
-        
+
         const ctx = gsap.context(() => {
             gsap.from('.header-animate', {
                 y: 40,
@@ -626,17 +590,17 @@ const EventsPage = () => {
 
         const ctx = gsap.context(() => {
             if (progressRef.current && timelineRef.current) {
-                gsap.fromTo(progressRef.current, 
+                gsap.fromTo(progressRef.current,
                     { scaleY: 0 },
                     {
-                    scaleY: 1,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: timelineRef.current,
-                        start: "top 60%",
-                        end: "bottom 40%",
-                        scrub: 0.3,
-                    }
+                        scaleY: 1,
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: timelineRef.current,
+                            start: "top 60%",
+                            end: "bottom 40%",
+                            scrub: 0.3,
+                        }
                     }
                 );
             }
@@ -649,12 +613,12 @@ const EventsPage = () => {
                     y: 60,
                     duration: 0.8,
                     ease: "power3.out",
-                        scrollTrigger: {
-                            trigger: el,
-                            start: "top 85%",
-                            toggleActions: "play none none reverse",
-                        }
-                    });
+                    scrollTrigger: {
+                        trigger: el,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse",
+                    }
+                });
             });
         }, pageRef);
 
@@ -663,7 +627,7 @@ const EventsPage = () => {
 
     const handleEventClick = (event: EventData) => {
         gsap.to('.events-grid', {
-                opacity: 0,
+            opacity: 0,
             y: -30,
             duration: 0.4,
             ease: 'power2.in',
@@ -689,7 +653,7 @@ const EventsPage = () => {
 
     const handleDaySwitch = (day: 1 | 2) => {
         if (day === activeDay) return;
-        
+
         gsap.to('.timeline-item', {
             opacity: 0,
             y: -20,
@@ -707,12 +671,12 @@ const EventsPage = () => {
 
     const getTimelineItems = () => {
         if (!selectedEvent) return [];
-        
+
         if (selectedEvent.timeline.phases) {
             return selectedEvent.timeline.phases;
         }
-        
-        return activeDay === 1 
+
+        return activeDay === 1
             ? selectedEvent.timeline.day1 || []
             : selectedEvent.timeline.day2 || [];
     };
@@ -725,10 +689,10 @@ const EventsPage = () => {
         const hasMultipleDays = selectedEvent.timeline.day1 && selectedEvent.timeline.day2;
         const hasPhases = !!selectedEvent.timeline.phases;
 
-    return (
+        return (
             <div ref={pageRef} className="page-container events-page" style={{ background: 'var(--color-bg-primary)' }}>
                 {/* Back Button */}
-                <button 
+                <button
                     onClick={handleBackClick}
                     className="fixed top-24 left-6 z-50 flex items-center gap-2 px-4 py-2 rounded-full transition-all hover:scale-105"
                     style={{
@@ -739,7 +703,7 @@ const EventsPage = () => {
                     }}
                 >
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        <path d="M19 12H5M12 19l-7-7 7-7" />
                     </svg>
                     <span className="text-sm font-medium">All Events</span>
                 </button>
@@ -748,11 +712,11 @@ const EventsPage = () => {
                 <div className="event-detail">
                     {/* Hero Section */}
                     <section className="relative pt-0 pb-16 px-6 md:px-12 overflow-hidden">
-                        <div 
+                        <div
                             className="absolute inset-0 opacity-20"
                             style={{ background: currentColor?.gradient }}
                         />
-                        <div 
+                        <div
                             className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full pointer-events-none"
                             style={{
                                 background: `radial-gradient(circle, ${currentColor?.shadow} 0%, transparent 70%)`,
@@ -761,7 +725,7 @@ const EventsPage = () => {
                         />
 
                         <div className="relative max-w-6xl mx-auto">
-                            <div 
+                            <div
                                 className="inline-flex items-center justify-center w-20 h-20 rounded-2xl mb-6 text-3xl font-mono font-bold"
                                 style={{
                                     background: currentColor?.gradient,
@@ -770,21 +734,21 @@ const EventsPage = () => {
                                 }}
                             >
                                 {selectedEvent.number}
-                </div>
+                            </div>
 
-                            <h1 
+                            <h1
                                 className="text-4xl md:text-6xl font-bold mb-4"
                                 style={{ color: '#EAEAEA' }}
                             >
                                 {selectedEvent.title}
-                </h1>
-                            <p 
+                            </h1>
+                            <p
                                 className="text-xl md:text-2xl mb-6"
                                 style={{ color: currentColor?.accent }}
                             >
                                 {selectedEvent.tagline}
                             </p>
-                            <p 
+                            <p
                                 className="text-lg max-w-3xl mb-8"
                                 style={{ color: 'rgba(234, 234, 234, 0.7)' }}
                             >
@@ -794,7 +758,7 @@ const EventsPage = () => {
                             {/* Highlights */}
                             <div className="flex flex-wrap gap-3 mb-10">
                                 {selectedEvent.highlights.map((highlight, i) => (
-                                    <span 
+                                    <span
                                         key={i}
                                         className="px-4 py-2 rounded-full text-sm font-medium"
                                         style={{
@@ -811,7 +775,7 @@ const EventsPage = () => {
                             {/* Key Details Grid */}
                             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                                 {selectedEvent.keyDetails.map((detail, i) => (
-                                    <div 
+                                    <div
                                         key={i}
                                         className="p-4 rounded-xl"
                                         style={{
@@ -834,16 +798,16 @@ const EventsPage = () => {
                     {/* Full Details Section */}
                     <section className="pt-0 pb-12 px-6 md:px-12">
                         <div className="max-w-6xl mx-auto">
-                            <h2 
+                            <h2
                                 className="text-2xl md:text-3xl font-bold mb-8"
                                 style={{ color: '#EAEAEA' }}
                             >
                                 Complete Event Details
                             </h2>
-                            
+
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {selectedEvent.fullDetails.map((section, i) => (
-                                    <div 
+                                    <div
                                         key={i}
                                         className="p-6 rounded-xl"
                                         style={{
@@ -851,9 +815,9 @@ const EventsPage = () => {
                                             border: '1px solid rgba(139, 123, 181, 0.15)'
                                         }}
                                     >
-                                        <h3 
+                                        <h3
                                             className="text-lg font-semibold mb-4 pb-2"
-                                            style={{ 
+                                            style={{
                                                 color: currentColor?.accent,
                                                 borderBottom: '1px solid rgba(139, 123, 181, 0.2)'
                                             }}
@@ -862,7 +826,7 @@ const EventsPage = () => {
                                         </h3>
                                         <ul className="space-y-2">
                                             {section.content.map((item, j) => (
-                                                <li 
+                                                <li
                                                     key={j}
                                                     className="flex items-start gap-2 text-sm"
                                                     style={{ color: 'rgba(234, 234, 234, 0.8)' }}
@@ -875,13 +839,13 @@ const EventsPage = () => {
                                     </div>
                                 ))}
                             </div>
-                </div>
-            </section>
+                        </div>
+                    </section>
 
-            {/* Timeline Section */}
+                    {/* Timeline Section */}
                     <section className="py-12 px-6 md:px-12">
                         <div className="max-w-4xl mx-auto">
-                            <h2 
+                            <h2
                                 className="text-2xl md:text-3xl font-bold mb-2"
                                 style={{ color: '#EAEAEA' }}
                             >
@@ -903,8 +867,8 @@ const EventsPage = () => {
                                             boxShadow: activeDay === 1 ? `0 10px 30px ${currentColor?.shadow}` : 'none'
                                         }}
                                     >
-                                        <span className="block text-xs opacity-70">Day</span>
-                                        <span className="block text-lg">01 - Feb 27</span>
+                                        <span className="block text-sm opacity-70">Day-1</span>
+                                        <span className="block text-xl font-bold">Feb-27</span>
                                     </button>
                                     <button
                                         className={`px-6 py-3 rounded-xl font-medium transition-all ${activeDay === 2 ? 'scale-105' : 'opacity-60 hover:opacity-80'}`}
@@ -916,36 +880,36 @@ const EventsPage = () => {
                                             boxShadow: activeDay === 2 ? `0 10px 30px ${currentColor?.shadow}` : 'none'
                                         }}
                                     >
-                                        <span className="block text-xs opacity-70">Day</span>
-                                        <span className="block text-lg">02 - Feb 28</span>
+                                        <span className="block text-sm opacity-70">Day-2</span>
+                                        <span className="block text-xl font-bold">Feb-28</span>
                                     </button>
                                 </div>
                             )}
 
                             <div ref={timelineRef} className="relative">
-                                <div 
+                                <div
                                     className="absolute left-[39px] top-0 bottom-0 w-[2px]"
                                     style={{ background: 'rgba(139, 123, 181, 0.2)' }}
                                 >
-                                    <div 
+                                    <div
                                         ref={progressRef}
                                         className="w-full origin-top"
-                                        style={{ 
+                                        style={{
                                             background: currentColor?.gradient,
                                             height: '100%',
                                             transform: 'scaleY(0)'
                                         }}
                                     />
-                </div>
+                                </div>
 
                                 <div className="space-y-6">
                                     {hasPhases ? (
                                         (timelineItems as { name: string; date: string; description: string }[]).map((phase, index) => (
-                                            <div 
+                                            <div
                                                 key={index}
                                                 className="timeline-item flex gap-6 pl-2"
                                             >
-                                                <div 
+                                                <div
                                                     className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center text-xl font-bold z-10"
                                                     style={{
                                                         background: currentColor?.gradient,
@@ -953,10 +917,10 @@ const EventsPage = () => {
                                                         boxShadow: `0 4px 20px ${currentColor?.shadow}`
                                                     }}
                                                 >
-                                {String(index + 1).padStart(2, '0')}
-                            </div>
-                            
-                                                <div 
+                                                    {String(index + 1).padStart(2, '0')}
+                                                </div>
+
+                                                <div
                                                     className="flex-1 p-5 rounded-xl"
                                                     style={{
                                                         background: 'rgba(15, 12, 25, 0.6)',
@@ -964,7 +928,7 @@ const EventsPage = () => {
                                                     }}
                                                 >
                                                     <div className="flex flex-wrap items-center gap-3 mb-2">
-                                                        <span 
+                                                        <span
                                                             className="px-3 py-1 rounded-full text-xs font-medium"
                                                             style={{
                                                                 background: `${currentColor?.accent}20`,
@@ -985,11 +949,11 @@ const EventsPage = () => {
                                         ))
                                     ) : (
                                         (timelineItems as TimelineItem[]).map((item, index) => (
-                                            <div 
+                                            <div
                                                 key={index}
                                                 className="timeline-item flex gap-6 pl-2"
                                             >
-                                                <div 
+                                                <div
                                                     className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center text-xl font-bold z-10"
                                                     style={{
                                                         background: currentColor?.gradient,
@@ -998,9 +962,9 @@ const EventsPage = () => {
                                                     }}
                                                 >
                                                     {String(index + 1).padStart(2, '0')}
-                            </div>
+                                                </div>
 
-                                                <div 
+                                                <div
                                                     className="flex-1 p-5 rounded-xl"
                                                     style={{
                                                         background: 'rgba(15, 12, 25, 0.6)',
@@ -1008,13 +972,13 @@ const EventsPage = () => {
                                                     }}
                                                 >
                                                     <div className="flex flex-wrap items-center gap-3 mb-2">
-                                                        <span 
+                                                        <span
                                                             className="font-mono text-sm"
                                                             style={{ color: currentColor?.accent }}
                                                         >
                                                             {item.time}
                                                         </span>
-                                                        <span 
+                                                        <span
                                                             className="px-3 py-1 rounded-full text-xs font-medium"
                                                             style={{
                                                                 background: `${currentColor?.accent}20`,
@@ -1041,7 +1005,7 @@ const EventsPage = () => {
 
                     {/* CTA Section */}
                     <section className="pt-0 pb-16 px-6 md:px-12">
-                        <div 
+                        <div
                             className="max-w-4xl mx-auto p-8 rounded-2xl text-center"
                             style={{
                                 background: currentColor?.gradient,
@@ -1060,13 +1024,13 @@ const EventsPage = () => {
                             >
                                 Learn More
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
                                 </svg>
                             </a>
                         </div>
                     </section>
                 </div>
-                            </div>
+            </div>
         );
     }
 
@@ -1076,23 +1040,23 @@ const EventsPage = () => {
             {/* Header */}
             <section className="pt-0 pb-16 px-6 md:px-12">
                 <div className="max-w-6xl mx-auto">
-                    <span 
+                    <span
                         className="header-animate font-mono text-xs tracking-[0.3em] block mb-3 uppercase"
                         style={{ color: '#8B7BB5' }}
                     >
-                        [02] Events Portfolio
+                        Events Portfolio
                     </span>
-                    <h1 
+                    <h1
                         className="header-animate text-4xl md:text-6xl font-bold mb-4"
                         style={{ color: '#EAEAEA' }}
                     >
                         GIC 2026<br />Events
                     </h1>
-                    <p 
+                    <p
                         className="header-animate text-lg max-w-xl"
                         style={{ color: 'rgba(234, 234, 234, 0.6)' }}
                     >
-                        Five transformative tracks spanning technical talent, startup validation, 
+                        Five transformative tracks spanning technical talent, startup validation,
                         youth entrepreneurship, and policy dialogue.
                     </p>
                 </div>
@@ -1114,14 +1078,14 @@ const EventsPage = () => {
                                     border: '1px solid rgba(255, 255, 255, 0.2)'
                                 }}
                             >
-                                <div 
+                                <div
                                     className="absolute inset-0 pointer-events-none opacity-60 group-hover:opacity-80 transition-opacity"
                                     style={{
                                         background: 'linear-gradient(135deg, rgba(255,255,255,0.25) 0%, transparent 50%, rgba(0,0,0,0.1) 100%)'
                                     }}
                                 />
 
-                                <div 
+                                <div
                                     className="relative w-14 h-14 rounded-xl flex items-center justify-center mb-4 text-xl font-mono font-bold"
                                     style={{
                                         background: 'rgba(255, 255, 255, 0.25)',
@@ -1133,13 +1097,13 @@ const EventsPage = () => {
                                     {event.number}
                                 </div>
 
-                                <h3 
+                                <h3
                                     className="relative text-xl font-bold mb-2"
                                     style={{ color: 'white', textShadow: '0 2px 8px rgba(0,0,0,0.2)' }}
                                 >
                                     {event.title}
                                 </h3>
-                                <p 
+                                <p
                                     className="relative text-sm mb-4"
                                     style={{ color: 'rgba(255, 255, 255, 0.9)' }}
                                 >
@@ -1148,7 +1112,7 @@ const EventsPage = () => {
 
                                 <div className="relative flex flex-wrap gap-2 mb-4">
                                     {event.highlights.slice(0, 2).map((h, i) => (
-                                        <span 
+                                        <span
                                             key={i}
                                             className="px-2 py-1 rounded text-xs"
                                             style={{
@@ -1161,21 +1125,21 @@ const EventsPage = () => {
                                     ))}
                                 </div>
 
-                                <div 
+                                <div
                                     className="relative flex items-center gap-2 text-sm font-medium group-hover:gap-3 transition-all"
                                     style={{ color: 'white' }}
                                 >
                                     View Details
-                                    <svg 
-                                        width="16" 
-                                        height="16" 
-                                        viewBox="0 0 24 24" 
-                                        fill="none" 
-                                        stroke="currentColor" 
+                                    <svg
+                                        width="16"
+                                        height="16"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
                                         strokeWidth="2"
                                         className="transition-transform group-hover:translate-x-1"
                                     >
-                                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                                        <path d="M5 12h14M12 5l7 7-7 7" />
                                     </svg>
                                 </div>
                             </div>
@@ -1186,7 +1150,7 @@ const EventsPage = () => {
 
             {/* Bottom CTA */}
             <section className="pb-20 px-6 md:px-12">
-                <div 
+                <div
                     className="max-w-4xl mx-auto p-8 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6"
                     style={{
                         background: 'var(--color-bg-secondary)',
@@ -1209,11 +1173,11 @@ const EventsPage = () => {
                             color: '#0a0a0f'
                         }}
                     >
-                    Meet Speakers
+                        Meet Speakers
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </a>
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
                 </div>
             </section>
         </div>

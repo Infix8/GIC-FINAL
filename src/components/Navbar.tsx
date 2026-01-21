@@ -46,18 +46,17 @@ const Navbar = () => {
     const showBackground = scrolled || !isHome || isMenuOpen;
 
     return (
-        <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 md:px-12 py-4 ${
-            showBackground ? 'bg-bg-primary/95 shadow-lg backdrop-blur-lg' : 'bg-transparent'
-        }`}>
+        <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 md:px-12 py-4 ${showBackground ? 'bg-bg-primary/95 shadow-lg backdrop-blur-lg' : 'bg-transparent'
+            }`}>
             <div className="flex justify-between items-center max-w-7xl mx-auto w-full">
                 {/* Logo */}
                 <div className="z-50">
-                    <Link to="/">
+                    <Link to="/" className="block">
                         <img
                             src={logo}
-                            alt="SMEC Logo"
-                            className="h-16 md:h-20 w-auto hover:scale-105 transition-transform duration-300"
-                            onError={(e: any) => { e.target.style.display = 'none'; }}
+                            alt="GIC Logo"
+                            className="h-12 md:h-14 w-auto hover:scale-105 transition-all duration-300 drop-shadow-lg"
+                            style={{ filter: 'brightness(1.1) contrast(1.1)' }}
                         />
                     </Link>
                 </div>
@@ -73,11 +72,10 @@ const Navbar = () => {
                                 <Link
                                     key={item.name}
                                     to={item.path}
-                                    className={`relative cursor-pointer text-sm font-semibold px-5 py-2 rounded-full transition-all duration-200 ${
-                                        isActive 
-                                            ? 'text-gic-lavender' 
-                                            : 'text-gic-violet/70 hover:text-gic-lavender'
-                                    }`}
+                                    className={`relative cursor-pointer text-sm font-semibold px-5 py-2 rounded-full transition-all duration-200 ${isActive
+                                        ? 'text-gic-lavender'
+                                        : 'text-gic-violet/70 hover:text-gic-lavender'
+                                        }`}
                                 >
                                     {item.name}
                                     {isActive && (
@@ -104,11 +102,10 @@ const Navbar = () => {
                                 <a
                                     key={item.name}
                                     href={item.path}
-                                    className={`relative cursor-pointer text-sm font-semibold px-5 py-2 rounded-full transition-all duration-200 ${
-                                        isActive 
-                                            ? 'text-gic-lavender' 
-                                            : 'text-gic-violet/70 hover:text-gic-lavender'
-                                    }`}
+                                    className={`relative cursor-pointer text-sm font-semibold px-5 py-2 rounded-full transition-all duration-200 ${isActive
+                                        ? 'text-gic-lavender'
+                                        : 'text-gic-violet/70 hover:text-gic-lavender'
+                                        }`}
                                 >
                                     {item.name}
                                     {isActive && (
@@ -182,7 +179,7 @@ const Navbar = () => {
                 >
                     {navItems.map((item, index) => {
                         const isLink = item.path.startsWith('/') && !item.path.includes('#');
-                        
+
                         return (
                             <motion.div
                                 key={item.name}
@@ -193,22 +190,20 @@ const Navbar = () => {
                                 {isLink ? (
                                     <Link
                                         to={item.path}
-                                        className={`text-3xl font-display font-medium transition-colors ${
-                                            activeTab === item.name 
-                                                ? 'text-gic-lavender' 
-                                                : 'text-gic-violet/80 hover:text-gic-lavender'
-                                        }`}
+                                        className={`text-3xl font-display font-medium transition-colors ${activeTab === item.name
+                                            ? 'text-gic-lavender'
+                                            : 'text-gic-violet/80 hover:text-gic-lavender'
+                                            }`}
                                     >
                                         {item.name}
                                     </Link>
                                 ) : (
                                     <a
                                         href={item.path}
-                                        className={`text-3xl font-display font-medium transition-colors ${
-                                            activeTab === item.name 
-                                                ? 'text-gic-lavender' 
-                                                : 'text-gic-violet/80 hover:text-gic-lavender'
-                                        }`}
+                                        className={`text-3xl font-display font-medium transition-colors ${activeTab === item.name
+                                            ? 'text-gic-lavender'
+                                            : 'text-gic-violet/80 hover:text-gic-lavender'
+                                            }`}
                                     >
                                         {item.name}
                                     </a>
@@ -216,7 +211,7 @@ const Navbar = () => {
                             </motion.div>
                         );
                     })}
-                    
+
                 </motion.div>
             </div>
         </nav>

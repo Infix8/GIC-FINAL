@@ -33,13 +33,13 @@ const Pillars = () => {
     useEffect(() => {
         const ctx = gsap.context(() => {
             // Simple fade-in animation on scroll
-            gsap.fromTo('.pillar-card-new', 
+            gsap.fromTo('.pillar-card-new',
                 { y: 40, opacity: 0 },
-                { 
-                    y: 0, 
-                    opacity: 1, 
-                    duration: 0.8, 
-                    stagger: 0.12, 
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.8,
+                    stagger: 0.12,
                     ease: 'power2.out',
                     scrollTrigger: {
                         trigger: '.pillars-grid-new',
@@ -68,28 +68,30 @@ const Pillars = () => {
         <section ref={sectionRef} className="py-20 px-6 md:px-12" id="pillars">
             {/* Section header */}
             <div className="mb-12">
-                <span className="font-mono text-xs tracking-widest" style={{ color: 'var(--color-text-muted)' }}>[02]</span>
                 <h2 className="pillar-title text-4xl md:text-5xl font-bold mt-2" style={{ color: 'var(--color-text-primary)' }}>KEY PILLARS</h2>
             </div>
 
             {/* Pillars grid */}
             <div className="pillars-grid-new grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {pillars.map((pillar, index) => (
-                    <div 
-                        key={index} 
+                    <div
+                        key={index}
                         className="pillar-card-new p-8 rounded-xl card-hover-effect"
-                        style={{ 
+                        style={{
                             background: 'var(--color-bg-secondary)',
                             border: '1px solid rgba(7, 7, 7, 0.08)'
                         }}
                     >
-                        <span 
+                        <span
                             className="font-mono text-6xl font-bold block mb-4"
-                            style={{ color: 'rgba(107, 91, 149, 0.15)' }}
+                            style={{
+                                color: 'rgba(139, 123, 181, 1)',
+                                textShadow: '0 0 20px rgba(139, 123, 181, 0.3)'
+                            }}
                         >
                             {pillar.number}
                         </span>
-                        <h3 
+                        <h3
                             className="text-xl font-bold mb-3"
                             style={{ color: 'var(--color-text-primary)' }}
                         >

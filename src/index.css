@@ -1118,7 +1118,7 @@ svg {
 .pillar-number {
     font-size: 4rem;
     font-weight: 800;
-    color: rgba(255, 255, 255, 0.06);
+    color: rgba(139, 123, 181, 0.7);
     line-height: 1;
 }
 
@@ -2357,7 +2357,7 @@ svg {
 }
 
 .pillar-number {
-    color: rgba(255, 255, 255, 0.06);
+    color: rgba(139, 123, 181, 0.7);
 }
 
 /* Mission Text - Light */

@@ -6,7 +6,6 @@ import BackgroundEffects from './components/BackgroundEffects';
 import Loader from './components/Loader';
 import StaggeredMenu from './components/StaggeredMenu';
 import SmoothScroll from './components/SmoothScroll';
-import RevolvingCircles from './components/RevolvingCircles';
 import { useGSAPAnimations } from './hooks/useGSAPAnimations';
 
 // Pages
@@ -49,44 +48,43 @@ const AppContent = () => {
     <>
       {/* Staggered Menu Navigation - Fixed position, outside smooth scroll flow */}
       <StaggeredMenu
-          items={menuItems}
-          socialItems={socialItems}
-          logoUrl="/logo.png"
-          colors={['#0f0c19', '#1a1528', '#2d2445', '#6B5B95']}
-          accentColor="#8B7BB5"
-          menuButtonColor="#EAEAEA"
-          openMenuButtonColor="#EAEAEA"
-          isFixed={true}
-          displaySocials={true}
-          displayItemNumbering={false}
+        items={menuItems}
+        socialItems={socialItems}
+        logoUrl="/logo.png"
+        colors={['#0f0c19', '#1a1528', '#2d2445', '#6B5B95']}
+        accentColor="#8B7BB5"
+        menuButtonColor="#EAEAEA"
+        openMenuButtonColor="#EAEAEA"
+        isFixed={true}
+        displaySocials={true}
+        displayItemNumbering={false}
       />
       <SmoothScroll>
         <div className="animate-fade-up">
 
-        <PageAnimations />
-        <BackgroundEffects />
-        <RevolvingCircles />
+          <PageAnimations />
+          <BackgroundEffects />
 
-        
 
-        
-        <div className="main-container flex flex-col min-h-screen">
-          <div className="flex-1 pt-0">
-            <Routes>
-              {/* Main Pages */}
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/events" element={<EventsPage />} />
-              <Route path="/speakers" element={<SpeakersPage />} />
-              <Route path="/sponsors" element={<SponsorsPage />} />
-              <Route path="/passes" element={<PassesPage />} />
-              <Route path="/accommodation" element={<AccommodationPage />} />
-            </Routes>
+
+
+          <div className="main-container flex flex-col min-h-screen">
+            <div className="flex-1 pt-0">
+              <Routes>
+                {/* Main Pages */}
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/events" element={<EventsPage />} />
+                <Route path="/speakers" element={<SpeakersPage />} />
+                <Route path="/sponsors" element={<SponsorsPage />} />
+                <Route path="/passes" element={<PassesPage />} />
+                <Route path="/accommodation" element={<AccommodationPage />} />
+              </Routes>
+            </div>
+            <Footer />
           </div>
-          <Footer />
         </div>
-      </div>
-    </SmoothScroll>
+      </SmoothScroll>
     </>
   );
 };

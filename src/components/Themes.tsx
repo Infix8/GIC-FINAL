@@ -4,13 +4,12 @@ const Themes = () => {
     return (
         <section className="py-20 px-6 md:px-12" id="themes">
             <div className="mb-12">
-                <span className="font-mono text-xs tracking-widest" style={{ color: 'var(--color-text-muted)' }}>[03]</span>
                 <h2 className="text-4xl md:text-5xl font-bold mt-2" style={{ color: 'var(--color-text-primary)' }}>Key Themes</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                <div 
+                <div
                     className="p-8 rounded-xl card-hover-effect"
-                    style={{ 
+                    style={{
                         background: 'var(--color-bg-secondary)',
                         border: '1px solid rgba(7, 7, 7, 0.08)'
                     }}
@@ -26,9 +25,9 @@ const Themes = () => {
                         <li>Branding, Sales & Global Expansion</li>
                     </ul>
                 </div>
-                <div 
+                <div
                     className="p-8 rounded-xl card-hover-effect"
-                    style={{ 
+                    style={{
                         background: 'var(--color-bg-secondary)',
                         border: '1px solid rgba(7, 7, 7, 0.08)'
                     }}
@@ -47,10 +46,10 @@ const Themes = () => {
             </div>
             <div className="flex flex-wrap gap-3">
                 {['Artificial Intelligence', 'Quantum Tech', 'Robotics', 'Space & Defence', 'Biotech', 'Clean Energy', 'Semiconductors', 'Advanced Materials', 'Smart Mobility'].map((tag, index) => (
-                    <span 
+                    <span
                         key={index}
                         className="px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105"
-                        style={{ 
+                        style={{
                             background: 'rgba(107, 91, 149, 0.1)',
                             color: 'var(--color-accent)',
                             border: '1px solid rgba(107, 91, 149, 0.2)'

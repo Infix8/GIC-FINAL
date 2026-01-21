@@ -56,12 +56,12 @@ const FloatingActionMenu = ({ className }: FloatingActionMenuProps) => {
                         damping: 20,
                     }}
                 >
-                    <svg 
-                        width="24" 
-                        height="24" 
-                        viewBox="0 0 24 24" 
-                        fill="none" 
-                        stroke="white" 
+                    <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="white"
                         strokeWidth="2"
                     >
                         <line x1="12" y1="5" x2="12" y2="19" />
@@ -98,9 +98,6 @@ const FloatingActionMenu = ({ className }: FloatingActionMenuProps) => {
                             <div className="bg-bg-secondary/95 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl min-w-[200px]">
                                 {/* Navigation Links */}
                                 <div className="flex flex-col gap-1 mb-4">
-                                    <span className="text-xs text-white/40 font-mono tracking-wider px-3 py-1">
-                                        [NAVIGATION]
-                                    </span>
                                     {navOptions.map((option, index) => (
                                         <motion.button
                                             key={option.path}
