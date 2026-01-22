@@ -1,0 +1,58 @@
+#!/bin/bash
+
+echo "🚀 Deploying Global Innovators Conclave Website"
+echo "=============================================="
+
+# Build the application
+echo "📦 Building application..."
+npm run build
+
+if [ $? -eq 0 ]; then
+    echo "✅ Build successful!"
+    echo ""
+    echo "📁 Built files are in the 'dist' folder"
+    echo "📦 ZIP file created: website-deployment.zip"
+    echo ""
+    echo "🌐 DEPLOYMENT OPTIONS:"
+    echo "======================"
+    echo ""
+    echo "1. 🚀 VERCEL (Recommended):"
+    echo "   - Go to https://vercel.com"
+    echo "   - Sign up/Login"
+    echo "   - Click 'Import Project'"
+    echo "   - Upload the 'website-deployment.zip' or connect your GitHub repo"
+    echo "   - Set domain to: globalinnovatorsconclave.in"
+    echo ""
+    echo "2. 🌐 NETLIFY:"
+    echo "   - Go to https://netlify.com"
+    echo "   - Sign up/Login"
+    echo "   - Drag and drop the 'website-deployment.zip' file"
+    echo "   - Set custom domain: globalinnovatorsconclave.in"
+    echo ""
+    echo "3. 🔥 FIREBASE:"
+    echo "   - Install Firebase CLI: npm install -g firebase-tools"
+    echo "   - Login: firebase login"
+    echo "   - Initialize: firebase init hosting"
+    echo "   - Deploy: firebase deploy --only hosting"
+    echo ""
+    echo "4. 🖥️  MANUAL UPLOAD:"
+    echo "   - Upload all files from 'dist' folder to your web server"
+    echo "   - Ensure the server supports SPA routing (the _redirects file handles this)"
+    echo ""
+    echo "📋 IMPORTANT FILES:"
+    echo "==================="
+    echo "- index.html (main entry point)"
+    echo "- assets/ (CSS, JS, images)"
+    echo "- _redirects (for SPA routing)"
+    echo ""
+    echo "🎯 CUSTOM DOMAIN SETUP:"
+    echo "======================="
+    echo "After deployment, configure DNS:"
+    echo "- Point globalinnovatorsconclave.in to your hosting provider"
+    echo "- Add www.globalinnovatorsconclave.in as a CNAME or redirect"
+    echo ""
+    echo "✅ Deployment files ready!"
+else
+    echo "❌ Build failed! Please check for errors."
+    exit 1
+fi

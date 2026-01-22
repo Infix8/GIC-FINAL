@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Launch</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated background elements */
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(139, 123, 181, 0.1) 0%, rgba(169, 155, 212, 0.05) 100%);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .bg-circle:nth-child(1) {
+            width: 400px;
+            height: 400px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .bg-circle:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            top: 60%;
+            right: 15%;
+            animation-delay: 3s;
+        }
+
+        .bg-circle:nth-child(3) {
+            width: 200px;
+            height: 200px;
+            bottom: 20%;
+            left: 70%;
+            animation-delay: 6s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px) scale(1);
+                opacity: 0.3;
+            }
+            33% {
+                transform: translateY(-30px) translateX(20px) scale(1.1);
+                opacity: 0.5;
+            }
+            66% {
+                transform: translateY(20px) translateX(-15px) scale(0.9);
+                opacity: 0.2;
+            }
+        }
+
+        /* Sparkle effects */
+        .sparkle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #A99BD4;
+            border-radius: 50%;
+            animation: sparkle 4s ease-in-out infinite;
+        }
+
+        .sparkle:nth-child(4) { top: 20%; left: 20%; animation-delay: 0s; }
+        .sparkle:nth-child(5) { top: 30%; right: 25%; animation-delay: 1s; }
+        .sparkle:nth-child(6) { bottom: 25%; left: 30%; animation-delay: 2s; }
+        .sparkle:nth-child(7) { bottom: 35%; right: 20%; animation-delay: 3s; }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .launch-button {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%);
+            color: #8B7BB5;
+            border: 3px solid #8B7BB5;
+            padding: 40px 80px;
+            font-size: 32px;
+            font-weight: 700;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 15px 50px rgba(139, 123, 181, 0.3), 0 0 0 0 rgba(139, 123, 181, 0.7);
+            position: relative;
+            z-index: 10;
+            letter-spacing: 3px;
+            min-width: 300px;
+            text-align: center;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            text-transform: uppercase;
+            backdrop-filter: blur(10px);
+        }
+
+        .launch-button:hover {
+            transform: scale(1.15) translateY(-5px);
+            box-shadow: 0 25px 80px rgba(139, 123, 181, 0.5), 0 0 30px rgba(139, 123, 181, 0.4);
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 50%, #ffffff 100%);
+            border-color: #A99BD4;
+            color: #6B5B95;
+        }
+
+        .launch-button:active {
+            transform: scale(1.1) translateY(-2px);
+        }
+
+        /* Elegant glow effect */
+        .launch-button::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 30px;
+            background: linear-gradient(45deg, #8B7BB5, #A99BD4, #C4B5E8, #A99BD4, #8B7BB5);
+            z-index: -1;
+            opacity: 0.3;
+            animation: elegantGlow 4s ease-in-out infinite;
+            filter: blur(1px);
+        }
+
+        .launch-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            border-radius: 25px;
+            background: linear-gradient(45deg, transparent 30%, rgba(139, 123, 181, 0.1) 50%, transparent 70%);
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            z-index: -1;
+        }
+
+        .launch-button:hover::after {
+            opacity: 1;
+            animation: shimmer 1.5s ease-in-out;
+        }
+
+        @keyframes elegantGlow {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.6;
+                transform: scale(1.02);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translate(-50%, -50%) translateX(-100%);
+            }
+            100% {
+                transform: translate(-50%, -50%) translateX(100%);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .launch-button {
+                padding: 30px 60px;
+                font-size: 24px;
+                min-width: 250px;
+                letter-spacing: 2px;
+            }
+
+            .bg-circle:nth-child(1) {
+                width: 300px;
+                height: 300px;
+            }
+
+            .bg-circle:nth-child(2) {
+                width: 250px;
+                height: 250px;
+            }
+
+            .bg-circle:nth-child(3) {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .launch-button {
+                padding: 25px 40px;
+                font-size: 20px;
+                min-width: 200px;
+                letter-spacing: 1px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated background circles -->
+    <div class="bg-circle"></div>
+    <div class="bg-circle"></div>
+    <div class="bg-circle"></div>
+
+    <!-- Sparkle effects -->
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+
+    <a href="http://localhost:5173/" class="launch-button">
+        LAUNCH
+    </a>
+</body>
+</html>
