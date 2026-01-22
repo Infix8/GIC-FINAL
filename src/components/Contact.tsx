@@ -81,7 +81,7 @@ const Contact = () => {
                             </div>
                             <div className="flex items-center gap-2 sm:gap-3">
                                 <span className="text-base sm:text-lg flex-shrink-0">✉️</span>
-                                <span className="text-sm sm:text-base break-all" style={{ color: 'var(--color-text-secondary)' }}>info@globalinnovatorsconclave.com</span>
+                                <span className="text-sm sm:text-base break-all" style={{ color: 'var(--color-text-secondary)' }}>globalinnovatorsconclave@smec.ac.in</span>
                             </div>
                             <div className="flex items-center gap-2 sm:gap-3">
                                 <span className="text-base sm:text-lg flex-shrink-0">🌐</span>
