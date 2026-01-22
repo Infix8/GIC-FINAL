@@ -223,7 +223,7 @@ const Structure = () => {
             </div>
 
             {/* Container */}
-            <div className="relative w-full max-w-6xl h-[420px] flex items-center justify-center gap-6 perspective-1000">
+            <div className="relative w-full max-w-6xl h-auto sm:h-[420px] flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 perspective-1000 px-4 sm:px-0">
                 {visibleItems.map((item, index) => {
                     const gradientIndex = parseInt(item.number) - 1;
                     const isCenter = index === 1;
@@ -232,7 +232,7 @@ const Structure = () => {
                         <div
                             key={item.uniqueId}
                             data-flip-id={item.uniqueId}
-                            className={`structure-card relative w-1/3 min-w-[300px] h-full p-6 md:p-8 rounded-3xl flex flex-col gap-4 overflow-hidden ${isCenter ? 'scale-105 z-10' : 'scale-100'
+                            className={`structure-card relative w-full sm:w-1/3 sm:min-w-[280px] md:min-w-[300px] h-auto sm:h-full min-h-[200px] sm:min-h-0 p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl flex flex-col gap-3 sm:gap-4 overflow-hidden ${isCenter ? 'sm:scale-105 z-10' : 'sm:scale-100'
                                 }`}
                             style={{
                                 cursor: 'default',

@@ -79,53 +79,61 @@ const HeroSection = () => {
       </div>
 
 
-      <div className="max-w-full sm:max-w-[95%] md:max-w-[90%] lg:max-w-[85%] xl:max-w-[75%] mx-auto px-4 sm:px-6 md:px-8 py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 relative z-10 w-full">
+      <div className="max-w-full sm:max-w-[95%] md:max-w-[90%] lg:max-w-[85%] xl:max-w-[75%] mx-auto px-4 sm:px-6 md:px-8 py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 relative z-10 w-full">
         {/* Title and Badge - Above Grid */}
-        <div className="mb-8 sm:mb-12 md:mb-16 space-y-6 sm:space-y-8 md:space-y-10">
-          {/* Event Badge */}
+        <div className="mb-6 sm:mb-8 md:mb-12 lg:mb-16 space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-10">
+          {/* Event Badge - Hidden on Mobile */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
-            className="inline-flex flex-col sm:flex-row items-center gap-2 sm:gap-3 bg-gradient-to-r from-primary/10 via-gic-violet/10 to-primary/10 backdrop-blur-md rounded-full px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 border border-gic-violet/30 shadow-lg shadow-primary/15 text-xs sm:text-sm"
+            className="hidden md:inline-flex flex-row items-center gap-3 bg-gradient-to-r from-primary/10 via-gic-violet/10 to-primary/10 backdrop-blur-md rounded-full px-4 md:px-5 py-2.5 border border-gic-violet/30 shadow-lg shadow-primary/15 text-sm"
           >
             <div className="flex items-center gap-2">
-              <Calendar className="w-4 h-4 text-primary" />
-              <span className="text-gic-lavender font-semibold text-sm">27-28 February 2026</span>
+              <Calendar className="w-4 h-4 text-primary flex-shrink-0" />
+              <span className="text-gic-lavender font-semibold text-sm whitespace-nowrap">27-28 February 2026</span>
             </div>
             <div className="w-px h-4 bg-gic-violet/40" />
             <div className="flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-gic-violet" />
-              <span className="text-gic-lavender font-semibold text-sm">Hyderabad, India</span>
+              <MapPin className="w-4 h-4 text-gic-violet flex-shrink-0" />
+              <span className="text-gic-lavender font-semibold text-sm whitespace-nowrap">Hyderabad, India</span>
             </div>
           </motion.div>
 
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+              transition={{ delay: 0.1, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
               className="flex items-center group"
             >
-              <div className="flex flex-col mb-1 capitalize">
-                <span
-                  className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-4xl font-bold text-white/90 ml-1 mb-2"
+              <div className="flex flex-col mb-1 capitalize w-full">
+                <motion.span
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.15, duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+                  className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold text-white/90 ml-1 mb-1 sm:mb-2"
                   style={{
                     fontFamily: '"Playfair Display", "Cormorant Garamond", serif',
                     letterSpacing: '0.05em',
-                    lineHeight: '1',
+                    lineHeight: '1.1',
                   }}
                 >
                   SMEC's
-                </span>
-                <div style={{ transform: 'scale(0.75)', transformOrigin: 'left center', display: 'inline-block' }}>
+                </motion.span>
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                  style={{ transform: 'scale(0.75)', transformOrigin: 'left center', display: 'inline-block', width: '100%' }}
+                >
                   <motion.h2
                     whileHover={{
                       textShadow: "0 0 6px rgba(169, 155, 212, 0.18), 0 0 12px rgba(139, 123, 181, 0.12), 0 0 18px rgba(169, 155, 212, 0.09)",
                       filter: "drop-shadow(0 0 3px rgba(169, 155, 212, 0.15))",
                       transition: { duration: 0.3 }
                     }}
-                    className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold flex flex-wrap sm:flex-nowrap items-center cursor-pointer transition-all duration-300"
+                    className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold flex flex-wrap items-center cursor-pointer transition-all duration-300"
                     style={{
                       fontFamily: '"Playfair Display", "Cormorant Garamond", serif',
                       fontStyle: 'normal',
@@ -137,23 +145,26 @@ const HeroSection = () => {
                     }}
                   >
                     {['Global', 'Innovators', 'Conclave', '2026'].map((word, index) => (
-                      <span
+                      <motion.span
                         key={index}
-                        className="inline-block py-1 rounded"
+                        initial={{ opacity: 0, y: 5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.25 + (index * 0.05), duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                        className="inline-block py-0.5 sm:py-1 rounded"
                         style={{
                           transformOrigin: 'center',
                           display: 'inline-block',
-                          paddingLeft: '0.375rem',
-                          paddingRight: '0.375rem',
+                          paddingLeft: '0.25rem',
+                          paddingRight: '0.25rem',
                           marginLeft: index === 0 ? '0' : '0.09375rem',
                           marginRight: index === 3 ? '0' : '0.09375rem',
                         }}
                       >
                         {word}
-                      </span>
+                      </motion.span>
                     ))}
                   </motion.h2>
-                </div>
+                </motion.div>
               </div>
             </motion.div>
 
@@ -161,20 +172,20 @@ const HeroSection = () => {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 items-start">
           {/* Left Content */}
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             {/* Main Title Highlight */}
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentSlide}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
                 >
-                  <h1 className="font-display text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight italic break-words sm:whitespace-nowrap"
+                  <h1 className="font-display text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-[1.1] sm:leading-[1.05] tracking-tight italic break-words"
                     style={{
                       fontStyle: 'italic',
                       transform: 'skewX(-8deg)',
@@ -193,7 +204,7 @@ const HeroSection = () => {
                       {slide.highlight}
                     </span>
                   </h1>
-                  <p className="text-gic-lavender/80 text-lg sm:text-xl mt-4 leading-relaxed max-w-xl italic"
+                  <p className="text-gic-lavender/80 text-sm sm:text-base md:text-lg lg:text-xl mt-3 sm:mt-4 leading-relaxed max-w-xl italic"
                     style={{
                       fontStyle: 'italic',
                       transform: 'skewX(-6deg)',
@@ -210,46 +221,61 @@ const HeroSection = () => {
             <AnimatePresence mode="wait">
               <motion.div
                 key={`stat-${currentSlide}`}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.6, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
-                className="grid grid-cols-3 gap-6"
+                transition={{ duration: 0.5, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
+                className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-6"
               >
-                <div className="space-y-1">
-                  <p className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gic-lavender to-primary bg-clip-text text-transparent">{slide.stat}</p>
-                  <p className="text-gic-violet/70 text-sm">{slide.statLabel}</p>
-                </div>
-                <div className="space-y-1">
-                  <p className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gic-lavender to-primary bg-clip-text text-transparent">2</p>
-                  <p className="text-gic-violet/70 text-sm">Days Event</p>
-                </div>
-                <div className="space-y-1">
-                  <p className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gic-lavender to-primary bg-clip-text text-transparent">₹5L+</p>
-                  <p className="text-gic-violet/70 text-sm">Prize Pool</p>
-                </div>
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.15, duration: 0.4 }}
+                  className="space-y-0.5 sm:space-y-1"
+                >
+                  <p className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gic-lavender to-primary bg-clip-text text-transparent">{slide.stat}</p>
+                  <p className="text-gic-violet/70 text-xs sm:text-sm">{slide.statLabel}</p>
+                </motion.div>
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.2, duration: 0.4 }}
+                  className="space-y-0.5 sm:space-y-1"
+                >
+                  <p className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gic-lavender to-primary bg-clip-text text-transparent">2</p>
+                  <p className="text-gic-violet/70 text-xs sm:text-sm">Days Event</p>
+                </motion.div>
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.25, duration: 0.4 }}
+                  className="space-y-0.5 sm:space-y-1"
+                >
+                  <p className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gic-lavender to-primary bg-clip-text text-transparent">₹5L+</p>
+                  <p className="text-gic-violet/70 text-xs sm:text-sm">Prize Pool</p>
+                </motion.div>
               </motion.div>
             </AnimatePresence>
 
             {/* CTA Buttons */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
-              className="flex flex-wrap gap-4 pt-4"
+              transition={{ delay: 0.3, duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+              className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 pt-2 sm:pt-4"
             >
-              <Link to="/about">
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
-                  <Button size="lg" className="bg-gradient-to-r from-primary via-gic-violet to-primary hover:from-gic-violet hover:via-primary hover:to-gic-violet text-white rounded-full px-8 h-14 text-base font-semibold shadow-lg shadow-primary/25 hover:shadow-primary/35 transition-all">
+              <Link to="/about" className="w-full sm:w-auto">
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
+                  <Button size="lg" className="w-full sm:w-auto bg-gradient-to-r from-primary via-gic-violet to-primary hover:from-gic-violet hover:via-primary hover:to-gic-violet text-white rounded-full px-6 sm:px-8 h-12 sm:h-14 text-sm sm:text-base font-semibold shadow-lg shadow-primary/25 hover:shadow-primary/35 transition-all duration-300">
                     Learn More
-                    <ArrowRight className="w-5 h-5 ml-2" />
+                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
                   </Button>
                 </motion.div>
               </Link>
-              <Link to="/events">
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
-                  <Button size="lg" variant="outline" className="rounded-full px-8 h-14 text-base font-semibold border-2 border-gic-violet/50 text-gic-lavender hover:bg-gic-violet/20 hover:border-gic-violet hover:shadow-lg hover:shadow-primary/40 transition-all">
-                    <Play className="w-4 h-4 mr-2" />
+              <Link to="/events" className="w-full sm:w-auto">
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto rounded-full px-6 sm:px-8 h-12 sm:h-14 text-sm sm:text-base font-semibold border-2 border-gic-violet/50 text-gic-lavender hover:bg-gic-violet/20 hover:border-gic-violet hover:shadow-lg hover:shadow-primary/40 transition-all duration-300">
+                    <Play className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                     Explore Programs
                   </Button>
                 </motion.div>
@@ -257,19 +283,26 @@ const HeroSection = () => {
             </motion.div>
 
             {/* Carousel Dots */}
-            <div className="flex gap-2 pt-6">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+              className="flex gap-2 pt-4 sm:pt-6"
+            >
               {slides.map((_, index) => (
-                <button
+                <motion.button
                   key={index}
                   onClick={() => setCurrentSlide(index)}
-                  className={`h-2 rounded-full transition-all duration-500 ${index === currentSlide
-                    ? "w-10 bg-gradient-to-r from-gic-lavender via-gic-violet to-primary"
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                  className={`h-1.5 sm:h-2 rounded-full transition-all duration-300 min-w-[8px] min-h-[8px] ${index === currentSlide
+                    ? "w-8 sm:w-10 bg-gradient-to-r from-gic-lavender via-gic-violet to-primary"
                     : "w-2 bg-gic-violet/30 hover:bg-gic-lavender/60"
                     }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
               ))}
-            </div>
+            </motion.div>
           </div>
 
           {/* Right Content - Visual Element */}

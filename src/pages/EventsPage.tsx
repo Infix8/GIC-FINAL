@@ -822,22 +822,22 @@ const EventsPage = () => {
                     </section>
 
                     {/* Timeline Section */}
-                    <section className="py-12 px-6 md:px-12">
+                    <section className="py-8 sm:py-12 px-4 sm:px-6 md:px-12">
                         <div className="max-w-4xl mx-auto">
                             <h2
-                                className="text-2xl md:text-3xl font-bold mb-2"
+                                className="text-xl sm:text-2xl md:text-3xl font-bold mb-2"
                                 style={{ color: '#EAEAEA' }}
                             >
                                 {hasPhases ? 'Program Timeline' : 'Event Schedule'}
                             </h2>
-                            <p className="mb-8" style={{ color: 'rgba(234, 234, 234, 0.6)' }}>
+                            <p className="mb-6 sm:mb-8 text-sm sm:text-base" style={{ color: 'rgba(234, 234, 234, 0.6)' }}>
                                 {hasPhases ? 'Multi-phase journey from training to finals' : 'Detailed agenda for each day'}
                             </p>
 
                             {hasMultipleDays && (
-                                <div className="flex gap-4 mb-10">
+                                <div className="flex gap-3 sm:gap-4 mb-8 sm:mb-10">
                                     <button
-                                        className={`px-6 py-3 rounded-xl font-medium transition-all ${activeDay === 1 ? 'scale-105' : 'opacity-60 hover:opacity-80'}`}
+                                        className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg sm:rounded-xl font-medium transition-all min-h-[44px] ${activeDay === 1 ? 'scale-105' : 'opacity-60 hover:opacity-80'}`}
                                         onClick={() => handleDaySwitch(1)}
                                         style={{
                                             background: activeDay === 1 ? currentColor?.gradient : 'rgba(15, 12, 25, 0.6)',
@@ -846,11 +846,11 @@ const EventsPage = () => {
                                             boxShadow: activeDay === 1 ? `0 10px 30px ${currentColor?.shadow}` : 'none'
                                         }}
                                     >
-                                        <span className="block text-sm opacity-70">Day-1</span>
-                                        <span className="block text-xl font-bold">Feb-27</span>
+                                        <span className="block text-xs sm:text-sm opacity-70">Day-1</span>
+                                        <span className="block text-lg sm:text-xl font-bold">Feb-27</span>
                                     </button>
                                     <button
-                                        className={`px-6 py-3 rounded-xl font-medium transition-all ${activeDay === 2 ? 'scale-105' : 'opacity-60 hover:opacity-80'}`}
+                                        className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg sm:rounded-xl font-medium transition-all min-h-[44px] ${activeDay === 2 ? 'scale-105' : 'opacity-60 hover:opacity-80'}`}
                                         onClick={() => handleDaySwitch(2)}
                                         style={{
                                             background: activeDay === 2 ? currentColor?.gradient : 'rgba(15, 12, 25, 0.6)',
@@ -859,15 +859,15 @@ const EventsPage = () => {
                                             boxShadow: activeDay === 2 ? `0 10px 30px ${currentColor?.shadow}` : 'none'
                                         }}
                                     >
-                                        <span className="block text-sm opacity-70">Day-2</span>
-                                        <span className="block text-xl font-bold">Feb-28</span>
+                                        <span className="block text-xs sm:text-sm opacity-70">Day-2</span>
+                                        <span className="block text-lg sm:text-xl font-bold">Feb-28</span>
                                     </button>
                                 </div>
                             )}
 
                             <div ref={timelineRef} className="relative">
                                 <div
-                                    className="absolute left-[39px] top-0 bottom-0 w-[2px]"
+                                    className="absolute left-[29px] sm:left-[39px] top-0 bottom-0 w-[2px]"
                                     style={{ background: 'rgba(139, 123, 181, 0.2)' }}
                                 >
                                     <div
@@ -881,15 +881,15 @@ const EventsPage = () => {
                                     />
                                 </div>
 
-                                <div className="space-y-6">
+                                <div className="space-y-4 sm:space-y-6">
                                     {hasPhases ? (
                                         (timelineItems as { name: string; date: string; description: string }[]).map((phase, index) => (
                                             <div
                                                 key={index}
-                                                className="timeline-item flex gap-6 pl-2"
+                                                className="timeline-item flex gap-3 sm:gap-6 pl-2"
                                             >
                                                 <div
-                                                    className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center text-xl font-bold z-10"
+                                                    className="flex-shrink-0 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-base sm:text-xl font-bold z-10"
                                                     style={{
                                                         background: currentColor?.gradient,
                                                         color: 'white',
@@ -900,15 +900,15 @@ const EventsPage = () => {
                                                 </div>
 
                                                 <div
-                                                    className="flex-1 p-5 rounded-xl"
+                                                    className="flex-1 p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl"
                                                     style={{
                                                         background: 'rgba(15, 12, 25, 0.6)',
                                                         border: '1px solid rgba(139, 123, 181, 0.15)'
                                                     }}
                                                 >
-                                                    <div className="flex flex-wrap items-center gap-3 mb-2">
+                                                    <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2">
                                                         <span
-                                                            className="px-3 py-1 rounded-full text-xs font-medium"
+                                                            className="px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs font-medium"
                                                             style={{
                                                                 background: `${currentColor?.accent}20`,
                                                                 color: currentColor?.accent
@@ -917,10 +917,10 @@ const EventsPage = () => {
                                                             {phase.date}
                                                         </span>
                                                     </div>
-                                                    <h3 className="text-lg font-semibold mb-1" style={{ color: '#EAEAEA' }}>
+                                                    <h3 className="text-base sm:text-lg font-semibold mb-1" style={{ color: '#EAEAEA' }}>
                                                         {phase.name}
                                                     </h3>
-                                                    <p className="text-sm" style={{ color: 'rgba(234, 234, 234, 0.6)' }}>
+                                                    <p className="text-xs sm:text-sm" style={{ color: 'rgba(234, 234, 234, 0.6)' }}>
                                                         {phase.description}
                                                     </p>
                                                 </div>
@@ -930,10 +930,10 @@ const EventsPage = () => {
                                         (timelineItems as TimelineItem[]).map((item, index) => (
                                             <div
                                                 key={index}
-                                                className="timeline-item flex gap-6 pl-2"
+                                                className="timeline-item flex gap-3 sm:gap-6 pl-2"
                                             >
                                                 <div
-                                                    className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center text-xl font-bold z-10"
+                                                    className="flex-shrink-0 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-base sm:text-xl font-bold z-10"
                                                     style={{
                                                         background: currentColor?.gradient,
                                                         color: 'white',
@@ -944,21 +944,21 @@ const EventsPage = () => {
                                                 </div>
 
                                                 <div
-                                                    className="flex-1 p-5 rounded-xl"
+                                                    className="flex-1 p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl"
                                                     style={{
                                                         background: 'rgba(15, 12, 25, 0.6)',
                                                         border: '1px solid rgba(139, 123, 181, 0.15)'
                                                     }}
                                                 >
-                                                    <div className="flex flex-wrap items-center gap-3 mb-2">
+                                                    <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2">
                                                         <span
-                                                            className="font-mono text-sm"
+                                                            className="font-mono text-xs sm:text-sm"
                                                             style={{ color: currentColor?.accent }}
                                                         >
                                                             {item.time}
                                                         </span>
                                                         <span
-                                                            className="px-3 py-1 rounded-full text-xs font-medium"
+                                                            className="px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs font-medium"
                                                             style={{
                                                                 background: `${currentColor?.accent}20`,
                                                                 color: currentColor?.accent
@@ -967,10 +967,10 @@ const EventsPage = () => {
                                                             {item.type}
                                                         </span>
                                                     </div>
-                                                    <h3 className="text-lg font-semibold mb-1" style={{ color: '#EAEAEA' }}>
+                                                    <h3 className="text-base sm:text-lg font-semibold mb-1" style={{ color: '#EAEAEA' }}>
                                                         {item.activity}
                                                     </h3>
-                                                    <p className="text-sm" style={{ color: 'rgba(234, 234, 234, 0.6)' }}>
+                                                    <p className="text-xs sm:text-sm" style={{ color: 'rgba(234, 234, 234, 0.6)' }}>
                                                         {item.details}
                                                     </p>
                                                 </div>
@@ -1016,41 +1016,42 @@ const EventsPage = () => {
     // Events Grid View
     return (
         <div ref={pageRef} className="page-container events-page" style={{ background: 'var(--color-bg-primary)' }}>
-            {/* Header */}
-            <section className="pt-0 pb-8 sm:pb-12 md:pb-16 px-4 sm:px-6 md:px-8 lg:px-12">
+            {/* Header and Events Grid in Single Frame */}
+            <section className="pt-0 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 md:px-8 lg:px-12">
                 <div className="max-w-7xl mx-auto">
-                    <h1
-                        className="header-animate text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4"
-                        style={{ color: '#EAEAEA' }}
-                    >
-                        GIC Events
-                    </h1>
-                    <p
-                        className="header-animate text-base sm:text-lg max-w-xl"
-                        style={{ color: 'rgba(234, 234, 234, 0.6)' }}
-                    >
-                        Five transformative tracks spanning technical talent, startup validation,
-                        youth entrepreneurship, and policy dialogue.
-                    </p>
-                </div>
-            </section>
+                    {/* Header */}
+                    <div className="space-y-3 sm:space-y-4 mb-0">
+                        <h1
+                            className="header-animate text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold"
+                            style={{ color: '#EAEAEA' }}
+                        >
+                            GIC Events
+                        </h1>
+                        <p
+                            className="header-animate text-base sm:text-lg max-w-2xl mb-0"
+                            style={{ color: 'rgba(234, 234, 234, 0.6)' }}
+                        >
+                            Five transformative tracks spanning technical talent, startup validation,
+                            youth entrepreneurship, and policy dialogue.
+                        </p>
+                    </div>
 
-            {/* Events Grid */}
-            <section className="events-grid pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 md:px-8 lg:px-12">
-                <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                    {/* Events Grid */}
+                    <div className="events-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 mt-0">
                     {eventsData.map((event) => {
                         const color = eventColors[event.colorKey];
                         return (
                                 <div
                                     key={event.id}
-                                    className="event-card group cursor-pointer rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 transition-all duration-500 hover:scale-[1.02] relative overflow-hidden w-full"
+                                    className="event-card group cursor-pointer rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-7 transition-all duration-500 hover:scale-[1.02] relative overflow-hidden w-full h-full flex flex-col"
                                     onClick={() => handleEventClick(event)}
                                     style={{
                                         background: color.gradient,
                                         boxShadow: `0 15px 40px ${color.shadow}`,
                                         border: '1px solid rgba(255, 255, 255, 0.2)',
                                         maxWidth: '100%',
-                                        boxSizing: 'border-box'
+                                        boxSizing: 'border-box',
+                                        minHeight: '280px'
                                     }}
                                 >
                                 <div
@@ -1061,7 +1062,7 @@ const EventsPage = () => {
                                 />
 
                                 <div
-                                    className="relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4 text-base sm:text-lg md:text-xl font-mono font-bold"
+                                    className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-lg sm:rounded-xl flex items-center justify-center mb-4 sm:mb-5 text-lg sm:text-xl md:text-2xl font-mono font-bold flex-shrink-0"
                                     style={{
                                         background: 'rgba(255, 255, 255, 0.25)',
                                         backdropFilter: 'blur(10px)',
@@ -1072,87 +1073,91 @@ const EventsPage = () => {
                                     {event.number}
                                 </div>
 
-                                <h3
-                                    className="relative text-lg sm:text-xl font-bold mb-1.5 sm:mb-2 line-clamp-2"
-                                    style={{ color: 'white', textShadow: '0 2px 8px rgba(0,0,0,0.2)' }}
-                                >
-                                    {event.title}
-                                </h3>
-                                <p
-                                    className="relative text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2"
-                                    style={{ color: 'rgba(255, 255, 255, 0.9)' }}
-                                >
-                                    {event.tagline}
-                                </p>
-
-                                <div className="relative flex flex-wrap gap-2 mb-4">
-                                    {event.highlights.slice(0, event.id === "business-tech-expo" ? 3 : 2).map((h, i) => (
-                                        <span
-                                            key={i}
-                                            className="px-2 py-1 rounded text-xs"
-                                            style={{
-                                                background: 'rgba(255, 255, 255, 0.2)',
-                                                color: 'white'
-                                            }}
-                                        >
-                                            {h}
-                                        </span>
-                                    ))}
-                                </div>
-
-                                <div
-                                    className="relative flex items-center gap-2 text-sm font-medium group-hover:gap-3 transition-all"
-                                    style={{ color: 'white' }}
-                                >
-                                    View Details
-                                    <svg
-                                        width="16"
-                                        height="16"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                        className="transition-transform group-hover:translate-x-1"
+                                <div className="relative flex-1 flex flex-col">
+                                    <h3
+                                        className="relative text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 line-clamp-2"
+                                        style={{ color: 'white', textShadow: '0 2px 8px rgba(0,0,0,0.2)' }}
                                     >
-                                        <path d="M5 12h14M12 5l7 7-7 7" />
-                                    </svg>
+                                        {event.title}
+                                    </h3>
+                                    <p
+                                        className="relative text-xs sm:text-sm mb-4 sm:mb-5 line-clamp-2 flex-shrink-0"
+                                        style={{ color: 'rgba(255, 255, 255, 0.9)' }}
+                                    >
+                                        {event.tagline}
+                                    </p>
+
+                                    <div className="relative flex flex-wrap gap-2 mb-4 sm:mb-5 flex-shrink-0">
+                                        {event.highlights.slice(0, event.id === "business-tech-expo" ? 3 : 2).map((h, i) => (
+                                            <span
+                                                key={i}
+                                                className="px-2.5 py-1 rounded-md text-xs font-medium"
+                                                style={{
+                                                    background: 'rgba(255, 255, 255, 0.2)',
+                                                    color: 'white',
+                                                    backdropFilter: 'blur(5px)'
+                                                }}
+                                            >
+                                                {h}
+                                            </span>
+                                        ))}
+                                    </div>
+
+                                    <div
+                                        className="relative flex items-center gap-2 text-sm font-medium group-hover:gap-3 transition-all mt-auto"
+                                        style={{ color: 'white' }}
+                                    >
+                                        View Details
+                                        <svg
+                                            width="16"
+                                            height="16"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            strokeWidth="2"
+                                            className="transition-transform group-hover:translate-x-1"
+                                        >
+                                            <path d="M5 12h14M12 5l7 7-7 7" />
+                                        </svg>
+                                    </div>
                                 </div>
                             </div>
                         );
                     })}
-                </div>
-            </section>
-
-            {/* Bottom CTA */}
-            <section className="pb-20 px-6 md:px-12">
-                <div
-                    className="max-w-4xl mx-auto p-8 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6"
-                    style={{
-                        background: 'var(--color-bg-secondary)',
-                        border: '1px solid rgba(139, 123, 181, 0.2)'
-                    }}
-                >
-                    <div>
-                        <h3 className="text-2xl font-bold mb-2" style={{ color: '#EAEAEA' }}>
-                            Ready to be part of GIC 2026?
-                        </h3>
-                        <p style={{ color: 'rgba(234, 234, 234, 0.6)' }}>
-                            Join innovators, entrepreneurs, and industry leaders
-                        </p>
                     </div>
-                    <a
-                        href="/speakers"
-                        className="flex items-center gap-2 px-8 py-4 rounded-xl font-semibold transition-all hover:scale-105"
-                        style={{
-                            background: 'linear-gradient(135deg, #8B7BB5 0%, #A99BD4 100%)',
-                            color: '#0a0a0f'
-                        }}
-                    >
-                        Meet Speakers
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </a>
+
+                    {/* Bottom CTA */}
+                    <div className="pt-12 sm:pt-16 md:pt-20 lg:pt-24">
+                        <div
+                            className="max-w-4xl mx-auto p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6"
+                            style={{
+                                background: 'var(--color-bg-secondary)',
+                                border: '1px solid rgba(139, 123, 181, 0.2)'
+                            }}
+                        >
+                            <div className="text-center md:text-left flex-1">
+                                <h3 className="text-xl sm:text-2xl font-bold mb-2" style={{ color: '#EAEAEA' }}>
+                                    Ready to be part of GIC 2026?
+                                </h3>
+                                <p className="text-sm sm:text-base" style={{ color: 'rgba(234, 234, 234, 0.6)' }}>
+                                    Join innovators, entrepreneurs, and industry leaders
+                                </p>
+                            </div>
+                            <a
+                                href="/speakers"
+                                className="flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl font-semibold transition-all hover:scale-105 min-h-[44px] w-full md:w-auto text-sm sm:text-base whitespace-nowrap"
+                                style={{
+                                    background: 'linear-gradient(135deg, #8B7BB5 0%, #A99BD4 100%)',
+                                    color: '#0a0a0f'
+                                }}
+                            >
+                                Meet Speakers
+                                <svg width="18" height="18" className="sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>

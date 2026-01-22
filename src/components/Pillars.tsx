@@ -65,25 +65,25 @@ const Pillars = () => {
     }, []);
 
     return (
-        <section ref={sectionRef} className="py-20 px-6 md:px-12" id="pillars">
+        <section ref={sectionRef} className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12" id="pillars">
             {/* Section header */}
-            <div className="mb-12">
-                <h2 className="pillar-title text-4xl md:text-5xl font-bold mt-2" style={{ color: 'var(--color-text-primary)' }}>KEY PILLARS</h2>
+            <div className="mb-8 sm:mb-10 md:mb-12">
+                <h2 className="pillar-title text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mt-2" style={{ color: 'var(--color-text-primary)' }}>KEY PILLARS</h2>
             </div>
 
             {/* Pillars grid */}
-            <div className="pillars-grid-new grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="pillars-grid-new grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                 {pillars.map((pillar, index) => (
                     <div
                         key={index}
-                        className="pillar-card-new p-8 rounded-xl card-hover-effect"
+                        className="pillar-card-new p-4 sm:p-6 md:p-8 rounded-lg sm:rounded-xl card-hover-effect"
                         style={{
                             background: 'var(--color-bg-secondary)',
                             border: '1px solid rgba(7, 7, 7, 0.08)'
                         }}
                     >
                         <span
-                            className="font-mono text-6xl font-bold block mb-4"
+                            className="font-mono text-4xl sm:text-5xl md:text-6xl font-bold block mb-3 sm:mb-4"
                             style={{
                                 color: 'rgba(139, 123, 181, 1)',
                                 textShadow: '0 0 20px rgba(139, 123, 181, 0.3)'
@@ -92,12 +92,12 @@ const Pillars = () => {
                             {pillar.number}
                         </span>
                         <h3
-                            className="text-xl font-bold mb-3"
+                            className="text-lg sm:text-xl font-bold mb-2 sm:mb-3"
                             style={{ color: 'var(--color-text-primary)' }}
                         >
                             {pillar.title}
                         </h3>
-                        <p style={{ color: 'var(--color-text-muted)' }}>
+                        <p className="text-sm sm:text-base" style={{ color: 'var(--color-text-muted)' }}>
                             {pillar.description}
                         </p>
                     </div>

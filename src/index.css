@@ -3041,3 +3041,407 @@ video, iframe, embed, object {
     height: 100%;
     object-fit: cover;
 }
+
+/* ===== Mobile-Specific Optimizations ===== */
+
+/* Mobile-first base styles */
+@media (max-width: 640px) {
+    /* Reduce padding on mobile */
+    .section {
+        padding: 2rem 1rem !important;
+    }
+    
+    /* Ensure text is readable */
+    body {
+        font-size: 16px;
+        -webkit-text-size-adjust: 100%;
+        -moz-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+    }
+    
+    /* Fix button sizes for touch */
+    button, .btn, [role="button"] {
+        min-height: 44px;
+        min-width: 44px;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    /* Prevent horizontal scroll */
+    * {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Fix card hover effects on mobile - disable scale */
+    .card-hover-effect:hover {
+        transform: none;
+    }
+    
+    /* Optimize images */
+    img {
+        height: auto;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    /* Fix overflow issues */
+    .overflow-hidden {
+        overflow: hidden;
+    }
+    
+    /* Better spacing for mobile */
+    .space-y-8 > * + * {
+        margin-top: 1.5rem;
+    }
+    
+    .space-y-6 > * + * {
+        margin-top: 1rem;
+    }
+    
+    /* Fix grid gaps on mobile */
+    .grid {
+        gap: 1rem;
+    }
+}
+
+/* Small mobile devices (up to 375px) */
+@media (max-width: 375px) {
+    :root {
+        --space-sm: 0.75rem;
+        --space-md: 1.5rem;
+        --space-lg: 2rem;
+    }
+    
+    h1, .h1 {
+        font-size: clamp(1.5rem, 8vw, 2rem);
+    }
+    
+    h2, .h2 {
+        font-size: clamp(1.25rem, 7vw, 1.75rem);
+    }
+    
+    h3, .h3 {
+        font-size: clamp(1.1rem, 6vw, 1.5rem);
+    }
+    
+    /* Reduce padding further */
+    .p-8 {
+        padding: 1rem;
+    }
+    
+    .p-6 {
+        padding: 0.75rem;
+    }
+    
+    .px-6 {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+}
+
+/* Tablet optimizations (641px - 1024px) */
+@media (min-width: 641px) and (max-width: 1024px) {
+    .section {
+        padding: 3rem 2rem;
+    }
+    
+    /* Better grid layouts for tablet */
+    .grid-cols-1.md\:grid-cols-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Fix for iOS Safari viewport issues */
+@supports (-webkit-touch-callout: none) {
+    @media (max-width: 768px) {
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Fix for iOS safe areas */
+        .safe-top {
+            padding-top: env(safe-area-inset-top);
+        }
+        
+        .safe-bottom {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    }
+}
+
+/* Disable hover effects on touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .card-hover-effect:hover,
+    .card-hover-effect:focus {
+        transform: none;
+        background: var(--color-bg-secondary) !important;
+    }
+    
+    /* Better touch feedback */
+    button:active,
+    .btn:active,
+    [role="button"]:active {
+        opacity: 0.8;
+        transform: scale(0.98);
+    }
+}
+
+/* Performance optimizations for mobile */
+@media (max-width: 768px) {
+    /* Reduce animations on mobile for better performance */
+    * {
+        animation-duration: 0.3s !important;
+        transition-duration: 0.2s !important;
+    }
+    
+    /* Disable complex transforms on mobile */
+    .perspective-1000 {
+        perspective: none;
+    }
+    
+    /* Optimize will-change */
+    [data-speed],
+    [data-parallax] {
+        will-change: auto;
+    }
+}
+
+/* Fix text selection on mobile */
+@media (max-width: 768px) {
+    p, span, div, li {
+        -webkit-user-select: text;
+        user-select: text;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        -webkit-user-select: none;
+        user-select: none;
+    }
+}
+
+/* Fix for mobile menu and navigation */
+@media (max-width: 768px) {
+    /* Ensure navigation is accessible */
+    nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        width: 100%;
+        max-width: 100vw;
+    }
+    
+    /* Fix for sticky elements */
+    [class*="sticky"],
+    [class*="fixed"] {
+        position: relative;
+    }
+    
+    [class*="sticky"].mobile-sticky,
+    [class*="fixed"].mobile-fixed {
+        position: fixed;
+    }
+}
+
+/* Optimize font loading on mobile */
+@media (max-width: 768px) {
+    body {
+        font-display: swap;
+    }
+}
+
+/* Fix for mobile landscape */
+@media (max-width: 896px) and (orientation: landscape) {
+    .hero-section,
+    section {
+        min-height: auto;
+        padding: 2rem 1rem;
+    }
+}
+
+/* ===== Enhanced Mobile Transitions & Animations ===== */
+
+/* Smooth page transitions on mobile */
+@media (max-width: 768px) {
+    /* Reduce motion for better performance */
+    * {
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* Smooth fade-in animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    /* Stagger animations for better visual flow */
+    .mobile-fade-in {
+        animation: fadeInUp 0.5s ease-out forwards;
+        opacity: 0;
+    }
+    
+    .mobile-fade-in:nth-child(1) { animation-delay: 0.1s; }
+    .mobile-fade-in:nth-child(2) { animation-delay: 0.2s; }
+    .mobile-fade-in:nth-child(3) { animation-delay: 0.3s; }
+    .mobile-fade-in:nth-child(4) { animation-delay: 0.4s; }
+    
+    /* Smooth scroll behavior */
+    html {
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Better touch interactions */
+    button, a, [role="button"] {
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        -webkit-tap-highlight-color: rgba(139, 123, 181, 0.2);
+    }
+    
+    button:active, a:active, [role="button"]:active {
+        transform: scale(0.97);
+        transition: transform 0.1s;
+    }
+    
+    /* Smooth card transitions */
+    .card-hover-effect {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                    background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* Enhanced section spacing on mobile */
+    section {
+        scroll-margin-top: 80px;
+    }
+    
+    /* Smooth grid transitions */
+    .grid {
+        transition: grid-template-columns 0.3s ease;
+    }
+    
+    /* Better text rendering on mobile */
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+    }
+    
+    /* Smooth image loading */
+    img {
+        transition: opacity 0.3s ease;
+    }
+    
+    img[loading="lazy"] {
+        opacity: 0;
+    }
+    
+    img[loading="lazy"].loaded {
+        opacity: 1;
+    }
+}
+
+/* Mobile-specific smooth transitions for components */
+@media (max-width: 640px) {
+    /* Hero section mobile optimizations */
+    .hero-section {
+        padding-top: 4rem;
+        padding-bottom: 2rem;
+    }
+    
+    /* Better spacing between sections */
+    section + section {
+        margin-top: 2rem;
+    }
+    
+    /* Smooth modal/overlay transitions */
+    [class*="modal"],
+    [class*="overlay"],
+    [class*="drawer"] {
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    
+    /* Enhanced button feedback */
+    button {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    button::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.3s, height 0.3s;
+    }
+    
+    button:active::after {
+        width: 300px;
+        height: 300px;
+    }
+}
+
+/* Enhanced mobile viewport handling */
+@media (max-width: 768px) {
+    /* Prevent layout shifts */
+    * {
+        will-change: auto;
+    }
+    
+    /* Only use will-change for actively animating elements */
+    [class*="animate"],
+    [class*="motion"] {
+        will-change: transform, opacity;
+    }
+    
+    /* Optimize transform performance */
+    .transform-gpu {
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+    }
+}
+
+/* Smooth component entrance animations */
+@media (prefers-reduced-motion: no-preference) {
+    @media (max-width: 768px) {
+        .mobile-entrance {
+            animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        
+        .mobile-entrance-delay-1 {
+            animation-delay: 0.1s;
+        }
+        
+        .mobile-entrance-delay-2 {
+            animation-delay: 0.2s;
+        }
+        
+        .mobile-entrance-delay-3 {
+            animation-delay: 0.3s;
+        }
+    }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

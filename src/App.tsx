@@ -31,7 +31,6 @@ const menuItems = [
 
 const socialItems = [
   { label: 'LinkedIn', link: 'https://linkedin.com' },
-  { label: 'Twitter', link: 'https://twitter.com' },
   { label: 'Instagram', link: 'https://www.instagram.com/gic_smec?igsh=dGc0MTMyOTR2ZXBi' },
 ];
 
