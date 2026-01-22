@@ -1,45 +1,8 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import React from 'react';
 
 const About = () => {
-    const sectionRef = useRef<HTMLElement>(null);
-
-    useEffect(() => {
-        const ctx = gsap.context(() => {
-            // Animate section title
-            gsap.from('.about-title', {
-                y: 60,
-                opacity: 0,
-                duration: 1,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: 'top 80%',
-                }
-            });
-
-            // Animate content blocks with stagger
-            gsap.from('.about-block', {
-                y: 80,
-                opacity: 0,
-                duration: 1,
-                stagger: 0.2,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: '.about-content',
-                    start: 'top 80%',
-                }
-            });
-        }, sectionRef);
-
-        return () => ctx.revert();
-    }, []);
-
     return (
-        <section ref={sectionRef} className="py-20" id="about">
+        <section className="py-20" id="about">
             <div className="max-w-[75%] mx-auto px-6 md:px-2">
                 {/* Section header */}
                 <div className="mb-12">

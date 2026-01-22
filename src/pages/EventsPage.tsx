@@ -71,24 +71,24 @@ const eventsData: EventData[] = [
             "360 Selected Participants",
             "10+ Industry Mentors",
             "30 Hours",
-            "4 Roles"
+            "Problem Statements"
         ],
         keyDetails: [
             { label: "Total Participants", value: "360 (via LinkedIn, CV & GitHub review)" },
             { label: "Team Size", value: "6" },
             { label: "Duration", value: "30 hours" },
             { label: "Total Mentors", value: "30" },
-            { label: "Engineering Roles", value: "4 Roles" },
+            { label: "Problem Statements", value: "assigned by companies" },
             { label: "Total Teams", value: "60 teams" }
         ],
         fullDetails: [
             {
-                title: "Engineering Roles",
+                title: "Problem Statements",
                 content: [
-                    "Role 1: Frontend Engineer",
-                    "Role 2: Backend Engineer",
-                    "Role 3: DevOps & Cloud Engineer",
-                    "Role 4: AI/ML Engineer"
+                    "Problem Statement 1",
+                    "Problem Statement 2",
+                    "Problem Statement 3",
+                    "Problem Statement 4"
                 ]
             },
             {
@@ -105,7 +105,7 @@ const eventsData: EventData[] = [
                     "LinkedIn Profile Review",
                     "CV/Resume Evaluation",
                     "GitHub Profile Analysis",
-                    "Technical skill assessment based on specific engineering roles"
+                    "Technical skill assessment based on problem statements"
                 ]
             },
             {

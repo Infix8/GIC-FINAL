@@ -15,7 +15,6 @@ export const useGSAPAnimations = () => {
         const animateElements = gsap.utils.toArray<HTMLElement>([
             '.section-header',
             '.hero-main-display',
-            '.about-content',
             '.pillar-card',
             '.theme-card',
             '.timeline-item',
