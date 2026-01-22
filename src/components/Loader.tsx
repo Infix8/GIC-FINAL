@@ -26,7 +26,7 @@ const Loader = () => {
             {/* Text */}
             <div className="text-center z-10 space-y-2">
                 <h2 className="text-2xl md:text-3xl font-display font-bold text-white tracking-wider animate-fade-up">
-                    SMEC
+                    GIC
                 </h2>
                 <p className="text-gold text-sm uppercase tracking-[0.3em] animate-[pulse_2s_ease-in-out_infinite]">
                     Loading Conclave
