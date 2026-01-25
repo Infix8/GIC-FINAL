@@ -1,12 +1,23 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 
 const BackgroundEffects = () => {
     const containerRef = useRef<HTMLDivElement>(null);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    useEffect(() => {
+        // Skip animations on mobile for better performance
+        if (isMobile) return;
+
         const ctx = gsap.context(() => {
-            // Subtle animation for the grid
+            // Subtle animation for the grid - only on desktop
             gsap.to('.bg-grid-line', {
                 opacity: 0.04,
                 duration: 3,
@@ -18,7 +29,7 @@ const BackgroundEffects = () => {
         }, containerRef);
 
         return () => ctx.revert();
-    }, []);
+    }, [isMobile]);
 
     return (
         <div ref={containerRef} className="background-effects">
@@ -30,39 +41,43 @@ const BackgroundEffects = () => {
                 }}
             />
 
-            {/* Subtle grid pattern */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ opacity: 0.02 }}>
-                <defs>
-                    <pattern id="grid-pattern" width="100" height="100" patternUnits="userSpaceOnUse">
-                        <path
-                            d="M 100 0 L 0 0 0 100"
-                            fill="none"
-                            stroke="#8B7BB5"
-                            strokeWidth="0.5"
-                            className="bg-grid-line"
-                        />
-                    </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#grid-pattern)" />
-            </svg>
+            {/* Subtle grid pattern - simplified on mobile */}
+            {!isMobile && (
+                <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ opacity: 0.02 }}>
+                    <defs>
+                        <pattern id="grid-pattern" width="100" height="100" patternUnits="userSpaceOnUse">
+                            <path
+                                d="M 100 0 L 0 0 0 100"
+                                fill="none"
+                                stroke="#8B7BB5"
+                                strokeWidth="0.5"
+                                className="bg-grid-line"
+                            />
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#grid-pattern)" />
+                </svg>
+            )}
 
-            {/* Ambient glow effects */}
-            <div
-                className="absolute top-0 left-1/4 w-96 h-96 rounded-full pointer-events-none"
-                style={{
-                    background: 'radial-gradient(circle, rgba(139, 123, 181, 0.04) 0%, transparent 70%)',
-                    filter: 'blur(60px)'
-                }}
-            />
-            <div
-                className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full pointer-events-none"
-                style={{
-                    background: 'radial-gradient(circle, rgba(139, 123, 181, 0.03) 0%, transparent 70%)',
-                    filter: 'blur(80px)'
-                }}
-            />
-
-
+            {/* Ambient glow effects - simplified on mobile (no blur) */}
+            {!isMobile && (
+                <>
+                    <div
+                        className="absolute top-0 left-1/4 w-96 h-96 rounded-full pointer-events-none"
+                        style={{
+                            background: 'radial-gradient(circle, rgba(139, 123, 181, 0.04) 0%, transparent 70%)',
+                            filter: 'blur(60px)'
+                        }}
+                    />
+                    <div
+                        className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full pointer-events-none"
+                        style={{
+                            background: 'radial-gradient(circle, rgba(139, 123, 181, 0.03) 0%, transparent 70%)',
+                            filter: 'blur(80px)'
+                        }}
+                    />
+                </>
+            )}
         </div>
     );
 };

@@ -58,10 +58,10 @@ interface EventData {
     };
 }
 
-const eventsData: EventData[] = [
+const baseEventsData: EventData[] = [
     {
         id: "alpha-to-infinity",
-        number: "01",
+        number: "03",
         title: "Alpha 2 Infiniti",
         shortTitle: "A2I",
         tagline: "30-Hour Hiring Hackathon - \"Brighter minds for Viksith Bharath\"",
@@ -152,7 +152,7 @@ const eventsData: EventData[] = [
     },
     {
         id: "business-tech-expo",
-        number: "02",
+        number: "04",
         title: "BusiTech Expo",
         shortTitle: "BTE",
         tagline: "Business Technology Expo - Professional & Student Innovations",
@@ -212,7 +212,7 @@ const eventsData: EventData[] = [
     },
     {
         id: "investor-pitching",
-        number: "03",
+        number: "05",
         title: "InnoVestors Bootcamp",
         shortTitle: "IVB",
         tagline: "Investor Pitching Event",
@@ -303,7 +303,7 @@ const eventsData: EventData[] = [
     },
     {
         id: "mastermind-congregation",
-        number: "04",
+        number: "02",
         title: "Masterminds Congregation",
         shortTitle: "MC",
         tagline: "Young Entrepreneurs Initiative - Classes 8-10",
@@ -409,7 +409,7 @@ const eventsData: EventData[] = [
     },
     {
         id: "knowledge-bubble",
-        number: "05",
+        number: "01",
         title: "Knowledge Bubble",
         shortTitle: "KB",
         tagline: "Deep-Tech Policy Conclave - Policymakers, Industry Leaders & Innovators",
@@ -528,6 +528,18 @@ const eventsData: EventData[] = [
         }
     }
 ];
+
+const eventsOrder = [
+    "knowledge-bubble",
+    "mastermind-congregation",
+    "alpha-to-infinity",
+    "business-tech-expo",
+    "investor-pitching",
+] as const;
+
+const eventsData: EventData[] = eventsOrder.map(
+    (id) => baseEventsData.find((event) => event.id === id)!
+);
 
 const EventsPage = () => {
     const pageRef = useRef<HTMLDivElement>(null);

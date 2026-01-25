@@ -16,6 +16,23 @@ const Home: React.FC = () => {
 
     return (
         <>
+            <div
+                className="w-full text-center px-4 sm:px-6 md:px-8 pt-4 pb-2"
+                style={{ background: 'transparent' }}
+            >
+                <div className="max-w-7xl mx-auto">
+                    <h1
+                        className="text-xs sm:text-sm md:text-base font-semibold tracking-[0.25em] sm:tracking-[0.35em] uppercase"
+                        style={{
+                            color: 'rgba(255, 255, 255, 0.8)',
+                            fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+                            letterSpacing: '0.25em'
+                        }}
+                    >
+                        ST. MARTIN&apos;S ENGINEERING COLLEGE
+                    </h1>
+                </div>
+            </div>
             <HeroSection />
             <CountdownTimer />
             <About />

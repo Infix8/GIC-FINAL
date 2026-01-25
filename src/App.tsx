@@ -15,6 +15,7 @@ import SpeakersPage from './pages/SpeakersPage';
 import SponsorsPage from './pages/SponsorsPage';
 import PassesPage from './pages/PassesPage';
 import AccommodationPage from './pages/AccommodationPage';
+import TermsPage from './pages/TermsPage';
 
 import './index.css';
 
@@ -26,7 +27,7 @@ const menuItems = [
   { label: 'Speakers', ariaLabel: 'Go to Speakers', link: '/speakers' },
   { label: 'Sponsors', ariaLabel: 'Go to Sponsors', link: '/sponsors' },
   { label: 'Passes', ariaLabel: 'Go to Passes', link: '/passes' },
-  { label: 'Stay', ariaLabel: 'Go to Accommodation', link: '/accommodation' },
+  { label: 'Accommodation', ariaLabel: 'Go to Accommodation', link: '/accommodation' },
 ];
 
 const socialItems = [
@@ -78,6 +79,9 @@ const AppContent = () => {
                 <Route path="/sponsors" element={<SponsorsPage />} />
                 <Route path="/passes" element={<PassesPage />} />
                 <Route path="/accommodation" element={<AccommodationPage />} />
+
+                {/* Legal Pages */}
+                <Route path="/terms" element={<TermsPage />} />
               </Routes>
             </div>
             <Footer />

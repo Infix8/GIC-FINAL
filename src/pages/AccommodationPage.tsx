@@ -1,37 +1,6 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
-const hotels = [
-    {
-        name: "Hotel Grand Hyderabad",
-        distance: "2 km from venue",
-        price: "₹8,000/night",
-        rating: "5 Star",
-        amenities: ["WiFi", "Pool", "Gym", "Spa"]
-    },
-    {
-        name: "ITC Kohenur",
-        distance: "3 km from venue",
-        price: "₹7,500/night",
-        rating: "5 Star",
-        amenities: ["WiFi", "Restaurant", "Gym"]
-    },
-    {
-        name: "Novotel Hyderabad",
-        distance: "4 km from venue",
-        price: "₹5,000/night",
-        rating: "4 Star",
-        amenities: ["WiFi", "Pool", "Restaurant"]
-    },
-    {
-        name: "Budget Inn",
-        distance: "5 km from venue",
-        price: "₹2,500/night",
-        rating: "3 Star",
-        amenities: ["WiFi", "Breakfast"]
-    },
-];
-
 const AccommodationPage = () => {
     const pageRef = useRef<HTMLDivElement>(null);
 
@@ -50,73 +19,78 @@ const AccommodationPage = () => {
     }, []);
 
     return (
-        <div ref={pageRef} className="page-container">
-            <section className="section">
+        <div ref={pageRef} className="page-container" style={{ paddingTop: 0 }}>
+            <section className="section" style={{ paddingTop: 0 }}>
                 <div className="section-header-new acc-animate">
                     <h1 className="section-title-new">ACCOMMODATION</h1>
                 </div>
 
-                <p className="acc-animate text-lg mb-12 max-w-2xl" style={{ color: 'var(--color-text-secondary)' }}>
-                    Partner hotels offering special rates for Conclave attendees.
-                    Book early for the best availability.
-                </p>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {hotels.map((hotel, index) => (
-                        <div key={index} className="acc-animate hotel-card card-hover-effect">
-                            <div className="flex justify-between items-start mb-4">
-                                <div>
-                                    <h3 className="text-xl font-bold" style={{ color: 'var(--color-text-primary)' }}>{hotel.name}</h3>
-                                    <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>{hotel.distance}</p>
-                                </div>
-                                <span
-                                    className="text-xs px-2 py-1 rounded"
-                                    style={{ background: 'rgba(107, 91, 149, 0.15)', color: 'var(--color-accent)' }}
-                                >
-                                    {hotel.rating}
-                                </span>
-                            </div>
-                            <p className="text-2xl font-bold mb-4" style={{ color: 'var(--color-accent)' }}>{hotel.price}</p>
-                            <div className="flex flex-wrap gap-2">
-                                {hotel.amenities.map((amenity, i) => (
-                                    <span
-                                        key={i}
-                                        className="text-xs px-2 py-1 rounded"
-                                        style={{ background: 'rgba(7, 7, 7, 0.05)', color: 'var(--color-text-secondary)' }}
-                                    >
-                                        {amenity}
-                                    </span>
-                                ))}
-                            </div>
-                            <button
-                                className="mt-6 w-full py-2 rounded-lg text-sm transition-all"
-                                style={{ background: 'rgba(107, 91, 149, 0.05)', border: '1px solid rgba(7, 7, 7, 0.1)', color: 'var(--color-text-primary)' }}
+                {/* SMEC Accommodation Details - Highlighted Card */}
+                <div
+                    className="acc-animate mb-10 rounded-2xl p-5 sm:p-6 md:p-7"
+                    style={{
+                        background: 'linear-gradient(135deg, rgba(139, 123, 181, 0.18), rgba(10, 10, 20, 0.95))',
+                        border: '1px solid rgba(139, 123, 181, 0.55)',
+                        boxShadow: '0 18px 45px rgba(0, 0, 0, 0.55)',
+                    }}
+                >
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <div className="text-left">
+                            <p
+                                className="text-xs font-semibold tracking-[0.15em] uppercase mb-1"
+                                style={{ color: 'rgba(226, 218, 255, 0.85)' }}
                             >
-                                Book Now →
-                            </button>
-                        </div>
-                    ))}
-                </div>
-
-                <div className="mt-16 acc-animate">
-                    <h3 className="text-xl font-bold mb-4" style={{ color: 'var(--color-text-primary)' }}>Travel Information</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="rounded-xl p-6 card-hover-effect" style={{ background: 'rgba(107, 91, 149, 0.05)', border: '1px solid rgba(7, 7, 7, 0.1)' }}>
-                            <h4 className="font-medium mb-2" style={{ color: 'var(--color-accent)' }}>By Air</h4>
-                            <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
-                                Rajiv Gandhi International Airport (HYD) - 25 km from venue.
-                                Taxi/cab services available.
+                                SMEC CAMPUS ACCOMMODATION
+                            </p>
+                            <h2
+                                className="text-xl sm:text-2xl font-bold"
+                                style={{ color: 'var(--color-text-primary)' }}
+                            >
+                                ₹2,500 per person
+                            </h2>
+                            <p
+                                className="mt-2 text-sm sm:text-base"
+                                style={{ color: 'var(--color-text-secondary)' }}
+                            >
+                                Entry permitted from <span style={{ color: 'var(--color-accent)', fontWeight: 600 }}>26<sup>th</sup> evening</span>{' '}
+                                and maximum exit time is{' '}
+                                <span style={{ color: 'var(--color-accent)', fontWeight: 600 }}>1<sup>st</sup> March, 10:00 AM</span>.
                             </p>
                         </div>
-                        <div className="rounded-xl p-6 card-hover-effect" style={{ background: 'rgba(107, 91, 149, 0.05)', border: '1px solid rgba(7, 7, 7, 0.1)' }}>
-                            <h4 className="font-medium mb-2" style={{ color: 'var(--color-accent)' }}>By Train</h4>
-                            <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
-                                Secunderabad/Hyderabad Station - 15 km from venue.
-                                Metro connectivity available.
+                        <div className="flex flex-col gap-2 text-sm sm:text-base text-right sm:text-left">
+                            <p style={{ color: 'rgba(226, 218, 255, 0.9)' }}>
+                                Ideal for outstation participants staying on campus.
+                            </p>
+                            <p style={{ color: 'rgba(226, 218, 255, 0.75)' }}>
+                                Please complete your registration to confirm accommodation.
                             </p>
                         </div>
                     </div>
+                    <div className="mt-5 flex justify-start sm:justify-end">
+                        <a
+                            href="https://rzp.io/rzp/4PEpor4"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-semibold transition-all"
+                            style={{
+                                background: 'linear-gradient(90deg, rgba(139,123,181,0.9), rgba(107,91,149,0.9))',
+                                color: '#ffffff',
+                                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.45)',
+                                textDecoration: 'none',
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.boxShadow = '0 12px 36px rgba(0, 0, 0, 0.6)';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.45)';
+                            }}
+                        >
+                            Buy Now
+                        </a>
+                    </div>
                 </div>
+
+                
             </section>
         </div>
     );

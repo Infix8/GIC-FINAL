@@ -6,6 +6,9 @@ import { Observer } from 'gsap/Observer';
 
 gsap.registerPlugin(Flip, ScrollTrigger, Observer);
 
+// Check if device is mobile
+const checkIsMobile = () => typeof window !== 'undefined' && window.innerWidth < 768;
+
 const structureItems = [
     {
         number: "01",
@@ -69,6 +72,7 @@ const Structure = () => {
     const [items, setItems] = useState(() =>
         structureItems.map((item, index) => ({ ...item, uniqueId: `init-${index}` }))
     );
+    const [isMobile, setIsMobile] = useState(checkIsMobile);
     const uniqueIdCounter = useRef(0);
     const sectionRef = useRef<HTMLElement>(null);
     const q = gsap.utils.selector(sectionRef);
@@ -77,6 +81,13 @@ const Structure = () => {
 
     // We need to track direction for the transformOrigin logic
     const directionRef = useRef<"next" | "prev">("next");
+
+    // Update mobile state on resize
+    useEffect(() => {
+        const handleResize = () => setIsMobile(checkIsMobile());
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     // Styling gradient to make it "aesthetic" - 25% reduced brightness
     const gradients = [
@@ -93,8 +104,11 @@ const Structure = () => {
         isAnimating.current = true; // Block interaction immediately
         directionRef.current = forward ? "next" : "prev";
 
-        // Capture specific state of visible cards
-        flipState.current = Flip.getState(q(".structure-card"));
+        // On mobile, skip GSAP Flip - use simple state update with CSS transitions
+        if (!isMobile) {
+            // Capture specific state of visible cards for desktop Flip animation
+            flipState.current = Flip.getState(q(".structure-card"));
+        }
 
         setItems(prev => {
             const newItems = [...prev];
@@ -111,10 +125,18 @@ const Structure = () => {
             }
             return newItems;
         });
+
+        // On mobile, just reset the animation flag after a short delay
+        if (isMobile) {
+            setTimeout(() => {
+                isAnimating.current = false;
+            }, 300);
+        }
     };
 
     useLayoutEffect(() => {
-        if (!flipState.current) return;
+        // Skip GSAP Flip on mobile - let CSS transitions handle it
+        if (!flipState.current || isMobile) return;
 
         // Demo Logic:
         // forward ? "bottom right" : "bottom left"
@@ -123,15 +145,15 @@ const Structure = () => {
         Flip.from(flipState.current, {
             duration: 0.6,
             ease: "power2.inOut",
-            absolute: true, // absoluteOnLeave in demo, but absolute: true handles layout too
+            absolute: true,
 
-            targets: q(".structure-card"), // Explicit targets
+            targets: q(".structure-card"),
 
             onEnter: (elements) => {
                 return gsap.fromTo(elements,
                     {
                         opacity: 0,
-                        scale: 0,
+                        scale: 0.95,
                     },
                     {
                         opacity: 1,
@@ -145,7 +167,7 @@ const Structure = () => {
             onLeave: (elements) => {
                 return gsap.to(elements, {
                     opacity: 0,
-                    scale: 0,
+                    scale: 0.95,
                     duration: 0.6,
                     transformOrigin: isNext ? "bottom left" : "bottom right",
                 });
@@ -157,15 +179,18 @@ const Structure = () => {
         });
 
         flipState.current = null;
-    }, [items]);
+    }, [items, isMobile]);
 
     // Auto-play Interval
     useEffect(() => {
+        // Disable auto-play on mobile
+        if (window.innerWidth < 768) return;
+        
         const interval = setInterval(() => {
             if (!isAnimating.current) {
                 rotateCards(true);
             }
-        }, 3000);
+        }, 4000); // Increase interval from 3000 to 4000
 
         return () => clearInterval(interval);
     }, []);
@@ -223,7 +248,7 @@ const Structure = () => {
             </div>
 
             {/* Container */}
-            <div className="relative w-full max-w-6xl h-auto sm:h-[420px] flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 perspective-1000 px-4 sm:px-0">
+            <div className="relative w-full max-w-6xl min-h-[600px] sm:min-h-[420px] flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 perspective-1000 px-4 sm:px-0">
                 {visibleItems.map((item, index) => {
                     const gradientIndex = parseInt(item.number) - 1;
                     const isCenter = index === 1;
@@ -232,7 +257,7 @@ const Structure = () => {
                         <div
                             key={item.uniqueId}
                             data-flip-id={item.uniqueId}
-                            className={`structure-card relative w-full sm:w-1/3 sm:min-w-[280px] md:min-w-[300px] h-auto sm:h-full min-h-[200px] sm:min-h-0 p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl flex flex-col gap-3 sm:gap-4 overflow-hidden ${isCenter ? 'sm:scale-105 z-10' : 'sm:scale-100'
+                            className={`structure-card relative w-full sm:w-1/3 sm:min-w-[280px] md:min-w-[300px] h-[400px] sm:h-full min-h-[400px] sm:min-h-0 p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl flex flex-col gap-3 sm:gap-4 overflow-y-auto sm:overflow-hidden transition-all duration-300 ${isCenter ? 'sm:scale-105 z-10' : 'sm:scale-100'
                                 }`}
                             style={{
                                 cursor: 'default',
@@ -315,7 +340,7 @@ const Structure = () => {
                                         style={{ color: 'rgba(255,255,255,0.8)' }}
                                     >
                                         <span style={{ color: 'rgba(255,255,255,0.9)', marginTop: '2px' }}>•</span>
-                                        <span className="line-clamp-2">{detail}</span>
+                                        <span className="line-clamp-3 sm:line-clamp-2">{detail}</span>
                                     </p>
                                 ))}
                             </div>
@@ -332,7 +357,6 @@ const Structure = () => {
                     style={{
                         background: 'rgba(255,255,255,0.1)',
                         border: '1px solid rgba(255,255,255,0.2)',
-                        backdropFilter: 'blur(10px)',
                         boxShadow: '0 4px 20px rgba(0,0,0,0.3)'
                     }}
                 >
@@ -344,9 +368,17 @@ const Structure = () => {
                 {/* Progress dots */}
                 <div className="flex gap-2">
                     {structureItems.map((_, i) => (
-                        <div
+                        <button
                             key={i}
-                            className="w-2.5 h-2.5 rounded-full transition-all duration-500"
+                            onClick={() => {
+                                // Navigate to specific slide
+                                const targetIndex = structureItems.findIndex(item => item.number === structureItems[i].number);
+                                const currentIndex = structureItems.findIndex(item => item.number === items[0].number);
+                                if (targetIndex !== currentIndex) {
+                                    rotateCards(targetIndex > currentIndex);
+                                }
+                            }}
+                            className="w-2.5 h-2.5 rounded-full transition-all duration-300"
                             style={{
                                 background: items[0].number === structureItems[i].number
                                     ? gradients[i]
@@ -368,7 +400,6 @@ const Structure = () => {
                     style={{
                         background: 'rgba(255,255,255,0.1)',
                         border: '1px solid rgba(255,255,255,0.2)',
-                        backdropFilter: 'blur(10px)',
                         boxShadow: '0 4px 20px rgba(0,0,0,0.3)'
                     }}
                 >

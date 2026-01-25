@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import { Calendar, Clock } from "lucide-react";
 
 interface TimeLeft {
@@ -16,6 +15,14 @@ const CountdownTimer = () => {
     minutes: 0, 
     seconds: 0 
   });
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const targetDate = new Date("2026-02-27T09:00:00+05:30").getTime();
@@ -50,84 +57,52 @@ const CountdownTimer = () => {
 
   return (
     <section className="relative py-16 sm:py-20 lg:py-24 overflow-hidden bg-gradient-to-b from-gic-violet/5 via-primary/8 to-gic-dark">
-      {/* Animated background elements with lavender/violet */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-gradient-to-br from-primary/25 via-gic-violet/20 to-gic-lavender/15 rounded-full blur-3xl"
-          animate={{ 
-            scale: [1, 1.2, 1], 
-            opacity: [0.4, 0.6, 0.4],
-            x: [0, 30, 0],
-          }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-gradient-to-tr from-gic-violet/25 via-primary/20 to-gic-lavender/20 rounded-full blur-3xl"
-          animate={{ 
-            scale: [1, 1.15, 1], 
-            opacity: [0.4, 0.6, 0.4],
-            x: [0, -20, 0],
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </div>
+      {/* Background elements - static on mobile */}
+      {!isMobile && (
+        <div className="absolute inset-0 overflow-hidden">
+          <div
+            className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-gradient-to-br from-primary/25 via-gic-violet/20 to-gic-lavender/15 rounded-full blur-3xl opacity-50"
+          />
+          <div
+            className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-gradient-to-tr from-gic-violet/25 via-primary/20 to-gic-lavender/20 rounded-full blur-3xl opacity-50"
+          />
+        </div>
+      )}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12 sm:mb-16"
-        >
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+        <div className="text-center mb-12 sm:mb-16">
+          <p
             className="text-gic-lavender font-semibold text-sm sm:text-base tracking-wider uppercase mb-3 flex items-center justify-center gap-2"
           >
             <Clock className="w-4 h-4" />
             Mark Your Calendar
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
+          </p>
+          <h2
             className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-gic-lavender via-gic-violet to-primary bg-clip-text text-transparent"
           >
             Event Starts In
-          </motion.h2>
-        </motion.div>
+          </h2>
+        </div>
 
         {/* Countdown Cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
-          {timeUnits.map((unit, index) => {
+          {timeUnits.map((unit) => {
             const IconComponent = unit.icon;
             return (
-              <motion.div
+              <div
                 key={unit.label}
-                initial={{ opacity: 0, scale: 0.8, y: 30 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05, y: -8 }}
-                className="relative group"
+                className="relative group hover:scale-105 hover:-translate-y-2 transition-transform duration-300"
               >
-                {/* Glow effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-gic-lavender/40 via-gic-violet/30 to-primary/20 rounded-2xl blur-xl opacity-50 group-hover:opacity-80 transition-opacity duration-300"
-                  animate={{ 
-                    opacity: [0.4, 0.6, 0.4],
-                    scale: [1, 1.05, 1]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                />
+                {/* Glow effect - only on desktop */}
+                {!isMobile && (
+                  <div
+                    className="absolute inset-0 bg-gradient-to-br from-gic-lavender/40 via-gic-violet/30 to-primary/20 rounded-2xl blur-xl opacity-40 group-hover:opacity-60 transition-opacity duration-300"
+                  />
+                )}
                 
                 {/* Card */}
-                <div className="relative bg-gradient-to-br from-primary/15 via-gic-violet/15 to-gic-lavender/15 backdrop-blur-md border border-gic-violet/40 rounded-2xl p-6 sm:p-8 text-center shadow-2xl shadow-primary/30 group-hover:border-gic-violet/60 group-hover:shadow-primary/50 group-hover:bg-gradient-to-br group-hover:from-primary/25 group-hover:via-gic-violet/25 group-hover:to-gic-lavender/25 transition-all duration-300 cursor-pointer">
+                <div className={`relative bg-gradient-to-br from-primary/15 via-gic-violet/15 to-gic-lavender/15 border border-gic-violet/40 rounded-2xl p-6 sm:p-8 text-center shadow-xl shadow-primary/20 group-hover:border-gic-violet/60 transition-all duration-300 ${isMobile ? '' : 'backdrop-blur-md'}`}>
                   {/* Icon */}
                   <div className="flex justify-center mb-4">
                     <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/40 via-gic-violet/35 to-gic-lavender/30 flex items-center justify-center border border-gic-violet/50">
@@ -136,15 +111,11 @@ const CountdownTimer = () => {
                   </div>
 
                   {/* Number */}
-                  <motion.span
-                    key={unit.value}
-                    initial={{ scale: 1.2, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.3, type: "spring", stiffness: 200 }}
+                  <span
                     className="block text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold font-display bg-gradient-to-br from-gic-lavender via-gic-violet to-primary bg-clip-text text-transparent mb-2"
                   >
                     {String(unit.value).padStart(2, "0")}
-                  </motion.span>
+                  </span>
 
                   {/* Label */}
                   <span className="text-gic-violet/80 text-xs sm:text-sm font-semibold uppercase tracking-wider block">
@@ -157,20 +128,14 @@ const CountdownTimer = () => {
                   <div className="absolute bottom-2 left-2 w-3 h-3 border-b-2 border-l-2 border-gic-violet/50 rounded-bl-lg" />
                   <div className="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-gic-violet/50 rounded-br-lg" />
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>
 
         {/* Event Details */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.6 }}
-          className="mt-12 sm:mt-16 text-center"
-        >
-          <div className="inline-flex items-center gap-3 bg-gradient-to-r from-primary/15 via-gic-violet/15 to-gic-lavender/15 backdrop-blur-md rounded-full px-6 py-3 border border-gic-violet/40 shadow-lg shadow-primary/30">
+        <div className="mt-12 sm:mt-16 text-center">
+          <div className={`inline-flex items-center gap-3 bg-gradient-to-r from-primary/15 via-gic-violet/15 to-gic-lavender/15 rounded-full px-6 py-3 border border-gic-violet/40 shadow-lg shadow-primary/20 ${isMobile ? '' : 'backdrop-blur-md'}`}>
             <Calendar className="w-4 h-4 text-gic-violet" />
             <span className="text-gic-lavender font-semibold text-sm sm:text-base">
               27-28 February 2026
@@ -180,7 +145,7 @@ const CountdownTimer = () => {
               Hyderabad, India
             </span>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

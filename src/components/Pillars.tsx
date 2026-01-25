@@ -1,8 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
+
+const checkIsMobile = () => typeof window !== 'undefined' && window.innerWidth < 768;
 
 const pillars = [
     {
@@ -29,10 +31,21 @@ const pillars = [
 
 const Pillars = () => {
     const sectionRef = useRef<HTMLElement>(null);
+    const [isMobile] = useState(checkIsMobile);
 
     useEffect(() => {
+        // On mobile, skip GSAP animations entirely - use CSS instead
+        if (isMobile) {
+            const cards = document.querySelectorAll('.pillar-card-new');
+            cards.forEach(card => {
+                (card as HTMLElement).style.opacity = '1';
+                (card as HTMLElement).style.transform = 'translateY(0)';
+            });
+            return;
+        }
+
         const ctx = gsap.context(() => {
-            // Simple fade-in animation on scroll
+            // Simple fade-in animation on scroll - only on desktop
             gsap.fromTo('.pillar-card-new',
                 { y: 40, opacity: 0 },
                 {
@@ -62,7 +75,7 @@ const Pillars = () => {
             ctx.revert();
             clearTimeout(fallback);
         };
-    }, []);
+    }, [isMobile]);
 
     return (
         <section ref={sectionRef} className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12" id="pillars">

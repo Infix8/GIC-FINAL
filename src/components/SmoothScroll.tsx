@@ -1,4 +1,4 @@
-import { useEffect, useRef, ReactNode, createContext, useContext } from 'react';
+import { useEffect, useRef, ReactNode, createContext, useContext, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
@@ -6,6 +6,12 @@ import { useLocation } from 'react-router-dom';
 
 // Register plugins
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+// Check if device is mobile/touch
+const checkIsMobile = () => {
+  if (typeof window === 'undefined') return false;
+  return window.innerWidth < 768 || 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+};
 
 // Context to share smoother instance
 interface SmoothScrollContextType {
@@ -29,17 +35,26 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const smootherRef = useRef<ScrollSmoother | null>(null);
   const { pathname } = useLocation();
+  const [isMobile] = useState(checkIsMobile);
 
   useEffect(() => {
-    // Create ScrollSmoother instance
+    // COMPLETELY DISABLE ScrollSmoother on mobile for native scrolling
+    if (isMobile) {
+      // Ensure native scrolling works
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      return;
+    }
+
+    // Create ScrollSmoother instance only on desktop
     if (wrapperRef.current && contentRef.current) {
       smootherRef.current = ScrollSmoother.create({
         wrapper: wrapperRef.current,
         content: contentRef.current,
-        smooth: 1.5, // Smooth scrolling intensity (1 = medium, 2 = strong)
-        effects: true, // Enable data-speed and data-lag effects
-        normalizeScroll: true, // Prevents address bar hiding issues on mobile
-        smoothTouch: 0.1, // Light smooth scrolling on touch devices
+        smooth: 1.2,
+        effects: true,
+        normalizeScroll: false,
+        smoothTouch: false,
       });
     }
 
@@ -49,29 +64,51 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
         smootherRef.current = null;
       }
     };
-  }, []);
+  }, [isMobile]);
 
   // Scroll to top on route change
   useEffect(() => {
-    if (smootherRef.current) {
+    if (isMobile) {
+      // Use native scroll for mobile
+      window.scrollTo(0, 0);
+    } else if (smootherRef.current) {
       smootherRef.current.scrollTo(0, false);
     }
-  }, [pathname]);
+  }, [pathname, isMobile]);
 
-  // Refresh ScrollTrigger when route changes
+  // Refresh ScrollTrigger when route changes (only on desktop)
   useEffect(() => {
+    if (isMobile) return;
+    
     const timeout = setTimeout(() => {
       ScrollTrigger.refresh();
     }, 100);
 
     return () => clearTimeout(timeout);
-  }, [pathname]);
+  }, [pathname, isMobile]);
 
   const scrollTo = (target: string | HTMLElement, smooth = true, position = 'top top') => {
-    if (smootherRef.current) {
+    if (isMobile) {
+      // Use native scroll for mobile
+      const element = typeof target === 'string' ? document.querySelector(target) : target;
+      if (element) {
+        element.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto' });
+      }
+    } else if (smootherRef.current) {
       smootherRef.current.scrollTo(target, smooth, position);
     }
   };
+
+  // On mobile, render children without the wrapper divs to avoid any interference
+  if (isMobile) {
+    return (
+      <SmoothScrollContext.Provider value={{ smoother: null, scrollTo }}>
+        <div className="mobile-scroll-container">
+          {children}
+        </div>
+      </SmoothScrollContext.Provider>
+    );
+  }
 
   return (
     <SmoothScrollContext.Provider value={{ smoother: smootherRef.current, scrollTo }}>

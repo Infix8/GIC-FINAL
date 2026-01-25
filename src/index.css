@@ -139,11 +139,10 @@ svg {
 
 /* ===== Buttons ===== */
 .cta-button {
+    @apply h-12 sm:h-14 px-6 sm:px-8 text-sm sm:text-base;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.8rem 2rem;
-    font-size: 1rem;
     font-weight: 600;
     border-radius: 50px;
     transition: var(--transition-medium);
@@ -3194,6 +3193,13 @@ video, iframe, embed, object {
     * {
         animation-duration: 0.3s !important;
         transition-duration: 0.2s !important;
+        will-change: auto; /* Reset on mobile */
+    }
+    
+    /* Only use will-change for actively animating elements */
+    [class*="animate"],
+    [class*="motion"] {
+        will-change: transform, opacity; /* Only for animating elements */
     }
     
     /* Disable complex transforms on mobile */
@@ -3443,5 +3449,190 @@ video, iframe, embed, object {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+    }
+}
+
+/* ===== CRITICAL MOBILE PERFORMANCE OPTIMIZATIONS ===== */
+
+/* Shine animation for desktop hero button */
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) skewX(-20deg);
+    }
+    100% {
+        transform: translateX(400%) skewX(-20deg);
+    }
+}
+
+.animate-shine {
+    animation: shine 4s ease-in-out infinite;
+    animation-delay: 2s;
+}
+
+/* Mobile scroll container - ensure native scrolling */
+.mobile-scroll-container {
+    width: 100%;
+    min-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* DISABLE ScrollSmoother styles on mobile */
+@media (max-width: 767px), (hover: none) and (pointer: coarse) {
+    #smooth-wrapper {
+        overflow: visible !important;
+        position: relative !important;
+        height: auto !important;
+        width: 100% !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+    }
+
+    #smooth-content {
+        transform: none !important;
+        will-change: auto !important;
+    }
+    
+    /* Disable parallax effects on mobile */
+    [data-speed],
+    [data-parallax] {
+        transform: none !important;
+        will-change: auto !important;
+    }
+}
+
+/* Disable backdrop-blur on mobile for performance */
+@media (max-width: 767px), (hover: none) and (pointer: coarse) {
+    .backdrop-blur-md,
+    .backdrop-blur-lg,
+    .backdrop-blur-xl,
+    .backdrop-blur-2xl,
+    .backdrop-blur-3xl,
+    [class*="backdrop-blur"] {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+    
+    /* Use solid backgrounds instead */
+    .navbar {
+        background: rgba(10, 10, 18, 0.95) !important;
+        backdrop-filter: none !important;
+    }
+}
+
+/* Disable will-change on mobile for better memory usage */
+@media (max-width: 767px) {
+    * {
+        will-change: auto !important;
+    }
+    
+    /* Disable 3D transforms on mobile */
+    .transform-style-3d,
+    [class*="preserve-3d"] {
+        transform-style: flat !important;
+    }
+    
+    /* Disable perspective on mobile */
+    .perspective,
+    [class*="perspective"] {
+        perspective: none !important;
+    }
+    
+    /* Simpler box-shadows on mobile */
+    .shadow-xl,
+    .shadow-2xl,
+    .shadow-lg {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    }
+}
+
+/* Disable infinite animations on mobile */
+@media (max-width: 767px) {
+    [class*="animate-"],
+    .animate-gradient,
+    .animate-pulse,
+    .animate-bounce,
+    .animate-spin {
+        animation: none !important;
+    }
+    
+    /* Keep only essential transitions */
+    * {
+        transition-duration: 0.15s !important;
+        transition-property: opacity, transform !important;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    /* Disable hover effects entirely */
+    *:hover {
+        transform: none !important;
+    }
+    
+    /* Use active states instead */
+    *:active {
+        opacity: 0.8;
+        transform: scale(0.98) !important;
+    }
+    
+    /* Larger touch targets */
+    button,
+    a,
+    [role="button"],
+    input,
+    select,
+    textarea {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Disable complex filter effects */
+    [class*="blur-"],
+    .blur {
+        filter: none !important;
+    }
+}
+
+/* Ensure smooth native scrolling on mobile */
+@media (max-width: 767px) {
+    html {
+        scroll-behavior: auto !important; /* Native scrolling is smoother */
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    
+    body {
+        overflow-x: hidden;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-y: contain;
+    }
+    
+    /* Fix for iOS momentum scrolling */
+    main,
+    .main-container,
+    section {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Disable GPU-heavy gradients on mobile */
+@media (max-width: 767px) {
+    /* Simplify gradient text on mobile */
+    .bg-clip-text,
+    [class*="bg-clip-text"] {
+        background-size: 100% 100% !important;
+        animation: none !important;
+    }
+}
+
+/* Optimize images on mobile */
+@media (max-width: 767px) {
+    img {
+        content-visibility: auto;
     }
 }
