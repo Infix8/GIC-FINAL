@@ -77,7 +77,7 @@ const passes = [
         name: "Student Expo",
         price: "₹3,000",
         priceLabel: "Team of 2",
-        paymentLink: "https://rzp.io/rzp/NLhIGBLh",
+        paymentLink: "https://rzp.io/rzp/i2HdCsgB",
         colorKey: "alphaToInfinity" as keyof typeof eventColors,
         features: [
             "Platform to showcase student projects and MVPs",
@@ -108,7 +108,7 @@ const passes = [
     {
         name: "Alpha2Infiniti (Hackathon Program)",
         price: "₹1,000",
-        paymentLink: "https://rzp.io/rzp/i2HdCsgB",
+        paymentLink: "https://rzp.io/rzp/NLhIGBLh",
         colorKey: "hackathonProgram" as keyof typeof eventColors,
         features: [
             "Participation in a competitive Hackathon",
