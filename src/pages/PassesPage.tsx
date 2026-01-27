@@ -107,7 +107,7 @@ const passes = [
     {
         name: "Alpha2Infiniti (Hackathon Program)",
         price: "₹1,000",
-        paymentLink: "https://rzp.io/rzp/NLhIGBLh",
+        paymentLink: "https://rzp.io/rzp/i2HdCsgB",
         colorKey: "hackathonProgram" as keyof typeof eventColors,
         features: [
             "Participation in a competitive Hackathon",
