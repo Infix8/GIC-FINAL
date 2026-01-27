@@ -2,42 +2,84 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ===== GSAP ScrollSmoother Styles ===== */
-/* Desktop only - disabled on mobile for native scrolling */
-#smooth-wrapper {
-    overflow: hidden;
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+/* ============================================================
+   MOBILE SCROLL FIX - PRODUCTION GRADE
+   ============================================================
+   This MUST be at the top to override everything else.
+   Uses .is-mobile-device class added by SmoothScroll.tsx
+   ============================================================ */
+
+/* Mobile devices - force native scroll */
+html.is-mobile-device,
+body.is-mobile-device {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    height: auto !important;
+    min-height: 100% !important;
+    position: relative !important;
+    -webkit-overflow-scrolling: touch !important;
 }
 
-#smooth-content {
-    overflow: visible;
-    width: 100%;
+/* Ensure sections don't trap scroll on mobile */
+.is-mobile-device section,
+.is-mobile-device [class*="MuiBox"],
+.is-mobile-device .flowing-bg,
+.is-mobile-device main,
+.is-mobile-device #root,
+.is-mobile-device #root > * {
+    overflow: visible !important;
+    height: auto !important;
+    min-height: auto !important;
+    position: relative !important;
+    transform: none !important;
 }
 
-/* DISABLE ScrollSmoother styles on mobile - use native scrolling */
-@media (max-width: 767px) {
-    #smooth-wrapper,
-    #smooth-content {
-        position: relative !important;
+/* Kill all animations on mobile that might interfere */
+.is-mobile-device [class*="animate"],
+.is-mobile-device [data-speed],
+.is-mobile-device [data-parallax] {
+    animation: none !important;
+    transform: none !important;
+    will-change: auto !important;
+}
+
+/* Ensure background doesn't block touch */
+.is-mobile-device .background-effects,
+.is-mobile-device .background-effects * {
+    pointer-events: none !important;
+}
+
+/* Media query fallback for devices that might not get the JS class */
+@media (max-width: 767px), (hover: none) and (pointer: coarse) {
+    html, body {
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        height: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+    
+    section,
+    main,
+    #root,
+    [class*="MuiBox"],
+    .flowing-bg {
         overflow: visible !important;
         height: auto !important;
-        width: 100% !important;
-        top: auto !important;
-        left: auto !important;
-        right: auto !important;
-        bottom: auto !important;
+        transform: none !important;
     }
 }
 
-/* Elements with data-speed for parallax effects */
-[data-speed] {
-    will-change: transform;
+/* ===== End Mobile Scroll Fix ===== */
+
+/* ===== Lenis Smooth Scroll - Desktop Only ===== */
+/* Lenis handles all smooth scrolling automatically on desktop */
+/* Mobile: Completely disabled - uses native scroll */
+
+/* Elements with data-speed for parallax effects - desktop only */
+@media (min-width: 768px) and (hover: hover) {
+    [data-speed] {
+        will-change: transform;
+    }
 }
 
 /* ===== CSS Variables & Design System ===== */
@@ -55,10 +97,10 @@
     --color-accent-light: #A99BD4;
     --color-accent-dark: #6B5B95;
     
-    /* Secondary Accent - Warm amber for contrast */
-    --color-accent-secondary: #F4A261;
-    --color-accent-secondary-light: #F6B88A;
-    --color-accent-secondary-dark: #E76F51;
+    /* Secondary Accent - Lighter purple for contrast */
+    --color-accent-secondary: #A99BD4;
+    --color-accent-secondary-light: #C4B5E0;
+    --color-accent-secondary-dark: #8B7BB5;
     
     /* Tertiary Accent - Cool cyan for depth */
     --color-accent-tertiary: #06B6D4;
@@ -69,12 +111,12 @@
     --color-rose: #8B7BB5;
     --color-rose-light: #A99BD4;
     --color-violet: #8B7BB5;
-    --color-gold: #F4A261;
-    --color-gold-light: #F6B88A;
+    --color-gold: #A99BD4;
+    --color-gold-light: #C4B5E0;
 
     /* RGB values for alpha */
     --rgb-accent: 139, 123, 181;
-    --rgb-accent-secondary: 244, 162, 97;
+    --rgb-accent-secondary: 169, 155, 212;
     --rgb-accent-tertiary: 6, 182, 212;
     --rgb-dark: 10, 10, 15;
 
@@ -86,46 +128,46 @@
 
     /* Sophisticated Gradient Meshes */
     --gradient-primary: linear-gradient(135deg, #8B7BB5 0%, #A99BD4 50%, #C4B5E0 100%);
-    --gradient-secondary: linear-gradient(135deg, #F4A261 0%, #F6B88A 50%, #E76F51 100%);
+    --gradient-secondary: linear-gradient(135deg, #A99BD4 0%, #C4B5E0 50%, #8B7BB5 100%);
     --gradient-tertiary: linear-gradient(135deg, #06B6D4 0%, #22D3EE 50%, #0891B2 100%);
     --gradient-mesh: radial-gradient(circle at 20% 50%, rgba(139, 123, 181, 0.3) 0%, transparent 50%),
-                      radial-gradient(circle at 80% 80%, rgba(244, 162, 97, 0.2) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 80%, rgba(169, 155, 212, 0.2) 0%, transparent 50%),
                       radial-gradient(circle at 40% 20%, rgba(6, 182, 212, 0.15) 0%, transparent 50%);
     --gradient-mesh-subtle: radial-gradient(circle at 30% 40%, rgba(139, 123, 181, 0.1) 0%, transparent 60%),
-                             radial-gradient(circle at 70% 60%, rgba(244, 162, 97, 0.08) 0%, transparent 60%);
-    --gradient-cta: linear-gradient(135deg, #8B7BB5 0%, #A99BD4 50%, #F4A261 100%);
-    --gradient-cta-hover: linear-gradient(135deg, #A99BD4 0%, #C4B5E0 50%, #F6B88A 100%);
-    --gradient-text: linear-gradient(135deg, #A99BD4 0%, #C4B5E0 30%, #F4A261 60%, #22D3EE 100%);
+                             radial-gradient(circle at 70% 60%, rgba(169, 155, 212, 0.08) 0%, transparent 60%);
+    --gradient-cta: linear-gradient(135deg, #8B7BB5 0%, #A99BD4 50%, #C4B5E0 100%);
+    --gradient-cta-hover: linear-gradient(135deg, #A99BD4 0%, #C4B5E0 50%, #8B7BB5 100%);
+    --gradient-text: linear-gradient(135deg, #A99BD4 0%, #C4B5E0 30%, #8B7BB5 60%, #22D3EE 100%);
     
     /* Harmonious Flowing Gradients - Unified Water-like Flow */
     /* Global ambient layer - spans entire page */
     --gradient-ambient-base: radial-gradient(ellipse 120% 80% at 50% -10%, rgba(139, 123, 181, 0.08) 0%, transparent 50%),
                              radial-gradient(ellipse 100% 70% at 0% 30%, rgba(169, 155, 212, 0.05) 0%, transparent 60%),
                              radial-gradient(ellipse 100% 70% at 100% 70%, rgba(6, 182, 212, 0.04) 0%, transparent 60%),
-                             radial-gradient(ellipse 120% 80% at 50% 110%, rgba(244, 162, 97, 0.06) 0%, transparent 50%);
+                             radial-gradient(ellipse 120% 80% at 50% 110%, rgba(169, 155, 212, 0.06) 0%, transparent 50%);
     
     /* Section-specific layers - blend with ambient */
     --gradient-flow-hero: radial-gradient(ellipse 100% 60% at 50% 0%, rgba(139, 123, 181, 0.12) 0%, transparent 60%),
                           radial-gradient(circle at 20% 40%, rgba(169, 155, 212, 0.08) 0%, transparent 50%);
     
-    --gradient-flow-countdown: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(244, 162, 97, 0.09) 0%, transparent 70%),
+    --gradient-flow-countdown: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(169, 155, 212, 0.09) 0%, transparent 70%),
                                 radial-gradient(ellipse 70% 50% at 80% 30%, rgba(139, 123, 181, 0.07) 0%, transparent 60%);
     
     --gradient-flow-about: radial-gradient(ellipse 90% 60% at 70% 40%, rgba(6, 182, 212, 0.08) 0%, transparent 65%),
-                           radial-gradient(circle at 30% 60%, rgba(244, 162, 97, 0.06) 0%, transparent 55%);
+                           radial-gradient(circle at 30% 60%, rgba(169, 155, 212, 0.06) 0%, transparent 55%);
     
     --gradient-flow-pillars: radial-gradient(ellipse 80% 70% at 40% 50%, rgba(139, 123, 181, 0.09) 0%, transparent 60%),
                              radial-gradient(circle at 80% 30%, rgba(6, 182, 212, 0.06) 0%, transparent 50%);
     
-    --gradient-flow-themes: radial-gradient(ellipse 100% 60% at 50% 50%, rgba(244, 162, 97, 0.08) 0%, transparent 65%),
+    --gradient-flow-themes: radial-gradient(ellipse 100% 60% at 50% 50%, rgba(169, 155, 212, 0.08) 0%, transparent 65%),
                             radial-gradient(circle at 20% 70%, rgba(139, 123, 181, 0.06) 0%, transparent 50%);
     
     --gradient-flow-structure: radial-gradient(ellipse 90% 70% at 50% 50%, rgba(139, 123, 181, 0.11) 0%, transparent 65%),
-                               radial-gradient(circle at 70% 30%, rgba(244, 162, 97, 0.07) 0%, transparent 55%);
+                               radial-gradient(circle at 70% 30%, rgba(169, 155, 212, 0.07) 0%, transparent 55%);
     
     --gradient-flow-contact: radial-gradient(ellipse 100% 60% at 50% 60%, rgba(6, 182, 212, 0.09) 0%, transparent 70%),
                              radial-gradient(circle at 80% 80%, rgba(139, 123, 181, 0.07) 0%, transparent 50%),
-                             radial-gradient(ellipse 80% 50% at 20% 40%, rgba(244, 162, 97, 0.05) 0%, transparent 45%);
+                             radial-gradient(ellipse 80% 50% at 20% 40%, rgba(169, 155, 212, 0.05) 0%, transparent 45%);
 
     /* Premium Spacing - More generous and granular */
     --space-xs: 0.5rem;
@@ -176,13 +218,13 @@
     --shadow-2xl: 0 20px 40px rgba(0, 0, 0, 0.2);
     --shadow-3xl: 0 32px 64px rgba(0, 0, 0, 0.25);
     --shadow-colored: 0 8px 24px rgba(139, 123, 181, 0.3),
-                      0 4px 12px rgba(244, 162, 97, 0.2);
+                      0 4px 12px rgba(169, 155, 212, 0.2);
     --shadow-colored-lg: 0 16px 48px rgba(139, 123, 181, 0.4),
-                          0 8px 24px rgba(244, 162, 97, 0.3);
+                          0 8px 24px rgba(169, 155, 212, 0.3);
     --shadow-glow: 0 0 20px rgba(139, 123, 181, 0.4),
-                   0 0 40px rgba(244, 162, 97, 0.2);
+                   0 0 40px rgba(169, 155, 212, 0.2);
     --shadow-glow-lg: 0 0 40px rgba(139, 123, 181, 0.5),
-                      0 0 80px rgba(244, 162, 97, 0.3);
+                      0 0 80px rgba(169, 155, 212, 0.3);
 
     /* Transitions - Sophisticated timing functions */
     --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -206,7 +248,7 @@ html {
     scroll-behavior: auto; /* Normal scrolling, not smooth */
     margin: 0;
     padding: 0;
-    height: 100%;
+    height: auto; /* Allow HTML to expand to full content height */
     width: 100%;
     overflow-x: hidden;
 }
@@ -257,6 +299,7 @@ svg {
     inset: 0;
     z-index: -1;
     overflow: hidden;
+    pointer-events: none; /* CRITICAL: Prevent background from blocking touch events */
 }
 
 /* Gradient mesh utilities */
@@ -304,13 +347,13 @@ svg {
 }
 
 .layer-overlay-bottom {
-    background: linear-gradient(0deg, rgba(244, 162, 97, 0.04) 0%, transparent 100%);
+    background: linear-gradient(0deg, rgba(169, 155, 212, 0.04) 0%, transparent 100%);
 }
 
 .layer-overlay-sides {
     background: 
         linear-gradient(90deg, rgba(139, 123, 181, 0.03) 0%, transparent 50%),
-        linear-gradient(270deg, rgba(244, 162, 97, 0.03) 0%, transparent 50%);
+        linear-gradient(270deg, rgba(169, 155, 212, 0.03) 0%, transparent 50%);
 }
 
 /* ===== Spatial Composition Utilities ===== */
@@ -542,6 +585,8 @@ svg {
     .background-effects {
         position: fixed;
         z-index: -1;
+        overflow: visible; /* Allow scrolling on mobile */
+        pointer-events: none; /* Prevent touch blocking */
     }
 }
 
@@ -1101,7 +1146,7 @@ svg {
 .stat-card:hover {
     transform: translateY(-10px);
     border-color: var(--color-gold);
-    box-shadow: 0 10px 30px rgba(212, 168, 83, 0.15);
+    box-shadow: 0 10px 30px rgba(169, 155, 212, 0.15);
 }
 
 .stat-value {
@@ -1132,7 +1177,7 @@ svg {
 .tech-pulse-line {
     width: 200%;
     height: 100%;
-    fill: rgba(212, 168, 83, 0.1);
+    fill: rgba(169, 155, 212, 0.1);
     stroke: var(--color-gold);
     stroke-width: 1px;
     animation: wave-move 3s linear infinite;
@@ -1278,7 +1323,7 @@ svg {
     transform: translate(-50%, -50%);
     width: 60px;
     height: 60px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(212, 168, 83, 0.5) 50%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(169, 155, 212, 0.5) 50%, transparent 70%);
     border-radius: 50%;
     animation: glow-pulse 3s ease-in-out infinite;
 }
@@ -1383,7 +1428,7 @@ svg {
 .glass-card {
     background: var(--color-bg-card);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(212, 168, 83, 0.15);
+    border: 1px solid rgba(169, 155, 212, 0.15);
     border-radius: var(--border-radius-lg);
     padding: var(--space-md);
     transition: var(--transition-medium);
@@ -1655,7 +1700,7 @@ svg {
 
 .pillar-card:hover {
     transform: translateY(-10px);
-    border-color: rgba(212, 168, 83, 0.3);
+    border-color: rgba(169, 155, 212, 0.3);
 }
 
 .pillar-card:hover::before {
@@ -1682,7 +1727,7 @@ svg {
 }
 
 .pillar-icon.invest {
-    background: linear-gradient(135deg, rgba(212, 168, 83, 0.2) 0%, rgba(230, 126, 34, 0.2) 100%);
+    background: linear-gradient(135deg, rgba(169, 155, 212, 0.2) 0%, rgba(139, 123, 181, 0.2) 100%);
 }
 
 .pillar-icon.invest::after {
@@ -1698,7 +1743,7 @@ svg {
 }
 
 .pillar-icon.connect {
-    background: linear-gradient(135deg, rgba(255, 107, 157, 0.2) 0%, rgba(230, 126, 34, 0.2) 100%);
+    background: linear-gradient(135deg, rgba(196, 181, 224, 0.2) 0%, rgba(169, 155, 212, 0.2) 100%);
 }
 
 .pillar-icon.connect::after {
@@ -1732,7 +1777,7 @@ svg {
     max-width: 400px;
     padding: var(--space-lg);
     background: var(--color-bg-card);
-    border: 1px solid rgba(212, 168, 83, 0.2);
+    border: 1px solid rgba(169, 155, 212, 0.2);
     border-radius: var(--border-radius-lg);
     text-align: center;
     transition: var(--transition-medium);
@@ -1813,7 +1858,7 @@ svg {
     width: 70px;
     height: 70px;
     background: var(--color-bg-card);
-    border: 1px solid rgba(212, 168, 83, 0.3);
+    border: 1px solid rgba(169, 155, 212, 0.3);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1822,7 +1867,7 @@ svg {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--color-gold);
-    box-shadow: 0 0 20px rgba(212, 168, 83, 0.1);
+    box-shadow: 0 0 20px rgba(169, 155, 212, 0.1);
 }
 
 .timeline-content {
@@ -1841,7 +1886,7 @@ svg {
 }
 
 .timeline-item:hover .timeline-content {
-    border-color: rgba(212, 168, 83, 0.3);
+    border-color: rgba(169, 155, 212, 0.3);
     transform: translateX(10px);
 }
 
@@ -1900,7 +1945,7 @@ svg {
     color: var(--color-bg-primary);
     border-color: var(--color-gold);
     font-weight: 600;
-    box-shadow: 0 0 15px rgba(212, 168, 83, 0.4);
+    box-shadow: 0 0 15px rgba(169, 155, 212, 0.4);
 }
 
 .track-badge:hover:not(.active) {
@@ -2057,7 +2102,7 @@ svg {
     .about-text {
         padding-left: 0;
         border-left: none;
-        border-top: 2px solid rgba(212, 168, 83, 0.3);
+        border-top: 2px solid rgba(169, 155, 212, 0.3);
         padding-top: var(--space-md);
     }
 
@@ -2154,7 +2199,7 @@ svg {
     .timeline-number {
         margin: 0 auto;
         /* Ensure circle is centered */
-        box-shadow: 0 0 15px rgba(212, 168, 83, 0.2);
+        box-shadow: 0 0 15px rgba(169, 155, 212, 0.2);
         background: var(--color-bg-primary);
         /* Ensure it covers the line if needed */
         z-index: 1;
@@ -2408,7 +2453,7 @@ svg {
         padding-left: 0;
         padding-top: 1rem;
         border-left: none;
-        border-top: 2px solid rgba(212, 168, 83, 0.3);
+        border-top: 2px solid rgba(169, 155, 212, 0.3);
     }
 
     .mission-statement {
@@ -2548,11 +2593,11 @@ svg {
 @keyframes pulseGlow {
     0%, 100% {
         box-shadow: 0 0 20px rgba(139, 123, 181, 0.3),
-                    0 0 40px rgba(244, 162, 97, 0.2);
+                    0 0 40px rgba(169, 155, 212, 0.2);
     }
     50% {
         box-shadow: 0 0 30px rgba(139, 123, 181, 0.5),
-                    0 0 60px rgba(244, 162, 97, 0.3);
+                    0 0 60px rgba(169, 155, 212, 0.3);
     }
 }
 
@@ -2696,7 +2741,7 @@ svg {
 
 .hover-glow:hover {
     box-shadow: 0 0 20px rgba(139, 123, 181, 0.4),
-                0 0 40px rgba(244, 162, 97, 0.2);
+                0 0 40px rgba(169, 155, 212, 0.2);
 }
 
 .hover-rotate {
@@ -2738,6 +2783,13 @@ body::before {
     overflow: hidden;
 }
 
+/* CRITICAL: Allow scroll on mobile - overflow:hidden blocks touch scrolling */
+@media (max-width: 767px) {
+    .flowing-bg {
+        overflow: visible !important;
+    }
+}
+
 /* Primary gradient layer - gentle flow */
 .flowing-bg::before {
     content: '';
@@ -2773,7 +2825,7 @@ body::before {
 }
 
 .flowing-bg-countdown::after {
-    background: radial-gradient(ellipse at 30% 40%, rgba(244, 162, 97, 0.05) 0%, transparent 55%);
+    background: radial-gradient(ellipse at 30% 40%, rgba(169, 155, 212, 0.05) 0%, transparent 55%);
 }
 
 .flowing-bg-about::before {
@@ -2797,7 +2849,7 @@ body::before {
 }
 
 .flowing-bg-themes::after {
-    background: radial-gradient(circle at 70% 60%, rgba(244, 162, 97, 0.04) 0%, transparent 50%);
+    background: radial-gradient(circle at 70% 60%, rgba(169, 155, 212, 0.04) 0%, transparent 50%);
 }
 
 .flowing-bg-structure::before {
@@ -2877,8 +2929,8 @@ body::before {
     transform: translateY(-10px) rotateX(2deg) rotateY(2deg);
     box-shadow:
         0 20px 40px rgba(0, 0, 0, 0.4),
-        0 0 20px rgba(212, 168, 83, 0.2);
-    border-color: rgba(212, 168, 83, 0.5);
+        0 0 20px rgba(169, 155, 212, 0.2);
+    border-color: rgba(169, 155, 212, 0.5);
     z-index: 10;
 }
 
@@ -2898,6 +2950,9 @@ body::before {
     .animate-fade-up {
         margin-top: 0 !important;
         padding-top: 0 !important;
+        animation: none !important; /* Disable fade animation to prevent blink */
+        opacity: 1 !important;
+        transform: none !important;
     }
 }
 
@@ -3811,10 +3866,10 @@ video, iframe, embed, object {
     }
 }
 
-/* Prevent text selection issues on mobile */
+/* Prevent text selection issues on mobile - NO TAP FLASH */
 @media (max-width: 768px) {
     * {
-        -webkit-tap-highlight-color: rgba(139, 123, 181, 0.2);
+        -webkit-tap-highlight-color: transparent !important;
     }
 }
 
@@ -4198,10 +4253,10 @@ video, iframe, embed, object {
         -webkit-overflow-scrolling: touch;
     }
     
-    /* Better touch interactions */
+    /* Better touch interactions - NO TAP FLASH */
     button, a, [role="button"] {
-        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-        -webkit-tap-highlight-color: rgba(139, 123, 181, 0.2);
+        transition: none !important; /* Remove transition to prevent blink */
+        -webkit-tap-highlight-color: transparent !important;
     }
     
     button:active, a:active, [role="button"]:active {
@@ -4361,49 +4416,18 @@ video, iframe, embed, object {
     animation-delay: 2s;
 }
 
-/* Mobile scroll container - REMOVED - using native body scroll instead */
+/* ============================================================
+   MOBILE SCROLL - CONSOLIDATED RULES
+   ============================================================
+   These rules work together with the rules at the top of this file.
+   The .is-mobile-device class is added by SmoothScroll.tsx
+   ============================================================ */
 
-/* DISABLE ScrollSmoother styles on mobile - ensure normal scrolling */
-@media (max-width: 767px), (hover: none) and (pointer: coarse) {
-    #smooth-wrapper {
-        overflow: visible !important;
-        position: relative !important;
-        height: auto !important;
-        width: 100% !important;
-        top: auto !important;
-        left: auto !important;
-        right: auto !important;
-        bottom: auto !important;
-    }
-
-    #smooth-content {
-        transform: none !important;
-        will-change: auto !important;
-        overflow: visible !important;
-        position: relative !important;
-        height: auto !important;
-    }
-    
-    /* Disable parallax effects on mobile */
-    [data-speed],
-    [data-parallax] {
-        transform: none !important;
-        will-change: auto !important;
-    }
-    
-    /* Ensure body can scroll normally */
-    body {
-        overflow-y: auto !important;
-        overflow-x: hidden !important;
-        position: relative !important;
-        height: auto !important;
-    }
-    
-    html {
-        overflow-y: auto !important;
-        overflow-x: hidden !important;
-        height: auto !important;
-    }
+/* Scroll lock for modals/drawers - works on both mobile and desktop */
+body.scroll-locked {
+    overflow: hidden !important;
+    position: fixed !important;
+    width: 100% !important;
 }
 
 /* Disable backdrop-blur on mobile for performance */
@@ -4470,15 +4494,18 @@ video, iframe, embed, object {
 
 /* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
-    /* Disable hover effects entirely */
+    /* Disable hover effects on non-interactive elements */
     *:hover {
         transform: none !important;
     }
     
-    /* Use active states instead */
-    *:active {
-        opacity: 0.8;
-        transform: scale(0.98) !important;
+    /* Active states ONLY for interactive elements - NOT all elements */
+    /* This prevents the entire page from scaling when tapping */
+    button:active,
+    a:active,
+    [role="button"]:active {
+        opacity: 0.9;
+        transition: opacity 0.1s ease !important;
     }
     
     /* Larger touch targets */
@@ -4499,61 +4526,6 @@ video, iframe, embed, object {
     }
 }
 
-/* Ensure normal native scrolling on mobile */
-@media (max-width: 767px) {
-    html {
-        scroll-behavior: auto !important; /* Normal scrolling, no smooth */
-        overflow-x: hidden !important;
-        overflow-y: auto !important; /* Allow vertical scrolling */
-        margin: 0 !important;
-        padding: 0 !important;
-        height: auto !important; /* Don't fix height */
-        width: 100%;
-        position: relative;
-    }
-    
-    body {
-        overflow-x: hidden !important;
-        overflow-y: auto !important; /* Allow vertical scrolling */
-        -webkit-overflow-scrolling: touch;
-        overscroll-behavior-y: contain;
-        margin: 0 !important;
-        padding: 0 !important;
-        width: 100%;
-        min-height: 100vh; /* Allow content to extend beyond viewport */
-        height: auto !important; /* Don't fix height */
-        position: relative;
-    }
-    
-    /* Fix for iOS momentum scrolling */
-    main,
-    .main-container,
-    section {
-        -webkit-overflow-scrolling: touch;
-        position: relative;
-    }
-    
-    /* Ensure fixed StaggeredMenu doesn't block scrolling */
-    .sm-scope {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100vw !important;
-        height: 100vh !important;
-        overflow: visible !important;
-        pointer-events: none !important;
-        z-index: 50;
-    }
-    
-    /* Remove any overflow hidden from containers that might block scroll */
-    .main-container,
-    .main-container > div,
-    .animate-fade-up {
-        overflow: visible !important;
-        height: auto !important;
-        position: relative;
-    }
-}
 
 /* Disable GPU-heavy gradients on mobile */
 @media (max-width: 767px) {

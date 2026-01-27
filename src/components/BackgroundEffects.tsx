@@ -50,7 +50,7 @@ const BackgroundEffects = () => {
                 style={{
                     background: `
                         radial-gradient(circle at 20% 50%, rgba(139, 123, 181, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(244, 162, 97, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(169, 155, 212, 0.1) 0%, transparent 50%),
                         radial-gradient(circle at 40% 20%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
                         linear-gradient(180deg, #0a0a0f 0%, #0d0d14 50%, #0a0a0f 100%)
                     `
@@ -81,7 +81,7 @@ const BackgroundEffects = () => {
                     <div
                         className="gradient-orb absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full pointer-events-none"
                         style={{
-                            background: 'radial-gradient(circle, rgba(244, 162, 97, 0.15) 0%, rgba(230, 111, 81, 0.08) 40%, transparent 70%)',
+                            background: 'radial-gradient(circle, rgba(169, 155, 212, 0.15) 0%, rgba(139, 123, 181, 0.08) 40%, transparent 70%)',
                             filter: 'blur(80px)',
                         }}
                     />
@@ -107,7 +107,7 @@ const BackgroundEffects = () => {
                                 strokeWidth="0.5"
                                 className="bg-grid-line"
                             />
-                            <circle cx="60" cy="60" r="20" fill="none" stroke="rgba(244, 162, 97, 0.2)" strokeWidth="0.3" />
+                            <circle cx="60" cy="60" r="20" fill="none" stroke="rgba(169, 155, 212, 0.2)" strokeWidth="0.3" />
                         </pattern>
                         <pattern id="grid-pattern" width="100" height="100" patternUnits="userSpaceOnUse">
                             <path
@@ -136,7 +136,7 @@ const BackgroundEffects = () => {
                     <div
                         className="absolute bottom-0 right-0 w-1/2 h-full pointer-events-none"
                         style={{
-                            background: 'linear-gradient(270deg, rgba(244, 162, 97, 0.04) 0%, transparent 100%)',
+                            background: 'linear-gradient(270deg, rgba(169, 155, 212, 0.04) 0%, transparent 100%)',
                         }}
                     />
                 </>

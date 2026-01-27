@@ -77,7 +77,7 @@ export const animationPresets = {
   },
   hoverGlow: {
     whileHover: {
-      boxShadow: '0 0 20px rgba(139, 123, 181, 0.4), 0 0 40px rgba(244, 162, 97, 0.2)',
+      boxShadow: '0 0 20px rgba(139, 123, 181, 0.4), 0 0 40px rgba(169, 155, 212, 0.2)',
       transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] }
     },
   },

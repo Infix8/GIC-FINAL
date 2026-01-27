@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container, Typography, Stack, Grid, Paper } from '@mui/material';
+import { Box, Container, Typography, Stack, Paper, Grid } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
 const About: React.FC = () => {
@@ -59,7 +59,7 @@ const About: React.FC = () => {
 
                     {/* Info cards */}
                     <Grid container spacing={{ xs: 2, sm: 3 }}>
-                        <Grid item xs={12} md={6}>
+                        <Grid size={{ xs: 12, md: 6 }}>
                             <Paper
                                 className="about-block card-hover-effect"
                                 sx={{
@@ -100,7 +100,7 @@ const About: React.FC = () => {
                             </Paper>
                         </Grid>
 
-                        <Grid item xs={12} md={6}>
+                        <Grid size={{ xs: 12, md: 6 }}>
                             <Paper
                                 className="about-block card-hover-effect"
                                 sx={{

@@ -125,10 +125,10 @@ const Navbar = () => {
                                                 damping: 30,
                                             }}
                                         >
-                                            <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-10 h-1.5 bg-gradient-to-r from-gold via-amber to-orange rounded-t-full shadow-lg shadow-gold/50">
-                                                <div className="absolute w-12 h-8 bg-gold/30 rounded-full blur-lg -top-3 -left-1" />
-                                                <div className="absolute w-8 h-6 bg-amber/40 rounded-full blur-md -top-2" />
-                                                <div className="absolute w-6 h-4 bg-orange/30 rounded-full blur-sm -top-1 left-2" />
+                                            <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-10 h-1.5 bg-gradient-to-r from-gic-lavender via-gic-violet to-primary rounded-t-full shadow-lg shadow-primary/50">
+                                                <div className="absolute w-12 h-8 bg-gic-lavender/30 rounded-full blur-lg -top-3 -left-1" />
+                                                <div className="absolute w-8 h-6 bg-gic-violet/40 rounded-full blur-md -top-2" />
+                                                <div className="absolute w-6 h-4 bg-primary/30 rounded-full blur-sm -top-1 left-2" />
                                             </div>
                                         </motion.div>
                                     )}

@@ -1,31 +1,31 @@
 import { createRootRoute, Outlet } from '@tanstack/react-router';
-import { Suspense } from 'react';
 import { Box } from '@mui/material';
 import { SuspenseLoader } from '~components/SuspenseLoader/SuspenseLoader';
 import Footer from '@/components/Footer';
-import StaggeredMenu from '@/components/StaggeredMenu';
+import NavigationMenu from '@/components/NavigationMenu';
 import SmoothScroll from '@/components/SmoothScroll';
 import BackgroundEffects from '@/components/BackgroundEffects';
 import { useGSAPAnimations } from '@/hooks/useGSAPAnimations';
 
-// Menu items configuration
+// Menu items configuration - simplified for MUI NavigationMenu
 const menuItems = [
-  { label: 'Home', ariaLabel: 'Go to Home', link: '/' },
-  { label: 'About', ariaLabel: 'Go to About', link: '/about' },
-  { label: 'Events', ariaLabel: 'Go to Events', link: '/events' },
-  { label: 'Speakers', ariaLabel: 'Go to Speakers', link: '/speakers' },
-  { label: 'Sponsors', ariaLabel: 'Go to Sponsors', link: '/sponsors' },
-  { label: 'Passes', ariaLabel: 'Go to Passes', link: '/passes' },
-  { label: 'Accommodation', ariaLabel: 'Go to Accommodation', link: '/accommodation' },
+  { label: 'Home', link: '/' },
+  { label: 'About', link: '/about' },
+  { label: 'Events', link: '/events' },
+  { label: 'Speakers', link: '/speakers' },
+  { label: 'Sponsors', link: '/sponsors' },
+  { label: 'Passes', link: '/passes' },
+  { label: 'Accommodation', link: '/accommodation' },
 ];
 
 const socialItems = [
-  { label: 'LinkedIn', link: 'https://linkedin.com' },
-  { label: 'Instagram', link: 'https://www.instagram.com/gic_smec?igsh=dGc0MTMyOTR2ZXBi' },
+  { label: 'LinkedIn', link: 'https://linkedin.com', icon: 'linkedin' as const },
+  { label: 'Instagram', link: 'https://www.instagram.com/gic_smec?igsh=dGc0MTMyOTR2ZXBi', icon: 'instagram' as const },
 ];
 
-// Handle GSAP animations on route change
+// Handle GSAP animations on route change - optimized to prevent re-initialization
 const PageAnimations = () => {
+  // Always call the hook (React rules), but hook handles mobile detection internally
   useGSAPAnimations();
   return null;
 };
@@ -33,49 +33,43 @@ const PageAnimations = () => {
 export const Route = createRootRoute({
   component: () => (
     <>
-      {/* Staggered Menu Navigation - Fixed position, outside smooth scroll flow */}
-      <StaggeredMenu
+      {/* Production-Grade Navigation - MUI Drawer (battle-tested, mobile-optimized) */}
+      <NavigationMenu
         items={menuItems}
         socialItems={socialItems}
         logoUrl="/logo.png"
-        colors={['#0f0c19', '#1a1528', '#2d2445', '#6B5B95']}
-        accentColor="#8B7BB5"
-        menuButtonColor="#EAEAEA"
-        openMenuButtonColor="#EAEAEA"
-        isFixed={true}
         displaySocials={true}
-        displayItemNumbering={false}
       />
       <SmoothScroll>
+        {/* Main content wrapper - CRITICAL: No overflow restrictions on mobile */}
         <Box
-          className="animate-fade-up"
+          component="main"
           sx={{
-            animation: 'fadeUp 0.6s ease-out',
-            '@keyframes fadeUp': {
-              from: {
-                opacity: 0,
-                transform: 'translateY(20px)',
-              },
-              to: {
-                opacity: 1,
-                transform: 'translateY(0)',
-              },
-            },
+            // Explicit mobile-safe styles
+            position: 'relative',
+            width: '100%',
+            minHeight: { xs: 'auto', md: '100vh' },
+            // NEVER use overflow:hidden on this container
+            overflow: 'visible',
           }}
         >
           <PageAnimations />
           <BackgroundEffects />
+          {/* Content area */}
           <Box
             sx={{
               display: 'flex',
               flexDirection: 'column',
-              minHeight: '100vh',
+              minHeight: { xs: 'auto', md: '100vh' },
+              // Ensure content can grow naturally
+              overflow: 'visible',
             }}
           >
             <Box
               sx={{
-                flex: 1,
+                flex: '1 0 auto',
                 pt: { xs: 5, sm: 6, md: 0 },
+                overflow: 'visible',
               }}
             >
               <SuspenseLoader>

@@ -14,10 +14,10 @@ export const theme = createTheme({
       contrastText: '#ffffff',
     },
     secondary: {
-      main: '#F4A261', // warm amber
-      light: '#F6B88A',
-      dark: '#E76F51',
-      contrastText: '#0a0a0f',
+      main: '#A99BD4', // lavender (lighter purple for contrast)
+      light: '#C4B5E0', // lighter purple
+      dark: '#8B7BB5', // main violet
+      contrastText: '#ffffff',
     },
     tertiary: {
       main: '#06B6D4', // cool cyan

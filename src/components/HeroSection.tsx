@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { ArrowRight, Calendar, MapPin, Users, Trophy, Lightbulb, Rocket, Play } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import { Box, Container, Stack, Grid, Typography, useTheme } from "@mui/material";
+import { Box, Container, Stack, Typography, useTheme, Grid } from "@mui/material";
 import { Button } from "./ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import gicLogo from "../assets/gic-logo.jpeg";
@@ -81,7 +81,8 @@ const HeroSection = () => {
         minHeight: { xs: 'calc(100vh - 5rem)', sm: 'calc(100vh - 6rem)', md: '80vh' },
         display: 'flex',
         alignItems: 'center',
-        overflow: 'hidden',
+        // CRITICAL: Remove overflow:hidden on mobile to allow touch scrolling
+        overflow: { xs: 'visible', md: 'hidden' },
         background: theme.palette.background.default,
       }}
     >
@@ -234,7 +235,7 @@ const HeroSection = () => {
 
         <Grid container spacing={{ xs: 3, sm: 4, md: 6, lg: 8 }} sx={{ alignItems: 'flex-start' }}>
           {/* Left Content */}
-          <Grid item xs={12} lg={6}>
+          <Grid size={{ xs: 12, lg: 6 }}>
             <Stack spacing={{ xs: 3, sm: 4 }}>
             {/* Main Title Highlight - Slide animation for both mobile and desktop */}
             <Stack spacing={{ xs: 1.5, sm: 2 }}>
@@ -278,7 +279,7 @@ const HeroSection = () => {
 
             {/* Stats Grid */}
             <Grid container spacing={{ xs: 1.5, sm: 2, md: 3 }}>
-              <Grid item xs={4}>
+              <Grid size={{ xs: 4 }}>
                 <Stack spacing={{ xs: 0.25, sm: 0.5 }}>
                   <Typography
                     sx={{
@@ -302,7 +303,7 @@ const HeroSection = () => {
                   </Typography>
                 </Stack>
               </Grid>
-              <Grid item xs={4}>
+              <Grid size={{ xs: 4 }}>
                 <Stack spacing={{ xs: 0.25, sm: 0.5 }}>
                   <Typography
                     sx={{
@@ -326,7 +327,7 @@ const HeroSection = () => {
                   </Typography>
                 </Stack>
               </Grid>
-              <Grid item xs={4}>
+              <Grid size={{ xs: 4 }}>
                 <Stack spacing={{ xs: 0.25, sm: 0.5 }}>
                   <Typography
                     sx={{
@@ -371,7 +372,7 @@ const HeroSection = () => {
           </Grid>
 
           {/* Right Content - Visual Element */}
-          <Grid item xs={12} lg={6}>
+          <Grid size={{ xs: 12, lg: 6 }}>
             <Box
               sx={{
                 position: 'relative',

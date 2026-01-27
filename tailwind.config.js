@@ -28,22 +28,22 @@ export default {
                 // Semantic Colors for UI Components
                 'primary': '#8B7BB5', // Accent violet
                 'primary-foreground': '#0a0a0f',
-                'secondary': '#F4A261', // Warm amber
-                'secondary-foreground': '#0a0a0f',
+                'secondary': '#A99BD4', // Lavender (lighter purple)
+                'secondary-foreground': '#ffffff',
                 'tertiary': '#06B6D4', // Cool cyan
                 'tertiary-foreground': '#0a0a0f',
-                // Legacy gold mapped to warm amber
-                'gold': '#F4A261',
-                'gold-light': '#F6B88A',
+                // Legacy gold mapped to lavender purple
+                'gold': '#A99BD4',
+                'gold-light': '#C4B5E0',
                 // Backgrounds
                 'bg-primary': '#0a0a0f',
                 'bg-secondary': '#111118',
                 'bg-card': 'rgba(255, 255, 255, 0.03)',
                 // GIC HeroSection Colors
                 'gic-dark': '#0a0a0f',
-                'gic-violet': '#A99BD4',
+                'gic-violet': '#8B7BB5',
                 'gic-lavender': '#C4B5E0',
-                'gic-amber': '#F4A261',
+                'gic-purple': '#A99BD4',
                 'gic-cyan': '#06B6D4',
             },
             fontFamily: {
@@ -69,10 +69,10 @@ export default {
             },
             boxShadow: {
                 'xs': '0 1px 2px rgba(0, 0, 0, 0.05)',
-                'colored': '0 8px 24px rgba(139, 123, 181, 0.3), 0 4px 12px rgba(244, 162, 97, 0.2)',
-                'colored-lg': '0 16px 48px rgba(139, 123, 181, 0.4), 0 8px 24px rgba(244, 162, 97, 0.3)',
-                'glow': '0 0 20px rgba(139, 123, 181, 0.4), 0 0 40px rgba(244, 162, 97, 0.2)',
-                'glow-lg': '0 0 40px rgba(139, 123, 181, 0.5), 0 0 80px rgba(244, 162, 97, 0.3)',
+                'colored': '0 8px 24px rgba(139, 123, 181, 0.3), 0 4px 12px rgba(169, 155, 212, 0.2)',
+                'colored-lg': '0 16px 48px rgba(139, 123, 181, 0.4), 0 8px 24px rgba(169, 155, 212, 0.3)',
+                'glow': '0 0 20px rgba(139, 123, 181, 0.4), 0 0 40px rgba(169, 155, 212, 0.2)',
+                'glow-lg': '0 0 40px rgba(139, 123, 181, 0.5), 0 0 80px rgba(169, 155, 212, 0.3)',
             },
             transitionTimingFunction: {
                 'bounce': 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Calendar, Clock } from "lucide-react";
-import { Box, Container, Typography, Stack, Grid, Paper, useTheme } from "@mui/material";
+import { Box, Container, Typography, Stack, Paper, useTheme, Grid } from "@mui/material";
 
 interface TimeLeft {
   days: number;
@@ -64,7 +64,8 @@ const CountdownTimer: React.FC = () => {
       sx={{
         position: 'relative',
         py: { xs: 4, sm: 5, lg: 6 },
-        overflow: 'hidden',
+        // CRITICAL: Remove overflow:hidden on mobile to allow touch scrolling
+        overflow: { xs: 'visible', md: 'hidden' },
         background: theme.palette.background.default,
       }}
     >
@@ -157,7 +158,7 @@ const CountdownTimer: React.FC = () => {
           {timeUnits.map((unit) => {
             const IconComponent = unit.icon;
             return (
-              <Grid item xs={6} md={3} key={unit.label}>
+              <Grid size={{ xs: 6, md: 3 }} key={unit.label}>
                 <Box
                   sx={{
                     position: 'relative',

@@ -14,6 +14,15 @@ export default defineConfig({
       '~features': path.resolve(__dirname, './src/features'),
     },
   },
+  server: {
+    host: true, // Allow external connections (needed for localtunnel)
+    port: 5173,
+    strictPort: true,
+    hmr: {
+      clientPort: 443, // Use HTTPS port for localtunnel
+      protocol: 'wss', // WebSocket Secure for tunnels
+    },
+  },
   build: {
     rollupOptions: {
       output: {

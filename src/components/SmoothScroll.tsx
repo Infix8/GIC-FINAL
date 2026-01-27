@@ -1,26 +1,27 @@
-import { useEffect, useRef, ReactNode, createContext, useContext, useState } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ScrollSmoother } from 'gsap/ScrollSmoother';
+import { useEffect, useRef, useState, ReactNode, createContext, useContext, useCallback } from 'react';
 import { useLocation } from '@tanstack/react-router';
 
-// Register plugins
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+/**
+ * PRODUCTION-GRADE SMOOTH SCROLL
+ * 
+ * Desktop: Uses Lenis for buttery smooth scrolling
+ * Mobile: COMPLETELY BYPASSES Lenis - uses native scroll only
+ * 
+ * Key insight: Lenis and mobile touch don't mix well.
+ * On mobile, we want 100% native browser scrolling.
+ */
 
-// Check if device is mobile/touch
-const checkIsMobile = () => {
-  if (typeof window === 'undefined') return false;
-  return window.innerWidth < 768 || 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-};
+// Lazy load Lenis only on desktop to reduce mobile bundle size
+const loadLenis = () => import('lenis').then(m => m.default);
 
-// Context to share smoother instance
+// Context for scroll functionality
 interface SmoothScrollContextType {
-  smoother: ScrollSmoother | null;
-  scrollTo: (target: string | HTMLElement, smooth?: boolean, position?: string) => void;
+  lenis: unknown | null;
+  scrollTo: (target: string | HTMLElement | number, options?: { offset?: number; duration?: number }) => void;
 }
 
 const SmoothScrollContext = createContext<SmoothScrollContextType>({
-  smoother: null,
+  lenis: null,
   scrollTo: () => {},
 });
 
@@ -30,98 +31,173 @@ interface SmoothScrollProps {
   children: ReactNode;
 }
 
+// Detect if we should use native scroll (mobile/touch devices)
+const shouldUseNativeScroll = (): boolean => {
+  if (typeof window === 'undefined') return true;
+  
+  // Check for small screen
+  const isSmallScreen = window.innerWidth < 768;
+  if (isSmallScreen) return true;
+  
+  // Check for touch-only device (no mouse/trackpad)
+  const isTouchOnly = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+  if (isTouchOnly) return true;
+  
+  return false;
+};
+
 const SmoothScroll = ({ children }: SmoothScrollProps) => {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const smootherRef = useRef<ScrollSmoother | null>(null);
+  const lenisRef = useRef<unknown | null>(null);
+  const rafRef = useRef<number | null>(null);
   const location = useLocation();
   const pathname = location.pathname;
-  const [isMobile] = useState(checkIsMobile);
+  
+  const [useNativeScroll, setUseNativeScroll] = useState(shouldUseNativeScroll);
 
+  // Update on resize
   useEffect(() => {
-    // COMPLETELY DISABLE ScrollSmoother on mobile for native scrolling
-    if (isMobile) {
-      // Ensure native scrolling works - explicitly set to allow scrolling
-      document.body.style.overflow = 'auto';
-      document.body.style.overflowX = 'hidden';
-      document.body.style.position = 'relative';
-      document.body.style.height = 'auto';
-      document.documentElement.style.overflow = 'auto';
-      document.documentElement.style.overflowX = 'hidden';
-      document.documentElement.style.height = 'auto';
-      return;
-    }
+    const handleResize = () => {
+      setUseNativeScroll(shouldUseNativeScroll());
+    };
+    
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
-    // Create ScrollSmoother instance only on desktop
-    if (wrapperRef.current && contentRef.current) {
-      smootherRef.current = ScrollSmoother.create({
-        wrapper: wrapperRef.current,
-        content: contentRef.current,
-        smooth: 1.2,
-        effects: true,
-        normalizeScroll: false,
-        smoothTouch: false,
-      });
+  // MOBILE: Force native scroll - clean up any Lenis artifacts
+  useEffect(() => {
+    if (!useNativeScroll) return;
+    
+    // Cleanup any existing Lenis
+    if (lenisRef.current) {
+      (lenisRef.current as { destroy: () => void }).destroy();
+      lenisRef.current = null;
     }
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
+    
+    // Force native scroll on mobile
+    // Remove ALL Lenis classes
+    const html = document.documentElement;
+    const body = document.body;
+    
+    html.classList.remove('lenis', 'lenis-smooth', 'lenis-scrolling', 'lenis-stopped');
+    
+    // Force native scroll settings with inline styles
+    // These will override any CSS
+    const enableNativeScroll = () => {
+      // Add mobile class for CSS targeting
+      body.classList.add('is-mobile-device');
+      html.classList.add('is-mobile-device');
+
+      html.style.setProperty('overflow-y', 'auto', 'important');
+      html.style.setProperty('overflow-x', 'hidden', 'important');
+      html.style.setProperty('height', 'auto', 'important');
+      html.style.removeProperty('position');
+      html.style.removeProperty('top');
+      
+      body.style.setProperty('overflow-y', 'auto', 'important');
+      body.style.setProperty('overflow-x', 'hidden', 'important');
+      body.style.setProperty('position', 'relative', 'important');
+      body.style.setProperty('height', 'auto', 'important');
+      body.style.setProperty('-webkit-overflow-scrolling', 'touch', 'important');
+      body.style.removeProperty('top');
+    };
+    
+    // Apply immediately
+    enableNativeScroll();
+    
+    // Also apply after a small delay to catch any race conditions
+    const raf = requestAnimationFrame(enableNativeScroll);
+    const timer = setTimeout(enableNativeScroll, 150);
+    
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(timer);
+      body.classList.remove('is-mobile-device');
+      html.classList.remove('is-mobile-device');
+    };
+  }, [useNativeScroll]);
+
+  // DESKTOP: Initialize Lenis
+  useEffect(() => {
+    if (useNativeScroll) return;
+    
+    let mounted = true;
+    
+    loadLenis().then((Lenis) => {
+      if (!mounted || useNativeScroll) return;
+      
+      lenisRef.current = new Lenis({
+        duration: 1.2,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        smoothTouch: false, // CRITICAL: Disable touch handling in Lenis
+        touchMultiplier: 2,
+        infinite: false,
+      });
+
+      function raf(time: number) {
+        if (lenisRef.current) {
+          (lenisRef.current as { raf: (time: number) => void }).raf(time);
+        }
+        rafRef.current = requestAnimationFrame(raf);
+      }
+      rafRef.current = requestAnimationFrame(raf);
+    });
 
     return () => {
-      if (smootherRef.current) {
-        smootherRef.current.kill();
-        smootherRef.current = null;
+      mounted = false;
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
+      if (lenisRef.current) {
+        (lenisRef.current as { destroy: () => void }).destroy();
+        lenisRef.current = null;
       }
     };
-  }, [isMobile]);
+  }, [useNativeScroll]);
 
   // Scroll to top on route change
   useEffect(() => {
-    if (isMobile) {
-      // Use native scroll for mobile
+    if (useNativeScroll) {
+      // Native scroll - immediate
       window.scrollTo(0, 0);
-    } else if (smootherRef.current) {
-      smootherRef.current.scrollTo(0, false);
+    } else if (lenisRef.current) {
+      (lenisRef.current as { scrollTo: (target: number, options?: { immediate: boolean }) => void }).scrollTo(0, { immediate: true });
     }
-  }, [pathname, isMobile]);
+  }, [pathname, useNativeScroll]);
 
-  // Refresh ScrollTrigger when route changes (only on desktop)
-  useEffect(() => {
-    if (isMobile) return;
-    
-    const timeout = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 100);
-
-    return () => clearTimeout(timeout);
-  }, [pathname, isMobile]);
-
-  const scrollTo = (target: string | HTMLElement, smooth = true, position = 'top top') => {
-    if (isMobile) {
-      // Use native scroll for mobile
-      const element = typeof target === 'string' ? document.querySelector(target) : target;
-      if (element) {
-        element.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto' });
+  // Scroll helper
+  const scrollTo = useCallback((
+    target: string | HTMLElement | number,
+    options?: { offset?: number; duration?: number }
+  ) => {
+    if (useNativeScroll) {
+      if (typeof target === 'number') {
+        window.scrollTo({ top: target, behavior: 'smooth' });
+      } else {
+        const element = typeof target === 'string' ? document.querySelector(target) : target;
+        element?.scrollIntoView({ behavior: 'smooth' });
       }
-    } else if (smootherRef.current) {
-      smootherRef.current.scrollTo(target, smooth, position);
+    } else if (lenisRef.current) {
+      (lenisRef.current as { scrollTo: (target: string | HTMLElement | number, options?: { offset?: number; duration?: number }) => void }).scrollTo(target, {
+        offset: options?.offset || 0,
+        duration: options?.duration,
+      });
     }
-  };
-
-  // On mobile, render children without the wrapper divs to avoid any interference
-  // Just return children directly for normal native scrolling
-  if (isMobile) {
-    return (
-      <SmoothScrollContext.Provider value={{ smoother: null, scrollTo }}>
-        {children}
-      </SmoothScrollContext.Provider>
-    );
-  }
+  }, [useNativeScroll]);
 
   return (
-    <SmoothScrollContext.Provider value={{ smoother: smootherRef.current, scrollTo }}>
-      <div id="smooth-wrapper" ref={wrapperRef}>
-        <div id="smooth-content" ref={contentRef}>
-          {children}
-        </div>
-      </div>
+    <SmoothScrollContext.Provider value={{ lenis: lenisRef.current, scrollTo }}>
+      {children}
     </SmoothScrollContext.Provider>
   );
 };
