@@ -1,33 +1,117 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '@tanstack/react-router';
+import { Box, Container, Stack, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 const Footer: React.FC = () => {
+    const theme = useTheme();
+    
     return (
-        <footer className="bg-[#0a0a0f] border-t border-[#8B7BB5]/10 relative overflow-hidden">
-            <div className="max-w-7xl mx-auto px-6 py-6 relative z-10">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <Box
+            component="footer"
+            sx={{
+                bgcolor: 'background.default',
+                borderTop: `1px solid ${theme.palette.primary.main}1A`, // 10% opacity
+                position: 'relative',
+                overflow: 'hidden',
+            }}
+        >
+            <Container maxWidth="xl" sx={{ py: 1.5, position: 'relative', zIndex: 10 }}>
+                <Stack
+                    direction={{ xs: 'column', md: 'row' }}
+                    alignItems={{ md: 'center' }}
+                    justifyContent={{ md: 'space-between' }}
+                    spacing={2}
+                >
                     {/* Copyright */}
-                    <p className="text-[#EAEAEA]/40 text-sm">
+                    <Typography
+                        variant="body2"
+                        sx={{
+                            color: 'text.secondary',
+                            fontSize: '0.875rem',
+                        }}
+                    >
                         © 2026 St. Martin's Engineering College. All rights reserved.
-                    </p>
+                    </Typography>
 
                     {/* Legal Links */}
-                    <div className="flex items-center gap-4 text-sm">
-                        <Link to="/terms" className="text-[#EAEAEA]/40 hover:text-[#8B7BB5] transition-colors">
-                            *Terms & Conditions
+                    <Stack direction="row" alignItems="center" spacing={2}>
+                        <Link
+                            to="/terms"
+                            style={{ textDecoration: 'none' }}
+                        >
+                            <Typography
+                                variant="body2"
+                                sx={{
+                                    color: 'text.secondary',
+                                    fontSize: '0.875rem',
+                                    '&:hover': {
+                                        color: 'primary.main',
+                                    },
+                                    transition: 'color 0.2s ease',
+                                }}
+                            >
+                                *Terms & Conditions
+                            </Typography>
                         </Link>
-                        <span className="text-[#EAEAEA]/20">|</span>
-                        <Link to="/privacy" className="text-[#EAEAEA]/40 hover:text-[#8B7BB5] transition-colors">
-                            Privacy Policy
+                        <Typography
+                            variant="body2"
+                            sx={{
+                                color: 'text.secondary',
+                                opacity: 0.5,
+                            }}
+                        >
+                            |
+                        </Typography>
+                        <Link
+                            to="/privacy"
+                            style={{ textDecoration: 'none' }}
+                        >
+                            <Typography
+                                variant="body2"
+                                sx={{
+                                    color: 'text.secondary',
+                                    fontSize: '0.875rem',
+                                    '&:hover': {
+                                        color: 'primary.main',
+                                    },
+                                    transition: 'color 0.2s ease',
+                                }}
+                            >
+                                Privacy Policy
+                            </Typography>
                         </Link>
-                        <span className="text-[#EAEAEA]/20">|</span>
-                        <Link to="/refund" className="text-[#EAEAEA]/40 hover:text-[#8B7BB5] transition-colors">
-                            Refund Policy
+                        <Typography
+                            variant="body2"
+                            sx={{
+                                color: 'text.secondary',
+                                opacity: 0.5,
+                            }}
+                        >
+                            |
+                        </Typography>
+                        <Link
+                            to="/refund"
+                            style={{ textDecoration: 'none' }}
+                        >
+                            <Typography
+                                variant="body2"
+                                sx={{
+                                    color: 'text.secondary',
+                                    fontSize: '0.875rem',
+                                    '&:hover': {
+                                        color: 'primary.main',
+                                    },
+                                    transition: 'color 0.2s ease',
+                                }}
+                            >
+                                Refund Policy
+                            </Typography>
                         </Link>
-                    </div>
-                </div>
-            </div>
-        </footer>
+                    </Stack>
+                </Stack>
+            </Container>
+        </Box>
     );
 };
 

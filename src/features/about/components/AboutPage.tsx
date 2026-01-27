@@ -1,0 +1,112 @@
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const AboutPage = () => {
+    const pageRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        // Ensure content is visible initially
+        const elements = pageRef.current?.querySelectorAll('.about-animate');
+        elements?.forEach(el => {
+            (el as HTMLElement).style.opacity = '1';
+            (el as HTMLElement).style.transform = 'translateY(0)';
+        });
+
+        const ctx = gsap.context(() => {
+            // Set initial state
+            gsap.set('.about-animate', {
+                y: 60,
+                opacity: 0,
+            });
+
+            // Animate in
+            gsap.to('.about-animate', {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                stagger: 0.15,
+                ease: 'power3.out',
+            });
+        }, pageRef);
+
+        // Fallback: ensure visibility after animation
+        const fallback = setTimeout(() => {
+            elements?.forEach(el => {
+                (el as HTMLElement).style.opacity = '1';
+                (el as HTMLElement).style.transform = 'translateY(0)';
+            });
+        }, 2000);
+
+        return () => {
+            ctx.revert();
+            clearTimeout(fallback);
+        };
+    }, []);
+
+    return (
+        <div ref={pageRef} className="page-container" style={{ minHeight: '100vh', paddingTop: '2rem' }}>
+            <section className="section" style={{ opacity: 1, visibility: 'visible' }}>
+                {/* Header */}
+                <div className="section-header-new about-animate">
+                    <h1 className="section-title-new">ABOUT THE CONCLAVE</h1>
+                </div>
+
+                {/* Mission */}
+                <div className="about-animate mb-8 sm:mb-12 md:mb-16 w-full">
+                    <p className="mission-text text-justify sm:text-left" style={{ fontSize: 'clamp(1rem, 2vw, 1.8rem)', lineHeight: '1.7' }}>
+                        The primary mission of <span style={{ fontWeight: 600, color: 'var(--color-accent)' }}>SMEC’s Global Innovators Conclave 2026</span> is to foster{' '}
+                        <span className="text-rose">deep-tech innovation and entrepreneurship</span> by creating a robust ecosystem that connects high-potential teams with funding opportunities, expert mentorship, and strategic industry partnerships.
+                    </p>
+                </div>
+
+                {/* Info Cards */}
+                <div className="about-grid about-animate">
+                    <div className="about-card-new card-hover-effect">
+                        <h3 className="card-title">Organized By</h3>
+                        <p className="card-highlight">St. Martin's Engineering College</p>
+                        <p className="card-detail">UGC Autonomous Institution</p>
+                        <p className="card-detail">NAAC A+ Accredited</p>
+                    </div>
+
+                    <div className="about-card-new card-hover-effect">
+                        <h3 className="card-title">Recognition</h3>
+                        <p className="card-highlight">ARIIA & NIRF Ranked</p>
+                        <p className="card-detail">Top Institution for Innovation</p>
+                        <p className="card-detail">Excellence in Entrepreneurship</p>
+                    </div>
+
+                    <div className="about-card-new card-hover-effect">
+                        <h3 className="card-title">Vision</h3>
+                        <p className="card-highlight">"Raising Minds For Global Impact"</p>
+                        <p className="card-detail">Fostering Innovation</p>
+                        <p className="card-detail">Building Tomorrow's Leaders</p>
+                    </div>
+                </div>
+
+                {/* Key Pillars */}
+                <div className="mt-12 sm:mt-16 md:mt-24 about-animate">
+                    <h2 className="section-title mb-6 sm:mb-8">Key Pillars</h2>
+                    <div className="pillars-grid-new">
+                        {[
+                            { num: "01", title: "Showcase", desc: "Feature startups with prototypes and live demos" },
+                            { num: "02", title: "Invest", desc: "Curated opportunities with funding up to INR 10 Crores" },
+                            { num: "03", title: "Educate", desc: "Inform on policy, IP, and scaling deep-tech" },
+                            { num: "04", title: "Connect", desc: "Strengthen government-industry-startup collaborations" },
+                        ].map((pillar, i) => (
+                            <div key={i} className="pillar-card-new card-hover-effect">
+                                <span className="pillar-number">{pillar.num}</span>
+                                <h3 className="pillar-title-text">{pillar.title}</h3>
+                                <p className="pillar-desc">{pillar.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        </div>
+    );
+};
+
+export default AboutPage;

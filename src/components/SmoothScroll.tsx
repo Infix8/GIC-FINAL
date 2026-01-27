@@ -2,7 +2,7 @@ import { useEffect, useRef, ReactNode, createContext, useContext, useState } fro
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from '@tanstack/react-router';
 
 // Register plugins
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -34,15 +34,21 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const smootherRef = useRef<ScrollSmoother | null>(null);
-  const { pathname } = useLocation();
+  const location = useLocation();
+  const pathname = location.pathname;
   const [isMobile] = useState(checkIsMobile);
 
   useEffect(() => {
     // COMPLETELY DISABLE ScrollSmoother on mobile for native scrolling
     if (isMobile) {
-      // Ensure native scrolling works
-      document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
+      // Ensure native scrolling works - explicitly set to allow scrolling
+      document.body.style.overflow = 'auto';
+      document.body.style.overflowX = 'hidden';
+      document.body.style.position = 'relative';
+      document.body.style.height = 'auto';
+      document.documentElement.style.overflow = 'auto';
+      document.documentElement.style.overflowX = 'hidden';
+      document.documentElement.style.height = 'auto';
       return;
     }
 
@@ -100,12 +106,11 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
   };
 
   // On mobile, render children without the wrapper divs to avoid any interference
+  // Just return children directly for normal native scrolling
   if (isMobile) {
     return (
       <SmoothScrollContext.Provider value={{ smoother: null, scrollTo }}>
-        <div className="mobile-scroll-container">
-          {children}
-        </div>
+        {children}
       </SmoothScrollContext.Provider>
     );
   }

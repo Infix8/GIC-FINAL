@@ -1,5 +1,7 @@
-import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useCallback, useLayoutEffect, useRef, useState, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from '@tanstack/react-router';
+import { Box, Stack, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -51,10 +53,12 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   onMenuOpen,
   onMenuClose
 }: StaggeredMenuProps) => {
+  const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const openRef = useRef(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const panelRef = useRef<HTMLDivElement | null>(null);
   const preLayersRef = useRef<HTMLDivElement | null>(null);
@@ -429,15 +433,27 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     if (target) {
       onMenuOpen?.();
       playOpen();
+      // Prevent body scroll when menu opens
+      if (isMobile) {
+        document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
+      }
     } else {
       onMenuClose?.();
       playClose();
+      // Allow body scroll when menu closes
+      if (isMobile) {
+        document.body.style.overflow = 'auto';
+        document.body.style.overflowX = 'hidden';
+        document.documentElement.style.overflow = 'auto';
+        document.documentElement.style.overflowX = 'hidden';
+      }
     }
 
     animateIcon(target);
     animateColor(target);
     animateText(target);
-  }, [playOpen, playClose, animateIcon, animateColor, animateText, onMenuOpen, onMenuClose]);
+  }, [playOpen, playClose, animateIcon, animateColor, animateText, onMenuOpen, onMenuClose, isMobile]);
 
   const closeMenu = useCallback(() => {
     if (openRef.current) {
@@ -448,16 +464,77 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       animateIcon(false);
       animateColor(false);
       animateText(false);
+      
+      // Re-enable body scrolling when menu closes
+      if (isMobile) {
+        document.body.style.overflow = 'auto';
+        document.body.style.overflowX = 'hidden';
+        document.documentElement.style.overflow = 'auto';
+        document.documentElement.style.overflowX = 'hidden';
+      }
     }
-  }, [playClose, animateIcon, animateColor, animateText, onMenuClose]);
+  }, [playClose, animateIcon, animateColor, animateText, onMenuClose, isMobile]);
+  
+  // Control body scroll when menu opens/closes
+  useEffect(() => {
+    if (isMobile) {
+      if (open) {
+        // Prevent body scroll when menu is open
+        document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
+      } else {
+        // Allow body scroll when menu is closed
+        document.body.style.overflow = 'auto';
+        document.body.style.overflowX = 'hidden';
+        document.documentElement.style.overflow = 'auto';
+        document.documentElement.style.overflowX = 'hidden';
+      }
+    }
+    
+    return () => {
+      // Cleanup: always restore scrolling on unmount
+      if (isMobile) {
+        document.body.style.overflow = '';
+        document.body.style.overflowX = '';
+        document.documentElement.style.overflow = '';
+        document.documentElement.style.overflowX = '';
+      }
+    };
+  }, [open, isMobile]);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, link: string) => {
     e.preventDefault();
-    closeMenu();
+    e.stopPropagation();
+    
+    // Close menu immediately
+    if (openRef.current) {
+      openRef.current = false;
+      setOpen(false);
+      onMenuClose?.();
+      playClose();
+      animateIcon(false);
+      animateColor(false);
+      animateText(false);
+    }
+    
+    // Navigate after a short delay to allow menu to start closing
     setTimeout(() => {
-      navigate(link);
-    }, 350);
+      navigate({ to: link });
+    }, 100);
   };
+  
+  // Close menu when route changes
+  useEffect(() => {
+    if (openRef.current) {
+      openRef.current = false;
+      setOpen(false);
+      onMenuClose?.();
+      playClose();
+      animateIcon(false);
+      animateColor(false);
+      animateText(false);
+    }
+  }, [location.pathname, onMenuClose, playClose, animateIcon, animateColor, animateText]);
 
   // Detect mobile for performance optimizations
   React.useEffect(() => {
@@ -491,16 +568,41 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   }, [closeOnClickAway, open, closeMenu]);
 
   return (
-    <div
-      className={`sm-scope z-50 ${isFixed ? 'fixed top-0 left-0 w-screen h-screen overflow-hidden pointer-events-none' : 'w-full h-full'}`}
+    <>
+    <Box
+      className="sm-scope"
+      sx={{
+        zIndex: 50,
+        ...(isFixed
+          ? {
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              width: '100vw',
+              height: '100vh',
+              pointerEvents: 'none',
+            }
+          : {
+              width: '100%',
+              height: '100%',
+            }),
+        ...(isFixed && isMobile
+          ? { overflow: open ? 'hidden' : 'visible' }
+          : {}),
+      }}
     >
-      <div
-        className={
-          (className ? className + ' ' : '') + 'staggered-menu-wrapper pointer-events-none relative w-full h-full z-50'
-        }
+      <Box
+        className={(className ? className + ' ' : '') + 'staggered-menu-wrapper'}
+        sx={{
+          pointerEvents: 'none',
+          position: 'relative',
+          width: '100%',
+          height: '100%',
+          zIndex: 50,
+        }}
         style={accentColor ? ({ ['--sm-accent' as never]: accentColor } as React.CSSProperties) : undefined}
         data-position={position}
-        data-open={open || undefined}
+        data-open={open ? 'true' : undefined}
       >
         <div
           ref={preLayersRef}
@@ -530,22 +632,63 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
           })()}
         </div>
 
-        <header
-          className="staggered-menu-header absolute top-0 left-0 w-full flex items-center justify-between p-[2em] bg-transparent pointer-events-none z-20"
+        <Box
+          component="header"
+          className="staggered-menu-header"
+          sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            p: '2em',
+            bgcolor: 'transparent',
+            pointerEvents: 'none',
+            zIndex: 20,
+          }}
           aria-label="Main navigation header"
         >
-          <div className="sm-logo flex items-center select-none pointer-events-auto" aria-label="Logo">
-            <Link to="/">
-              <img
+          <Box
+            className="sm-logo"
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              userSelect: 'none',
+              pointerEvents: 'auto',
+            }}
+            aria-label="Logo"
+          >
+            <Link to="/" style={{ textDecoration: 'none' }}>
+              <Box
+                component="img"
                 src={logoUrl}
                 alt="SMEC Logo"
-                className="sm-logo-img block h-10 w-auto object-contain hover:scale-105 transition-transform duration-300"
+                className="sm-logo-img"
                 draggable={false}
+                sx={{
+                  display: 'block',
+                  height: '40px',
+                  width: 'auto',
+                  objectFit: 'contain',
+                  '&:hover': {
+                    transform: 'scale(1.05)',
+                  },
+                  transition: 'transform 0.3s ease',
+                }}
               />
             </Link>
-          </div>
+          </Box>
 
-          <div className="flex items-center gap-6 pointer-events-auto">
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 3,
+              pointerEvents: 'auto',
+            }}
+          >
             {/* Menu Toggle */}
             <button
               ref={toggleBtnRef}
@@ -587,24 +730,43 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                 />
               </span>
             </button>
-          </div>
-        </header>
+          </Box>
+        </Box>
 
-        <aside
+        <Box
+          component="aside"
           id="staggered-menu-panel"
           ref={panelRef}
-          className="staggered-menu-panel absolute top-0 right-0 h-full flex flex-col p-[6em_2em_2em_2em] overflow-y-auto z-10 pointer-events-auto"
-          style={{ 
+          className="staggered-menu-panel"
+          sx={{
+            position: 'absolute',
+            top: 0,
+            right: 0,
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            p: { xs: '6em 2em 2em 2em' },
+            overflowY: 'auto',
+            zIndex: 10,
+            pointerEvents: 'auto',
             WebkitBackdropFilter: isMobile ? 'blur(8px)' : 'blur(20px)',
             backdropFilter: isMobile ? 'blur(8px)' : 'blur(20px)',
             background: 'linear-gradient(180deg, rgba(15, 12, 25, 0.98) 0%, rgba(10, 10, 15, 0.99) 100%)',
-            borderLeft: '1px solid rgba(139, 123, 181, 0.15)',
+            borderLeft: `1px solid ${theme.palette.primary.main}26`, // ~15% opacity
             willChange: 'transform',
-            transform: 'translateZ(0)'
+            transform: 'translateZ(0)',
           }}
           aria-hidden={!open}
         >
-          <div className="sm-panel-inner flex-1 flex flex-col gap-5">
+          <Stack
+            className="sm-panel-inner"
+            sx={{
+              flex: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 2.5,
+            }}
+          >
             <ul
               className="sm-panel-list list-none m-0 p-0 flex flex-col gap-2"
               role="list"
@@ -613,17 +775,23 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
               {items && items.length ? (
                 items.map((it, idx) => (
                   <li className="sm-panel-itemWrap relative overflow-hidden leading-none" key={it.label + idx}>
-                    <a
+                    <Link
+                      to={it.link}
                       className="sm-panel-item relative text-[#EAEAEA] font-semibold text-[2rem] md:text-[2.4rem] cursor-pointer leading-none tracking-[-1px] uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em] hover:text-[#A99BD4]"
-                      href={it.link}
                       aria-label={it.ariaLabel}
                       data-index={idx + 1}
-                      onClick={(e) => handleNavClick(e, it.link)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        closeMenu();
+                        setTimeout(() => {
+                          navigate({ to: it.link });
+                        }, 100);
+                      }}
                     >
                       <span className="sm-panel-itemLabel inline-block [transform-origin:50%_100%] will-change-transform">
                         {it.label}
                       </span>
-                    </a>
+                    </Link>
                   </li>
                 ))
               ) : (
@@ -638,10 +806,43 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             </ul>
 
             {displaySocials && socialItems && socialItems.length > 0 && (
-              <div className="sm-socials mt-auto pt-8 flex flex-col gap-3" style={{ borderTop: '1px solid rgba(139, 123, 181, 0.2)' }} aria-label="Social links">
-                <h3 className="sm-socials-title m-0 text-base font-medium" style={{ color: '#8B7BB5' }}>Connect</h3>
-                <ul
-                  className="sm-socials-list list-none m-0 p-0 flex flex-row items-center gap-5 flex-wrap"
+              <Stack
+                className="sm-socials"
+                sx={{
+                  mt: 'auto',
+                  pt: 4,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 1.5,
+                  borderTop: `1px solid ${theme.palette.primary.main}33`, // ~20% opacity
+                }}
+                aria-label="Social links"
+              >
+                <Typography
+                  className="sm-socials-title"
+                  variant="body1"
+                  sx={{
+                    m: 0,
+                    fontSize: '1rem',
+                    fontWeight: 500,
+                    color: 'primary.main',
+                  }}
+                >
+                  Connect
+                </Typography>
+                <Box
+                  component="ul"
+                  className="sm-socials-list"
+                  sx={{
+                    listStyle: 'none',
+                    m: 0,
+                    p: 0,
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    gap: 2.5,
+                    flexWrap: 'wrap',
+                  }}
                   role="list"
                 >
                   {socialItems.map((s, i) => {
@@ -698,16 +899,23 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                       </li>
                     );
                   })}
-                </ul>
-              </div>
+                </Box>
+              </Stack>
             )}
-          </div>
-        </aside>
-      </div>
-
-      <style>{`
+          </Stack>
+        </Box>
+      </Box>
+    </Box>
+    <style>{`
 .sm-scope .staggered-menu-wrapper { position: relative; width: 100%; height: 100%; z-index: 9999; pointer-events: none; }
 .sm-scope .staggered-menu-header { position: absolute; top: 0; left: 0; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 2em; background: transparent; pointer-events: none; z-index: 10020; }
+@media (max-width: 767px) {
+  .sm-scope { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; }
+  .sm-scope .staggered-menu-header { position: fixed; top: 0; left: 0; width: 100%; }
+  /* Allow body to scroll when menu is closed - remove overflow hidden */
+  .sm-scope:not([data-open="true"]) { overflow: visible !important; }
+  .sm-scope[data-open="true"] { overflow: hidden; }
+}
 .sm-scope .staggered-menu-header > * { pointer-events: auto; }
 .sm-scope .sm-logo { display: flex; align-items: center; user-select: none; }
 .sm-scope .sm-logo-img { display: block; height: 40px; width: auto; object-fit: contain; }
@@ -768,7 +976,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   .sm-scope * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
       `}</style>
-    </div>
+    </>
   );
 };
 

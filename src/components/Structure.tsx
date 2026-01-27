@@ -349,7 +349,7 @@ const Structure = () => {
                 })}
             </div>
 
-            {/* Controls with Progress Dots */}
+            {/* Controls */}
             <div className="mt-14 flex items-center gap-8 z-20">
                 <button
                     onClick={() => rotateCards(false)}
@@ -365,34 +365,6 @@ const Structure = () => {
                     </svg>
                 </button>
 
-                {/* Progress dots */}
-                <div className="flex gap-2">
-                    {structureItems.map((_, i) => (
-                        <button
-                            key={i}
-                            onClick={() => {
-                                // Navigate to specific slide
-                                const targetIndex = structureItems.findIndex(item => item.number === structureItems[i].number);
-                                const currentIndex = structureItems.findIndex(item => item.number === items[0].number);
-                                if (targetIndex !== currentIndex) {
-                                    rotateCards(targetIndex > currentIndex);
-                                }
-                            }}
-                            className="w-2.5 h-2.5 rounded-full transition-all duration-300"
-                            style={{
-                                background: items[0].number === structureItems[i].number
-                                    ? gradients[i]
-                                    : 'rgba(255,255,255,0.2)',
-                                boxShadow: items[0].number === structureItems[i].number
-                                    ? `0 0 15px ${shadowColors[i]}`
-                                    : 'none',
-                                transform: items[0].number === structureItems[i].number
-                                    ? 'scale(1.3)'
-                                    : 'scale(1)'
-                            }}
-                        />
-                    ))}
-                </div>
 
                 <button
                     onClick={() => rotateCards(true)}

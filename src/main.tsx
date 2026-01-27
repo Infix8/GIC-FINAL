@@ -1,21 +1,37 @@
-import { StrictMode, Component } from 'react'
-import { createRoot } from 'react-dom/client'
-import { HeroUIProvider } from "@heroui/react";
-import './index.css'
-import App from './App.jsx'
+import { StrictMode, Component } from 'react';
+import { createRoot } from 'react-dom/client';
+import { RouterProvider } from '@tanstack/react-router';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { HeroUIProvider } from '@heroui/react';
+import { router } from './lib/router';
+import { queryClient } from './lib/queryClient';
+import { theme } from './theme/theme';
+import './index.css';
 
-class ErrorBoundary extends Component<{children: React.ReactNode}, {hasError: boolean; error: any; errorInfo: any}> {
-  constructor(props: {children: React.ReactNode}) {
+interface ErrorBoundaryProps {
+  children: React.ReactNode;
+}
+
+interface ErrorBoundaryState {
+  hasError: boolean;
+  error: unknown;
+  errorInfo: unknown;
+}
+
+class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false, error: null, errorInfo: null };
   }
 
-  static getDerivedStateFromError(error: any) {
+  static getDerivedStateFromError(error: unknown): Partial<ErrorBoundaryState> {
     return { hasError: true, error };
   }
 
-  componentDidCatch(error: any, errorInfo: any) {
-    console.error("Uncaught error:", error, errorInfo);
+  componentDidCatch(error: unknown, errorInfo: unknown): void {
+    console.error('Uncaught error:', error, errorInfo);
     this.setState({ errorInfo });
   }
 
@@ -25,9 +41,9 @@ class ErrorBoundary extends Component<{children: React.ReactNode}, {hasError: bo
         <div style={{ padding: '20px', color: 'white', background: '#333' }}>
           <h1>Something went wrong.</h1>
           <details style={{ whiteSpace: 'pre-wrap' }}>
-            {this.state.error && this.state.error.toString()}
+            {this.state.error && String(this.state.error)}
             <br />
-            {this.state.errorInfo && this.state.errorInfo.componentStack}
+            {this.state.errorInfo && String(this.state.errorInfo)}
           </details>
         </div>
       );
@@ -37,12 +53,17 @@ class ErrorBoundary extends Component<{children: React.ReactNode}, {hasError: bo
   }
 }
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <HeroUIProvider>
-        <ErrorBoundary>
-        <App />
-        </ErrorBoundary>
-    </HeroUIProvider>
-  </StrictMode>,
-)
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <HeroUIProvider>
+            <RouterProvider router={router} />
+          </HeroUIProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </ErrorBoundary>
+  </StrictMode>
+);

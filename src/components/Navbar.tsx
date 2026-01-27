@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from '@tanstack/react-router';
 import { motion } from 'framer-motion';
 import logo from '../assets/logo.png';
 
@@ -37,7 +37,7 @@ const Navbar = () => {
 
     const getActivePath = () => {
         const path = location.pathname;
-        const hash = location.hash;
+        const hash = location.hash || '';
 
         if (path === '/' && !hash) return 'Home';
         if (path === '/' && hash === '#about') return 'About';

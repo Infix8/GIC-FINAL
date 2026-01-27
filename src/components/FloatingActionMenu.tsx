@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "@tanstack/react-router";
 import { cn } from "../lib/utils";
 
 type NavOption = {
@@ -35,7 +35,7 @@ const FloatingActionMenu = ({ className }: FloatingActionMenuProps) => {
     };
 
     const handleNavigation = (path: string) => {
-        navigate(path);
+        navigate({ to: path });
         setIsOpen(false);
     };
 

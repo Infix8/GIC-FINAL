@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '@tanstack/react-router';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -137,7 +137,7 @@ const Hero = () => {
                 {/* CTA buttons */}
                 <div className="hero-cta-group-light">
                     <button
-                        onClick={() => navigate('/events')}
+                        onClick={() => navigate({ to: '/events' })}
                         className="hero-cta cta-primary-light"
                     >
                         Explore Events
