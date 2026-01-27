@@ -54,11 +54,27 @@ const passes = [
         ]
     },
     {
-        name: "Professional Expo",
-        price: "₹20,000",
-        priceLabel: "Technical",
-        price2: "₹30,000",
-        price2Label: "Non Technical",
+        name: "Technical Expo",
+        price: "₹5,000",
+        priceLabel: "Team of 4",
+        paymentLink: "https://rzp.io/rzp/rF76tRY6",
+        colorKey: "businessTechExpo" as keyof typeof eventColors,
+        features: [
+            "Dedicated Exhibition Space to showcase products/services",
+            "Interaction with industry professionals, startups, and corporates",
+            "Access to Panel Discussions",
+            "Entry to Keynote Sessions",
+            "Participation in Workshops",
+            "High-visibility Networking Arena access",
+            "Access to the Expo Floor",
+            "Invite-only access to Speaker Launch Sessions",
+            "Opportunity for brand visibility and lead generation"
+        ]
+    },
+    {
+        name: "Non-Technical Expo",
+        price: "₹5,000",
+        priceLabel: "Team of 4",
         paymentLink: "https://rzp.io/rzp/rF76tRY6",
         colorKey: "businessTechExpo" as keyof typeof eventColors,
         features: [
@@ -75,7 +91,10 @@ const passes = [
     },
     {
         name: "Student Expo",
-        price: "₹2,500",
+        price: "₹3,000",
+        priceLabel: "Team of 2",
+        price2: "₹4,000",
+        price2Label: "Team of 4",
         paymentLink: "https://rzp.io/rzp/NLhIGBLh",
         colorKey: "alphaToInfinity" as keyof typeof eventColors,
         features: [
@@ -106,7 +125,7 @@ const passes = [
     },
     {
         name: "Alpha2Infiniti (Hackathon Program)",
-        price: "₹1,000",
+        price: "₹3,000",
         paymentLink: "https://rzp.io/rzp/i2HdCsgB",
         colorKey: "hackathonProgram" as keyof typeof eventColors,
         features: [
@@ -124,7 +143,7 @@ const passes = [
     },
     {
         name: "InnoVestors BootCamp",
-        price: "₹2,500",
+        price: "₹2,000",
         paymentLink: "https://rzp.io/rzp/SKcZTfe",
         colorKey: "investorPitching" as keyof typeof eventColors,
         features: [
