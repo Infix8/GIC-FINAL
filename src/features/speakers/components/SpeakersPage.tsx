@@ -319,9 +319,9 @@ const SpeakersPage = () => {
                         {/* Speaker 24 */}
                         <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300">
                             <div className="aspect-square mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/24.png" alt="SHRI. G. JAI KRISHNA YADAV" className="w-full h-full object-cover" />
+                                <img src="/images/24.png" alt="Shri. G. Jai Kishan Yadav" className="w-full h-full object-cover" />
                             </div>
-                            <h3 className="font-bold text-lg mb-1" style={{ color: 'var(--color-text-primary)' }}>SHRI. G. JAI KRISHNA YADAV</h3>
+                            <h3 className="font-bold text-lg mb-1" style={{ color: 'var(--color-text-primary)' }}>Shri. G. Jai Kishan Yadav</h3>
                             <p className="text-sm mb-2" style={{ color: 'var(--color-accent)' }}>Director</p>
                             <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>St. Martin's Engineering College</p>
                         </div>
