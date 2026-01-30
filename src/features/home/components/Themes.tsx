@@ -3,7 +3,7 @@ import React from 'react';
 
 const Themes = () => {
     return (
-        <section className="flowing-bg flowing-bg-themes py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12" id="themes" style={{ background: 'var(--color-bg-primary)' }}>
+        <section className="flowing-bg flowing-bg-themes pt-12 sm:pt-16 md:pt-20 pb-0 sm:pb-0 md:pb-1 px-4 sm:px-6 md:px-12" id="themes" style={{ background: 'var(--color-bg-primary)' }}>
             <div className="max-w-7xl mx-auto">
                 <div className="mb-8 sm:mb-10 md:mb-12 text-center">
                     <h2 

@@ -34,6 +34,7 @@ const eventColors = {
     }
 };
 
+/* Order: 1. Knowledge, 2. Alpha2Infiniti, 3. BusitechExpo Student, 4. BusitechExpo Professional, 5. InnoVestors BootCamp, 6. Masterminds Congregation */
 const passes = [
     {
         name: "Delegate Pass",
@@ -51,6 +52,41 @@ const passes = [
             "Access to the Networking Arena",
             "Entry to the Expo Area",
             "Invite-only access to Speaker Launch Sessions"
+        ]
+    },
+    {
+        name: "Alpha2Infiniti (Hackathon Program)",
+        price: "₹1,000",
+        paymentLink: "https://rzp.io/rzp/NLhIGBLh",
+        colorKey: "hackathonProgram" as keyof typeof eventColors,
+        features: [
+            "Participation in a competitive Hackathon",
+            "Hackathon Kit for participants",
+            "Mentorship from industry experts",
+            "Opportunity for PPOs and internships (Terms & Conditions apply)",
+            "Access to Panel Discussions",
+            "Entry to Keynote Sessions",
+            "Participation in Hands-on Workshops",
+            "Access to the Networking Arena",
+            "Entry to the Expo Area",
+            "Invite-only access to Speaker Launch Sessions"
+        ]
+    },
+    {
+        name: "Student Expo",
+        price: "₹3,000",
+        priceLabel: "Team of 2",
+        paymentLink: "https://rzp.io/rzp/i2HdCsgB",
+        colorKey: "alphaToInfinity" as keyof typeof eventColors,
+        features: [
+            "Platform to showcase student projects and MVPs",
+            "Opportunity to present ideas to industry experts and academicians",
+            "Feedback and guidance from mentors and judges",
+            "Exposure to innovation, technology, and entrepreneurship",
+            "Access to interactive learning sessions",
+            "Networking with peers and innovators",
+            "Opportunity to gain recognition and visibility",
+            "Participation certificates"
         ]
     },
     {
@@ -74,56 +110,6 @@ const passes = [
         ]
     },
     {
-        name: "Student Expo",
-        price: "₹3,000",
-        priceLabel: "Team of 2",
-        paymentLink: "https://rzp.io/rzp/i2HdCsgB",
-        colorKey: "alphaToInfinity" as keyof typeof eventColors,
-        features: [
-            "Platform to showcase student projects and MVPs",
-            "Opportunity to present ideas to industry experts and academicians",
-            "Feedback and guidance from mentors and judges",
-            "Exposure to innovation, technology, and entrepreneurship",
-            "Access to interactive learning sessions",
-            "Networking with peers and innovators",
-            "Opportunity to gain recognition and visibility",
-            "Participation certificates"
-        ]
-    },
-    {
-        name: "Master Minds Congregation",
-        price: "₹500",
-        paymentLink: "https://rzp.io/rzp/dRZxNYCF",
-        colorKey: "mastermindCongregation" as keyof typeof eventColors,
-        features: [
-            "Platform for school students to present ideas and projects",
-            "Exposure to innovation, technology, and entrepreneurship",
-            "Guidance and feedback from mentors and educators",
-            "Access to interactive sessions and discussions",
-            "Participation in knowledge-building activities",
-            "Opportunity to build confidence, creativity, and problem-solving skills",
-            "Early exposure to the startup and innovation ecosystem"
-        ]
-    },
-    {
-        name: "Alpha2Infiniti (Hackathon Program)",
-        price: "₹1,000",
-        paymentLink: "https://rzp.io/rzp/NLhIGBLh",
-        colorKey: "hackathonProgram" as keyof typeof eventColors,
-        features: [
-            "Participation in a competitive Hackathon",
-            "Hackathon Kit for participants",
-            "Mentorship from industry experts",
-            "Opportunity for PPOs and internships (Terms & Conditions apply)",
-            "Access to Panel Discussions",
-            "Entry to Keynote Sessions",
-            "Participation in Hands-on Workshops",
-            "Access to the Networking Arena",
-            "Entry to the Expo Area",
-            "Invite-only access to Speaker Launch Sessions"
-        ]
-    },
-    {
         name: "InnoVestors BootCamp",
         price: "₹2,000",
         paymentLink: "https://rzp.io/rzp/SKcZTfe",
@@ -140,6 +126,21 @@ const passes = [
             "Entry to the Expo Area",
             "Invite-only access to Speaker Launch Sessions",
             "Access to Incubation and Startup Support Opportunities"
+        ]
+    },
+    {
+        name: "Master Minds Congregation",
+        price: "₹500",
+        paymentLink: "https://rzp.io/rzp/dRZxNYCF",
+        colorKey: "mastermindCongregation" as keyof typeof eventColors,
+        features: [
+            "Platform for school students to present ideas and projects",
+            "Exposure to innovation, technology, and entrepreneurship",
+            "Guidance and feedback from mentors and educators",
+            "Access to interactive sessions and discussions",
+            "Participation in knowledge-building activities",
+            "Opportunity to build confidence, creativity, and problem-solving skills",
+            "Early exposure to the startup and innovation ecosystem"
         ]
     },
 ];

@@ -72,7 +72,7 @@ const HeroSection: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[calc(100vh-5rem)] sm:min-h-[calc(100vh-6rem)] md:min-h-[80vh] flex items-center overflow-hidden bg-gic-dark flowing-bg flowing-bg-hero"
+      className="relative min-h-[calc(100vh-5rem)] sm:min-h-[calc(100vh-6rem)] md:min-h-[calc(100vh-100px)] flex items-center overflow-hidden bg-gic-dark flowing-bg flowing-bg-hero"
     >
 
 
@@ -89,7 +89,7 @@ const HeroSection: React.FC = () => {
       </div>
 
 
-      <div className="max-w-full sm:max-w-[95%] md:max-w-[90%] lg:max-w-[85%] xl:max-w-[75%] mx-auto px-4 sm:px-6 md:px-8 pb-8 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-24 pt-8 sm:pt-12 md:pt-28 lg:pt-32 relative z-10 w-full">
+      <div className="max-w-full sm:max-w-[95%] md:max-w-[90%] lg:max-w-[85%] xl:max-w-[75%] mx-auto px-4 sm:px-6 md:px-8 pb-8 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-24 pt-8 sm:pt-12 md:pt-6 lg:pt-8 relative z-10 w-full">
         {/* Title and Badge - Above Grid */}
         <div className="mb-4 sm:mb-6 md:mb-8 lg:mb-12 space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-10">
           {/* Event Badge - Hidden on Mobile */}
@@ -294,7 +294,7 @@ const HeroSection: React.FC = () => {
                       />
                     ))}
                   </div>
-                  <span className="text-sm font-semibold text-gic-lavender">10K+ Joined</span>
+                  <span className="text-sm font-semibold text-gic-lavender">Register Now</span>
                 </div>
               </div>
 

@@ -37,6 +37,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import { TOP_BANNER_HEIGHT_XS, TOP_BANNER_HEIGHT_MD } from '@/components/TopBanner';
 
 export interface NavigationMenuItem {
   label: string;
@@ -223,13 +224,17 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({
     </Box>
   );
 
+  // Sit below top banner (St. Martin's Engineering College Presents)
+  const bannerHeight = isMobile ? TOP_BANNER_HEIGHT_XS : TOP_BANNER_HEIGHT_MD;
+
   return (
     <>
-      {/* AppBar */}
+      {/* AppBar - positioned below TopBanner */}
       <AppBar
         position="fixed"
         elevation={0}
         sx={{
+          top: bannerHeight,
           bgcolor: 'transparent',
           backdropFilter: 'blur(10px)',
           borderBottom: `1px solid ${theme.palette.primary.main}15`,

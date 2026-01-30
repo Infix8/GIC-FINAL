@@ -20,13 +20,13 @@ body.is-mobile-device {
     -webkit-overflow-scrolling: touch !important;
 }
 
-/* Ensure sections don't trap scroll on mobile */
+/* Ensure sections don't trap scroll on mobile (exclude .app-header so banner+nav stay fixed) */
 .is-mobile-device section,
-.is-mobile-device [class*="MuiBox"],
+.is-mobile-device [class*="MuiBox"]:not(.app-header *),
 .is-mobile-device .flowing-bg,
 .is-mobile-device main,
 .is-mobile-device #root,
-.is-mobile-device #root > * {
+.is-mobile-device #root > *:not(.app-header) {
     overflow: visible !important;
     height: auto !important;
     min-height: auto !important;
@@ -61,7 +61,7 @@ body.is-mobile-device {
     section,
     main,
     #root,
-    [class*="MuiBox"],
+    [class*="MuiBox"]:not(.app-header *),
     .flowing-bg {
         overflow: visible !important;
         height: auto !important;
@@ -69,7 +69,36 @@ body.is-mobile-device {
     }
 }
 
+/* Fixed header must stay fixed on mobile (banner + nav) */
+.app-header {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
 /* ===== End Mobile Scroll Fix ===== */
+
+/* ===== Event Structure – lightweight smooth reveal (CSS only) ===== */
+.structure-cards-container .structure-card {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.35s ease-out, transform 0.35s ease-out;
+}
+.structure-cards-container.structure-in-view .structure-card {
+    opacity: 1;
+    transform: translateY(0);
+}
+.structure-cards-container.structure-in-view .structure-card:nth-child(1) { transition-delay: 0ms; }
+.structure-cards-container.structure-in-view .structure-card:nth-child(2) { transition-delay: 60ms; }
+.structure-cards-container.structure-in-view .structure-card:nth-child(3) { transition-delay: 120ms; }
+@media (prefers-reduced-motion: reduce) {
+    .structure-cards-container .structure-card,
+    .structure-cards-container.structure-in-view .structure-card {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
 
 /* ===== Lenis Smooth Scroll - Desktop Only ===== */
 /* Lenis handles all smooth scrolling automatically on desktop */

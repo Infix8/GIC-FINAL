@@ -1,13 +1,5 @@
-import { useState, useRef, useLayoutEffect, useEffect } from 'react';
-import gsap from 'gsap';
-import { Flip } from 'gsap/Flip';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Observer } from 'gsap/Observer';
-
-gsap.registerPlugin(Flip, ScrollTrigger, Observer);
-
-// Check if device is mobile
-const checkIsMobile = () => typeof window !== 'undefined' && window.innerWidth < 768;
+import { useState, useRef, useEffect } from 'react';
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 const structureItems = [
     {
@@ -68,130 +60,52 @@ const structureItems = [
 ];
 
 const Structure = () => {
-    // Add unique IDs to initial items to track instances
     const [items, setItems] = useState(() =>
         structureItems.map((item, index) => ({ ...item, uniqueId: `init-${index}` }))
     );
-    const [isMobile, setIsMobile] = useState(checkIsMobile);
     const uniqueIdCounter = useRef(0);
-    const sectionRef = useRef<HTMLElement>(null);
-    const q = gsap.utils.selector(sectionRef);
-    const flipState = useRef<Flip.FlipState | null>(null);
     const isAnimating = useRef(false);
 
-    // We need to track direction for the transformOrigin logic
-    const directionRef = useRef<"next" | "prev">("next");
+    // Production-grade scroll reveal: Intersection Observer + CSS (battle-tested, no GSAP)
+    const { elementRef: sectionRef, isIntersecting: sectionInView } = useIntersectionObserver({
+        threshold: 0.1,
+        rootMargin: '0px 0px -40px 0px',
+        triggerOnce: true,
+    });
 
-    // Update mobile state on resize
-    useEffect(() => {
-        const handleResize = () => setIsMobile(checkIsMobile());
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
-    // Styling gradient to make it "aesthetic" - 25% reduced brightness
     const gradients = [
-        "linear-gradient(135deg, #b89e4c 0%, #be7864 100%)", // Warm (dimmed)
-        "linear-gradient(135deg, #63bb84 0%, #6b9eb7 100%)", // Fresh (dimmed)
-        "linear-gradient(135deg, #79699d 0%, #bc91b0 100%)", // Purple-Pink (dimmed)
-        "linear-gradient(135deg, #a892bd 0%, #6a94bd 100%)", // Cool Blue (dimmed)
-        "linear-gradient(135deg, #b46ebc 0%, #b84151 100%)"  // Vibrant Red (dimmed)
+        "linear-gradient(135deg, #b89e4c 0%, #be7864 100%)",
+        "linear-gradient(135deg, #63bb84 0%, #6b9eb7 100%)",
+        "linear-gradient(135deg, #79699d 0%, #bc91b0 100%)",
+        "linear-gradient(135deg, #a892bd 0%, #6a94bd 100%)",
+        "linear-gradient(135deg, #b46ebc 0%, #b84151 100%)"
     ];
 
     const rotateCards = (forward: boolean) => {
         if (isAnimating.current) return;
-
-        isAnimating.current = true; // Block interaction immediately
-        directionRef.current = forward ? "next" : "prev";
-
-        // On mobile, skip GSAP Flip - use simple state update with CSS transitions
-        if (!isMobile) {
-            // Capture specific state of visible cards for desktop Flip animation
-            flipState.current = Flip.getState(q(".structure-card"));
-        }
+        isAnimating.current = true;
 
         setItems(prev => {
             const newItems = [...prev];
             if (forward) {
                 const first = newItems.shift();
-                if (first) {
-                    newItems.push({ ...first, uniqueId: `new-${uniqueIdCounter.current++}` });
-                }
+                if (first) newItems.push({ ...first, uniqueId: `new-${uniqueIdCounter.current++}` });
             } else {
                 const last = newItems.pop();
-                if (last) {
-                    newItems.unshift({ ...last, uniqueId: `new-${uniqueIdCounter.current++}` });
-                }
+                if (last) newItems.unshift({ ...last, uniqueId: `new-${uniqueIdCounter.current++}` });
             }
             return newItems;
         });
 
-        // On mobile, just reset the animation flag after a short delay
-        if (isMobile) {
-            setTimeout(() => {
-                isAnimating.current = false;
-            }, 300);
-        }
+        setTimeout(() => { isAnimating.current = false; }, 450);
     };
 
-    useLayoutEffect(() => {
-        // Skip GSAP Flip on mobile - let CSS transitions handle it
-        if (!flipState.current || isMobile) return;
-
-        // Demo Logic:
-        // forward ? "bottom right" : "bottom left"
-        const isNext = directionRef.current === "next";
-
-        Flip.from(flipState.current, {
-            duration: 0.6,
-            ease: "power2.inOut",
-            absolute: true,
-
-            targets: q(".structure-card"),
-
-            onEnter: (elements) => {
-                return gsap.fromTo(elements,
-                    {
-                        opacity: 0,
-                        scale: 0.95,
-                    },
-                    {
-                        opacity: 1,
-                        scale: 1,
-                        duration: 0.6,
-                        transformOrigin: isNext ? "bottom right" : "bottom left"
-                    }
-                );
-            },
-
-            onLeave: (elements) => {
-                return gsap.to(elements, {
-                    opacity: 0,
-                    scale: 0.95,
-                    duration: 0.6,
-                    transformOrigin: isNext ? "bottom left" : "bottom right",
-                });
-            },
-
-            onComplete: () => {
-                isAnimating.current = false;
-            }
-        });
-
-        flipState.current = null;
-    }, [items, isMobile]);
-
-    // Auto-play Interval
+    // Auto-play on desktop only
     useEffect(() => {
-        // Disable auto-play on mobile
-        if (window.innerWidth < 768) return;
-        
+        if (typeof window === 'undefined' || window.innerWidth < 768) return;
         const interval = setInterval(() => {
-            if (!isAnimating.current) {
-                rotateCards(true);
-            }
-        }, 4000); // Increase interval from 3000 to 4000
-
+            if (!isAnimating.current) rotateCards(true);
+        }, 4500);
         return () => clearInterval(interval);
     }, []);
 
@@ -209,30 +123,14 @@ const Structure = () => {
     return (
         <section
             ref={sectionRef}
-            className="flowing-bg flowing-bg-structure min-h-screen py-16 px-6 md:px-12 flex flex-col items-center justify-center overflow-hidden relative"
+            className={`flowing-bg flowing-bg-structure pt-10 sm:pt-12 md:pt-14 pb-10 sm:pb-14 md:pb-16 px-6 md:px-12 flex flex-col items-center overflow-hidden relative ${sectionInView ? 'structure-in-view' : ''}`}
             id="structure"
             style={{
                 background: 'var(--color-bg-primary)'
             }}
         >
-            {/* Ambient background glow - dimmed */}
-            <div
-                className="absolute top-1/3 left-1/4 w-[400px] h-[400px] rounded-full pointer-events-none"
-                style={{
-                    background: 'radial-gradient(circle, rgba(121, 105, 157, 0.08) 0%, transparent 70%)',
-                    filter: 'blur(60px)'
-                }}
-            />
-            <div
-                className="absolute bottom-1/3 right-1/4 w-[350px] h-[350px] rounded-full pointer-events-none"
-                style={{
-                    background: 'radial-gradient(circle, rgba(99, 187, 132, 0.06) 0%, transparent 70%)',
-                    filter: 'blur(50px)'
-                }}
-            />
-
             {/* Section Header */}
-            <div className="w-full text-center z-10 mb-6 sm:mb-8 md:mb-14 flex-shrink-0 px-4">
+            <div className="w-full text-center z-10 mb-4 sm:mb-6 md:mb-8 flex-shrink-0 px-4">
                 <h2
                     className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold tracking-tight"
                     style={{ 
@@ -254,24 +152,20 @@ const Structure = () => {
                 </p>
             </div>
 
-            {/* Container */}
-            <div className="relative w-full max-w-6xl min-h-[500px] sm:min-h-[420px] md:min-h-[500px] flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-6 perspective-1000 px-4 sm:px-0">
-                {visibleItems.map((item, index) => {
+            {/* Container – fixed height; on mobile taller so cards are bigger */}
+            <div className={`structure-cards-container relative w-full max-w-6xl h-[540px] sm:h-[420px] flex flex-col sm:flex-row items-stretch justify-center gap-3 sm:gap-4 md:gap-6 px-4 sm:px-0 ${sectionInView ? 'structure-in-view' : ''}`}>
+                {visibleItems.map((item) => {
                     const gradientIndex = parseInt(item.number) - 1;
-                    const isCenter = index === 1;
 
                     return (
                         <div
                             key={item.uniqueId}
                             data-flip-id={item.uniqueId}
-                            className={`structure-card relative w-full sm:w-1/3 sm:min-w-[240px] md:min-w-[280px] lg:min-w-[300px] h-[380px] sm:h-full min-h-[380px] sm:min-h-0 p-3 sm:p-4 md:p-6 lg:p-8 rounded-xl sm:rounded-2xl md:rounded-3xl flex flex-col gap-2 sm:gap-3 md:gap-4 overflow-y-auto sm:overflow-hidden transition-all duration-300 ${isCenter ? 'sm:scale-105 z-10' : 'sm:scale-100'
-                                }`}
+                            className="structure-card relative w-full flex-1 sm:flex-1 sm:min-w-0 sm:max-w-[320px] min-h-0 sm:min-h-0 sm:h-full p-3 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl flex flex-col gap-2 sm:gap-3 md:gap-4 overflow-y-auto sm:overflow-hidden"
                             style={{
                                 cursor: 'default',
                                 background: gradients[gradientIndex],
-                                boxShadow: isCenter
-                                    ? `0 25px 60px ${shadowColors[gradientIndex]}, 0 10px 30px rgba(0,0,0,0.3)`
-                                    : `0 15px 40px ${shadowColors[gradientIndex]}, 0 5px 20px rgba(0,0,0,0.2)`,
+                                boxShadow: `0 15px 40px ${shadowColors[gradientIndex]}, 0 5px 20px rgba(0,0,0,0.2)`,
                                 border: '1px solid rgba(255,255,255,0.2)'
                             }}
                         >
@@ -356,33 +250,33 @@ const Structure = () => {
                 })}
             </div>
 
-            {/* Controls */}
-            <div className="mt-8 sm:mt-14 flex items-center gap-4 sm:gap-6 md:gap-8 z-20">
+            {/* Controls – larger and visible on mobile (min 44px touch target) */}
+            <div className="mt-6 sm:mt-14 flex items-center justify-center gap-5 sm:gap-8 z-20">
                 <button
                     onClick={() => rotateCards(false)}
-                    className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95"
+                    className="w-12 h-12 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 touch-manipulation"
                     style={{
-                        background: 'rgba(255,255,255,0.1)',
-                        border: '1px solid rgba(255,255,255,0.2)',
-                        boxShadow: '0 4px 20px rgba(0,0,0,0.3)'
+                        background: 'rgba(255,255,255,0.2)',
+                        border: '2px solid rgba(255,255,255,0.4)',
+                        boxShadow: '0 4px 20px rgba(0,0,0,0.4)'
                     }}
+                    aria-label="Previous event"
                 >
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" strokeWidth="2">
+                    <svg className="w-6 h-6 sm:w-5 sm:h-5 md:w-6 md:h-6 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.95)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M19 12H5M12 19l-7-7 7-7" />
                     </svg>
                 </button>
-
-
                 <button
                     onClick={() => rotateCards(true)}
-                    className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95"
+                    className="w-12 h-12 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 touch-manipulation"
                     style={{
-                        background: 'rgba(255,255,255,0.1)',
-                        border: '1px solid rgba(255,255,255,0.2)',
-                        boxShadow: '0 4px 20px rgba(0,0,0,0.3)'
+                        background: 'rgba(255,255,255,0.2)',
+                        border: '2px solid rgba(255,255,255,0.4)',
+                        boxShadow: '0 4px 20px rgba(0,0,0,0.4)'
                     }}
+                    aria-label="Next event"
                 >
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" strokeWidth="2">
+                    <svg className="w-6 h-6 sm:w-5 sm:h-5 md:w-6 md:h-6 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.95)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M5 12h14m-7 7l7-7-7-7" />
                     </svg>
                 </button>

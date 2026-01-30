@@ -3,6 +3,7 @@ import { Box } from '@mui/material';
 import { SuspenseLoader } from '~components/SuspenseLoader/SuspenseLoader';
 import Footer from '@/components/Footer';
 import NavigationMenu from '@/components/NavigationMenu';
+import TopBanner from '@/components/TopBanner';
 import SmoothScroll from '@/components/SmoothScroll';
 import BackgroundEffects from '@/components/BackgroundEffects';
 import { useGSAPAnimations } from '@/hooks/useGSAPAnimations';
@@ -33,13 +34,16 @@ const PageAnimations = () => {
 export const Route = createRootRoute({
   component: () => (
     <>
-      {/* Production-Grade Navigation - MUI Drawer (battle-tested, mobile-optimized) */}
-      <NavigationMenu
-        items={menuItems}
-        socialItems={socialItems}
-        logoUrl="/logo.png"
-        displaySocials={true}
-      />
+      {/* Fixed header (banner + nav) - excluded from mobile scroll reset so fixed works on mobile */}
+      <Box className="app-header" component="header" sx={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1200 }}>
+        <TopBanner />
+        <NavigationMenu
+          items={menuItems}
+          socialItems={socialItems}
+          logoUrl="/logo.png"
+          displaySocials={true}
+        />
+      </Box>
       <SmoothScroll>
         {/* Main content wrapper - CRITICAL: No overflow restrictions on mobile */}
         <Box
@@ -68,7 +72,8 @@ export const Route = createRootRoute({
             <Box
               sx={{
                 flex: '1 0 auto',
-                pt: { xs: 5, sm: 6, md: 0 },
+                // Content starts just below header (banner 36px + toolbar 64px = 100px on desktop)
+                pt: { xs: 12, sm: 12, md: '100px' },
                 overflow: 'visible',
               }}
             >

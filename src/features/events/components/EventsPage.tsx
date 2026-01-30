@@ -61,7 +61,7 @@ interface EventData {
 const baseEventsData: EventData[] = [
     {
         id: "alpha-to-infinity",
-        number: "03",
+        number: "02",
         title: "Alpha 2 Infiniti",
         shortTitle: "A2I",
         tagline: "30-Hour Hiring Hackathon - \"Brighter minds for Viksith Bharath\"",
@@ -152,7 +152,7 @@ const baseEventsData: EventData[] = [
     },
     {
         id: "business-tech-expo",
-        number: "04",
+        number: "03",
         title: "BusiTech Expo",
         shortTitle: "BTE",
         tagline: "Business Technology Expo - Professional & Student Innovations",
@@ -212,7 +212,7 @@ const baseEventsData: EventData[] = [
     },
     {
         id: "investor-pitching",
-        number: "05",
+        number: "04",
         title: "InnoVestors Bootcamp",
         shortTitle: "IVB",
         tagline: "Investor Pitching Event",
@@ -303,7 +303,7 @@ const baseEventsData: EventData[] = [
     },
     {
         id: "mastermind-congregation",
-        number: "02",
+        number: "05",
         title: "Masterminds Congregation",
         shortTitle: "MC",
         tagline: "Young Entrepreneurs Initiative - Classes 8-10",
@@ -529,12 +529,13 @@ const baseEventsData: EventData[] = [
     }
 ];
 
+/* Same order as Passes page: 1. Knowledge, 2. Alpha2Infiniti, 3. BusiTech Expo, 4. InnoVestors BootCamp, 5. Masterminds Congregation */
 const eventsOrder = [
     "knowledge-bubble",
-    "mastermind-congregation",
     "alpha-to-infinity",
     "business-tech-expo",
     "investor-pitching",
+    "mastermind-congregation",
 ] as const;
 
 const eventsData: EventData[] = eventsOrder.map(

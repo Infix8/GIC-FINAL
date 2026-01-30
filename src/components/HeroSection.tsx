@@ -78,7 +78,7 @@ const HeroSection = () => {
       className="flowing-bg flowing-bg-hero"
       sx={{
         position: 'relative',
-        minHeight: { xs: 'calc(100vh - 5rem)', sm: 'calc(100vh - 6rem)', md: '80vh' },
+        minHeight: { xs: 'calc(100vh - 5rem)', sm: 'calc(100vh - 6rem)', md: 'calc(100vh - 100px)' },
         display: 'flex',
         alignItems: 'center',
         // CRITICAL: Remove overflow:hidden on mobile to allow touch scrolling
@@ -112,7 +112,7 @@ const HeroSection = () => {
           mx: 'auto',
           px: { xs: 2, sm: 3, md: 4 },
           pb: { xs: 2, sm: 3, md: 4, lg: 5, xl: 6 },
-          pt: { xs: 2, sm: 3, md: 7, lg: 8 },
+          pt: { xs: 2, sm: 3, md: 3, lg: 4 },
           position: 'relative',
           zIndex: 10,
           width: '100%',
@@ -438,7 +438,7 @@ const HeroSection = () => {
                       />
                     ))}
                   </div>
-                  <span className="text-sm font-semibold text-gic-lavender">10K+ Joined</span>
+                  <span className="text-sm font-semibold text-gic-lavender">Register Now</span>
                 </div>
               </div>
 
