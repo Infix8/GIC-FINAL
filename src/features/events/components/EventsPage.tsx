@@ -31,11 +31,6 @@ const eventColors = {
         gradient: "linear-gradient(135deg, #b46ebc 0%, #b84151 100%)",
         shadow: "rgba(180, 110, 188, 0.4)",
         accent: "#b46ebc"
-    },
-    womenEmpowerment: {
-        gradient: "linear-gradient(135deg, #e91e63 0%, #9c27b0 100%)",
-        shadow: "rgba(233, 30, 99, 0.4)",
-        accent: "#e91e63"
     }
 };
 
@@ -532,121 +527,16 @@ const baseEventsData: EventData[] = [
                 { time: "17:00 - 17:30", activity: "Closing & Networking", details: "Closing remarks and final networking session", type: "Break" }
             ]
         }
-    },
-    {
-        id: "women-empowerment",
-        number: "06",
-        title: "Women Empowerment",
-        shortTitle: "WE",
-        tagline: "Empowering Women in Tech & Entrepreneurship - \"Building the Future Together\"",
-        description: "A transformative hackathon and mentorship program designed to empower women in technology and entrepreneurship. This event brings together passionate women innovators, industry leaders, and mentors to build solutions addressing real-world challenges while fostering an inclusive ecosystem for women in tech.",
-        colorKey: "womenEmpowerment",
-        highlights: [
-            "500+ Women Participants",
-            "24-Hour Hackathon",
-            "Industry Mentors",
-            "Prize Pool & Opportunities"
-        ],
-        keyDetails: [
-            { label: "Total Participants", value: "500+ women from across India" },
-            { label: "Team Size", value: "2-5 members per team" },
-            { label: "Duration", value: "24 hours" },
-            { label: "Total Mentors", value: "20+ industry experts" },
-            { label: "Problem Statements", value: "Real-world challenges" },
-            { label: "Format", value: "Onsite Hackathon" }
-        ],
-        fullDetails: [
-            {
-                title: "Why Participate?",
-                content: [
-                    "6.5+ Lakhs worth prizes at stake, along with Certificate of Participation and T-Shirts",
-                    "Code with 500+ developers and designers to build solutions to real-world problems",
-                    "Get insights from eminent speakers and mentors",
-                    "Network with industry leaders and potential employers",
-                    "Showcase your skills and build your portfolio"
-                ]
-            },
-            {
-                title: "Eligibility Criteria",
-                content: [
-                    "Must be a woman student from any University/College in India",
-                    "Open to all academic backgrounds and skill levels",
-                    "Individual or team participation (2-5 members per team)",
-                    "Teams can be formed before or during registration"
-                ]
-            },
-            {
-                title: "Problem Statements",
-                content: [
-                    "Problem statements will be announced on the spot",
-                    "Focus areas include: Technology for Social Good, Women's Safety & Security, Healthcare Solutions, Education & Skill Development, Financial Inclusion",
-                    "Teams will work on innovative solutions addressing real-world challenges"
-                ]
-            },
-            {
-                title: "Selection & Evaluation",
-                content: [
-                    "Registration-based selection (first come, first served)",
-                    "Evaluation based on: Innovation, Technical Implementation, Presentation, Impact Potential",
-                    "Top teams will present to judges and industry representatives",
-                    "Winners receive prizes, certificates, and potential internship/job opportunities"
-                ]
-            },
-            {
-                title: "Technology & Tools",
-                content: [
-                    "No restrictions on technology stack, languages, or libraries",
-                    "AI tools are allowed (must be explicitly mentioned in presentation)",
-                    "Cloud platforms and development tools will be provided",
-                    "Mentorship support available throughout the event"
-                ]
-            },
-            {
-                title: "Outcomes & Opportunities",
-                content: [
-                    "Prize money and recognition",
-                    "Certificate of Participation",
-                    "Networking with industry leaders",
-                    "Potential internship and job opportunities",
-                    "Portfolio building and skill enhancement"
-                ]
-            }
-        ],
-        timeline: {
-            day1: [
-                { time: "09:00 - 10:00", activity: "Registration & Welcome", details: "Check-in, networking, and welcome address", type: "Ceremony" },
-                { time: "10:00 - 10:30", activity: "Inauguration & Keynote", details: "Opening ceremony with inspiring keynote from women leaders", type: "Ceremony" },
-                { time: "10:30 - 11:00", activity: "Problem Statement Announcement", details: "Teams receive their assigned problem statements", type: "Briefing" },
-                { time: "11:00 - 13:00", activity: "Hacking Begins - Session 1", details: "Initial ideation and planning phase", type: "Sprint" },
-                { time: "13:00 - 14:00", activity: "Lunch Break", details: "Networking lunch with mentors", type: "Break" },
-                { time: "14:00 - 18:00", activity: "Hacking Session 2", details: "Development and implementation phase", type: "Sprint" },
-                { time: "18:00 - 19:00", activity: "Mentor Check-in", details: "Progress review and guidance from mentors", type: "Mentorship" },
-                { time: "19:00 - 20:00", activity: "Dinner & Networking", details: "Evening meal and informal networking session", type: "Networking" },
-                { time: "20:00 - 00:00", activity: "Hacking Session 3", details: "Continued development and refinement", type: "Sprint" }
-            ],
-            day2: [
-                { time: "00:00 - 01:00", activity: "Midnight Snacks & Energizers", details: "Refreshments and team bonding activities", type: "Break" },
-                { time: "01:00 - 08:00", activity: "Hacking Session 4", details: "Final development phase - polish, testing, and documentation", type: "Sprint" },
-                { time: "08:00 - 09:00", activity: "Breakfast & Final Touches", details: "Morning meal and last-minute preparations", type: "Break" },
-                { time: "09:00 - 10:00", activity: "Code Freeze & Submission", details: "Final submissions and code freeze deadline", type: "Submission" },
-                { time: "10:00 - 12:00", activity: "Presentation Preparation", details: "Teams prepare their final presentations", type: "Preparation" },
-                { time: "12:00 - 13:00", activity: "Lunch Break", details: "Refreshments before presentations", type: "Break" },
-                { time: "13:00 - 16:00", activity: "Final Presentations", details: "Teams present their solutions to judges and audience", type: "Presentation" },
-                { time: "16:00 - 17:00", activity: "Judging & Evaluation", details: "Judges evaluate presentations and select winners", type: "Evaluation" },
-                { time: "17:00 - 18:00", activity: "Prize Distribution & Closing", details: "Awards ceremony, closing remarks, and networking", type: "Ceremony" }
-            ]
-        }
     }
 ];
 
-/* Same order as Passes page: 1. Knowledge, 2. Alpha2Infiniti, 3. BusiTech Expo, 4. InnoVestors BootCamp, 5. Masterminds Congregation, 6. Women Empowerment */
+/* Same order as Passes page: 1. Knowledge, 2. Alpha2Infiniti, 3. BusiTech Expo, 4. InnoVestors BootCamp, 5. Masterminds Congregation */
 const eventsOrder = [
     "knowledge-bubble",
     "alpha-to-infinity",
     "business-tech-expo",
     "investor-pitching",
     "mastermind-congregation",
-    "women-empowerment",
 ] as const;
 
 const eventsData: EventData[] = eventsOrder.map(
@@ -670,7 +560,6 @@ const EventsPage = () => {
         'busitechexpo': 'business-tech-expo',
         'innovestorsbootcamp': 'investor-pitching',
         'mastermindscongregation': 'mastermind-congregation',
-        'womenempowerment': 'women-empowerment',
     };
 
     // Map event IDs to URL slugs
@@ -680,7 +569,6 @@ const EventsPage = () => {
         'business-tech-expo': 'busitechexpo',
         'investor-pitching': 'innovestorsbootcamp',
         'mastermind-congregation': 'mastermindscongregation',
-        'women-empowerment': 'womenempowerment',
     };
 
     // Get selected event from route params
@@ -881,8 +769,6 @@ const EventsPage = () => {
                     q: "Do I need to have any specific qualification to be a participant?",
                     a: selectedEvent.id === "mastermind-congregation" 
                         ? "Yes, you must be a student from Classes 8-10 from participating schools."
-                        : selectedEvent.id === "women-empowerment"
-                        ? "Yes, you must be a woman student from any University/College in India."
                         : "Yes, you must be a student from any University/College in India."
                 },
                 {
@@ -907,7 +793,7 @@ const EventsPage = () => {
                 });
             }
 
-            if (selectedEvent.id === "women-empowerment" || selectedEvent.id === "alpha-to-infinity") {
+            if (selectedEvent.id === "alpha-to-infinity") {
                 baseFAQs.push({
                     q: "Will the problem statement be given on the spot?",
                     a: "Yes. The problem statement will be given on the spot."
@@ -940,8 +826,7 @@ const EventsPage = () => {
                 "alpha-to-infinity": "A 30-hour intensive hiring hackathon designed to identify and nurture exceptional technical talent across multiple technology domains. Selected participants are grouped into teams to solve real-world problem statements provided by partner companies.",
                 "business-tech-expo": "A 2-day showcase for startups and student projects to present their MVPs (Minimum Viable Products) and prototypes, with professional evaluation and potential investor connections.",
                 "investor-pitching": "A platform for entrepreneurs to present their startups to potential investors, with separate tracks for student ventures (pre-seed stage) and professional startups (seed stage).",
-                "mastermind-congregation": "A multi-phase journey empowering school students (Classes 8-10) in entrepreneurship, from training to the grand finale competition at SMEC campus.",
-                "women-empowerment": "A transformative hackathon and mentorship program designed to empower women in technology and entrepreneurship. This event brings together passionate women innovators, industry leaders, and mentors to build solutions addressing real-world challenges."
+                "mastermind-congregation": "A multi-phase journey empowering school students (Classes 8-10) in entrepreneurship, from training to the grand finale competition at SMEC campus."
             };
             return descriptions[selectedEvent.id] || selectedEvent.description;
         };
