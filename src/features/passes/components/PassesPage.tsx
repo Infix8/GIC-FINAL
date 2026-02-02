@@ -42,7 +42,7 @@ const passes = [
         priceLabel: "Student",
         price2: "₹2,500",
         price2Label: "Professional",
-        paymentLink: "https://rzp.io/rzp/2fN43enK",
+        paymentLink: "https://rzp.io/rzp/DelagtePasses",
         colorKey: "knowledgeBubble" as keyof typeof eventColors,
         features: [
             "Access to Panel Discussions",
@@ -57,7 +57,7 @@ const passes = [
     {
         name: "Alpha2Infiniti (Hackathon Program)",
         price: "₹1,000",
-        paymentLink: "https://rzp.io/rzp/NLhIGBLh",
+        paymentLink: "https://rzp.io/rzp/Alpha2Infiniti",
         colorKey: "hackathonProgram" as keyof typeof eventColors,
         features: [
             "Participation in a competitive Hackathon",
@@ -76,7 +76,7 @@ const passes = [
         name: "Student Expo",
         price: "₹3,000",
         priceLabel: "Team of 2",
-        paymentLink: "https://rzp.io/rzp/i2HdCsgB",
+        paymentLink: "https://rzp.io/rzp/StudentExpo",
         colorKey: "alphaToInfinity" as keyof typeof eventColors,
         features: [
             "Platform to showcase student projects and MVPs",
@@ -112,7 +112,7 @@ const passes = [
     {
         name: "InnoVestors BootCamp",
         price: "₹2,000",
-        paymentLink: "https://rzp.io/rzp/SKcZTfe",
+        paymentLink: "https://rzp.io/rzp/InnoVestorsBootCamp",
         colorKey: "investorPitching" as keyof typeof eventColors,
         features: [
             "Access to Investor Panels",
@@ -131,7 +131,7 @@ const passes = [
     {
         name: "Master Minds Congregation",
         price: "₹500",
-        paymentLink: "https://rzp.io/rzp/dRZxNYCF",
+        paymentLink: "https://rzp.io/rzp/MastermindsCongregation",
         colorKey: "mastermindCongregation" as keyof typeof eventColors,
         features: [
             "Platform for school students to present ideas and projects",

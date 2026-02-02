@@ -68,7 +68,7 @@ const AccommodationPage = () => {
                     </div>
                     <div className="mt-5 flex justify-start sm:justify-end">
                         <a
-                            href="https://rzp.io/rzp/4PEpor4"
+                            href="https://rzp.io/rzp/AccommodationBooking"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center justify-center px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-semibold transition-all"

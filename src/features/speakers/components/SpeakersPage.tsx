@@ -48,19 +48,19 @@ const SpeakersPage = () => {
 
     return (
         <div ref={pageRef} className="page-container speakers-reveal-page">
-            <section className="section min-h-screen flex flex-col justify-center items-center text-center relative overflow-hidden">
+            <section className="section min-h-screen flex flex-col justify-center items-center text-center relative overflow-hidden -mt-[38px] md:-mt-[80px]">
 
-                {/* Decorative floating elements */}
-                <div className="speaker-decor absolute top-20 left-10 w-32 h-32 rounded-full opacity-20"
+                {/* Decorative floating elements - hidden */}
+                <div className="speaker-decor absolute top-20 left-10 w-32 h-32 rounded-full opacity-20 hidden"
                     style={{ background: 'var(--color-accent)' }} />
-                <div className="speaker-decor absolute bottom-40 right-20 w-48 h-48 rounded-full opacity-10"
+                <div className="speaker-decor absolute bottom-40 right-20 w-48 h-48 rounded-full opacity-10 hidden"
                     style={{ background: 'var(--color-accent)' }} />
-                <div className="speaker-decor absolute top-1/3 right-10 w-16 h-16 rounded-full opacity-30"
+                <div className="speaker-decor absolute top-1/3 right-10 w-16 h-16 rounded-full opacity-30 hidden"
                     style={{ background: 'var(--color-accent)' }} />
 
                 {/* Main heading with ScrollFloat character animation - starts completely hidden */}
                 <ScrollFloat
-                    containerClassName="speakers-main-title"
+                    containerClassName="speakers-main-title -mt-[19px] md:-mt-[40px]"
                     textClassName=""
                     scrollStart="top bottom"
                     scrollEnd="top center"
@@ -71,7 +71,7 @@ const SpeakersPage = () => {
 
                 {/* Subtitle */}
                 <p
-                    className="mt-6 max-w-lg"
+                    className="mt-6 max-w-lg whitespace-nowrap text-center mx-auto"
                     style={{
                         color: 'var(--color-text-muted)',
                         fontFamily: 'var(--font-primary)',
@@ -79,8 +79,7 @@ const SpeakersPage = () => {
                         lineHeight: 1.6,
                     }}
                 >
-                    Industry leaders, visionaries, and innovators<br />
-                    who are shaping the future.
+                    Industry leaders, visionaries, and innovators who are shaping the future.
                 </p>
 
                 {/* Speakers Grid */}
@@ -286,6 +285,22 @@ const SpeakersPage = () => {
                             <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>CBS Group of Companies</p>
                         </div>
 
+                        {/* Advisory Board Section */}
+                        <div className="col-span-full mt-8 mb-4">
+                            <h2 
+                                style={{
+                                    fontSize: 'clamp(2rem, 6vw, 4rem)',
+                                    lineHeight: 0.95,
+                                    fontFamily: 'var(--font-display)',
+                                    fontWeight: 800,
+                                    letterSpacing: '-0.03em',
+                                    color: 'var(--color-text-primary)',
+                                }}
+                            >
+                                Advisory Board
+                            </h2>
+                        </div>
+
                         {/* Speaker 21 */}
                         <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300">
                             <div className="aspect-square mb-4 rounded-lg overflow-hidden bg-gray-800">
@@ -399,11 +414,11 @@ const SpeakersPage = () => {
                         {/* Speaker 32 */}
                         <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300">
                             <div className="aspect-square mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/32.png" alt="PROF. SANDEEP SHUKLA" className="w-full h-full object-cover" />
+                                <img src="/images/32.png" alt="Brigadier (Dr) Inder Sethi" className="w-full h-full object-cover" />
                             </div>
-                            <h3 className="font-bold text-lg mb-1" style={{ color: 'var(--color-text-primary)' }}>PROF. SANDEEP SHUKLA</h3>
-                            <p className="text-sm mb-2" style={{ color: 'var(--color-accent)' }}>Director</p>
-                            <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>IIIT- Hyderabad</p>
+                            <h3 className="font-bold text-lg mb-1" style={{ color: 'var(--color-text-primary)' }}>Brigadier (Dr) Inder Sethi</h3>
+                            <p className="text-sm mb-2" style={{ color: 'var(--color-accent)' }}>Director | Global Strategy Head | Strategy, Innovation & Leadership | 2xTEDx | Keynote Speaker | Author</p>
+                            <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}></p>
                         </div>
 
                         {/* Speaker 33 */}
@@ -501,7 +516,9 @@ const SpeakersPage = () => {
                         Want to speak at the Conclave?
                     </p>
                     <a
-                        href="mailto:speakers@smec.edu.in"
+                        href="https://forms.gle/XAZvLLnzRBFtJMBf8"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-8 py-4 border transition-all duration-300 hover:bg-[var(--color-accent)] hover:text-white"
                         style={{
                             borderColor: 'var(--color-accent)',

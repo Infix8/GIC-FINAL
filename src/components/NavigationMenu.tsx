@@ -235,7 +235,7 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({
         elevation={0}
         sx={{
           top: bannerHeight,
-          bgcolor: 'transparent',
+          bgcolor: 'rgba(15, 12, 25, 0.85)',
           backdropFilter: 'blur(10px)',
           borderBottom: `1px solid ${theme.palette.primary.main}15`,
           transition: 'transform 0.3s',

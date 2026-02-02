@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useLayoutEffect } from 'react';
+import { useParams, useNavigate, Link } from '@tanstack/react-router';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -30,6 +31,11 @@ const eventColors = {
         gradient: "linear-gradient(135deg, #b46ebc 0%, #b84151 100%)",
         shadow: "rgba(180, 110, 188, 0.4)",
         accent: "#b46ebc"
+    },
+    womenEmpowerment: {
+        gradient: "linear-gradient(135deg, #e91e63 0%, #9c27b0 100%)",
+        shadow: "rgba(233, 30, 99, 0.4)",
+        accent: "#e91e63"
     }
 };
 
@@ -526,16 +532,121 @@ const baseEventsData: EventData[] = [
                 { time: "17:00 - 17:30", activity: "Closing & Networking", details: "Closing remarks and final networking session", type: "Break" }
             ]
         }
+    },
+    {
+        id: "women-empowerment",
+        number: "06",
+        title: "Women Empowerment",
+        shortTitle: "WE",
+        tagline: "Empowering Women in Tech & Entrepreneurship - \"Building the Future Together\"",
+        description: "A transformative hackathon and mentorship program designed to empower women in technology and entrepreneurship. This event brings together passionate women innovators, industry leaders, and mentors to build solutions addressing real-world challenges while fostering an inclusive ecosystem for women in tech.",
+        colorKey: "womenEmpowerment",
+        highlights: [
+            "500+ Women Participants",
+            "24-Hour Hackathon",
+            "Industry Mentors",
+            "Prize Pool & Opportunities"
+        ],
+        keyDetails: [
+            { label: "Total Participants", value: "500+ women from across India" },
+            { label: "Team Size", value: "2-5 members per team" },
+            { label: "Duration", value: "24 hours" },
+            { label: "Total Mentors", value: "20+ industry experts" },
+            { label: "Problem Statements", value: "Real-world challenges" },
+            { label: "Format", value: "Onsite Hackathon" }
+        ],
+        fullDetails: [
+            {
+                title: "Why Participate?",
+                content: [
+                    "6.5+ Lakhs worth prizes at stake, along with Certificate of Participation and T-Shirts",
+                    "Code with 500+ developers and designers to build solutions to real-world problems",
+                    "Get insights from eminent speakers and mentors",
+                    "Network with industry leaders and potential employers",
+                    "Showcase your skills and build your portfolio"
+                ]
+            },
+            {
+                title: "Eligibility Criteria",
+                content: [
+                    "Must be a woman student from any University/College in India",
+                    "Open to all academic backgrounds and skill levels",
+                    "Individual or team participation (2-5 members per team)",
+                    "Teams can be formed before or during registration"
+                ]
+            },
+            {
+                title: "Problem Statements",
+                content: [
+                    "Problem statements will be announced on the spot",
+                    "Focus areas include: Technology for Social Good, Women's Safety & Security, Healthcare Solutions, Education & Skill Development, Financial Inclusion",
+                    "Teams will work on innovative solutions addressing real-world challenges"
+                ]
+            },
+            {
+                title: "Selection & Evaluation",
+                content: [
+                    "Registration-based selection (first come, first served)",
+                    "Evaluation based on: Innovation, Technical Implementation, Presentation, Impact Potential",
+                    "Top teams will present to judges and industry representatives",
+                    "Winners receive prizes, certificates, and potential internship/job opportunities"
+                ]
+            },
+            {
+                title: "Technology & Tools",
+                content: [
+                    "No restrictions on technology stack, languages, or libraries",
+                    "AI tools are allowed (must be explicitly mentioned in presentation)",
+                    "Cloud platforms and development tools will be provided",
+                    "Mentorship support available throughout the event"
+                ]
+            },
+            {
+                title: "Outcomes & Opportunities",
+                content: [
+                    "Prize money and recognition",
+                    "Certificate of Participation",
+                    "Networking with industry leaders",
+                    "Potential internship and job opportunities",
+                    "Portfolio building and skill enhancement"
+                ]
+            }
+        ],
+        timeline: {
+            day1: [
+                { time: "09:00 - 10:00", activity: "Registration & Welcome", details: "Check-in, networking, and welcome address", type: "Ceremony" },
+                { time: "10:00 - 10:30", activity: "Inauguration & Keynote", details: "Opening ceremony with inspiring keynote from women leaders", type: "Ceremony" },
+                { time: "10:30 - 11:00", activity: "Problem Statement Announcement", details: "Teams receive their assigned problem statements", type: "Briefing" },
+                { time: "11:00 - 13:00", activity: "Hacking Begins - Session 1", details: "Initial ideation and planning phase", type: "Sprint" },
+                { time: "13:00 - 14:00", activity: "Lunch Break", details: "Networking lunch with mentors", type: "Break" },
+                { time: "14:00 - 18:00", activity: "Hacking Session 2", details: "Development and implementation phase", type: "Sprint" },
+                { time: "18:00 - 19:00", activity: "Mentor Check-in", details: "Progress review and guidance from mentors", type: "Mentorship" },
+                { time: "19:00 - 20:00", activity: "Dinner & Networking", details: "Evening meal and informal networking session", type: "Networking" },
+                { time: "20:00 - 00:00", activity: "Hacking Session 3", details: "Continued development and refinement", type: "Sprint" }
+            ],
+            day2: [
+                { time: "00:00 - 01:00", activity: "Midnight Snacks & Energizers", details: "Refreshments and team bonding activities", type: "Break" },
+                { time: "01:00 - 08:00", activity: "Hacking Session 4", details: "Final development phase - polish, testing, and documentation", type: "Sprint" },
+                { time: "08:00 - 09:00", activity: "Breakfast & Final Touches", details: "Morning meal and last-minute preparations", type: "Break" },
+                { time: "09:00 - 10:00", activity: "Code Freeze & Submission", details: "Final submissions and code freeze deadline", type: "Submission" },
+                { time: "10:00 - 12:00", activity: "Presentation Preparation", details: "Teams prepare their final presentations", type: "Preparation" },
+                { time: "12:00 - 13:00", activity: "Lunch Break", details: "Refreshments before presentations", type: "Break" },
+                { time: "13:00 - 16:00", activity: "Final Presentations", details: "Teams present their solutions to judges and audience", type: "Presentation" },
+                { time: "16:00 - 17:00", activity: "Judging & Evaluation", details: "Judges evaluate presentations and select winners", type: "Evaluation" },
+                { time: "17:00 - 18:00", activity: "Prize Distribution & Closing", details: "Awards ceremony, closing remarks, and networking", type: "Ceremony" }
+            ]
+        }
     }
 ];
 
-/* Same order as Passes page: 1. Knowledge, 2. Alpha2Infiniti, 3. BusiTech Expo, 4. InnoVestors BootCamp, 5. Masterminds Congregation */
+/* Same order as Passes page: 1. Knowledge, 2. Alpha2Infiniti, 3. BusiTech Expo, 4. InnoVestors BootCamp, 5. Masterminds Congregation, 6. Women Empowerment */
 const eventsOrder = [
     "knowledge-bubble",
     "alpha-to-infinity",
     "business-tech-expo",
     "investor-pitching",
     "mastermind-congregation",
+    "women-empowerment",
 ] as const;
 
 const eventsData: EventData[] = eventsOrder.map(
@@ -546,31 +657,45 @@ const EventsPage = () => {
     const pageRef = useRef<HTMLDivElement>(null);
     const timelineRef = useRef<HTMLDivElement>(null);
     const progressRef = useRef<HTMLDivElement>(null);
-    const [selectedEvent, setSelectedEvent] = useState<EventData | null>(null);
+    const params = useParams({ strict: false }) as { eventId?: string };
+    const navigate = useNavigate();
     const [activeDay, setActiveDay] = useState<1 | 2>(1);
+    const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+    const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
-    // Entry animation
+    // Map URL slugs to event IDs
+    const eventSlugToId: Record<string, string> = {
+        'knowledgebubble': 'knowledge-bubble',
+        'alpha2infiniti': 'alpha-to-infinity',
+        'busitechexpo': 'business-tech-expo',
+        'innovestorsbootcamp': 'investor-pitching',
+        'mastermindscongregation': 'mastermind-congregation',
+        'womenempowerment': 'women-empowerment',
+    };
+
+    // Map event IDs to URL slugs
+    const eventIdToSlug: Record<string, string> = {
+        'knowledge-bubble': 'knowledgebubble',
+        'alpha-to-infinity': 'alpha2infiniti',
+        'business-tech-expo': 'busitechexpo',
+        'investor-pitching': 'innovestorsbootcamp',
+        'mastermind-congregation': 'mastermindscongregation',
+        'women-empowerment': 'womenempowerment',
+    };
+
+    // Get selected event from route params
+    const selectedEvent = params?.eventId 
+        ? baseEventsData.find(e => e.id === eventSlugToId[params.eventId!] || e.id === params.eventId) || null
+        : null;
+
+    // Entry animation - removed all animations
     useEffect(() => {
         if (selectedEvent) return;
 
         const ctx = gsap.context(() => {
-            gsap.from('.header-animate', {
-                y: 40,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.1,
-                ease: 'power3.out',
-            });
-
+            // All animations removed - header and cards appear immediately
+            gsap.set('.header-animate', { opacity: 1, y: 0 });
             gsap.set('.event-card', { opacity: 1 });
-            gsap.from('.event-card', {
-                y: 60,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.15,
-                ease: 'power3.out',
-                delay: 0.5
-            });
         }, pageRef);
 
         return () => ctx.revert();
@@ -617,14 +742,69 @@ const EventsPage = () => {
         return () => ctx.revert();
     }, [selectedEvent, activeDay]);
 
+    // Countdown timer - works for all individual event pages
+    // Counts down to February 27, 2026 at 00:00:00 (midnight)
+    useEffect(() => {
+        if (!selectedEvent) {
+            setCountdown({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+            return;
+        }
+
+        // Event date: February 27, 2026 at 00:00:00 (midnight) - start of event day
+        // Month is 0-indexed: 0=Jan, 1=Feb, etc.
+        const eventYear = 2026;
+        const eventMonth = 1; // February (0-indexed)
+        const eventDay = 27;
+        const eventHour = 0; // Midnight
+        const eventMinute = 0;
+        const eventSecond = 0;
+        
+        const eventDate = new Date(eventYear, eventMonth, eventDay, eventHour, eventMinute, eventSecond);
+        
+        const updateCountdown = () => {
+            const now = new Date();
+            let diff = eventDate.getTime() - now.getTime();
+
+            if (diff <= 0) {
+                setCountdown({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+                return;
+            }
+
+            // Calculate time components
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            diff = diff % (1000 * 60 * 60 * 24);
+            
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            diff = diff % (1000 * 60 * 60);
+            
+            const minutes = Math.floor(diff / (1000 * 60));
+            diff = diff % (1000 * 60);
+            
+            const seconds = Math.floor(diff / 1000);
+
+            setCountdown({ days, hours, minutes, seconds });
+        };
+
+        // Update immediately on mount
+        updateCountdown();
+        
+        // Update every second for real-time countdown
+        const timer = setInterval(updateCountdown, 1000);
+
+        return () => {
+            clearInterval(timer);
+        };
+    }, [selectedEvent]);
+
     const handleEventClick = (event: EventData) => {
+        const slug = eventIdToSlug[event.id] || event.id;
         gsap.to('.events-grid', {
             opacity: 0,
             y: -30,
             duration: 0.4,
             ease: 'power2.in',
             onComplete: () => {
-                setSelectedEvent(event);
+                navigate({ to: '/events/$eventId', params: { eventId: slug } });
                 setActiveDay(1);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
@@ -638,7 +818,7 @@ const EventsPage = () => {
             duration: 0.4,
             ease: 'power2.in',
             onComplete: () => {
-                setSelectedEvent(null);
+                navigate({ to: '/events' });
             }
         });
     };
@@ -673,161 +853,280 @@ const EventsPage = () => {
             : selectedEvent.timeline.day2 || [];
     };
 
-    const currentColor = selectedEvent ? eventColors[selectedEvent.colorKey] : null;
-
     // Event Detail View
     if (selectedEvent) {
-        const timelineItems = getTimelineItems();
-        const hasMultipleDays = selectedEvent.timeline.day1 && selectedEvent.timeline.day2;
-        const hasPhases = !!selectedEvent.timeline.phases;
+        // Megathon-style layout for all events
+        const currentColor = eventColors[selectedEvent.colorKey];
+        
+        // Generate FAQ data based on event
+        const getEventFAQs = () => {
+            const baseFAQs = [
+                {
+                    q: "How can I edit, transfer, or cancel my registration?",
+                    a: "For any issues related to ticketing or registration, please email gic@smec.edu.in."
+                },
+                {
+                    q: "Do I need to pay money to register?",
+                    a: "The price of tickets will be made available on the registration link. Special coupon codes are available for selected students."
+                },
+                {
+                    q: "Do I need to be in Hyderabad to take part?",
+                    a: selectedEvent.id === "knowledge-bubble" ? "Yes, this is an onsite event at St. Martin's Engineering College." : "Yes. It is an onsite event."
+                },
+                {
+                    q: "What is the AI usage policy?",
+                    a: "AI tools are allowed. However, they must be explicitly mentioned wherever used in the codebase and cited in the final presentation."
+                },
+                {
+                    q: "Do I need to have any specific qualification to be a participant?",
+                    a: selectedEvent.id === "mastermind-congregation" 
+                        ? "Yes, you must be a student from Classes 8-10 from participating schools."
+                        : selectedEvent.id === "women-empowerment"
+                        ? "Yes, you must be a woman student from any University/College in India."
+                        : "Yes, you must be a student from any University/College in India."
+                },
+                {
+                    q: "Is it an individual or team event?",
+                    a: selectedEvent.id === "alpha-to-infinity"
+                        ? "Teams of 6 members. Teams must select TWO primary roles with priority rankings."
+                        : selectedEvent.id === "mastermind-congregation"
+                        ? "Teams of 3 members each from participating schools."
+                        : "Students can participate either way - individually or as a team. The maximum strength of a team can be 5 members. Teams must be formed before registration."
+                },
+                {
+                    q: "Can we form our own teams, or will we be allotted to a particular team?",
+                    a: "Participants are free to form their own teams. However, you must form your team before registration."
+                }
+            ];
+
+            // Event-specific FAQs
+            if (selectedEvent.id === "alpha-to-infinity") {
+                baseFAQs.push({
+                    q: "How are teams selected?",
+                    a: "Selection is based on LinkedIn Profile Review, CV/Resume Evaluation, GitHub Profile Analysis, and technical skill assessment based on problem statements."
+                });
+            }
+
+            if (selectedEvent.id === "women-empowerment" || selectedEvent.id === "alpha-to-infinity") {
+                baseFAQs.push({
+                    q: "Will the problem statement be given on the spot?",
+                    a: "Yes. The problem statement will be given on the spot."
+                });
+            }
+
+            if (selectedEvent.id === "business-tech-expo") {
+                baseFAQs.push({
+                    q: "What is required for the MVP presentation?",
+                    a: "Startups must present a working Minimum Viable Product (MVP) or prototype. The presentation should demonstrate core functionality and market viability."
+                });
+            }
+
+            return baseFAQs;
+        };
+
+        const eventFAQs = getEventFAQs();
+        
+        // Get event date based on event type
+        const getEventDate = () => {
+            if (selectedEvent.id === "mastermind-congregation") return "27-28 FEBRUARY";
+            if (selectedEvent.id === "knowledge-bubble") return "27-28 FEBRUARY";
+            return "27-28 FEBRUARY";
+        };
+
+        // Get event description for About section
+        const getEventAbout = () => {
+            const descriptions: Record<string, string> = {
+                "knowledge-bubble": "A premier two-day platform bringing together policymakers, industry leaders, innovators, scientists, and entrepreneurs to discuss national strategy, regulatory frameworks, and technological advancement across cutting-edge domains.",
+                "alpha-to-infinity": "A 30-hour intensive hiring hackathon designed to identify and nurture exceptional technical talent across multiple technology domains. Selected participants are grouped into teams to solve real-world problem statements provided by partner companies.",
+                "business-tech-expo": "A 2-day showcase for startups and student projects to present their MVPs (Minimum Viable Products) and prototypes, with professional evaluation and potential investor connections.",
+                "investor-pitching": "A platform for entrepreneurs to present their startups to potential investors, with separate tracks for student ventures (pre-seed stage) and professional startups (seed stage).",
+                "mastermind-congregation": "A multi-phase journey empowering school students (Classes 8-10) in entrepreneurship, from training to the grand finale competition at SMEC campus.",
+                "women-empowerment": "A transformative hackathon and mentorship program designed to empower women in technology and entrepreneurship. This event brings together passionate women innovators, industry leaders, and mentors to build solutions addressing real-world challenges."
+            };
+            return descriptions[selectedEvent.id] || selectedEvent.description;
+        };
 
         return (
-            <div ref={pageRef} className="page-container events-page" style={{ background: 'var(--color-bg-primary)' }}>
-                {/* Back Button */}
-                <button
-                    onClick={handleBackClick}
-                    className="fixed top-24 left-6 z-50 flex items-center gap-2 px-4 py-2 rounded-full transition-all hover:scale-105"
-                    style={{
-                        background: 'rgba(15, 12, 25, 0.9)',
-                        border: '1px solid rgba(139, 123, 181, 0.3)',
-                        color: '#EAEAEA',
-                        backdropFilter: 'blur(10px)'
-                    }}
-                >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M19 12H5M12 19l-7-7 7-7" />
-                    </svg>
-                    <span className="text-sm font-medium">All Events</span>
-                </button>
+                <div ref={pageRef} className="page-container events-page" style={{ background: 'var(--color-bg-primary)' }}>
+                    {/* Background Gradient - Extends upward from top */}
+                    <div
+                        className="fixed opacity-10"
+                        style={{ 
+                            background: currentColor?.gradient,
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            width: '100%',
+                            height: '100vh',
+                            zIndex: 0,
+                            pointerEvents: 'none'
+                        }}
+                    />
+                    
+                    {/* Back Button */}
+                    <button
+                        onClick={handleBackClick}
+                        className="fixed top-24 left-6 z-50 flex items-center gap-2 px-4 py-2 rounded-full transition-all hover:scale-105"
+                        style={{
+                            background: 'rgba(15, 12, 25, 0.9)',
+                            border: '1px solid rgba(139, 123, 181, 0.3)',
+                            color: '#EAEAEA',
+                            backdropFilter: 'blur(10px)'
+                        }}
+                    >
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M19 12H5M12 19l-7-7 7-7" />
+                        </svg>
+                        <span className="text-sm font-medium">All Events</span>
+                    </button>
 
-                {/* Event Detail Content */}
-                <div className="event-detail">
-                    {/* Hero Section */}
-                    <section className="relative pt-0 pb-16 px-6 md:px-12 overflow-hidden">
-                        <div
-                            className="absolute inset-0 opacity-20"
-                            style={{ background: currentColor?.gradient }}
-                        />
-                        <div
-                            className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full pointer-events-none"
-                            style={{
-                                background: `radial-gradient(circle, ${currentColor?.shadow} 0%, transparent 70%)`,
-                                filter: 'blur(80px)'
-                            }}
-                        />
-
-                        <div className="relative max-w-6xl mx-auto">
-                            <div
-                                className="inline-flex items-center justify-center w-20 h-20 rounded-2xl mb-6 text-3xl font-mono font-bold"
-                                style={{
-                                    background: currentColor?.gradient,
-                                    color: 'white',
-                                    boxShadow: `0 10px 40px ${currentColor?.shadow}`
-                                }}
-                            >
-                                {selectedEvent.number}
-                            </div>
-
-                            <h1
-                                className="text-4xl md:text-6xl font-bold mb-4"
-                                style={{ color: '#EAEAEA' }}
-                            >
-                                {selectedEvent.title}
+                    {/* Hero Section with Countdown */}
+                    <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 md:px-12 pt-0 pb-10 overflow-hidden">
+                        <div className="relative z-10 max-w-4xl mx-auto">
+                            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-4" style={{ color: '#EAEAEA' }}>
+                                {selectedEvent.title.toUpperCase()}
                             </h1>
-                            <p
-                                className="text-xl md:text-2xl mb-6"
-                                style={{ color: currentColor?.accent }}
-                            >
-                                {selectedEvent.tagline}
+                            <p className="text-xl md:text-2xl mb-12" style={{ color: currentColor?.accent }}>
+                                {getEventDate()}
                             </p>
-                            <p
-                                className="text-lg max-w-3xl mb-8"
-                                style={{ color: 'rgba(234, 234, 234, 0.7)' }}
-                            >
-                                {selectedEvent.description}
-                            </p>
-
-                            {/* Highlights */}
-                            <div className="flex flex-wrap gap-3 mb-10">
-                                {selectedEvent.highlights.map((highlight, i) => (
-                                    <span
-                                        key={i}
-                                        className="px-4 py-2 rounded-full text-sm font-medium"
-                                        style={{
-                                            background: 'rgba(255, 255, 255, 0.1)',
-                                            border: `1px solid ${currentColor?.accent}40`,
-                                            color: '#EAEAEA'
-                                        }}
-                                    >
-                                        {highlight}
-                                    </span>
-                                ))}
+                            
+                            {/* Countdown Timer */}
+                            <div className="grid grid-cols-4 gap-4 md:gap-8 mb-12">
+                                <div className="text-center">
+                                    <div className="text-4xl md:text-6xl font-bold mb-2" style={{ color: currentColor?.accent }}>
+                                        {String(countdown.days).padStart(2, '0')}
+                                    </div>
+                                    <div className="text-sm md:text-base" style={{ color: 'rgba(234, 234, 234, 0.7)' }}>
+                                        Days
+                                    </div>
+                                </div>
+                                <div className="text-center">
+                                    <div className="text-4xl md:text-6xl font-bold mb-2" style={{ color: currentColor?.accent }}>
+                                        {String(countdown.hours).padStart(2, '0')}
+                                    </div>
+                                    <div className="text-sm md:text-base" style={{ color: 'rgba(234, 234, 234, 0.7)' }}>
+                                        Hours
+                                    </div>
+                                </div>
+                                <div className="text-center">
+                                    <div className="text-4xl md:text-6xl font-bold mb-2" style={{ color: currentColor?.accent }}>
+                                        {String(countdown.minutes).padStart(2, '0')}
+                                    </div>
+                                    <div className="text-sm md:text-base" style={{ color: 'rgba(234, 234, 234, 0.7)' }}>
+                                        Minutes
+                                    </div>
+                                </div>
+                                <div className="text-center">
+                                    <div className="text-4xl md:text-6xl font-bold mb-2" style={{ color: currentColor?.accent }}>
+                                        {String(countdown.seconds).padStart(2, '0')}
+                                    </div>
+                                    <div className="text-sm md:text-base" style={{ color: 'rgba(234, 234, 234, 0.7)' }}>
+                                        Seconds
+                                    </div>
+                                </div>
                             </div>
 
-                            {/* Key Details Grid */}
-                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                                {selectedEvent.keyDetails.map((detail, i) => (
-                                    <div
-                                        key={i}
-                                        className="p-4 rounded-xl"
-                                        style={{
-                                            background: 'rgba(15, 12, 25, 0.6)',
-                                            border: '1px solid rgba(139, 123, 181, 0.2)'
-                                        }}
-                                    >
-                                        <p className="text-xs mb-1" style={{ color: 'rgba(234, 234, 234, 0.5)' }}>
-                                            {detail.label}
-                                        </p>
-                                        <p className="text-sm font-bold" style={{ color: currentColor?.accent }}>
-                                            {detail.value}
-                                        </p>
-                                    </div>
-                                ))}
+                            <div className="inline-block px-10 py-5 rounded-full font-bold text-2xl md:text-3xl cursor-pointer transition-all hover:scale-105" style={{ 
+                                background: currentColor?.gradient,
+                                color: 'white'
+                            }}>
+                                Register Now!
                             </div>
                         </div>
                     </section>
 
-                    {/* Full Details Section */}
-                    <section className="pt-0 pb-12 px-6 md:px-12">
-                        <div className="max-w-6xl mx-auto">
-                            <h2
-                                className="text-2xl md:text-3xl font-bold mb-8"
-                                style={{ color: '#EAEAEA' }}
-                            >
-                                Complete Event Details
+                    {/* About Section */}
+                    <section className="py-20 px-6 md:px-12" style={{ background: 'var(--color-bg-primary)' }}>
+                        <div className="max-w-4xl mx-auto">
+                            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-center" style={{ color: '#EAEAEA' }}>
+                                About Us
                             </h2>
+                            <p className="text-lg md:text-xl leading-relaxed mb-6" style={{ color: 'rgba(234, 234, 234, 0.8)' }}>
+                                {getEventAbout()}
+                            </p>
+                            <p className="text-lg md:text-xl leading-relaxed mb-6" style={{ color: 'rgba(234, 234, 234, 0.8)' }}>
+                                {selectedEvent.description}
+                            </p>
+                            <p className="text-lg md:text-xl leading-relaxed" style={{ color: 'rgba(234, 234, 234, 0.8)' }}>
+                                Join us at {selectedEvent.title} and be part of the Global Innovators Conclave, shaping the future of innovation and entrepreneurship.
+                            </p>
+                        </div>
+                    </section>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                {selectedEvent.fullDetails.map((section, i) => (
-                                    <div
-                                        key={i}
-                                        className="p-6 rounded-xl"
-                                        style={{
-                                            background: 'rgba(15, 12, 25, 0.6)',
-                                            border: '1px solid rgba(139, 123, 181, 0.15)'
-                                        }}
-                                    >
-                                        <h3
-                                            className="text-lg font-semibold mb-4 pb-2"
-                                            style={{
-                                                color: currentColor?.accent,
-                                                borderBottom: '1px solid rgba(139, 123, 181, 0.2)'
-                                            }}
-                                        >
-                                            {section.title}
-                                        </h3>
-                                        <ul className="space-y-2">
-                                            {section.content.map((item, j) => (
-                                                <li
-                                                    key={j}
-                                                    className="flex items-start gap-2 text-sm"
-                                                    style={{ color: 'rgba(234, 234, 234, 0.8)' }}
-                                                >
-                                                    <span style={{ color: currentColor?.accent, marginTop: '2px' }}>•</span>
-                                                    <span>{item}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
+                    {/* Why Participate Section */}
+                    <section className="py-20 px-6 md:px-12" style={{ background: 'rgba(15, 12, 25, 0.5)' }}>
+                        <div className="max-w-6xl mx-auto">
+                            <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center" style={{ color: '#EAEAEA' }}>
+                                Why Participate?
+                            </h2>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                {/* Card 1 */}
+                                <div className="text-center p-8 rounded-2xl" style={{
+                                    background: 'rgba(15, 12, 25, 0.6)',
+                                    border: '1px solid rgba(139, 123, 181, 0.2)'
+                                }}>
+                                    <div className="text-5xl md:text-6xl font-bold mb-4" style={{ color: currentColor?.accent }}>
+                                        6.5+ Lakhs
+                                    </div>
+                                    <p className="text-lg" style={{ color: 'rgba(234, 234, 234, 0.8)' }}>
+                                        Worth prizes at stake, along with Certificate of Participation and T-Shirts
+                                    </p>
+                                </div>
+
+                                {/* Card 2 */}
+                                <div className="text-center p-8 rounded-2xl" style={{
+                                    background: 'rgba(15, 12, 25, 0.6)',
+                                    border: '1px solid rgba(139, 123, 181, 0.2)'
+                                }}>
+                                    <div className="text-5xl md:text-6xl font-bold mb-4" style={{ color: currentColor?.accent }}>
+                                        Get Inspired
+                                    </div>
+                                    <p className="text-lg" style={{ color: 'rgba(234, 234, 234, 0.8)' }}>
+                                        Code with 500+ developers and designers to build solutions to real-world problems
+                                    </p>
+                                </div>
+
+                                {/* Card 3 */}
+                                <div className="text-center p-8 rounded-2xl" style={{
+                                    background: 'rgba(15, 12, 25, 0.6)',
+                                    border: '1px solid rgba(139, 123, 181, 0.2)'
+                                }}>
+                                    <div className="text-5xl md:text-6xl font-bold mb-4" style={{ color: currentColor?.accent }}>
+                                        Fresh Insights
+                                    </div>
+                                    <p className="text-lg" style={{ color: 'rgba(234, 234, 234, 0.8)' }}>
+                                        Get insights from eminent speakers and mentors
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Sponsors Section */}
+                    <section className="py-20 px-6 md:px-12" style={{ background: 'var(--color-bg-primary)' }}>
+                        <div className="max-w-6xl mx-auto">
+                            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center" style={{ color: '#EAEAEA' }}>
+                                TITLE SPONSOR
+                            </h2>
+                            <div className="flex justify-center items-center mb-16 p-8 rounded-2xl" style={{
+                                background: 'rgba(15, 12, 25, 0.6)',
+                                border: '1px solid rgba(139, 123, 181, 0.2)',
+                                minHeight: '150px'
+                            }}>
+                                <p className="text-xl" style={{ color: 'rgba(234, 234, 234, 0.6)' }}>Sponsor Logo</p>
+                            </div>
+
+                            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center" style={{ color: '#EAEAEA' }}>
+                                CHALLENGE SPONSORS
+                            </h2>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                {[1, 2].map((i) => (
+                                    <div key={i} className="flex justify-center items-center p-8 rounded-2xl" style={{
+                                        background: 'rgba(15, 12, 25, 0.6)',
+                                        border: '1px solid rgba(139, 123, 181, 0.2)',
+                                        minHeight: '150px'
+                                    }}>
+                                        <p className="text-xl" style={{ color: 'rgba(234, 234, 234, 0.6)' }}>Sponsor Logo {i}</p>
                                     </div>
                                 ))}
                             </div>
@@ -835,202 +1134,300 @@ const EventsPage = () => {
                     </section>
 
                     {/* Timeline Section */}
-                    <section className="py-8 sm:py-12 px-4 sm:px-6 md:px-12">
+                    <section className="py-20 px-6 md:px-12" style={{ background: 'var(--color-bg-primary)' }}>
                         <div className="max-w-4xl mx-auto">
-                            <h2
-                                className="text-xl sm:text-2xl md:text-3xl font-bold mb-2"
-                                style={{ color: '#EAEAEA' }}
-                            >
-                                {hasPhases ? 'Program Timeline' : 'Event Schedule'}
-                            </h2>
-                            <p className="mb-6 sm:mb-8 text-sm sm:text-base" style={{ color: 'rgba(234, 234, 234, 0.6)' }}>
-                                {hasPhases ? 'Multi-phase journey from training to finals' : 'Detailed agenda for each day'}
-                            </p>
+                            {(() => {
+                                const timelineItems = getTimelineItems();
+                                const hasPhases = !!selectedEvent.timeline.phases;
+                                const hasMultipleDays = selectedEvent.timeline.day1 && selectedEvent.timeline.day2;
 
-                            {hasMultipleDays && (
-                                <div className="flex gap-3 sm:gap-4 mb-8 sm:mb-10">
-                                    <button
-                                        className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg sm:rounded-xl font-medium transition-all min-h-[44px] ${activeDay === 1 ? 'scale-105' : 'opacity-60 hover:opacity-80'}`}
-                                        onClick={() => handleDaySwitch(1)}
-                                        style={{
-                                            background: activeDay === 1 ? currentColor?.gradient : 'rgba(15, 12, 25, 0.6)',
-                                            border: `1px solid ${activeDay === 1 ? 'transparent' : 'rgba(139, 123, 181, 0.2)'}`,
-                                            color: activeDay === 1 ? 'white' : '#EAEAEA',
-                                            boxShadow: activeDay === 1 ? `0 10px 30px ${currentColor?.shadow}` : 'none'
-                                        }}
-                                    >
-                                        <span className="block text-xs sm:text-sm opacity-70">Day-1</span>
-                                        <span className="block text-lg sm:text-xl font-bold">Feb-27</span>
-                                    </button>
-                                    <button
-                                        className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg sm:rounded-xl font-medium transition-all min-h-[44px] ${activeDay === 2 ? 'scale-105' : 'opacity-60 hover:opacity-80'}`}
-                                        onClick={() => handleDaySwitch(2)}
-                                        style={{
-                                            background: activeDay === 2 ? currentColor?.gradient : 'rgba(15, 12, 25, 0.6)',
-                                            border: `1px solid ${activeDay === 2 ? 'transparent' : 'rgba(139, 123, 181, 0.2)'}`,
-                                            color: activeDay === 2 ? 'white' : '#EAEAEA',
-                                            boxShadow: activeDay === 2 ? `0 10px 30px ${currentColor?.shadow}` : 'none'
-                                        }}
-                                    >
-                                        <span className="block text-xs sm:text-sm opacity-70">Day-2</span>
-                                        <span className="block text-lg sm:text-xl font-bold">Feb-28</span>
-                                    </button>
-                                </div>
-                            )}
+                                return (
+                                    <>
+                                        <h2 className="text-4xl md:text-5xl font-bold mb-8 text-center" style={{ color: '#EAEAEA' }}>
+                                            {hasPhases ? 'Program Timeline' : 'Event Schedule'}
+                                        </h2>
+                                        <p className="mb-8 text-center text-lg" style={{ color: 'rgba(234, 234, 234, 0.6)' }}>
+                                            {hasPhases ? 'Multi-phase journey from training to finals' : 'Detailed agenda for each day'}
+                                        </p>
 
-                            <div ref={timelineRef} className="relative">
-                                <div
-                                    className="absolute left-[29px] sm:left-[39px] top-0 bottom-0 w-[2px]"
-                                    style={{ background: 'rgba(139, 123, 181, 0.2)' }}
+                                        {hasMultipleDays && (
+                                            <div className="flex gap-4 mb-10 justify-center">
+                                                <button
+                                                    className={`px-6 py-3 rounded-xl font-medium transition-all ${activeDay === 1 ? 'scale-105' : 'opacity-60 hover:opacity-80'}`}
+                                                    onClick={() => handleDaySwitch(1)}
+                                                    style={{
+                                                        background: activeDay === 1 ? currentColor?.gradient : 'rgba(15, 12, 25, 0.6)',
+                                                        border: `1px solid ${activeDay === 1 ? 'transparent' : 'rgba(139, 123, 181, 0.2)'}`,
+                                                        color: activeDay === 1 ? 'white' : '#EAEAEA',
+                                                        boxShadow: activeDay === 1 ? `0 10px 30px ${currentColor?.shadow}` : 'none'
+                                                    }}
+                                                >
+                                                    <span className="block text-sm opacity-70">Day-1</span>
+                                                    <span className="block text-xl font-bold">Feb-27</span>
+                                                </button>
+                                                <button
+                                                    className={`px-6 py-3 rounded-xl font-medium transition-all ${activeDay === 2 ? 'scale-105' : 'opacity-60 hover:opacity-80'}`}
+                                                    onClick={() => handleDaySwitch(2)}
+                                                    style={{
+                                                        background: activeDay === 2 ? currentColor?.gradient : 'rgba(15, 12, 25, 0.6)',
+                                                        border: `1px solid ${activeDay === 2 ? 'transparent' : 'rgba(139, 123, 181, 0.2)'}`,
+                                                        color: activeDay === 2 ? 'white' : '#EAEAEA',
+                                                        boxShadow: activeDay === 2 ? `0 10px 30px ${currentColor?.shadow}` : 'none'
+                                                    }}
+                                                >
+                                                    <span className="block text-sm opacity-70">Day-2</span>
+                                                    <span className="block text-xl font-bold">Feb-28</span>
+                                                </button>
+                                            </div>
+                                        )}
+
+                                        <div ref={timelineRef} className="relative">
+                                            <div
+                                                className="absolute left-[39px] top-0 bottom-0 w-[2px]"
+                                                style={{ background: 'rgba(139, 123, 181, 0.2)' }}
+                                            >
+                                                <div
+                                                    ref={progressRef}
+                                                    className="w-full origin-top"
+                                                    style={{
+                                                        background: currentColor?.gradient,
+                                                        height: '100%',
+                                                        transform: 'scaleY(0)'
+                                                    }}
+                                                />
+                                            </div>
+
+                                            <div className="space-y-6">
+                                                {hasPhases ? (
+                                                    (timelineItems as { name: string; date: string; description: string }[]).map((phase, index) => (
+                                                        <div
+                                                            key={index}
+                                                            className="timeline-item flex gap-6 pl-2"
+                                                        >
+                                                            <div
+                                                                className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center text-xl font-bold z-10"
+                                                                style={{
+                                                                    background: currentColor?.gradient,
+                                                                    color: 'white',
+                                                                    boxShadow: `0 4px 20px ${currentColor?.shadow}`
+                                                                }}
+                                                            >
+                                                                {String(index + 1).padStart(2, '0')}
+                                                            </div>
+
+                                                            <div
+                                                                className="flex-1 p-5 rounded-xl"
+                                                                style={{
+                                                                    background: 'rgba(15, 12, 25, 0.6)',
+                                                                    border: '1px solid rgba(139, 123, 181, 0.15)'
+                                                                }}
+                                                            >
+                                                                <div className="flex flex-wrap items-center gap-3 mb-2">
+                                                                    <span
+                                                                        className="px-3 py-1 rounded-full text-xs font-medium"
+                                                                        style={{
+                                                                            background: `${currentColor?.accent}20`,
+                                                                            color: currentColor?.accent
+                                                                        }}
+                                                                    >
+                                                                        {phase.date}
+                                                                    </span>
+                                                                </div>
+                                                                <h3 className="text-lg font-semibold mb-1" style={{ color: '#EAEAEA' }}>
+                                                                    {phase.name}
+                                                                </h3>
+                                                                <p className="text-sm" style={{ color: 'rgba(234, 234, 234, 0.6)' }}>
+                                                                    {phase.description}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    ))
+                                                ) : (
+                                                    (timelineItems as TimelineItem[]).map((item, index) => (
+                                                        <div
+                                                            key={index}
+                                                            className="timeline-item flex gap-6 pl-2"
+                                                        >
+                                                            <div
+                                                                className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center text-xl font-bold z-10"
+                                                                style={{
+                                                                    background: currentColor?.gradient,
+                                                                    color: 'white',
+                                                                    boxShadow: `0 4px 20px ${currentColor?.shadow}`
+                                                                }}
+                                                            >
+                                                                {String(index + 1).padStart(2, '0')}
+                                                            </div>
+
+                                                            <div
+                                                                className="flex-1 p-5 rounded-xl"
+                                                                style={{
+                                                                    background: 'rgba(15, 12, 25, 0.6)',
+                                                                    border: '1px solid rgba(139, 123, 181, 0.15)'
+                                                                }}
+                                                            >
+                                                                <div className="flex flex-wrap items-center gap-3 mb-2">
+                                                                    <span
+                                                                        className="font-mono text-sm"
+                                                                        style={{ color: currentColor?.accent }}
+                                                                    >
+                                                                        {item.time}
+                                                                    </span>
+                                                                    <span
+                                                                        className="px-3 py-1 rounded-full text-xs font-medium"
+                                                                        style={{
+                                                                            background: `${currentColor?.accent}20`,
+                                                                            color: currentColor?.accent
+                                                                        }}
+                                                                    >
+                                                                        {item.type}
+                                                                    </span>
+                                                                </div>
+                                                                <h3 className="text-lg font-semibold mb-1" style={{ color: '#EAEAEA' }}>
+                                                                    {item.activity}
+                                                                </h3>
+                                                                <p className="text-sm" style={{ color: 'rgba(234, 234, 234, 0.6)' }}>
+                                                                    {item.details}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    ))
+                                                )}
+                                            </div>
+                                        </div>
+                                    </>
+                                );
+                            })()}
+                        </div>
+                    </section>
+
+                    {/* Accommodation Section - Only for Alpha 2 Infiniti */}
+                    {selectedEvent.id === "alpha-to-infinity" && (
+                        <section className="py-20 px-6 md:px-12" style={{ background: 'var(--color-bg-primary)' }}>
+                            <div className="w-full max-w-7xl mx-auto">
+                                <Link
+                                    to="/accommodation"
+                                    className="block w-full p-8 md:p-12 rounded-2xl text-center transition-all hover:scale-[1.02] cursor-pointer"
+                                    style={{
+                                        background: currentColor?.gradient,
+                                        boxShadow: `0 15px 40px ${currentColor?.shadow}`,
+                                        border: '1px solid rgba(255, 255, 255, 0.2)'
+                                    }}
                                 >
-                                    <div
-                                        ref={progressRef}
-                                        className="w-full origin-top"
+                                    <div className="flex flex-col items-center justify-center gap-4">
+                                        <svg 
+                                            width="48" 
+                                            height="48" 
+                                            viewBox="0 0 24 24" 
+                                            fill="none" 
+                                            stroke="currentColor" 
+                                            strokeWidth="2"
+                                            style={{ color: 'white' }}
+                                        >
+                                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                                            <polyline points="9 22 9 12 15 12 15 22" />
+                                        </svg>
+                                        <h2 className="text-3xl md:text-4xl font-bold" style={{ color: 'white' }}>
+                                            Accommodation Available
+                                        </h2>
+                                        <p className="text-lg md:text-xl max-w-2xl" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+                                            Book your stay and explore accommodation options for the event
+                                        </p>
+                                        <div className="mt-4 flex items-center gap-2 text-lg font-semibold" style={{ color: 'white' }}>
+                                            Explore Accommodation
+                                            <svg 
+                                                width="20" 
+                                                height="20" 
+                                                viewBox="0 0 24 24" 
+                                                fill="none" 
+                                                stroke="currentColor" 
+                                                strokeWidth="2"
+                                                className="transition-transform group-hover:translate-x-1"
+                                            >
+                                                <path d="M5 12h14M12 5l7 7-7 7" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </Link>
+                            </div>
+                        </section>
+                    )}
+
+                    {/* FAQ Section */}
+                    <section className="py-20 px-6 md:px-12" style={{ background: 'rgba(15, 12, 25, 0.5)' }}>
+                        <div className="max-w-4xl mx-auto">
+                            <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center" style={{ color: '#EAEAEA' }}>
+                                Frequently Asked Questions
+                            </h2>
+                            <div className="space-y-4">
+                                {eventFAQs.map((faq, i) => (
+                                    <div 
+                                        key={i} 
+                                        className="rounded-xl overflow-hidden transition-all duration-300" 
                                         style={{
-                                            background: currentColor?.gradient,
-                                            height: '100%',
-                                            transform: 'scaleY(0)'
+                                            background: 'rgba(15, 12, 25, 0.6)',
+                                            border: '1px solid rgba(139, 123, 181, 0.2)'
                                         }}
-                                    />
-                                </div>
-
-                                <div className="space-y-4 sm:space-y-6">
-                                    {hasPhases ? (
-                                        (timelineItems as { name: string; date: string; description: string }[]).map((phase, index) => (
-                                            <div
-                                                key={index}
-                                                className="timeline-item flex gap-3 sm:gap-6 pl-2"
+                                    >
+                                        <button
+                                            onClick={() => setOpenFaqIndex(openFaqIndex === i ? null : i)}
+                                            className="w-full p-6 text-left flex items-center justify-between hover:bg-opacity-80 transition-all"
+                                            style={{
+                                                background: openFaqIndex === i ? 'rgba(139, 123, 181, 0.1)' : 'transparent'
+                                            }}
+                                        >
+                                            <h3 className="text-xl font-bold pr-4" style={{ color: currentColor?.accent }}>
+                                                {faq.q}
+                                            </h3>
+                                            <svg 
+                                                width="24" 
+                                                height="24" 
+                                                viewBox="0 0 24 24" 
+                                                fill="none" 
+                                                stroke="currentColor" 
+                                                strokeWidth="2"
+                                                className={`transition-transform duration-300 flex-shrink-0`}
+                                                style={{ 
+                                                    color: currentColor?.accent,
+                                                    transform: openFaqIndex === i ? 'rotate(180deg)' : 'rotate(0deg)'
+                                                }}
                                             >
-                                                <div
-                                                    className="flex-shrink-0 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-base sm:text-xl font-bold z-10"
-                                                    style={{
-                                                        background: currentColor?.gradient,
-                                                        color: 'white',
-                                                        boxShadow: `0 4px 20px ${currentColor?.shadow}`
-                                                    }}
-                                                >
-                                                    {String(index + 1).padStart(2, '0')}
-                                                </div>
-
-                                                <div
-                                                    className="flex-1 p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl"
-                                                    style={{
-                                                        background: 'rgba(15, 12, 25, 0.6)',
-                                                        border: '1px solid rgba(139, 123, 181, 0.15)'
-                                                    }}
-                                                >
-                                                    <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2">
-                                                        <span
-                                                            className="px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs font-medium"
-                                                            style={{
-                                                                background: `${currentColor?.accent}20`,
-                                                                color: currentColor?.accent
-                                                            }}
-                                                        >
-                                                            {phase.date}
-                                                        </span>
-                                                    </div>
-                                                    <h3 className="text-base sm:text-lg font-semibold mb-1" style={{ color: '#EAEAEA' }}>
-                                                        {phase.name}
-                                                    </h3>
-                                                    <p className="text-xs sm:text-sm" style={{ color: 'rgba(234, 234, 234, 0.6)' }}>
-                                                        {phase.description}
-                                                    </p>
-                                                </div>
+                                                <path d="M6 9l6 6 6-6" />
+                                            </svg>
+                                        </button>
+                                        {openFaqIndex === i && (
+                                            <div className="px-6 pb-6">
+                                                <p className="text-lg leading-relaxed" style={{ color: 'rgba(234, 234, 234, 0.8)' }}>
+                                                    {faq.a}
+                                                </p>
                                             </div>
-                                        ))
-                                    ) : (
-                                        (timelineItems as TimelineItem[]).map((item, index) => (
-                                            <div
-                                                key={index}
-                                                className="timeline-item flex gap-3 sm:gap-6 pl-2"
-                                            >
-                                                <div
-                                                    className="flex-shrink-0 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-base sm:text-xl font-bold z-10"
-                                                    style={{
-                                                        background: currentColor?.gradient,
-                                                        color: 'white',
-                                                        boxShadow: `0 4px 20px ${currentColor?.shadow}`
-                                                    }}
-                                                >
-                                                    {String(index + 1).padStart(2, '0')}
-                                                </div>
-
-                                                <div
-                                                    className="flex-1 p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl"
-                                                    style={{
-                                                        background: 'rgba(15, 12, 25, 0.6)',
-                                                        border: '1px solid rgba(139, 123, 181, 0.15)'
-                                                    }}
-                                                >
-                                                    <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2">
-                                                        <span
-                                                            className="font-mono text-xs sm:text-sm"
-                                                            style={{ color: currentColor?.accent }}
-                                                        >
-                                                            {item.time}
-                                                        </span>
-                                                        <span
-                                                            className="px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs font-medium"
-                                                            style={{
-                                                                background: `${currentColor?.accent}20`,
-                                                                color: currentColor?.accent
-                                                            }}
-                                                        >
-                                                            {item.type}
-                                                        </span>
-                                                    </div>
-                                                    <h3 className="text-base sm:text-lg font-semibold mb-1" style={{ color: '#EAEAEA' }}>
-                                                        {item.activity}
-                                                    </h3>
-                                                    <p className="text-xs sm:text-sm" style={{ color: 'rgba(234, 234, 234, 0.6)' }}>
-                                                        {item.details}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        ))
-                                    )}
-                                </div>
+                                        )}
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </section>
 
-                    {/* CTA Section */}
-                    <section className="pt-0 pb-16 px-6 md:px-12">
-                        <div
-                            className="max-w-4xl mx-auto p-8 rounded-2xl text-center"
-                            style={{
-                                background: currentColor?.gradient,
-                                boxShadow: `0 20px 60px ${currentColor?.shadow}`
-                            }}
-                        >
-                            <h3 className="text-2xl md:text-3xl font-bold mb-4 text-white">
-                                Ready to Participate?
-                            </h3>
-                            <p className="text-white/80 mb-6">
-                                Learn more about {selectedEvent.title}
+                    {/* Contact Section */}
+                    <section className="py-20 px-6 md:px-12" style={{ background: 'var(--color-bg-primary)' }}>
+                        <div className="max-w-4xl mx-auto text-center">
+                            <h2 className="text-4xl md:text-5xl font-bold mb-8" style={{ color: '#EAEAEA' }}>
+                                Contact Us
+                            </h2>
+                            <p className="text-xl md:text-2xl" style={{ color: 'rgba(234, 234, 234, 0.8)' }}>
+                                For all queries, please contact <a href="mailto:gic@smec.edu.in" style={{ color: currentColor?.accent }}>gic@smec.edu.in</a>
                             </p>
-                            <a
-                                href="/about"
-                                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-white text-gray-900 font-semibold transition-all hover:scale-105"
-                            >
-                                Learn More
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7" />
-                                </svg>
-                            </a>
                         </div>
                     </section>
                 </div>
-            </div>
-        );
+            );
     }
 
     // Events Grid View
     return (
         <div ref={pageRef} className="page-container events-page" style={{ background: 'var(--color-bg-primary)' }}>
             {/* Header and Events Grid in Single Frame */}
-            <section className="pt-0 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 md:px-8 lg:px-12">
+            <section className="pt-0 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 md:px-8 lg:px-12 -mt-6 md:-mt-[50px]">
                 <div className="max-w-7xl mx-auto">
                     {/* Header */}
                     <div className="space-y-3 sm:space-y-4 mb-0">
@@ -1041,11 +1438,10 @@ const EventsPage = () => {
                             GIC Events
                         </h1>
                         <p
-                            className="header-animate text-base sm:text-lg max-w-2xl mb-0"
+                            className="header-animate text-base sm:text-lg max-w-2xl mb-0 whitespace-nowrap pb-4 md:pb-[35px]"
                             style={{ color: 'rgba(234, 234, 234, 0.6)' }}
                         >
-                            Five transformative tracks spanning technical talent, startup validation,
-                            youth entrepreneurship, and policy dialogue.
+                            Five transformative tracks spanning technical talent, startup validation, youth entrepreneurship, and policy dialogue.
                         </p>
                     </div>
 

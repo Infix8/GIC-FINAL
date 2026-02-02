@@ -47,6 +47,8 @@ const HeroSection: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [investmentValue, setInvestmentValue] = useState(0);
+  const investmentValues = ["₹10Cr", "₹5L"];
 
   // Detect mobile on client side to avoid hydration issues
   useEffect(() => {
@@ -61,6 +63,14 @@ const HeroSection: React.FC = () => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 4000); // Faster: 4 seconds instead of 5
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    // Cycle between ₹10Cr and ₹5L
+    const timer = setInterval(() => {
+      setInvestmentValue((prev) => (prev + 1) % investmentValues.length);
+    }, 3000); // Change every 3 seconds
     return () => clearInterval(timer);
   }, []);
 
@@ -276,9 +286,45 @@ const HeroSection: React.FC = () => {
                 className="absolute -bottom-4 -left-8 bg-gradient-to-br from-primary/12 to-gic-violet/12 backdrop-blur-md rounded-2xl p-5 shadow-lg border border-gic-violet/25 z-20 shadow-primary/10 hover:scale-105 hover:-translate-y-1 transition-transform duration-300"
               >
                 <div className="space-y-1">
-                  <p className="text-3xl font-bold bg-gradient-to-r from-gic-lavender via-gic-violet to-primary bg-clip-text text-transparent">₹10Cr</p>
-                  <p className="text-sm text-gic-lavender/90">Investment Opportunity</p>
-                  <p className="text-xs text-gic-violet/70">for selected startups</p>
+                  <div className="text-3xl font-bold bg-gradient-to-r from-gic-lavender via-gic-violet to-primary bg-clip-text text-transparent h-10 flex items-center">
+                    <AnimatePresence mode="wait">
+                      <motion.p
+                        key={investmentValue}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.5 }}
+                        className="bg-gradient-to-r from-gic-lavender via-gic-violet to-primary bg-clip-text text-transparent"
+                      >
+                        {investmentValues[investmentValue]}
+                      </motion.p>
+                    </AnimatePresence>
+                  </div>
+                  <AnimatePresence mode="wait">
+                    <motion.p
+                      key={`label-${investmentValue}`}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.5 }}
+                      className="text-sm text-gic-lavender/90"
+                    >
+                      {investmentValue === 0 ? "Investment Opportunity" : "Prize Pool"}
+                    </motion.p>
+                  </AnimatePresence>
+                  {investmentValue === 0 && (
+                    <AnimatePresence>
+                      <motion.p
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.5 }}
+                        className="text-xs text-gic-violet/70"
+                      >
+                        for selected startups
+                      </motion.p>
+                    </AnimatePresence>
+                  )}
                 </div>
               </div>
 
