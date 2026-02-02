@@ -100,10 +100,10 @@ const HeroSection: React.FC = () => {
 
 
       <div className="max-w-full sm:max-w-[95%] md:max-w-[90%] lg:max-w-[85%] xl:max-w-[75%] mx-auto px-4 sm:px-6 md:px-8 pb-8 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-24 pt-8 sm:pt-12 md:pt-6 lg:pt-8 relative z-10 w-full">
-        {/* Title and Badge - Above Grid */}
-        <div className="mb-4 sm:mb-6 md:mb-8 lg:mb-12 space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-10">
-          {/* Event Badge - Hidden on Mobile */}
-          <div className="hidden md:inline-flex flex-row items-center gap-3 bg-gradient-to-r from-primary/10 via-gic-violet/10 to-primary/10 backdrop-blur-md rounded-full px-4 md:px-5 py-2.5 border border-gic-violet/30 shadow-lg shadow-primary/15 text-sm">
+        {/* Title and Badge - Centered */}
+        <div className="mb-4 sm:mb-6 md:mb-8 lg:mb-12 space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-10 flex flex-col items-center text-center">
+          {/* Event Badge - Centered */}
+          <div className="inline-flex flex-row items-center gap-3 bg-gradient-to-r from-primary/10 via-gic-violet/10 to-primary/10 backdrop-blur-md rounded-full px-4 md:px-5 py-2.5 border border-gic-violet/30 shadow-lg shadow-primary/15 text-sm">
             <div className="flex items-center gap-2">
               <Calendar className="w-4 h-4 text-primary flex-shrink-0" />
               <span className="text-gic-lavender font-semibold text-sm whitespace-nowrap">27-28 February 2026</span>
@@ -115,11 +115,11 @@ const HeroSection: React.FC = () => {
             </div>
           </div>
 
-          <div className="space-y-4 sm:space-y-6">
-            <div className="flex items-center group">
-              <div className="flex flex-col mb-1 capitalize w-full">
+          <div className="space-y-4 sm:space-y-6 w-full flex flex-col items-center">
+            <div className="flex items-center justify-center group">
+              <div className="flex flex-col items-center mb-1 capitalize">
                 <span
-                  className="font-bold text-white/90 ml-1 mb-1 sm:mb-2"
+                  className="font-bold text-white/90 mb-1 sm:mb-2"
                   style={{
                     fontFamily: 'var(--font-elegant)',
                     letterSpacing: '0.05em',
@@ -131,10 +131,10 @@ const HeroSection: React.FC = () => {
                   SMEC's
                 </span>
                 <div 
-                  style={{ transform: 'scale(0.75)', transformOrigin: 'left center', display: 'inline-block', width: '100%' }}
+                  style={{ transform: 'scale(1)', transformOrigin: 'center', display: 'inline-block' }}
                 >
                   <h2
-                    className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold flex flex-wrap items-center cursor-pointer transition-all duration-300 hover:drop-shadow-[0_0_3px_rgba(169,155,212,0.15)]"
+                    className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold flex flex-nowrap items-center justify-center cursor-pointer transition-all duration-300 hover:drop-shadow-[0_0_3px_rgba(169,155,212,0.15)] whitespace-nowrap"
                     style={{
                       fontFamily: 'var(--font-elegant)',
                       fontStyle: 'normal',
@@ -165,16 +165,14 @@ const HeroSection: React.FC = () => {
                 </div>
               </div>
             </div>
-
-
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 items-center justify-center">
           {/* Left Content */}
-          <div className="space-y-6 sm:space-y-8">
+          <div className="space-y-6 sm:space-y-8 flex flex-col items-center lg:items-start text-center lg:text-left">
             {/* Main Title Highlight - Slide animation for both mobile and desktop */}
-            <div className="space-y-3 sm:space-y-4">
+            <div className="space-y-3 sm:space-y-4 w-full">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentSlide}
@@ -182,29 +180,22 @@ const HeroSection: React.FC = () => {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3, ease: 'easeInOut' }}
+                  className="flex flex-col items-center lg:items-start"
                 >
-                  <h1 className="font-display text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-[1.1] sm:leading-[1.05] tracking-tight italic break-words"
+                  <h1 className="font-display text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-[1.1] sm:leading-[1.05] tracking-tight break-words text-center lg:text-left"
                     style={{
-                      fontStyle: 'italic',
-                      transform: 'skewX(-8deg)',
-                      fontFamily: 'var(--font-elegant)',
+                      fontFamily: 'var(--font-primary)',
                     }}
                   >
                     <span
                       className="bg-gradient-to-r from-gic-lavender via-gic-violet via-primary to-gic-lavender bg-clip-text text-transparent"
-                      style={{
-                        fontStyle: 'italic',
-                        transform: 'skewX(-8deg)',
-                      }}
                     >
                       {slide.highlight}
                     </span>
                   </h1>
-                  <p className="text-gic-lavender/80 text-sm sm:text-base md:text-lg lg:text-xl mt-3 sm:mt-4 leading-relaxed max-w-xl italic"
+                  <p className="text-gic-lavender/80 text-sm sm:text-base md:text-lg lg:text-xl mt-3 sm:mt-4 leading-relaxed max-w-xl mx-auto lg:mx-0"
                     style={{
-                      fontStyle: 'italic',
-                      transform: 'skewX(-6deg)',
-                      fontFamily: 'var(--font-elegant)',
+                      fontFamily: 'var(--font-primary)',
                     }}
                   >
                     {slide.title}
@@ -214,23 +205,23 @@ const HeroSection: React.FC = () => {
             </div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-6">
-              <div className="space-y-0.5 sm:space-y-1">
+            <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-6 w-full max-w-md mx-auto lg:mx-0">
+              <div className="space-y-0.5 sm:space-y-1 flex flex-col items-center lg:items-start">
                 <p className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gic-lavender to-primary bg-clip-text text-transparent">{slide.stat}</p>
-                <p className="text-gic-violet/70 text-xs sm:text-sm">{slide.statLabel}</p>
+                <p className="text-gic-violet/70 text-xs sm:text-sm text-center lg:text-left">{slide.statLabel}</p>
               </div>
-              <div className="space-y-0.5 sm:space-y-1">
+              <div className="space-y-0.5 sm:space-y-1 flex flex-col items-center lg:items-start">
                 <p className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gic-lavender to-primary bg-clip-text text-transparent">2</p>
-                <p className="text-gic-violet/70 text-xs sm:text-sm">Days Event</p>
+                <p className="text-gic-violet/70 text-xs sm:text-sm text-center lg:text-left">Days Event</p>
               </div>
-              <div className="space-y-0.5 sm:space-y-1">
+              <div className="space-y-0.5 sm:space-y-1 flex flex-col items-center lg:items-start">
                 <p className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gic-lavender to-primary bg-clip-text text-transparent">₹5L+</p>
-                <p className="text-gic-violet/70 text-xs sm:text-sm">Prize Pool</p>
+                <p className="text-gic-violet/70 text-xs sm:text-sm text-center lg:text-left">Prize Pool</p>
               </div>
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row sm:flex-nowrap gap-3 sm:gap-4 pt-2 sm:pt-4">
+            <div className="flex flex-col sm:flex-row sm:flex-nowrap gap-3 sm:gap-4 pt-2 sm:pt-4 w-full max-w-md mx-auto lg:mx-0">
               <Link to="/passes" className="w-full sm:w-auto sm:flex-1">
                 <Button size="xl" className="w-full sm:w-auto bg-gradient-to-r from-primary via-gic-violet to-primary hover:from-gic-violet hover:via-primary hover:to-gic-violet text-white rounded-full font-semibold shadow-lg shadow-primary/25 hover:shadow-primary/35 transition-all duration-200 hover:scale-105 active:scale-95">
                   Register
