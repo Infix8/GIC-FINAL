@@ -826,7 +826,7 @@ const EventsPage = () => {
         return (
                 <div ref={pageRef} className="page-container events-page sm:pt-[56px]" style={{ background: 'var(--color-bg-primary)', scrollBehavior: 'smooth', paddingTop: 0 }}>
                     {/* Hero Section with Countdown */}
-                    <section className="relative min-h-[85vh] sm:min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 md:px-12 overflow-hidden">
+                    <section className="relative min-h-[85vh] sm:min-h-screen flex flex-col items-center justify-start sm:justify-center text-center px-4 sm:px-6 md:px-12 overflow-hidden">
                         {/* Back Arrow Button - Website View Only */}
                         <Link
                             to="/events"
@@ -864,7 +864,7 @@ const EventsPage = () => {
                                 pointerEvents: 'none'
                             }}
                         />
-                        <div className="relative z-10 max-w-4xl mx-auto w-full flex flex-col items-center justify-center">
+                        <div className="relative z-10 max-w-4xl mx-auto w-full flex flex-col items-center justify-center pt-0 sm:pt-8 md:pt-10 lg:pt-11">
                             <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-1 sm:mb-3 md:mb-4 leading-tight transition-all duration-300 text-center" style={{ color: '#EAEAEA' }}>
                                 {selectedEvent.title.toUpperCase()}
                             </h1>
