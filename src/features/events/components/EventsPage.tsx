@@ -803,7 +803,7 @@ const EventsPage = () => {
         return (
                 <div ref={pageRef} className="page-container events-page" style={{ background: 'var(--color-bg-primary)', scrollBehavior: 'smooth' }}>
                     {/* Hero Section with Countdown */}
-                    <section className="relative min-h-[85vh] sm:min-h-screen flex flex-col items-center justify-start text-center px-4 sm:px-6 md:px-12 pt-0 sm:pt-6 md:pt-10 pb-6 sm:pb-8 md:pb-10 overflow-hidden">
+                    <section className="relative min-h-[85vh] sm:min-h-screen flex flex-col items-center justify-start text-center px-4 sm:px-6 md:px-12 pt-0 pb-6 sm:pb-8 md:pb-10 overflow-hidden">
                         {/* Background Gradient - Integrated into Hero Section */}
                         <div
                             className="absolute inset-0 opacity-15 sm:opacity-12 md:opacity-10 transition-opacity duration-300"
@@ -814,15 +814,15 @@ const EventsPage = () => {
                             }}
                         />
                         <div className="relative z-10 max-w-4xl mx-auto mt-0 sm:mt-4 md:mt-8 w-full">
-                            <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-1.5 sm:mb-3 md:mb-4 leading-tight transition-all duration-300" style={{ color: '#EAEAEA' }}>
+                            <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-0.5 sm:mb-3 md:mb-4 leading-tight transition-all duration-300" style={{ color: '#EAEAEA' }}>
                                 {selectedEvent.title.toUpperCase()}
                             </h1>
-                            <p className="text-sm sm:text-lg md:text-xl lg:text-2xl mb-4 sm:mb-6 md:mb-8 transition-all duration-300" style={{ color: currentColor?.accent }}>
+                            <p className="text-sm sm:text-lg md:text-xl lg:text-2xl mb-2 sm:mb-6 md:mb-8 transition-all duration-300" style={{ color: currentColor?.accent }}>
                                 {getEventDate()}
                             </p>
                             
                             {/* Countdown Timer */}
-                            <div className="grid grid-cols-4 gap-1.5 sm:gap-3 md:gap-4 lg:gap-8 mb-5 sm:mb-7 md:mb-8 w-full max-w-md sm:max-w-lg md:max-w-none mx-auto">
+                            <div className="grid grid-cols-4 gap-1.5 sm:gap-3 md:gap-4 lg:gap-8 mb-4 sm:mb-7 md:mb-8 w-full max-w-md sm:max-w-lg md:max-w-none mx-auto">
                                 <div className="text-center transition-all duration-300">
                                     <div className="text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-0.5 sm:mb-2 transition-all duration-300" style={{ color: currentColor?.accent }}>
                                         {String(countdown.days).padStart(2, '0')}
