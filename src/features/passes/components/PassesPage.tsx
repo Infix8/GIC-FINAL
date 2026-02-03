@@ -58,6 +58,7 @@ const passes = [
         name: "Alpha2Infiniti (Hackathon Program)",
         price: "₹1,000",
         paymentLink: "https://rzp.io/rzp/Alpha2Infiniti",
+        teamPassLink: "https://rzp.io/rzp/mqY3Wsn",
         colorKey: "hackathonProgram" as keyof typeof eventColors,
         features: [
             "Participation in a competitive Hackathon",
@@ -257,23 +258,42 @@ const PassesPage = () => {
                                 ))}
                             </ul>
                                     
-                                    {/* CTA Button */}
+                                    {/* CTA Buttons */}
                                     {pass.paymentLink ? (
-                                        <a
-                                            href={pass.paymentLink}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="mt-4 w-full py-3 rounded-lg font-bold transition-all duration-300 hover:scale-105 text-center block text-base relative z-10 flex-shrink-0"
-                                            style={{ 
-                                                background: 'rgba(255,255,255,0.95)', 
-                                                color: '#1a1a2e',
-                                                border: 'none', 
-                                                textDecoration: 'none',
-                                                boxShadow: '0 4px 15px rgba(0,0,0,0.2)'
-                                            }}
-                                        >
-                                            Buy Now
-                                        </a>
+                                        <div className="mt-4 space-y-3 relative z-10 flex-shrink-0">
+                                            <a
+                                                href={pass.paymentLink}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="w-full py-3 rounded-lg font-bold transition-all duration-300 hover:scale-105 text-center block text-base"
+                                                style={{ 
+                                                    background: 'rgba(255,255,255,0.95)', 
+                                                    color: '#1a1a2e',
+                                                    border: 'none', 
+                                                    textDecoration: 'none',
+                                                    boxShadow: '0 4px 15px rgba(0,0,0,0.2)'
+                                                }}
+                                            >
+                                                Buy Now
+                                            </a>
+                                            {(pass as any).teamPassLink && (
+                                                <a
+                                                    href={(pass as any).teamPassLink}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="w-full py-3 rounded-lg font-bold transition-all duration-300 hover:scale-105 text-center block text-base"
+                                                    style={{ 
+                                                        background: 'rgba(255,255,255,0.7)', 
+                                                        color: '#1a1a2e',
+                                                        border: '2px solid rgba(255,255,255,0.5)', 
+                                                        textDecoration: 'none',
+                                                        boxShadow: '0 4px 15px rgba(0,0,0,0.15)'
+                                                    }}
+                                                >
+                                                    Team Pass
+                                                </a>
+                                            )}
+                                        </div>
                                     ) : (
                             <button
                                 onClick={() => navigate('/about')}

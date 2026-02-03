@@ -66,7 +66,7 @@ const baseEventsData: EventData[] = [
         title: "Alpha 2 Infiniti",
         shortTitle: "A2I",
         tagline: "30-Hour Hiring Hackathon - \"Brighter minds for Viksith Bharath\"",
-        description: "A 30-hour intensive hiring hackathon designed to identify and nurture exceptional technical talent across multiple technology domains. Selected participants are grouped into teams to solve real-world problem statements provided by partner companies.",
+        description: "A high-intensity 30-hour hackathon where shortlisted participants form teams to solve real-world industry problem statements with mentor support. Teams develop MVP/working solutions through industry mentor guidance, culminating in final presentations and awards. Participants have opportunities for internships & PPOs (Terms & Conditions apply).",
         colorKey: "alphaToInfinity",
         highlights: [
             "360 Selected Participants",
@@ -157,7 +157,7 @@ const baseEventsData: EventData[] = [
         title: "BusiTech Expo",
         shortTitle: "BTE",
         tagline: "Business Technology Expo - Professional & Student Innovations",
-        description: "A 2-day showcase for startups and student projects to present their MVPs (Minimum Viable Products) and prototypes, with professional evaluation and potential investor connections. Startups meeting evaluation criteria advance to the Investor Pitching Session.",
+        description: "A business-focused expo showcasing products, MVPs, pilots, and scalable solutions with emphasis on commercialization and partnerships. Features exhibition stalls for companies/startups, product & solution showcases, industry networking, investor interactions, and expert evaluation with pitch opportunities.",
         colorKey: "businessTechExpo",
         highlights: [
             "Students",
@@ -217,7 +217,7 @@ const baseEventsData: EventData[] = [
         title: "InnoVestors Bootcamp",
         shortTitle: "IVB",
         tagline: "Investor Pitching Event",
-        description: "A platform for entrepreneurs to present their startups to potential investors, with separate tracks for student ventures (pre-seed stage) and professional startups (seed stage). Features 1:1 investor meetings, mixed panel pitches, and investment opportunities worth up to INR 10 Crores.",
+        description: "An investment-focused bootcamp designed to make startups investment-ready through mentoring, pitching, and investor engagement. Features online pitch submissions & shortlisting, mentoring by investors and industry experts, investor panel interactions, and round-table discussions. Outcomes include MOUs, pilot projects, partnerships, funding leads, and potential investments (Terms & Conditions apply).",
         colorKey: "investorPitching",
         highlights: [
             "35 Student Slots (Pre-Seed)",
@@ -307,8 +307,8 @@ const baseEventsData: EventData[] = [
         number: "05",
         title: "Masterminds Congregation",
         shortTitle: "MC",
-        tagline: "Young Entrepreneurs Initiative - Classes 8-10",
-        description: "A 2-phase initiative designed for school students (Classes 8-10) to foster entrepreneurial mindset and startup culture. Features training, mentorship, school-based screening, and a competitive finale. Part of a multi-year strategic collaboration between SMEC and participating schools.",
+        tagline: "Young Entrepreneurs Initiative - Classes 8-12",
+        description: "A dedicated program to ignite curiosity, creativity, and problem-solving skills among school students (Classes 8-12) by giving them early exposure to innovation and entrepreneurship. This platform provides students with opportunities to present ideas and projects, receive feedback from mentors and educators, and develop confidence and critical-thinking skills.",
         colorKey: "mastermindCongregation",
         highlights: [
             "1,200 Initial Participants",
@@ -317,7 +317,7 @@ const baseEventsData: EventData[] = [
             "School Students Only"
         ],
         keyDetails: [
-            { label: "Target Audience", value: "Classes 8-10 students" },
+            { label: "Target Audience", value: "Classes 8-12 students" },
             { label: "Initial Participants", value: "1,200 students" },
             { label: "Team Size", value: "3 members per team" },
             { label: "Finals Participants", value: "Top 100 teams" },
@@ -404,7 +404,7 @@ const baseEventsData: EventData[] = [
                 { name: "Phase 2: Expert Training Sessions", date: "February 2-4", description: "SMEC faculty training on pitching, business models, market validation, customer discovery" },
                 { name: "Phase 3: School-Based Screening", date: "February 10-20", description: "Individual school selections - top teams (3 members each) advance based on pitch & business viability" },
                 { name: "Phase 4: Results Announcement", date: "February 22", description: "Declaration of top 100 teams advancing to Grand Finale at SMEC campus" },
-                { name: "Phase 5: Grand Finale", date: "February 27-28", description: "Top 100 teams compete at SMEC campus. Strictly for school students (Classes 8-10)" }
+                { name: "Phase 5: Grand Finale", date: "February 27-28", description: "Top 100 teams compete at SMEC campus. Strictly for school students (Classes 8-12)" }
             ]
         }
     },
@@ -414,7 +414,7 @@ const baseEventsData: EventData[] = [
         title: "Knowledge Bubble",
         shortTitle: "KB",
         tagline: "Deep-Tech Policy Conclave - Policymakers, Industry Leaders & Innovators",
-        description: "A premier two-day platform bringing together policymakers, industry leaders, innovators, scientists, and entrepreneurs to discuss national strategy, regulatory frameworks, and technological advancement across cutting-edge domains. Features keynote sessions, panel discussions, and networking across multiple tracks.",
+        description: "A high-level discussion forum focusing on policy, industry, research, and deep-tech ecosystems. This premier platform brings together policymakers, industry leaders, researchers, and founders for expert talks and panels, policy & industry alignment discussions, and focus on deep-tech commercialization with national & global innovation perspectives.",
         colorKey: "knowledgeBubble",
         highlights: [
             "1,300 Seat Main Auditorium",
@@ -751,7 +751,7 @@ const EventsPage = () => {
             const baseFAQs = [
                 {
                     q: "How can I edit, transfer, or cancel my registration?",
-                    a: "For any issues related to ticketing or registration, please email gic@smec.edu.in."
+                    a: "For any issues related to ticketing or registration, please email globalinnovatorsconclave@smec.ac.in."
                 },
                 {
                     q: "Do I need to pay money to register?",
@@ -768,7 +768,7 @@ const EventsPage = () => {
                 {
                     q: "Do I need to have any specific qualification to be a participant?",
                     a: selectedEvent.id === "mastermind-congregation" 
-                        ? "Yes, you must be a student from Classes 8-10 from participating schools."
+                        ? "Yes, you must be a student from Classes 8-12 from participating schools."
                         : "Yes, you must be a student from any University/College in India."
                 },
                 {
@@ -822,11 +822,11 @@ const EventsPage = () => {
         // Get event description for About section
         const getEventAbout = () => {
             const descriptions: Record<string, string> = {
-                "knowledge-bubble": "A premier two-day platform bringing together policymakers, industry leaders, innovators, scientists, and entrepreneurs to discuss national strategy, regulatory frameworks, and technological advancement across cutting-edge domains.",
-                "alpha-to-infinity": "A 30-hour intensive hiring hackathon designed to identify and nurture exceptional technical talent across multiple technology domains. Selected participants are grouped into teams to solve real-world problem statements provided by partner companies.",
-                "business-tech-expo": "A 2-day showcase for startups and student projects to present their MVPs (Minimum Viable Products) and prototypes, with professional evaluation and potential investor connections.",
-                "investor-pitching": "A platform for entrepreneurs to present their startups to potential investors, with separate tracks for student ventures (pre-seed stage) and professional startups (seed stage).",
-                "mastermind-congregation": "A multi-phase journey empowering school students (Classes 8-10) in entrepreneurship, from training to the grand finale competition at SMEC campus."
+                "mastermind-congregation": "A dedicated program to ignite curiosity, creativity, and problem-solving skills among school students by giving them early exposure to innovation and entrepreneurship. This platform provides students with opportunities to present ideas and projects, receive feedback from mentors and educators, and develop confidence and critical-thinking skills.",
+                "alpha-to-infinity": "A high-intensity 30-hour hackathon where shortlisted participants form teams to solve real-world industry problem statements with mentor support. Teams develop MVP/working solutions through industry mentor guidance, culminating in final presentations and awards. Participants have opportunities for internships & PPOs (Terms & Conditions apply).",
+                "business-tech-expo": "A business-focused expo showcasing products, MVPs, pilots, and scalable solutions with emphasis on commercialization and partnerships. Features exhibition stalls for companies/startups, product & solution showcases, industry networking, investor interactions, and expert evaluation with pitch opportunities.",
+                "investor-pitching": "An investment-focused bootcamp designed to make startups investment-ready through mentoring, pitching, and investor engagement. Features online pitch submissions & shortlisting, mentoring by investors and industry experts, investor panel interactions, and round-table discussions. Outcomes include MOUs, pilot projects, partnerships, funding leads, and potential investments (Terms & Conditions apply).",
+                "knowledge-bubble": "A high-level discussion forum focusing on policy, industry, research, and deep-tech ecosystems. This premier platform brings together policymakers, industry leaders, researchers, and founders for expert talks and panels, policy & industry alignment discussions, and focus on deep-tech commercialization with national & global innovation perspectives."
             };
             return descriptions[selectedEvent.id] || selectedEvent.description;
         };
@@ -911,12 +911,17 @@ const EventsPage = () => {
                                 </div>
                             </div>
 
-                            <div className="inline-block px-10 py-5 rounded-full font-bold text-2xl md:text-3xl cursor-pointer transition-all hover:scale-105" style={{ 
-                                background: currentColor?.gradient,
-                                color: 'white'
-                            }}>
-                                Register Now!
-                            </div>
+                            <Link
+                                to="/passes"
+                                className="inline-block px-10 py-5 rounded-full font-bold text-2xl md:text-3xl cursor-pointer transition-all hover:scale-105"
+                                style={{ 
+                                    background: currentColor?.gradient,
+                                    color: 'white',
+                                    textDecoration: 'none'
+                                }}
+                            >
+                                {selectedEvent.id === "knowledge-bubble" ? "Register for Delegate Pass" : "Register Now!"}
+                            </Link>
                         </div>
                     </section>
 
@@ -924,17 +929,16 @@ const EventsPage = () => {
                     <section className="py-20 px-6 md:px-12" style={{ background: 'var(--color-bg-primary)' }}>
                         <div className="max-w-4xl mx-auto">
                             <h2 className="text-4xl md:text-5xl font-bold mb-8 text-center" style={{ color: '#EAEAEA' }}>
-                                About Us
+                                About
                             </h2>
-                            <p className="text-lg md:text-xl leading-relaxed mb-6" style={{ color: 'rgba(234, 234, 234, 0.8)' }}>
-                                {getEventAbout()}
-                            </p>
-                            <p className="text-lg md:text-xl leading-relaxed mb-6" style={{ color: 'rgba(234, 234, 234, 0.8)' }}>
-                                {selectedEvent.description}
-                            </p>
-                            <p className="text-lg md:text-xl leading-relaxed" style={{ color: 'rgba(234, 234, 234, 0.8)' }}>
-                                Join us at {selectedEvent.title} and be part of the Global Innovators Conclave, shaping the future of innovation and entrepreneurship.
-                            </p>
+                            <div className="space-y-6">
+                                <p className="text-lg md:text-xl leading-relaxed" style={{ color: 'rgba(234, 234, 234, 0.8)' }}>
+                                    {getEventAbout()}
+                                </p>
+                                <p className="text-lg md:text-xl leading-relaxed" style={{ color: 'rgba(234, 234, 234, 0.8)' }}>
+                                    Join us at {selectedEvent.title} and be part of the Global Innovators Conclave, shaping the future of innovation and entrepreneurship.
+                                </p>
+                            </div>
                         </div>
                     </section>
 
@@ -1302,7 +1306,7 @@ const EventsPage = () => {
                                 Contact Us
                             </h2>
                             <p className="text-xl md:text-2xl" style={{ color: 'rgba(234, 234, 234, 0.8)' }}>
-                                For all queries, please contact <a href="mailto:gic@smec.edu.in" style={{ color: currentColor?.accent }}>gic@smec.edu.in</a>
+                                For all queries, please contact <a href="mailto:globalinnovatorsconclave@smec.ac.in" style={{ color: currentColor?.accent }}>globalinnovatorsconclave@smec.ac.in</a>
                             </p>
                         </div>
                     </section>

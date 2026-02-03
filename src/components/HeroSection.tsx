@@ -247,27 +247,27 @@ const HeroSection = () => {
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3, ease: 'easeInOut' }}
                 >
-                  <h1 className="font-display text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-[1.1] sm:leading-[1.05] tracking-tight italic break-words"
+                  <h1 className="font-display text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-[1.1] sm:leading-[1.05] tracking-tight break-words"
                     style={{
-                      fontStyle: 'italic',
-                      transform: 'skewX(-8deg)',
+                      fontStyle: 'normal',
+                      transform: 'none',
                       fontFamily: '"Playfair Display", "Cormorant Garamond", serif',
                     }}
                   >
                     <span
                       className="bg-gradient-to-r from-gic-lavender via-gic-violet via-primary to-gic-lavender bg-clip-text text-transparent"
                       style={{
-                        fontStyle: 'italic',
-                        transform: 'skewX(-8deg)',
+                        fontStyle: 'normal',
+                        transform: 'none',
                       }}
                     >
                       {slide.highlight}
                     </span>
                   </h1>
-                  <p className="text-gic-lavender/80 text-sm sm:text-base md:text-lg lg:text-xl mt-3 sm:mt-4 leading-relaxed max-w-xl italic"
+                  <p className="text-gic-lavender/80 text-sm sm:text-base md:text-lg lg:text-xl mt-3 sm:mt-4 leading-relaxed max-w-xl"
                     style={{
-                      fontStyle: 'italic',
-                      transform: 'skewX(-6deg)',
+                      fontStyle: 'normal',
+                      transform: 'none',
                       fontFamily: '"Playfair Display", "Cormorant Garamond", serif',
                     }}
                   >

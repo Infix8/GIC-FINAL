@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import { ArrowRight, Calendar, MapPin, Users, Trophy, Lightbulb, Rocket, Play } from "lucide-react";
+import { ArrowRight, Users, Trophy, Lightbulb, Rocket, Play } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import { Box, Container, Stack, Typography, useTheme, Grid } from "@mui/material";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import gicLogo from "@/assets/gic-logo.jpeg";
@@ -43,19 +44,13 @@ const slides = [
   }
 ];
 
-const HeroSection: React.FC = () => {
+const HeroSection = () => {
+  const theme = useTheme();
   const [currentSlide, setCurrentSlide] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
-  const [isMobile, setIsMobile] = useState(false);
-  const [investmentValue, setInvestmentValue] = useState(0);
-  const investmentValues = ["₹10Cr", "₹5L"];
-
   // Detect mobile on client side to avoid hydration issues
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    // Mobile detection can be added here if needed in the future
   }, []);
 
   useEffect(() => {
@@ -66,62 +61,74 @@ const HeroSection: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
-  useEffect(() => {
-    // Cycle between ₹10Cr and ₹5L
-    const timer = setInterval(() => {
-      setInvestmentValue((prev) => (prev + 1) % investmentValues.length);
-    }, 3000); // Change every 3 seconds
-    return () => clearInterval(timer);
-  }, []);
-
 
 
   const slide = slides[currentSlide];
   const SlideIcon = slide.icon;
 
   return (
-    <section
+    <Box
+      component="section"
       ref={sectionRef}
-      className="relative min-h-[calc(100vh-5rem)] sm:min-h-[calc(100vh-6rem)] md:min-h-[calc(100vh-100px)] flex items-center overflow-hidden bg-gic-dark flowing-bg flowing-bg-hero"
+      className="flowing-bg flowing-bg-hero"
+      sx={{
+        position: 'relative',
+        minHeight: { xs: 'calc(100vh - 5rem)', sm: 'calc(100vh - 6rem)', md: 'calc(100vh - 100px)' },
+        display: 'flex',
+        alignItems: 'center',
+        // CRITICAL: Remove overflow:hidden on mobile to allow touch scrolling
+        overflow: { xs: 'visible', md: 'hidden' },
+        background: theme.palette.background.default,
+      }}
     >
-
-
       {/* Grid pattern - 5% visible */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Base grid - 5% visible */}
-        <div
-          className="absolute inset-0 opacity-[0.025]"
-          style={{
-            backgroundImage: `linear-gradient(#8B7BB5 1px, transparent 1px), linear-gradient(90deg, #8B7BB5 1px, transparent 1px)`,
-            backgroundSize: '60px 60px'
+      <Box
+        sx={{
+          position: 'absolute',
+          inset: 0,
+          overflow: 'hidden',
+        }}
+      >
+        <Box
+          sx={{
+            position: 'absolute',
+            inset: 0,
+            opacity: 0.025,
+            backgroundImage: `linear-gradient(${theme.palette.primary.main} 1px, transparent 1px), linear-gradient(90deg, ${theme.palette.primary.main} 1px, transparent 1px)`,
+            backgroundSize: '60px 60px',
           }}
         />
-      </div>
+      </Box>
 
-
-      <div className="max-w-full sm:max-w-[95%] md:max-w-[90%] lg:max-w-[85%] xl:max-w-[75%] mx-auto px-4 sm:px-6 md:px-8 pb-8 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-24 pt-8 sm:pt-12 md:pt-6 lg:pt-8 relative z-10 w-full">
+      <Container
+        maxWidth={false}
+        sx={{
+          maxWidth: { xs: '100%', sm: '95%', md: '90%', lg: '85%', xl: '75%' },
+          mx: 'auto',
+          pl: 0,
+          paddingLeft: 0,
+          pr: { xs: 2, sm: 3, md: 4 },
+          pb: { xs: 2, sm: 3, md: 4, lg: 5, xl: 6 },
+          pt: { xs: 2, sm: 3, md: 3, lg: 4 },
+          position: 'relative',
+          zIndex: 10,
+          width: '100%',
+        }}
+      >
         {/* Title and Badge - Above Grid */}
-        <div className="mb-4 sm:mb-6 md:mb-8 lg:mb-12 space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-10">
-          {/* Event Badge - Hidden on Mobile */}
-          <div className="hidden md:inline-flex flex-row items-center gap-3 bg-gradient-to-r from-primary/10 via-gic-violet/10 to-primary/10 backdrop-blur-md rounded-full px-4 md:px-5 py-2.5 border border-gic-violet/30 shadow-lg shadow-primary/15 text-sm">
-            <div className="flex items-center gap-2">
-              <Calendar className="w-4 h-4 text-primary flex-shrink-0" />
-              <span className="text-gic-lavender font-semibold text-sm whitespace-nowrap">27-28 February 2026</span>
-            </div>
-            <div className="w-px h-4 bg-gic-violet/40" />
-            <div className="flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-gic-violet flex-shrink-0" />
-              <span className="text-gic-lavender font-semibold text-sm whitespace-nowrap">Hyderabad, India</span>
-            </div>
-          </div>
-
-          <div className="space-y-4 sm:space-y-6">
+        <Stack
+          spacing={{ xs: 2, sm: 3, md: 4, lg: 5 }}
+          sx={{
+            mb: { xs: 2, sm: 3, md: 4, lg: 6 },
+          }}
+        >
+          <Stack spacing={{ xs: 2, sm: 3 }}>
             <div className="flex items-center group">
               <div className="flex flex-col mb-1 capitalize w-full">
                 <span
                   className="font-bold text-white/90 ml-1 mb-1 sm:mb-2"
                   style={{
-                    fontFamily: 'var(--font-elegant)',
+                    fontFamily: '"Playfair Display", "Cormorant Garamond", serif',
                     letterSpacing: '0.05em',
                     lineHeight: '1.1',
                     fontSize: 'clamp(0.6rem, 1.2vw, 1.35rem)',
@@ -131,18 +138,20 @@ const HeroSection: React.FC = () => {
                   SMEC's
                 </span>
                 <div 
-                  style={{ transform: 'scale(0.75)', transformOrigin: 'left center', display: 'inline-block', width: '100%' }}
+                  style={{ transform: 'none', transformOrigin: 'left center', display: 'inline-block', width: '100%' }}
                 >
                   <h2
-                    className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold flex flex-wrap items-center cursor-pointer transition-all duration-300 hover:drop-shadow-[0_0_3px_rgba(169,155,212,0.15)]"
+                    className="font-bold flex flex-nowrap items-center cursor-pointer transition-all duration-300 hover:drop-shadow-[0_0_3px_rgba(169,155,212,0.15)]"
                     style={{
-                      fontFamily: 'var(--font-elegant)',
+                      fontFamily: '"Playfair Display", "Cormorant Garamond", serif',
                       fontStyle: 'normal',
                       letterSpacing: '0.02em',
                       lineHeight: '1.1',
                       fontWeight: 700,
                       gap: '0.1875rem',
-                      color: 'rgba(226, 218, 255, 0.9)'
+                      color: 'rgba(226, 218, 255, 0.9)',
+                      fontSize: 'clamp(1.28rem, 5.12vw, 5.12rem)',
+                      whiteSpace: 'nowrap'
                     }}
                   >
                     {['Global', 'Innovators', 'Conclave', '2026'].map((word, index) => (
@@ -167,14 +176,15 @@ const HeroSection: React.FC = () => {
             </div>
 
 
-          </div>
-        </div>
+          </Stack>
+        </Stack>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 items-start">
+        <Grid container spacing={{ xs: 3, sm: 4, md: 6, lg: 8 }} sx={{ alignItems: 'flex-start' }}>
           {/* Left Content */}
-          <div className="space-y-6 sm:space-y-8">
+          <Grid size={{ xs: 12, lg: 6 }}>
+            <Stack spacing={{ xs: 3, sm: 4 }}>
             {/* Main Title Highlight - Slide animation for both mobile and desktop */}
-            <div className="space-y-3 sm:space-y-4">
+            <Stack spacing={{ xs: 1.5, sm: 2 }}>
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentSlide}
@@ -183,51 +193,111 @@ const HeroSection: React.FC = () => {
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3, ease: 'easeInOut' }}
                 >
-                  <h1 className="font-display text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-[1.1] sm:leading-[1.05] tracking-tight italic break-words"
+                  <h1 className="font-display text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-[1.1] sm:leading-[1.05] tracking-tight break-words"
                     style={{
-                      fontStyle: 'italic',
-                      transform: 'skewX(-8deg)',
-                      fontFamily: 'var(--font-elegant)',
+                      fontStyle: 'normal',
+                      transform: 'none',
+                      fontFamily: '"Playfair Display", "Cormorant Garamond", serif',
                     }}
                   >
                     <span
                       className="bg-gradient-to-r from-gic-lavender via-gic-violet via-primary to-gic-lavender bg-clip-text text-transparent"
                       style={{
-                        fontStyle: 'italic',
-                        transform: 'skewX(-8deg)',
+                        fontStyle: 'normal',
+                        transform: 'none',
                       }}
                     >
                       {slide.highlight}
                     </span>
                   </h1>
-                  <p className="text-gic-lavender/80 text-sm sm:text-base md:text-lg lg:text-xl mt-3 sm:mt-4 leading-relaxed max-w-xl italic"
+                  <p className="text-gic-lavender/80 text-sm sm:text-base md:text-lg lg:text-xl mt-3 sm:mt-4 leading-relaxed max-w-xl"
                     style={{
-                      fontStyle: 'italic',
-                      transform: 'skewX(-6deg)',
-                      fontFamily: 'var(--font-elegant)',
+                      fontStyle: 'normal',
+                      transform: 'none',
+                      fontFamily: '"Playfair Display", "Cormorant Garamond", serif',
                     }}
                   >
                     {slide.title}
                   </p>
                 </motion.div>
               </AnimatePresence>
-            </div>
+            </Stack>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-6">
-              <div className="space-y-0.5 sm:space-y-1">
-                <p className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gic-lavender to-primary bg-clip-text text-transparent">{slide.stat}</p>
-                <p className="text-gic-violet/70 text-xs sm:text-sm">{slide.statLabel}</p>
-              </div>
-              <div className="space-y-0.5 sm:space-y-1">
-                <p className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gic-lavender to-primary bg-clip-text text-transparent">2</p>
-                <p className="text-gic-violet/70 text-xs sm:text-sm">Days Event</p>
-              </div>
-              <div className="space-y-0.5 sm:space-y-1">
-                <p className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gic-lavender to-primary bg-clip-text text-transparent">₹5L+</p>
-                <p className="text-gic-violet/70 text-xs sm:text-sm">Prize Pool</p>
-              </div>
-            </div>
+            <Grid container spacing={{ xs: 1.5, sm: 2, md: 3 }}>
+              <Grid size={{ xs: 4 }}>
+                <Stack spacing={{ xs: 0.25, sm: 0.5 }}>
+                  <Typography
+                    sx={{
+                      fontSize: { xs: '1.5rem', sm: '1.875rem', lg: '2.25rem' },
+                      fontWeight: 'bold',
+                      background: `linear-gradient(to right, ${theme.palette.secondary.light}, ${theme.palette.primary.main})`,
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      backgroundClip: 'text',
+                    }}
+                  >
+                    {slide.stat}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      color: `${theme.palette.secondary.main}B3`,
+                      fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                    }}
+                  >
+                    {slide.statLabel}
+                  </Typography>
+                </Stack>
+              </Grid>
+              <Grid size={{ xs: 4 }}>
+                <Stack spacing={{ xs: 0.25, sm: 0.5 }}>
+                  <Typography
+                    sx={{
+                      fontSize: { xs: '1.5rem', sm: '1.875rem', lg: '2.25rem' },
+                      fontWeight: 'bold',
+                      background: `linear-gradient(to right, ${theme.palette.secondary.light}, ${theme.palette.primary.main})`,
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      backgroundClip: 'text',
+                    }}
+                  >
+                    2
+                  </Typography>
+                  <Typography
+                    sx={{
+                      color: `${theme.palette.secondary.main}B3`,
+                      fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                    }}
+                  >
+                    Days Event
+                  </Typography>
+                </Stack>
+              </Grid>
+              <Grid size={{ xs: 4 }}>
+                <Stack spacing={{ xs: 0.25, sm: 0.5 }}>
+                  <Typography
+                    sx={{
+                      fontSize: { xs: '1.5rem', sm: '1.875rem', lg: '2.25rem' },
+                      fontWeight: 'bold',
+                      background: `linear-gradient(to right, ${theme.palette.secondary.light}, ${theme.palette.primary.main})`,
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      backgroundClip: 'text',
+                    }}
+                  >
+                    ₹5L+
+                  </Typography>
+                  <Typography
+                    sx={{
+                      color: `${theme.palette.secondary.main}B3`,
+                      fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                    }}
+                  >
+                    Prize Pool
+                  </Typography>
+                </Stack>
+              </Grid>
+            </Grid>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row sm:flex-nowrap gap-3 sm:gap-4 pt-2 sm:pt-4">
@@ -245,10 +315,21 @@ const HeroSection: React.FC = () => {
               </Link>
             </div>
 
-          </div>
+            </Stack>
+          </Grid>
 
           {/* Right Content - Visual Element */}
-          <div className="relative hidden lg:flex items-center justify-center pt-10 translate-y-[5%]">
+          <Grid size={{ xs: 12, lg: 6 }}>
+            <Box
+              sx={{
+                position: 'relative',
+                display: { xs: 'none', lg: 'flex' },
+                alignItems: 'center',
+                justifyContent: 'center',
+                pt: 2.5,
+                transform: 'translateY(5%)',
+              }}
+            >
             <div className="relative w-full max-w-lg">
               {/* Main Logo Container */}
               <div className="relative z-10">
@@ -286,45 +367,9 @@ const HeroSection: React.FC = () => {
                 className="absolute -bottom-4 -left-8 bg-gradient-to-br from-primary/12 to-gic-violet/12 backdrop-blur-md rounded-2xl p-5 shadow-lg border border-gic-violet/25 z-20 shadow-primary/10 hover:scale-105 hover:-translate-y-1 transition-transform duration-300"
               >
                 <div className="space-y-1">
-                  <div className="text-3xl font-bold bg-gradient-to-r from-gic-lavender via-gic-violet to-primary bg-clip-text text-transparent h-10 flex items-center">
-                    <AnimatePresence mode="wait">
-                      <motion.p
-                        key={investmentValue}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.5 }}
-                        className="bg-gradient-to-r from-gic-lavender via-gic-violet to-primary bg-clip-text text-transparent"
-                      >
-                        {investmentValues[investmentValue]}
-                      </motion.p>
-                    </AnimatePresence>
-                  </div>
-                  <AnimatePresence mode="wait">
-                    <motion.p
-                      key={`label-${investmentValue}`}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.5 }}
-                      className="text-sm text-gic-lavender/90"
-                    >
-                      {investmentValue === 0 ? "Investment Opportunity" : "Prize Pool"}
-                    </motion.p>
-                  </AnimatePresence>
-                  {investmentValue === 0 && (
-                    <AnimatePresence>
-                      <motion.p
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.5 }}
-                        className="text-xs text-gic-violet/70"
-                      >
-                        for selected startups
-                      </motion.p>
-                    </AnimatePresence>
-                  )}
+                  <p className="text-3xl font-bold bg-gradient-to-r from-gic-lavender via-gic-violet to-primary bg-clip-text text-transparent">₹10Cr</p>
+                  <p className="text-sm text-gic-lavender/90">Investment Opportunity</p>
+                  <p className="text-xs text-gic-violet/70">for selected startups</p>
                 </div>
               </div>
 
@@ -345,12 +390,12 @@ const HeroSection: React.FC = () => {
               </div>
 
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
   );
 };
 
 export default HeroSection;
-
