@@ -138,16 +138,18 @@ const baseEventsData: EventData[] = [
             day1: [
                 { time: "09:30 - 10:00", activity: "Inauguration", details: "Opening ceremony and welcome address", type: "Ceremony" },
                 { time: "10:00 - 10:30", activity: "Problem Statement Announcement", details: "Teams receive their assigned problem statements from partner companies", type: "Briefing" },
-                { time: "19:00 - 20:00", activity: "Tech-Related Event", details: "Engagement activity or technical showcase for participants", type: "Activity" },
-                { time: "20:00 - 00:00", activity: "SPRINT 2 (4 hours)", details: "Development phase - building on initial concepts", type: "Sprint" }
+                { time: "11:00 - 18:00", activity: "Sprint 1 (7 Hours)", details: "First development phase - initial concept development and planning", type: "Sprint" },
+                { time: "18:00 - 19:00", activity: "Mentor Checking (Milestone 1)", details: "Mentor evaluation and feedback on initial progress", type: "Evaluation" },
+                { time: "19:00 - 20:00", activity: "Tech-related Engagement", details: "Engagement activity or technical showcase for participants", type: "Activity" },
+                { time: "20:00 - 00:00", activity: "Sprint 2 (4 Hours)", details: "Development phase - building on initial concepts", type: "Sprint" }
             ],
             day2: [
-                { time: "00:00 - 01:00", activity: "Campfire and Networking", details: "Team bonding, networking session, and informal discussions", type: "Networking" },
-                { time: "01:00 - 10:00", activity: "SPRINT 3 (9 hours)", details: "Final development phase - polish, testing, and documentation", type: "Sprint" },
-                { time: "10:00 - 12:00", activity: "Mentor Final Checking & Elimination", details: "Final evaluation by mentors; only TOP 10 TEAMS advance to Round 2", type: "Evaluation" },
-                { time: "12:00 - 13:00", activity: "Lunch Break", details: "Refreshment and preparation for final presentations", type: "Break" },
+                { time: "00:00 - 01:00", activity: "Campfire & Networking", details: "Team bonding, networking session, and informal discussions", type: "Networking" },
+                { time: "01:00 - 10:00", activity: "Sprint 3 (Final Phase – 10 Hours)", details: "Final development phase - polish, testing, and documentation", type: "Sprint" },
+                { time: "10:00 - 12:00", activity: "Elimination & Final Evaluation", details: "Final evaluation by mentors; only TOP 10 TEAMS advance to Round 2", type: "Evaluation" },
+                { time: "12:00 - 13:00", activity: "Lunch", details: "Refreshment and preparation for final presentations", type: "Break" },
                 { time: "13:00 - 15:00", activity: "Final Presentations (Top 10 Teams)", details: "Final presentations from qualifying teams to judges and company representatives", type: "Presentation" },
-                { time: "16:00", activity: "Prize Distribution", details: "Awards ceremony for winning teams, PPO announcements, and closing", type: "Ceremony" }
+                { time: "16:00", activity: "Award Ceremony", details: "Awards ceremony for winning teams, PPO announcements, and closing", type: "Ceremony" }
             ]
         }
     },
@@ -201,13 +203,14 @@ const baseEventsData: EventData[] = [
         ],
         timeline: {
             day1: [
-                { time: "08:30 - 11:00", activity: "Stall Setup & Inauguration", details: "Participant setup, stall arrangement, and opening ceremony (2.5 hours)", type: "Setup" },
-                { time: "11:00 - 15:00", activity: "Exhibition Open", details: "Live expo with visitor interaction, demonstrations, and networking (4 hours)", type: "Exhibition" }
+                { time: "08:30 - 11:00", activity: "Stall Setup & Inauguration", details: "Participant setup, stall arrangement, and opening ceremony", type: "Setup" },
+                { time: "11:00 - 15:00", activity: "Exhibition (4 Hours)", details: "Live expo with visitor interaction, demonstrations, and networking", type: "Exhibition" },
+                { time: "15:00 - 17:00", activity: "Mini Workshops (2 Hours)", details: "Interactive workshops and learning sessions for participants", type: "Workshop" }
             ],
             day2: [
-                { time: "09:30 - 11:00", activity: "Expert Panel Evaluation", details: "Structured evaluation of all exhibits by industry experts (1.5 hours)", type: "Evaluation" },
-                { time: "11:00 - 16:00", activity: "Investor Pitch Sessions", details: "Top-ranked startups present to investor panels (selected teams only)", type: "Pitching" },
-                { time: "16:00 onwards", activity: "Prize Distribution & Closing", details: "Awards, recognition ceremony, and expo closing", type: "Ceremony" }
+                { time: "09:30 - 11:00", activity: "Expert Evaluation", details: "Structured evaluation of all exhibits by industry experts", type: "Evaluation" },
+                { time: "11:00 - 16:00", activity: "Investor Pitch (Selected Teams)", details: "Top-ranked startups present to investor panels", type: "Pitching" },
+                { time: "16:00", activity: "Elimination & Final Evaluation", details: "Final evaluation results and awards ceremony", type: "Ceremony" }
             ]
         }
     },
@@ -289,16 +292,12 @@ const baseEventsData: EventData[] = [
         timeline: {
             day1: [
                 { time: "09:00 - 10:00", activity: "Inauguration", details: "Opening ceremony for all participants - Students and Professionals", type: "Ceremony" },
-                { time: "10:00 - 13:00", activity: "Networking Arena", details: "Networking and interaction opportunities for participants", type: "Networking" },
-                { time: "13:00 - 16:00", activity: "Student Pitching Session", details: "15 student team pitches (Pre-Seed) - 12 minutes each", type: "Pitching" },
-                { time: "13:00 - 17:00", activity: "Professional Pitching Session", details: "14 professional startup pitches (Seed) - 17 minutes each", type: "Pitching" }
+                { time: "10:00 - 13:00", activity: "Visiting & Mentor Interactions", details: "Networking and interaction opportunities with mentors for participants", type: "Networking" },
+                { time: "13:00 - 16:00", activity: "Pitching Sessions", details: "Student Track: 15 pitches (Pre-Seed) - 12 min each | Professional Track: 14 pitches (Seed) - 17 min each", type: "Pitching" }
             ],
             day2: [
-                { time: "10:00 - 12:00", activity: "Student Pitching (Morning)", details: "10 student team pitches - 12 minutes each", type: "Pitching" },
-                { time: "10:00 - 12:00", activity: "Professional Pitching (Morning)", details: "7 professional startup pitches - 17 minutes each", type: "Pitching" },
-                { time: "13:30 - 15:30", activity: "Student Pitching (Afternoon)", details: "10 student team pitches - 12 minutes each", type: "Pitching" },
-                { time: "13:30 - 15:30", activity: "Professional Pitching (Afternoon)", details: "7 professional startup pitches - 17 minutes each", type: "Pitching" },
-                { time: "16:00 onwards", activity: "Investment Announcements", details: "Selected startups receive investment commitments", type: "Ceremony" }
+                { time: "10:00 - 12:00", activity: "Pitching Sessions", details: "Student Track: 10 pitches (Pre-Seed) - 12 min each | Professional Track: 7 pitches (Seed) - 17 min each", type: "Pitching" },
+                { time: "13:30 - 15:30", activity: "Pitching Sessions", details: "Student Track: 10 pitches (Pre-Seed) - 12 min each | Professional Track: 7 pitches (Seed) - 17 min each", type: "Pitching" }
             ]
         }
     },
@@ -507,24 +506,12 @@ const baseEventsData: EventData[] = [
         ],
         timeline: {
             day1: [
-                { time: "10:00 - 11:30", activity: "Inauguration & Keynote Sessions", details: "Opening remarks and keynote addresses by GIC Chair & Chief Guests (7 speakers)", type: "Ceremony" },
-                { time: "11:30 - 12:00", activity: "Tea Break & Networking", details: "Refreshments and exhibition walk", type: "Break" },
-                { time: "12:00 - 13:00", activity: "Panel: Entrepreneurship & India Mission", details: "National innovation ecosystem, government support, startup success stories (7 panelists)", type: "Panel" },
-                { time: "13:00 - 14:00", activity: "Panel: Policy Enablement & Vision 2047", details: "Policy frameworks, regulatory enablement, long-term technology roadmap (7 panelists)", type: "Panel" },
-                { time: "14:00 - 15:00", activity: "Lunch Break & Exhibition Walk", details: "Networking lunch and expo exploration", type: "Break" },
-                { time: "15:00 - 16:00", activity: "Panel: Entrepreneurship & Growth", details: "Scaling startups, investor relations, market expansion strategies (7 panelists)", type: "Panel" },
-                { time: "16:00 - 17:00", activity: "Panel: Data Centers & Infrastructure", details: "Deep-tech infrastructure, cloud ecosystems, investment opportunities (7 panelists)", type: "Panel" },
-                { time: "17:00 - 17:30", activity: "Coffee Break & Networking", details: "Evening networking session", type: "Break" }
+                { time: "10:00 - 11:00", activity: "Inauguration", details: "Opening ceremony and welcome address", type: "Ceremony" },
+                { time: "11:00 - 17:00", activity: "Expert Talks & Panel Discussions", details: "High-level policy, industry, and deep-tech discussions", type: "Panel" }
             ],
             day2: [
-                { time: "10:30 - 11:30", activity: "Opening & Keynote Sessions", details: "Track welcome and keynote addresses by Chief Guests (7 speakers)", type: "Ceremony" },
-                { time: "11:30 - 12:00", activity: "Tea Break & Expo Walk", details: "Refreshments and exhibition", type: "Break" },
-                { time: "12:00 - 13:00", activity: "Panel: Space & Defence Technologies", details: "Frontier technology, national security, strategic initiatives (7 panelists)", type: "Panel" },
-                { time: "13:00 - 14:00", activity: "Panel: Semiconductors & Electronics", details: "Chip design, supply chain resilience, Make in India initiatives (7 panelists)", type: "Panel" },
-                { time: "14:00 - 15:00", activity: "Lunch Break & Exhibition Walk", details: "Continued networking", type: "Break" },
-                { time: "15:00 - 16:00", activity: "Panel: Advanced Materials & Nano", details: "Materials research, nanotechnology applications, industrial implementation (7 panelists)", type: "Panel" },
-                { time: "16:00 - 17:00", activity: "Panel: Climate & Sustainability", details: "Climate tech, sustainability solutions, renewable energy, green startups (7 panelists)", type: "Panel" },
-                { time: "17:00 - 17:30", activity: "Closing & Networking", details: "Closing remarks and final networking session", type: "Break" }
+                { time: "10:00 - 11:00", activity: "Keynote Session", details: "Keynote addresses by industry leaders and policymakers", type: "Ceremony" },
+                { time: "11:00 - 17:00", activity: "Expert Talks & Panel Discussions", details: "High-level policy, industry, and deep-tech discussions", type: "Panel" }
             ]
         }
     }
@@ -588,31 +575,40 @@ const EventsPage = () => {
         return () => ctx.revert();
     }, [selectedEvent]);
 
-    // Timeline animations - Cards appear as you scroll
+    // Timeline animations - Cards appear as you scroll (disabled on mobile)
     useLayoutEffect(() => {
         if (!selectedEvent) return;
 
+        // Check if mobile - disable animations on mobile
+        const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+        
         const ctx = gsap.context(() => {
             const items = gsap.utils.toArray('.timeline-item');
             items.forEach((item, index) => {
                 const el = item as HTMLElement;
-                // Reset initial state
-                gsap.set(el, { opacity: 0, y: 40 });
                 
-                // Animate in with scroll trigger
-                gsap.to(el, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.6,
-                    delay: index * 0.1,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: el,
-                        start: "top 85%",
-                        toggleActions: "play none none reverse",
-                        once: true
-                    }
-                });
+                if (isMobile) {
+                    // On mobile, show items immediately without animation
+                    gsap.set(el, { opacity: 1, y: 0 });
+                } else {
+                    // Reset initial state for desktop
+                    gsap.set(el, { opacity: 0, y: 40 });
+                    
+                    // Animate in with scroll trigger
+                    gsap.to(el, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.6,
+                        delay: index * 0.1,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "top 85%",
+                            toggleActions: "play none none reverse",
+                            once: true
+                        }
+                    });
+                }
             });
         }, timelineRef);
 
@@ -692,7 +688,16 @@ const EventsPage = () => {
     const handleDaySwitch = (day: 1 | 2) => {
         if (day === activeDay) return;
 
-        // Animate out current items
+        // Check if mobile - disable animations on mobile
+        const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
+        if (isMobile) {
+            // On mobile, just switch without animation
+            setActiveDay(day);
+            return;
+        }
+
+        // Animate out current items (desktop only)
         gsap.to('.timeline-item', {
             opacity: 0,
             y: -20,
