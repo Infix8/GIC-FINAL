@@ -86,9 +86,9 @@ const SpeakersPage = () => {
                 <div className="mt-16 w-full max-w-7xl">
                     <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
                         {/* Speaker 1 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/1.png" alt="Dr. J A CHOWDARY" className="w-full h-full object-cover" loading="lazy" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/1.png" alt="Dr. J A CHOWDARY" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>Dr. J A CHOWDARY</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Founder - International Startup Foundation</p>
@@ -96,9 +96,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 2 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/2.png" alt="Dr. R. HAFEEZ BASHA" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/2.png" alt="Dr. R. HAFEEZ BASHA" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>Dr. R. HAFEEZ BASHA</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Vice Chancellor, Kirirom Institute of Technology</p>
@@ -106,9 +106,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 3 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/3.png" alt="SHRI RAMJEE PALLELA" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/3.png" alt="SHRI RAMJEE PALLELA" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>SHRI RAMJEE PALLELA</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>COO, Atal Incubation Centre-CCMB</p>
@@ -116,9 +116,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 4 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/4.png" alt="DR.AYNAMPUDI SUBBARAO" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/4.png" alt="DR.AYNAMPUDI SUBBARAO" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>DR.AYNAMPUDI SUBBARAO</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>President, Indian Innovators Association</p>
@@ -126,9 +126,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 5 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/5.png" alt="VIJAY KIRAN AGASTYA" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/5.png" alt="VIJAY KIRAN AGASTYA" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>VIJAY KIRAN AGASTYA</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Co-Founder & MD, MentorMe</p>
@@ -136,9 +136,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 6 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/6.png" alt="DR.KALPANA SASTRY" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/6.png" alt="DR.KALPANA SASTRY" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>DR.KALPANA SASTRY</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Former Joint Director, NAARM</p>
@@ -146,9 +146,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 7 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/7.png" alt="BALA PRASAD PEDDIGARI" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/7.png" alt="BALA PRASAD PEDDIGARI" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>BALA PRASAD PEDDIGARI</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Chief Innovation Officer - TCS</p>
@@ -156,9 +156,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 8 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/8.png" alt="MANISH GUPTA" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/8.png" alt="MANISH GUPTA" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>MANISH GUPTA</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Advisor and Venture Partner- Riceberg Ventures</p>
@@ -166,9 +166,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 9 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/9.png" alt="LALITH SHARMA" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/9.png" alt="LALITH SHARMA" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>LALITH SHARMA</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Director, Strategic Relations</p>
@@ -176,9 +176,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 10 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/10.png" alt="PRATIBHA PULIJALA" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/10.png" alt="PRATIBHA PULIJALA" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>PRATIBHA PULIJALA</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Founder MEE School</p>
@@ -186,9 +186,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 11 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/11.png" alt="KIRAN KALAKUNTLA" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/11.png" alt="KIRAN KALAKUNTLA" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>KIRAN KALAKUNTLA</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Founder - ekincare</p>
@@ -196,9 +196,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 12 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/12.png" alt="SUNIL JASTHI" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/12.png" alt="SUNIL JASTHI" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>SUNIL JASTHI</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>CEO, Vaaluka Solutions</p>
@@ -206,9 +206,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 13 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/13.png" alt="DR.K.ANIL" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/13.png" alt="DR.K.ANIL" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>DR.K.ANIL</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>CEO, ASPIRE BioNEST</p>
@@ -216,9 +216,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 14 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/14.png" alt="SRAVANTI VEDULA" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/14.png" alt="SRAVANTI VEDULA" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>SRAVANTI VEDULA</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Associate Manager</p>
@@ -226,9 +226,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 15 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/15.png" alt="SANTHANA SELVAN" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/15.png" alt="SANTHANA SELVAN" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>SANTHANA SELVAN</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Founder & Chief Belonging Officer</p>
@@ -236,9 +236,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 16 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/16.png" alt="PANKAJ DIWAN" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/16.png" alt="PANKAJ DIWAN" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>PANKAJ DIWAN</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Founder & CEO</p>
@@ -246,9 +246,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 17 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/17.png" alt="PROF.G.R.SINHA" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/17.png" alt="PROF.G.R.SINHA" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>PROF.G.R.SINHA</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Provost (VC), GSFC University</p>
@@ -256,9 +256,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 18 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/18.png" alt="SRIKANTH PALLE" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/18.png" alt="SRIKANTH PALLE" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>SRIKANTH PALLE</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Former Consultant - G20 Summit</p>
@@ -266,9 +266,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 19 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/19.png" alt="VENKAT RK" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/19.png" alt="VENKAT RK" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>VENKAT RK</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Vice President, Human and Corporate Relations</p>
@@ -276,9 +276,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 20 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/20.png" alt="BHARAT JAIN" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/20.png" alt="BHARAT JAIN" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>BHARAT JAIN</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Founder & CEO</p>
@@ -302,9 +302,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 21 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/21.png" alt="Shri.M. Laxman Reddy" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/21.png" alt="Shri.M. Laxman Reddy" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>Shri.M. Laxman Reddy</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Chairman</p>
@@ -312,9 +312,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 22 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/22.png" alt="Shri.G.Chandra Sekhar Yadav" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/22.png" alt="Shri.G.Chandra Sekhar Yadav" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>Shri.G.Chandra Sekhar Yadav</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Executive Director</p>
@@ -322,9 +322,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 23 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/23.png" alt="SHRI. CH. MAHENDER REDDY" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/23.png" alt="SHRI. CH. MAHENDER REDDY" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>SHRI. CH. MAHENDER REDDY</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Secretary and Correspondant</p>
@@ -332,9 +332,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 24 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/24.png" alt="Shri. G. Jai Kishan Yadav" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/24.png" alt="Shri. G. Jai Kishan Yadav" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>Shri. G. Jai Kishan Yadav</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Director</p>
@@ -342,9 +342,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 25 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/25.png" alt="SHRI. G. NARSHIMHA YADAV" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/25.png" alt="SHRI. G. NARSHIMHA YADAV" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>SHRI. G. NARSHIMHA YADAV</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Treasurer</p>
@@ -352,9 +352,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 26 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/26.png" alt="SHRI. M. RAJASEKHAR REDDY" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/26.png" alt="SHRI. M. RAJASEKHAR REDDY" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>SHRI. M. RAJASEKHAR REDDY</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Director</p>
@@ -362,9 +362,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 27 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/27.png" alt="M. SATHYENDRA KUMAR" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/27.png" alt="M. SATHYENDRA KUMAR" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>M. SATHYENDRA KUMAR</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Co-Founder</p>
@@ -372,9 +372,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 28 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/28.png" alt="PROF. T. KISHEN KUMAR REDDY" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/28.png" alt="PROF. T. KISHEN KUMAR REDDY" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>PROF. T. KISHEN KUMAR REDDY</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Vice-Chancellor</p>
@@ -382,9 +382,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 29 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/29.png" alt="PROF. BJ RAO" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/29.png" alt="PROF. BJ RAO" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>PROF. BJ RAO</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Vice-Chancellor</p>
@@ -392,9 +392,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 30 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/30.png" alt="PROF. MURTY BS" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/30.png" alt="PROF. MURTY BS" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>PROF. MURTY BS</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Director</p>
@@ -402,9 +402,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 31 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/31.png" alt="SHRI. SUDHIRKUMAR BARAI" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/31.png" alt="SHRI. SUDHIRKUMAR BARAI" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>SHRI. SUDHIRKUMAR BARAI</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Director</p>
@@ -412,9 +412,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 32 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/32.png" alt="Brigadier (Dr) Inder Sethi" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/32.png" alt="Brigadier (Dr) Inder Sethi" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>Brigadier (Dr) Inder Sethi</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Director | Global Strategy Head | Strategy, Innovation & Leadership | 2xTEDx | Keynote Speaker | Author</p>
@@ -422,9 +422,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 33 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/33.png" alt="SHRI. VSK REDDY" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/33.png" alt="SHRI. VSK REDDY" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>SHRI. VSK REDDY</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Vice-Chancellor</p>
@@ -432,9 +432,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 34 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/34.png" alt="SHRI. KAMAKSHI PRASAD" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/34.png" alt="SHRI. KAMAKSHI PRASAD" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>SHRI. KAMAKSHI PRASAD</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Director of UGC Affairs</p>
@@ -442,9 +442,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 35 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/35.png" alt="SHRI. RAJ GOPAL" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/35.png" alt="SHRI. RAJ GOPAL" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>SHRI. RAJ GOPAL</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Ex Vice-Chancellor</p>
@@ -452,9 +452,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 36 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/36.png" alt="Dr. MHM KRISHNA PRASAD" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/36.png" alt="Dr. MHM KRISHNA PRASAD" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>Dr. MHM KRISHNA PRASAD</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Director, Academics</p>
@@ -462,9 +462,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 37 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/37.png" alt="Dr. A KRISHNA MOHAN" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/37.png" alt="Dr. A KRISHNA MOHAN" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>Dr. A KRISHNA MOHAN</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Professor and Director</p>
@@ -472,9 +472,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 38 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/38.png" alt="Dr. G. Narsimha" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/38.png" alt="Dr. G. Narsimha" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>Dr. G. Narsimha</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Professor and Principal</p>
@@ -482,9 +482,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 39 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/39.png" alt="Mrs Gayathri Vaka" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/39.png" alt="Mrs Gayathri Vaka" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>Mrs Gayathri Vaka</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Vice-chair,ACM HYD</p>
@@ -492,9 +492,9 @@ const SpeakersPage = () => {
                         </div>
 
                         {/* Speaker 40 */}
-                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
-                            <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/40.png" alt="Dr. Sriram Birudavolu" className="w-full h-full object-cover" />
+                        <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="aspect-square mb-1.5 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
+                                <img src="/images/40.png" alt="Dr. Sriram Birudavolu" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>Dr. Sriram Birudavolu</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>CEO Cybersecurity Centre of Excellence</p>
