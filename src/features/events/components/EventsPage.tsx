@@ -546,7 +546,6 @@ const eventsData: EventData[] = eventsOrder.map(
 const EventsPage = () => {
     const pageRef = useRef<HTMLDivElement>(null);
     const timelineRef = useRef<HTMLDivElement>(null);
-    const progressRef = useRef<HTMLDivElement>(null);
     const params = useParams({ strict: false }) as { eventId?: string };
     const navigate = useNavigate();
     const [activeDay, setActiveDay] = useState<1 | 2>(1);
@@ -589,38 +588,22 @@ const EventsPage = () => {
         return () => ctx.revert();
     }, [selectedEvent]);
 
-    // Timeline animations
+    // Timeline animations - Cards appear as you scroll
     useLayoutEffect(() => {
         if (!selectedEvent) return;
 
         const ctx = gsap.context(() => {
-            if (progressRef.current && timelineRef.current) {
-                gsap.fromTo(progressRef.current,
-                    { scaleY: 0 },
-                    {
-                        scaleY: 1,
-                        ease: "none",
-                        scrollTrigger: {
-                            trigger: timelineRef.current,
-                            start: "top 60%",
-                            end: "bottom 40%",
-                            scrub: 0.3,
-                        }
-                    }
-                );
-            }
-
             const items = gsap.utils.toArray('.timeline-item');
             items.forEach((item) => {
                 const el = item as HTMLElement;
                 gsap.from(el, {
                     opacity: 0,
-                    y: 60,
-                    duration: 0.8,
-                    ease: "power3.out",
+                    y: 40,
+                    duration: 0.6,
+                    ease: "power2.out",
                     scrollTrigger: {
                         trigger: el,
-                        start: "top 85%",
+                        start: "top 80%",
                         toggleActions: "play none none reverse",
                     }
                 });
@@ -722,9 +705,6 @@ const EventsPage = () => {
             ease: 'power2.in',
             onComplete: () => {
                 setActiveDay(day);
-                if (progressRef.current) {
-                    gsap.set(progressRef.current, { scaleY: 0 });
-                }
             }
         });
     };
@@ -1073,30 +1053,15 @@ const EventsPage = () => {
                                         )}
 
                                         <div ref={timelineRef} className="relative">
-                                            <div
-                                                className="absolute left-[29px] sm:left-[34px] md:left-[39px] top-0 bottom-0 w-[2px] transition-all duration-300"
-                                                style={{ background: 'rgba(139, 123, 181, 0.2)' }}
-                                            >
-                                                <div
-                                                    ref={progressRef}
-                                                    className="w-full origin-top transition-all duration-300"
-                                                    style={{
-                                                        background: currentColor?.gradient,
-                                                        height: '100%',
-                                                        transform: 'scaleY(0)'
-                                                    }}
-                                                />
-                                            </div>
-
-                                            <div className="space-y-3 sm:space-y-5 md:space-y-6">
+                                            <div className="space-y-4 sm:space-y-5 md:space-y-6">
                                                 {hasPhases ? (
                                                     (timelineItems as { name: string; date: string; description: string }[]).map((phase, index) => (
                                                         <div
                                                             key={index}
-                                                            className="timeline-item flex gap-3 sm:gap-4 md:gap-6 pl-2 transition-all duration-300"
+                                                            className="timeline-item flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 transition-all duration-300"
                                                         >
                                                             <div
-                                                                className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center text-base sm:text-lg md:text-xl font-bold z-10 transition-all duration-300"
+                                                                className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center text-base sm:text-lg md:text-xl font-bold z-10 transition-all duration-300 mx-auto sm:mx-0"
                                                                 style={{
                                                                     background: currentColor?.gradient,
                                                                     color: 'white',
@@ -1107,7 +1072,7 @@ const EventsPage = () => {
                                                             </div>
 
                                                             <div
-                                                                className="flex-1 p-4 sm:p-5 rounded-xl transition-all duration-300"
+                                                                className="flex-1 p-4 sm:p-5 rounded-xl transition-all duration-300 w-full"
                                                                 style={{
                                                                     background: 'rgba(15, 12, 25, 0.6)',
                                                                     border: '1px solid rgba(139, 123, 181, 0.15)'
@@ -1137,10 +1102,10 @@ const EventsPage = () => {
                                                     (timelineItems as TimelineItem[]).map((item, index) => (
                                                         <div
                                                             key={index}
-                                                            className="timeline-item flex gap-3 sm:gap-4 md:gap-6 pl-2 transition-all duration-300"
+                                                            className="timeline-item flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 transition-all duration-300"
                                                         >
                                                             <div
-                                                                className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center text-base sm:text-lg md:text-xl font-bold z-10 transition-all duration-300"
+                                                                className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center text-base sm:text-lg md:text-xl font-bold z-10 transition-all duration-300 mx-auto sm:mx-0"
                                                                 style={{
                                                                     background: currentColor?.gradient,
                                                                     color: 'white',
@@ -1151,7 +1116,7 @@ const EventsPage = () => {
                                                             </div>
 
                                                             <div
-                                                                className="flex-1 p-4 sm:p-5 rounded-xl transition-all duration-300"
+                                                                className="flex-1 p-4 sm:p-5 rounded-xl transition-all duration-300 w-full"
                                                                 style={{
                                                                     background: 'rgba(15, 12, 25, 0.6)',
                                                                     border: '1px solid rgba(139, 123, 181, 0.15)'
