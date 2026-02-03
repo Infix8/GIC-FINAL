@@ -99,61 +99,63 @@ const HeroSection: React.FC = () => {
       </div>
 
 
-      <div className="max-w-full sm:max-w-[95%] md:max-w-[90%] lg:max-w-[85%] xl:max-w-[75%] mx-auto px-4 sm:px-6 md:px-8 pb-6 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-24 pt-6 sm:pt-12 md:pt-6 lg:pt-8 relative z-10 w-full">
-        {/* Title and Badge - Centered */}
-        <div className="mb-6 sm:mb-6 md:mb-8 lg:mb-12 space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-10 flex flex-col items-center text-center">
-          {/* Event Badge - Centered, Mobile Optimized */}
-          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 bg-gradient-to-r from-primary/10 via-gic-violet/10 to-primary/10 backdrop-blur-md rounded-full px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 border border-gic-violet/30 shadow-lg shadow-primary/15 text-xs sm:text-sm">
-            <div className="flex items-center gap-1.5 sm:gap-2">
-              <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary flex-shrink-0" />
-              <span className="text-gic-lavender font-semibold whitespace-nowrap">27-28 Feb 2026</span>
+      <div className="max-w-full sm:max-w-[95%] md:max-w-[90%] lg:max-w-[85%] xl:max-w-[75%] mx-auto px-4 sm:px-6 md:px-8 pb-8 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-24 pt-8 sm:pt-12 md:pt-6 lg:pt-8 relative z-10 w-full">
+        {/* Title and Badge - Above Grid */}
+        <div className="mb-4 sm:mb-6 md:mb-8 lg:mb-12 space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-10">
+          {/* Event Badge - Hidden on Mobile */}
+          <div className="hidden md:inline-flex flex-row items-center gap-3 bg-gradient-to-r from-primary/10 via-gic-violet/10 to-primary/10 backdrop-blur-md rounded-full px-4 md:px-5 py-2.5 border border-gic-violet/30 shadow-lg shadow-primary/15 text-sm">
+            <div className="flex items-center gap-2">
+              <Calendar className="w-4 h-4 text-primary flex-shrink-0" />
+              <span className="text-gic-lavender font-semibold text-sm whitespace-nowrap">27-28 February 2026</span>
             </div>
-            <div className="hidden sm:block w-px h-4 bg-gic-violet/40" />
-            <div className="flex items-center gap-1.5 sm:gap-2">
-              <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gic-violet flex-shrink-0" />
-              <span className="text-gic-lavender font-semibold whitespace-nowrap">Hyderabad</span>
+            <div className="w-px h-4 bg-gic-violet/40" />
+            <div className="flex items-center gap-2">
+              <MapPin className="w-4 h-4 text-gic-violet flex-shrink-0" />
+              <span className="text-gic-lavender font-semibold text-sm whitespace-nowrap">Hyderabad, India</span>
             </div>
           </div>
 
-          <div className="space-y-3 sm:space-y-6 w-full flex flex-col items-center px-2">
-            <div className="flex items-center justify-center group w-full">
-              <div className="flex flex-col items-center mb-1 capitalize w-full">
+          <div className="space-y-4 sm:space-y-6">
+            <div className="flex items-center group">
+              <div className="flex flex-col mb-1 capitalize w-full">
                 <span
-                  className="font-bold text-white/90 mb-1 sm:mb-2"
+                  className="font-bold text-white/90 ml-1 mb-1 sm:mb-2"
                   style={{
                     fontFamily: 'var(--font-elegant)',
                     letterSpacing: '0.05em',
                     lineHeight: '1.1',
-                    fontSize: 'clamp(0.55rem, 2vw, 1.35rem)',
+                    fontSize: 'clamp(0.6rem, 1.2vw, 1.35rem)',
                     display: 'inline-block'
                   }}
                 >
                   SMEC's
                 </span>
                 <div 
-                  className="w-full overflow-hidden"
-                  style={{ transform: 'scale(1)', transformOrigin: 'center', display: 'inline-block' }}
+                  style={{ transform: 'scale(0.75)', transformOrigin: 'left center', display: 'inline-block', width: '100%' }}
                 >
                   <h2
-                    className="text-xl xs:text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold flex flex-wrap sm:flex-nowrap items-center justify-center cursor-pointer transition-all duration-300 hover:drop-shadow-[0_0_3px_rgba(169,155,212,0.15)] gap-0.5 sm:gap-1.5"
+                    className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold flex flex-wrap items-center cursor-pointer transition-all duration-300 hover:drop-shadow-[0_0_3px_rgba(169,155,212,0.15)]"
                     style={{
                       fontFamily: 'var(--font-elegant)',
                       fontStyle: 'normal',
                       letterSpacing: '0.02em',
                       lineHeight: '1.1',
                       fontWeight: 700,
+                      gap: '0.1875rem',
                       color: 'rgba(226, 218, 255, 0.9)'
                     }}
                   >
                     {['Global', 'Innovators', 'Conclave', '2026'].map((word, index) => (
                       <span
                         key={index}
-                        className="inline-block py-0.5 sm:py-1 rounded px-0.5 sm:px-1"
+                        className="inline-block py-0.5 sm:py-1 rounded"
                         style={{
                           transformOrigin: 'center',
                           display: 'inline-block',
-                          marginLeft: index === 0 ? '0' : '0.125rem',
-                          marginRight: index === 3 ? '0' : '0.125rem',
+                          paddingLeft: '0.25rem',
+                          paddingRight: '0.25rem',
+                          marginLeft: index === 0 ? '0' : '0.09375rem',
+                          marginRight: index === 3 ? '0' : '0.09375rem',
                         }}
                       >
                         {word}
@@ -163,14 +165,16 @@ const HeroSection: React.FC = () => {
                 </div>
               </div>
             </div>
+
+
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8 md:gap-12 lg:gap-16 items-center justify-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 items-start">
           {/* Left Content */}
-          <div className="space-y-5 sm:space-y-8 flex flex-col items-center lg:items-start text-center lg:text-left w-full">
+          <div className="space-y-6 sm:space-y-8">
             {/* Main Title Highlight - Slide animation for both mobile and desktop */}
-            <div className="space-y-2 sm:space-y-4 w-full px-2 sm:px-0">
+            <div className="space-y-3 sm:space-y-4">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentSlide}
@@ -178,22 +182,29 @@ const HeroSection: React.FC = () => {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3, ease: 'easeInOut' }}
-                  className="flex flex-col items-center lg:items-start w-full"
                 >
-                  <h1 className="font-display text-2xl xs:text-3xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-[1.15] sm:leading-[1.05] tracking-tight break-words text-center lg:text-left px-2 sm:px-0"
+                  <h1 className="font-display text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-[1.1] sm:leading-[1.05] tracking-tight italic break-words"
                     style={{
-                      fontFamily: 'var(--font-primary)',
+                      fontStyle: 'italic',
+                      transform: 'skewX(-8deg)',
+                      fontFamily: 'var(--font-elegant)',
                     }}
                   >
                     <span
                       className="bg-gradient-to-r from-gic-lavender via-gic-violet via-primary to-gic-lavender bg-clip-text text-transparent"
+                      style={{
+                        fontStyle: 'italic',
+                        transform: 'skewX(-8deg)',
+                      }}
                     >
                       {slide.highlight}
                     </span>
                   </h1>
-                  <p className="text-gic-lavender/80 text-sm sm:text-base md:text-lg lg:text-xl mt-2 sm:mt-4 leading-relaxed max-w-xl mx-auto lg:mx-0 px-2 sm:px-0"
+                  <p className="text-gic-lavender/80 text-sm sm:text-base md:text-lg lg:text-xl mt-3 sm:mt-4 leading-relaxed max-w-xl italic"
                     style={{
-                      fontFamily: 'var(--font-primary)',
+                      fontStyle: 'italic',
+                      transform: 'skewX(-6deg)',
+                      fontFamily: 'var(--font-elegant)',
                     }}
                   >
                     {slide.title}
@@ -203,31 +214,31 @@ const HeroSection: React.FC = () => {
             </div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-6 w-full max-w-sm sm:max-w-md mx-auto lg:mx-0 px-2 sm:px-0">
-              <div className="space-y-0.5 sm:space-y-1 flex flex-col items-center lg:items-start">
-                <p className="text-xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gic-lavender to-primary bg-clip-text text-transparent">{slide.stat}</p>
-                <p className="text-gic-violet/70 text-[10px] xs:text-xs sm:text-sm text-center lg:text-left leading-tight">{slide.statLabel}</p>
+            <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-6">
+              <div className="space-y-0.5 sm:space-y-1">
+                <p className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gic-lavender to-primary bg-clip-text text-transparent">{slide.stat}</p>
+                <p className="text-gic-violet/70 text-xs sm:text-sm">{slide.statLabel}</p>
               </div>
-              <div className="space-y-0.5 sm:space-y-1 flex flex-col items-center lg:items-start">
-                <p className="text-xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gic-lavender to-primary bg-clip-text text-transparent">2</p>
-                <p className="text-gic-violet/70 text-[10px] xs:text-xs sm:text-sm text-center lg:text-left leading-tight">Days Event</p>
+              <div className="space-y-0.5 sm:space-y-1">
+                <p className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gic-lavender to-primary bg-clip-text text-transparent">2</p>
+                <p className="text-gic-violet/70 text-xs sm:text-sm">Days Event</p>
               </div>
-              <div className="space-y-0.5 sm:space-y-1 flex flex-col items-center lg:items-start">
-                <p className="text-xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gic-lavender to-primary bg-clip-text text-transparent">₹5L+</p>
-                <p className="text-gic-violet/70 text-[10px] xs:text-xs sm:text-sm text-center lg:text-left leading-tight">Prize Pool</p>
+              <div className="space-y-0.5 sm:space-y-1">
+                <p className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gic-lavender to-primary bg-clip-text text-transparent">₹5L+</p>
+                <p className="text-gic-violet/70 text-xs sm:text-sm">Prize Pool</p>
               </div>
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col gap-3 sm:gap-4 pt-2 sm:pt-4 w-full max-w-sm sm:max-w-md mx-auto lg:mx-0 px-2 sm:px-0">
-              <Link to="/passes" className="w-full">
-                <Button size="xl" className="w-full bg-gradient-to-r from-primary via-gic-violet to-primary hover:from-gic-violet hover:via-primary hover:to-gic-violet text-white rounded-full font-semibold shadow-lg shadow-primary/25 hover:shadow-primary/35 transition-all duration-200 hover:scale-105 active:scale-95 text-base sm:text-lg py-6 sm:py-7">
+            <div className="flex flex-col sm:flex-row sm:flex-nowrap gap-3 sm:gap-4 pt-2 sm:pt-4">
+              <Link to="/passes" className="w-full sm:w-auto sm:flex-1">
+                <Button size="xl" className="w-full sm:w-auto bg-gradient-to-r from-primary via-gic-violet to-primary hover:from-gic-violet hover:via-primary hover:to-gic-violet text-white rounded-full font-semibold shadow-lg shadow-primary/25 hover:shadow-primary/35 transition-all duration-200 hover:scale-105 active:scale-95">
                   Register
                   <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
                 </Button>
               </Link>
-              <Link to="/events" className="w-full">
-                <Button size="xl" variant="outline" className="w-full rounded-full font-semibold border-2 border-gic-violet/50 text-gic-lavender hover:bg-gic-violet/20 hover:border-gic-violet hover:shadow-lg hover:shadow-primary/40 transition-all duration-200 hover:scale-105 active:scale-95 text-base sm:text-lg py-6 sm:py-7">
+              <Link to="/events" className="w-full sm:w-auto sm:flex-1">
+                <Button size="xl" variant="outline" className="w-full sm:w-auto rounded-full font-semibold border-2 border-gic-violet/50 text-gic-lavender hover:bg-gic-violet/20 hover:border-gic-violet hover:shadow-lg hover:shadow-primary/40 transition-all duration-200 hover:scale-105 active:scale-95">
                   <Play className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                   Explore Programs
                 </Button>

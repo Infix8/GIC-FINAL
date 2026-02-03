@@ -153,102 +153,24 @@ const CountdownTimer: React.FC = () => {
           </Typography>
         </Box>
 
-        {/* Countdown Cards - Mobile: Single Row, Desktop: Grid with Cards */}
-        {isMobile ? (
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: { xs: 1.5, sm: 2 },
-              width: '100%',
-              px: 2,
-              flexWrap: 'nowrap',
-            }}
-          >
-            {timeUnits.map((unit, index) => {
-              const IconComponent = unit.icon;
-              return (
+        {/* Countdown Cards */}
+        <Grid container spacing={{ xs: 2, sm: 3, lg: 4 }} sx={{ justifyContent: 'center' }}>
+          {timeUnits.map((unit) => {
+            const IconComponent = unit.icon;
+            return (
+              <Grid size={{ xs: 6, md: 3 }} key={unit.label}>
                 <Box
-                  key={unit.label}
                   sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flex: '1 1 0',
-                    minWidth: 0,
                     position: 'relative',
+                    '&:hover': {
+                      transform: 'scale(1.05) translateY(-8px)',
+                      transition: 'transform 0.3s ease',
+                    },
+                    transition: 'transform 0.3s ease',
                   }}
                 >
-                  {/* Number */}
-                  <Typography
-                    sx={{
-                      fontSize: { xs: '1.5rem', sm: '2rem' },
-                      fontWeight: 700,
-                      fontFamily: 'var(--font-display)',
-                      background: `linear-gradient(to bottom right, ${theme.palette.secondary.light}, ${theme.palette.secondary.main}, ${theme.palette.primary.main})`,
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      backgroundClip: 'text',
-                      lineHeight: 1.2,
-                      mb: 0.5,
-                    }}
-                  >
-                    {String(unit.value).padStart(2, "0")}
-                  </Typography>
-
-                  {/* Label */}
-                  <Typography
-                    sx={{
-                      color: `${theme.palette.secondary.main}CC`,
-                      fontSize: { xs: '0.625rem', sm: '0.75rem' },
-                      fontWeight: 600,
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.05em',
-                      lineHeight: 1.2,
-                      textAlign: 'center',
-                    }}
-                  >
-                    {unit.label}
-                  </Typography>
-
-                  {/* Separator - Show between items, not after last */}
-                  {index < timeUnits.length - 1 && (
-                    <Box
-                      sx={{
-                        position: 'absolute',
-                        right: { xs: '-0.75rem', sm: '-1rem' },
-                        top: '50%',
-                        transform: 'translateY(-50%)',
-                        width: '1px',
-                        height: '60%',
-                        background: `linear-gradient(to bottom, transparent, ${theme.palette.secondary.main}66, transparent)`,
-                      }}
-                    />
-                  )}
-                </Box>
-              );
-            })}
-          </Box>
-        ) : (
-          <Grid container spacing={{ xs: 2, sm: 3, lg: 4 }} sx={{ justifyContent: 'center' }}>
-            {timeUnits.map((unit) => {
-              const IconComponent = unit.icon;
-              return (
-                <Grid size={{ xs: 6, md: 3 }} key={unit.label}>
-                  <Box
-                    sx={{
-                      position: 'relative',
-                      '&:hover': {
-                        transform: 'scale(1.05) translateY(-8px)',
-                        transition: 'transform 0.3s ease',
-                      },
-                      transition: 'transform 0.3s ease',
-                    }}
-                  >
-                    {/* Glow effect - only on desktop */}
+                  {/* Glow effect - only on desktop */}
+                  {!isMobile && (
                     <Box
                       sx={{
                         position: 'absolute',
@@ -263,129 +185,129 @@ const CountdownTimer: React.FC = () => {
                         transition: 'opacity 0.3s ease',
                       }}
                     />
-                    
-                    {/* Card */}
-                    <Paper
+                  )}
+                  
+                  {/* Card */}
+                  <Paper
+                    sx={{
+                      position: 'relative',
+                      background: `linear-gradient(to bottom right, ${theme.palette.primary.main}26, ${theme.palette.secondary.main}26, ${theme.palette.secondary.light}26)`,
+                      border: `1px solid ${theme.palette.secondary.main}66`,
+                      borderRadius: 2,
+                      p: { xs: 3, sm: 4 },
+                      textAlign: 'center',
+                      boxShadow: `0 20px 25px -5px ${theme.palette.primary.main}33`,
+                      '&:hover': {
+                        borderColor: `${theme.palette.secondary.main}99`,
+                      },
+                      transition: 'all 0.3s ease',
+                      ...(isMobile ? {} : { backdropFilter: 'blur(12px)' }),
+                    }}
+                  >
+                    {/* Icon */}
+                    <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
+                      <Box
+                        sx={{
+                          width: 48,
+                          height: 48,
+                          borderRadius: 2,
+                          background: `linear-gradient(to bottom right, ${theme.palette.primary.main}66, ${theme.palette.secondary.main}59, ${theme.palette.secondary.light}4D)`,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          border: `1px solid ${theme.palette.secondary.main}80`,
+                        }}
+                      >
+                        <IconComponent style={{ width: '20px', height: '20px', color: theme.palette.secondary.light }} />
+                      </Box>
+                    </Box>
+
+                    {/* Number */}
+                    <Typography
                       sx={{
-                        position: 'relative',
-                        background: `linear-gradient(to bottom right, ${theme.palette.primary.main}26, ${theme.palette.secondary.main}26, ${theme.palette.secondary.light}26)`,
-                        border: `1px solid ${theme.palette.secondary.main}66`,
-                        borderRadius: 2,
-                        p: { xs: 3, sm: 4 },
-                        textAlign: 'center',
-                        boxShadow: `0 20px 25px -5px ${theme.palette.primary.main}33`,
-                        '&:hover': {
-                          borderColor: `${theme.palette.secondary.main}99`,
-                        },
-                        transition: 'all 0.3s ease',
-                        backdropFilter: 'blur(12px)',
+                        display: 'block',
+                        fontSize: { xs: '2.25rem', sm: '3rem', lg: '3.75rem', xl: '4.5rem' },
+                        fontWeight: 700,
+                        fontFamily: 'var(--font-display)',
+                        background: `linear-gradient(to bottom right, ${theme.palette.secondary.light}, ${theme.palette.secondary.main}, ${theme.palette.primary.main})`,
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text',
+                        mb: 1,
                       }}
                     >
-                      {/* Icon */}
-                      <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
-                        <Box
-                          sx={{
-                            width: 48,
-                            height: 48,
-                            borderRadius: 2,
-                            background: `linear-gradient(to bottom right, ${theme.palette.primary.main}66, ${theme.palette.secondary.main}59, ${theme.palette.secondary.light}4D)`,
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            border: `1px solid ${theme.palette.secondary.main}80`,
-                          }}
-                        >
-                          <IconComponent style={{ width: '20px', height: '20px', color: theme.palette.secondary.light }} />
-                        </Box>
-                      </Box>
+                      {String(unit.value).padStart(2, "0")}
+                    </Typography>
 
-                      {/* Number */}
-                      <Typography
-                        sx={{
-                          display: 'block',
-                          fontSize: { xs: '2.25rem', sm: '3rem', lg: '3.75rem', xl: '4.5rem' },
-                          fontWeight: 700,
-                          fontFamily: 'var(--font-display)',
-                          background: `linear-gradient(to bottom right, ${theme.palette.secondary.light}, ${theme.palette.secondary.main}, ${theme.palette.primary.main})`,
-                          WebkitBackgroundClip: 'text',
-                          WebkitTextFillColor: 'transparent',
-                          backgroundClip: 'text',
-                          mb: 1,
-                        }}
-                      >
-                        {String(unit.value).padStart(2, "0")}
-                      </Typography>
+                    {/* Label */}
+                    <Typography
+                      sx={{
+                        color: `${theme.palette.secondary.main}CC`,
+                        fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                        fontWeight: 600,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.05em',
+                        display: 'block',
+                      }}
+                    >
+                      {unit.label}
+                    </Typography>
 
-                      {/* Label */}
-                      <Typography
-                        sx={{
-                          color: `${theme.palette.secondary.main}CC`,
-                          fontSize: { xs: '0.75rem', sm: '0.875rem' },
-                          fontWeight: 600,
-                          textTransform: 'uppercase',
-                          letterSpacing: '0.05em',
-                          display: 'block',
-                        }}
-                      >
-                        {unit.label}
-                      </Typography>
-
-                      {/* Decorative corner accents */}
-                      <Box
-                        sx={{
-                          position: 'absolute',
-                          top: 8,
-                          left: 8,
-                          width: 12,
-                          height: 12,
-                          borderTop: `2px solid ${theme.palette.secondary.main}80`,
-                          borderLeft: `2px solid ${theme.palette.secondary.main}80`,
-                          borderTopLeftRadius: 1,
-                        }}
-                      />
-                      <Box
-                        sx={{
-                          position: 'absolute',
-                          top: 8,
-                          right: 8,
-                          width: 12,
-                          height: 12,
-                          borderTop: `2px solid ${theme.palette.secondary.main}80`,
-                          borderRight: `2px solid ${theme.palette.secondary.main}80`,
-                          borderTopRightRadius: 1,
-                        }}
-                      />
-                      <Box
-                        sx={{
-                          position: 'absolute',
-                          bottom: 8,
-                          left: 8,
-                          width: 12,
-                          height: 12,
-                          borderBottom: `2px solid ${theme.palette.secondary.main}80`,
-                          borderLeft: `2px solid ${theme.palette.secondary.main}80`,
-                          borderBottomLeftRadius: 1,
-                        }}
-                      />
-                      <Box
-                        sx={{
-                          position: 'absolute',
-                          bottom: 8,
-                          right: 8,
-                          width: 12,
-                          height: 12,
-                          borderBottom: `2px solid ${theme.palette.secondary.main}80`,
-                          borderRight: `2px solid ${theme.palette.secondary.main}80`,
-                          borderBottomRightRadius: 1,
-                        }}
-                      />
-                    </Paper>
-                  </Box>
-                </Grid>
-              );
-            })}
-          </Grid>
-        )}
+                    {/* Decorative corner accents */}
+                    <Box
+                      sx={{
+                        position: 'absolute',
+                        top: 8,
+                        left: 8,
+                        width: 12,
+                        height: 12,
+                        borderTop: `2px solid ${theme.palette.secondary.main}80`,
+                        borderLeft: `2px solid ${theme.palette.secondary.main}80`,
+                        borderTopLeftRadius: 1,
+                      }}
+                    />
+                    <Box
+                      sx={{
+                        position: 'absolute',
+                        top: 8,
+                        right: 8,
+                        width: 12,
+                        height: 12,
+                        borderTop: `2px solid ${theme.palette.secondary.main}80`,
+                        borderRight: `2px solid ${theme.palette.secondary.main}80`,
+                        borderTopRightRadius: 1,
+                      }}
+                    />
+                    <Box
+                      sx={{
+                        position: 'absolute',
+                        bottom: 8,
+                        left: 8,
+                        width: 12,
+                        height: 12,
+                        borderBottom: `2px solid ${theme.palette.secondary.main}80`,
+                        borderLeft: `2px solid ${theme.palette.secondary.main}80`,
+                        borderBottomLeftRadius: 1,
+                      }}
+                    />
+                    <Box
+                      sx={{
+                        position: 'absolute',
+                        bottom: 8,
+                        right: 8,
+                        width: 12,
+                        height: 12,
+                        borderBottom: `2px solid ${theme.palette.secondary.main}80`,
+                        borderRight: `2px solid ${theme.palette.secondary.main}80`,
+                        borderBottomRightRadius: 1,
+                      }}
+                    />
+                  </Paper>
+                </Box>
+              </Grid>
+            );
+          })}
+        </Grid>
 
         {/* Event Details */}
         <Box sx={{ mt: { xs: 6, sm: 8 }, textAlign: 'center', width: '100%', display: 'flex', justifyContent: 'center' }}>
