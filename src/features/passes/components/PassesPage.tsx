@@ -295,13 +295,14 @@ const PassesPage = () => {
                                                         href={pass.paymentLink}
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        className={`w-full rounded-lg font-bold transition-all duration-300 hover:scale-105 text-center block ${isHighlighted ? 'py-3 md:py-4 text-base md:text-lg' : 'py-2.5 md:py-3 text-sm md:text-base'}`}
+                                                        className={`w-full md:w-auto rounded-lg font-bold transition-all duration-300 hover:scale-105 text-center block ${isHighlighted ? 'py-3 md:py-4 text-base md:text-lg' : 'py-2.5 md:py-3 text-sm md:text-base'}`}
                                                         style={{ 
                                                             background: 'rgba(255,255,255,0.95)', 
                                                             color: '#1a1a2e',
                                                             border: 'none', 
                                                             textDecoration: 'none',
-                                                            boxShadow: '0 4px 15px rgba(0,0,0,0.2)'
+                                                            boxShadow: '0 4px 15px rgba(0,0,0,0.2)',
+                                                            minWidth: '140px'
                                                         }}
                                                     >
                                                         Buy Now
@@ -311,13 +312,14 @@ const PassesPage = () => {
                                                             href={(pass as any).teamPassLink}
                                                             target="_blank"
                                                             rel="noopener noreferrer"
-                                                            className={`w-full rounded-lg font-bold transition-all duration-300 hover:scale-105 text-center block ${isHighlighted ? 'py-3 md:py-4 text-base md:text-lg' : 'py-2.5 md:py-3 text-sm md:text-base'}`}
+                                                            className={`w-full md:w-auto rounded-lg font-bold transition-all duration-300 hover:scale-105 text-center block ${isHighlighted ? 'py-3 md:py-4 text-base md:text-lg' : 'py-2.5 md:py-3 text-sm md:text-base'}`}
                                                             style={{ 
                                                                 background: 'rgba(255,255,255,0.7)', 
                                                                 color: '#1a1a2e',
                                                                 border: '2px solid rgba(255,255,255,0.5)', 
                                                                 textDecoration: 'none',
-                                                                boxShadow: '0 4px 15px rgba(0,0,0,0.15)'
+                                                                boxShadow: '0 4px 15px rgba(0,0,0,0.15)',
+                                                                minWidth: '140px'
                                                             }}
                                                         >
                                                             Team Pass
@@ -327,12 +329,13 @@ const PassesPage = () => {
                                             ) : (
                                                 <button
                                                     onClick={() => navigate({ to: '/about' })}
-                                                    className={`md:mt-auto w-full rounded-lg font-bold transition-all duration-300 hover:scale-105 ${isHighlighted ? 'py-3 md:py-4 text-base md:text-lg' : 'py-2.5 md:py-3 text-sm md:text-base'}`}
+                                                    className={`md:mt-auto w-full md:w-auto rounded-lg font-bold transition-all duration-300 hover:scale-105 ${isHighlighted ? 'py-3 md:py-4 text-base md:text-lg' : 'py-2.5 md:py-3 text-sm md:text-base'}`}
                                                     style={{ 
                                                         background: 'rgba(255,255,255,0.95)', 
                                                         color: '#1a1a2e',
                                                         border: 'none',
-                                                        boxShadow: '0 4px 15px rgba(0,0,0,0.2)'
+                                                        boxShadow: '0 4px 15px rgba(0,0,0,0.2)',
+                                                        minWidth: '140px'
                                                     }}
                                                 >
                                                     Contact Us
