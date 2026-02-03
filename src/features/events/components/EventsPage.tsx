@@ -913,6 +913,11 @@ const EventsPage = () => {
 
                             <Link
                                 to="/passes"
+                                search={(selectedEvent.id === "alpha-to-infinity" || 
+                                         selectedEvent.id === "knowledge-bubble" || 
+                                         selectedEvent.id === "investor-pitching" || 
+                                         selectedEvent.id === "mastermind-congregation" ||
+                                         selectedEvent.id === "business-tech-expo") ? { event: selectedEvent.id } : undefined}
                                 className="inline-block px-10 py-5 rounded-full font-bold text-2xl md:text-3xl cursor-pointer transition-all hover:scale-105"
                                 style={{ 
                                     background: currentColor?.gradient,
