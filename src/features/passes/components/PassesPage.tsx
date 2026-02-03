@@ -248,12 +248,12 @@ const PassesPage = () => {
                                         }}
                                     />
                                     
-                                    {/* Two-column layout for all cards */}
-                                    <div className="relative z-10 flex flex-row gap-8 h-full">
-                                        {/* Left Column: Pass Name and Buttons */}
-                                        <div className="flex flex-col flex-shrink-0" style={{ width: '40%' }}>
+                                    {/* Mobile: Single column, Desktop: Two-column layout */}
+                                    <div className="relative z-10 flex flex-col md:flex-row gap-6 md:gap-8 h-full">
+                                        {/* Mobile: Pass Name, Desktop: Left Column */}
+                                        <div className="flex flex-col flex-shrink-0 md:w-[40%]">
                                             <h3 
-                                                className={`font-bold mb-6 ${isHighlighted ? 'text-4xl' : 'text-3xl'}`}
+                                                className={`font-bold mb-4 md:mb-6 ${isHighlighted ? 'text-3xl md:text-4xl' : 'text-2xl md:text-3xl'}`}
                                                 style={{ 
                                                     color: '#fff',
                                                     lineHeight: '1.3',
@@ -263,14 +263,39 @@ const PassesPage = () => {
                                                 {pass.name}
                                             </h3>
                                             
+                                            {/* Price Section - Mobile only */}
+                                            <div className="mb-4 md:hidden flex-shrink-0">
+                                                {pass.price === "Contact Us" ? (
+                                                    <div className="flex flex-col">
+                                                        <span className={`font-semibold mb-1 ${isHighlighted ? 'text-sm' : 'text-xs'}`} style={{ color: 'rgba(255,255,255,0.7)' }}>Pricing:</span>
+                                                        <span className={`font-bold ${isHighlighted ? 'text-2xl' : 'text-xl'}`} style={{ color: '#fff' }}>{pass.price}</span>
+                                                    </div>
+                                                ) : pass.price2 ? (
+                                                    <div className="flex flex-row gap-4">
+                                                        <div className="flex flex-col">
+                                                            <span className={`font-semibold mb-0.5 ${isHighlighted ? 'text-sm' : 'text-xs'}`} style={{ color: 'rgba(255,255,255,0.7)' }}>{pass.priceLabel}</span>
+                                                            <span className={`font-bold ${isHighlighted ? 'text-2xl' : 'text-xl'}`} style={{ color: '#fff' }}>{pass.price}</span>
+                                                        </div>
+                                                        <div className="flex flex-col">
+                                                            <span className={`font-semibold mb-0.5 ${isHighlighted ? 'text-sm' : 'text-xs'}`} style={{ color: 'rgba(255,255,255,0.7)' }}>{pass.price2Label}</span>
+                                                            <span className={`font-bold ${isHighlighted ? 'text-2xl' : 'text-xl'}`} style={{ color: '#fff' }}>{pass.price2}</span>
+                                                        </div>
+                                                    </div>
+                                                ) : (
+                                                    <div className="flex flex-col">
+                                                        <span className={`font-bold ${isHighlighted ? 'text-3xl' : 'text-2xl'}`} style={{ color: '#fff' }}>{pass.price}</span>
+                                                    </div>
+                                                )}
+                                            </div>
+                                            
                                             {/* CTA Buttons */}
                                             {pass.paymentLink ? (
-                                                <div className="mt-auto space-y-4">
+                                                <div className="md:mt-auto space-y-3 md:space-y-4">
                                                     <a
                                                         href={pass.paymentLink}
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        className={`w-full rounded-lg font-bold transition-all duration-300 hover:scale-105 text-center block ${isHighlighted ? 'py-4 text-lg' : 'py-3 text-base'}`}
+                                                        className={`w-full rounded-lg font-bold transition-all duration-300 hover:scale-105 text-center block ${isHighlighted ? 'py-3 md:py-4 text-base md:text-lg' : 'py-2.5 md:py-3 text-sm md:text-base'}`}
                                                         style={{ 
                                                             background: 'rgba(255,255,255,0.95)', 
                                                             color: '#1a1a2e',
@@ -286,7 +311,7 @@ const PassesPage = () => {
                                                             href={(pass as any).teamPassLink}
                                                             target="_blank"
                                                             rel="noopener noreferrer"
-                                                            className={`w-full rounded-lg font-bold transition-all duration-300 hover:scale-105 text-center block ${isHighlighted ? 'py-4 text-lg' : 'py-3 text-base'}`}
+                                                            className={`w-full rounded-lg font-bold transition-all duration-300 hover:scale-105 text-center block ${isHighlighted ? 'py-3 md:py-4 text-base md:text-lg' : 'py-2.5 md:py-3 text-sm md:text-base'}`}
                                                             style={{ 
                                                                 background: 'rgba(255,255,255,0.7)', 
                                                                 color: '#1a1a2e',
@@ -302,7 +327,7 @@ const PassesPage = () => {
                                             ) : (
                                                 <button
                                                     onClick={() => navigate({ to: '/about' })}
-                                                    className={`mt-auto w-full rounded-lg font-bold transition-all duration-300 hover:scale-105 ${isHighlighted ? 'py-4 text-lg' : 'py-3 text-base'}`}
+                                                    className={`md:mt-auto w-full rounded-lg font-bold transition-all duration-300 hover:scale-105 ${isHighlighted ? 'py-3 md:py-4 text-base md:text-lg' : 'py-2.5 md:py-3 text-sm md:text-base'}`}
                                                     style={{ 
                                                         background: 'rgba(255,255,255,0.95)', 
                                                         color: '#1a1a2e',
@@ -315,8 +340,8 @@ const PassesPage = () => {
                                             )}
                                         </div>
                                         
-                                        {/* Right Column: Price and Features */}
-                                        <div className="flex flex-col flex-grow" style={{ width: '60%' }}>
+                                        {/* Desktop: Right Column: Price and Features */}
+                                        <div className="hidden md:flex flex-col flex-grow md:w-[60%]">
                                             {/* Price Section */}
                                             <div className="mb-6 flex-shrink-0">
                                                 {pass.price === "Contact Us" ? (
@@ -358,6 +383,29 @@ const PassesPage = () => {
                                                             ✓
                                                         </span>
                                                         <span className={`leading-relaxed ${isHighlighted ? 'text-sm' : 'text-xs'}`} style={{ color: 'rgba(255,255,255,0.9)' }}>
+                                                            {feature}
+                                                        </span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                        
+                                        {/* Mobile: Features List */}
+                                        <div className="md:hidden">
+                                            <ul className="overflow-y-auto pr-1 space-y-2" style={{ 
+                                                maxHeight: '300px',
+                                                scrollbarWidth: 'thin',
+                                                scrollbarColor: 'rgba(255,255,255,0.3) transparent'
+                                            }}>
+                                                {pass.features.map((feature, i) => (
+                                                    <li key={i} className="flex items-start gap-2">
+                                                        <span 
+                                                            className="mt-0.5 flex-shrink-0 font-bold text-sm"
+                                                            style={{ color: '#fff' }}
+                                                        >
+                                                            ✓
+                                                        </span>
+                                                        <span className="leading-relaxed text-xs" style={{ color: 'rgba(255,255,255,0.9)' }}>
                                                             {feature}
                                                         </span>
                                                     </li>
