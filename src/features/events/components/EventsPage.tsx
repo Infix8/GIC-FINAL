@@ -816,18 +816,19 @@ const EventsPage = () => {
                     {/* Back Button */}
                     <button
                         onClick={handleBackClick}
-                        className="fixed top-20 sm:top-24 left-4 sm:left-6 z-50 flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full transition-all duration-300 hover:scale-105 active:scale-95"
+                        className="fixed top-16 sm:top-24 left-3 sm:left-6 z-50 flex items-center justify-center gap-0 sm:gap-2 px-2 sm:px-4 py-2 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 w-10 h-10 sm:w-auto sm:h-auto"
                         style={{
                             background: 'rgba(15, 12, 25, 0.9)',
                             border: '1px solid rgba(139, 123, 181, 0.3)',
                             color: '#EAEAEA',
                             backdropFilter: 'blur(10px)'
                         }}
+                        aria-label="Back to All Events"
                     >
-                        <svg width="18" height="18" className="sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <svg width="20" height="20" className="sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                             <path d="M19 12H5M12 19l-7-7 7-7" />
                         </svg>
-                        <span className="text-xs sm:text-sm font-medium">All Events</span>
+                        <span className="hidden sm:inline text-sm font-medium">All Events</span>
                     </button>
 
                     {/* Hero Section with Countdown */}
