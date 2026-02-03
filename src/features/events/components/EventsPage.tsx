@@ -866,17 +866,17 @@ const EventsPage = () => {
                     </button>
 
                     {/* Hero Section with Countdown */}
-                    <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 md:px-12 pt-0 pb-10 overflow-hidden">
-                        <div className="relative z-10 max-w-4xl mx-auto">
-                            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-4" style={{ color: '#EAEAEA' }}>
+                    <section className="relative min-h-screen flex flex-col items-center justify-start text-center px-6 md:px-12 pt-10 pb-10 overflow-hidden">
+                        <div className="relative z-10 max-w-4xl mx-auto mt-8">
+                            <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-2" style={{ color: '#EAEAEA' }}>
                                 {selectedEvent.title.toUpperCase()}
                             </h1>
-                            <p className="text-xl md:text-2xl mb-12" style={{ color: currentColor?.accent }}>
+                            <p className="text-xl md:text-2xl mb-8" style={{ color: currentColor?.accent }}>
                                 {getEventDate()}
                             </p>
                             
                             {/* Countdown Timer */}
-                            <div className="grid grid-cols-4 gap-4 md:gap-8 mb-12">
+                            <div className="grid grid-cols-4 gap-4 md:gap-8 mb-8">
                                 <div className="text-center">
                                     <div className="text-4xl md:text-6xl font-bold mb-2" style={{ color: currentColor?.accent }}>
                                         {String(countdown.days).padStart(2, '0')}
@@ -918,14 +918,14 @@ const EventsPage = () => {
                                          selectedEvent.id === "investor-pitching" || 
                                          selectedEvent.id === "mastermind-congregation" ||
                                          selectedEvent.id === "business-tech-expo") ? { event: selectedEvent.id } : undefined}
-                                className="inline-block px-10 py-5 rounded-full font-bold text-2xl md:text-3xl cursor-pointer transition-all hover:scale-105"
+                                className="inline-block px-12 py-6 rounded-full font-bold text-3xl md:text-4xl cursor-pointer transition-all hover:scale-105"
                                 style={{ 
                                     background: currentColor?.gradient,
                                     color: 'white',
                                     textDecoration: 'none'
                                 }}
                             >
-                                {selectedEvent.id === "knowledge-bubble" ? "Register for Delegate Pass" : "Register Now!"}
+                                Register Now!
                             </Link>
                         </div>
                     </section>
