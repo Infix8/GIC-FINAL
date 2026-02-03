@@ -682,17 +682,6 @@ const EventsPage = () => {
         });
     };
 
-    const handleBackClick = () => {
-        gsap.to('.event-detail', {
-            opacity: 0,
-            y: -30,
-            duration: 0.4,
-            ease: 'power2.in',
-            onComplete: () => {
-                navigate({ to: '/events' });
-            }
-        });
-    };
 
     const handleDaySwitch = (day: 1 | 2) => {
         if (day === activeDay) return;
@@ -813,26 +802,8 @@ const EventsPage = () => {
 
         return (
                 <div ref={pageRef} className="page-container events-page" style={{ background: 'var(--color-bg-primary)', scrollBehavior: 'smooth' }}>
-                    {/* Back Button */}
-                    <button
-                        onClick={handleBackClick}
-                        className="fixed top-16 sm:top-24 left-3 sm:left-6 z-50 flex items-center justify-center gap-0 sm:gap-2 px-2 sm:px-4 py-2 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 w-10 h-10 sm:w-auto sm:h-auto"
-                        style={{
-                            background: 'rgba(15, 12, 25, 0.9)',
-                            border: '1px solid rgba(139, 123, 181, 0.3)',
-                            color: '#EAEAEA',
-                            backdropFilter: 'blur(10px)'
-                        }}
-                        aria-label="Back to All Events"
-                    >
-                        <svg width="20" height="20" className="sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                            <path d="M19 12H5M12 19l-7-7 7-7" />
-                        </svg>
-                        <span className="hidden sm:inline text-sm font-medium">All Events</span>
-                    </button>
-
                     {/* Hero Section with Countdown */}
-                    <section className="relative min-h-[85vh] sm:min-h-screen flex flex-col items-center justify-start text-center px-4 sm:px-6 md:px-12 pt-4 sm:pt-6 md:pt-10 pb-6 sm:pb-8 md:pb-10 overflow-hidden">
+                    <section className="relative min-h-[85vh] sm:min-h-screen flex flex-col items-center justify-start text-center px-4 sm:px-6 md:px-12 pt-0 sm:pt-6 md:pt-10 pb-6 sm:pb-8 md:pb-10 overflow-hidden">
                         {/* Background Gradient - Integrated into Hero Section */}
                         <div
                             className="absolute inset-0 opacity-15 sm:opacity-12 md:opacity-10 transition-opacity duration-300"
@@ -842,7 +813,7 @@ const EventsPage = () => {
                                 pointerEvents: 'none'
                             }}
                         />
-                        <div className="relative z-10 max-w-4xl mx-auto mt-2 sm:mt-4 md:mt-8 w-full">
+                        <div className="relative z-10 max-w-4xl mx-auto mt-0 sm:mt-4 md:mt-8 w-full">
                             <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-1.5 sm:mb-3 md:mb-4 leading-tight transition-all duration-300" style={{ color: '#EAEAEA' }}>
                                 {selectedEvent.title.toUpperCase()}
                             </h1>
