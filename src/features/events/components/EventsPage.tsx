@@ -1022,32 +1022,34 @@ const EventsPage = () => {
                                         </p>
 
                                         {hasMultipleDays && (
-                                            <div className="flex gap-2 sm:gap-4 mb-4 sm:mb-8 md:mb-10 justify-center">
+                                            <div className="flex gap-3 sm:gap-4 mb-5 sm:mb-8 md:mb-10 justify-center w-full px-2">
                                                 <button
-                                                    className={`px-3 sm:px-5 md:px-6 py-2 sm:py-3 rounded-xl font-medium transition-all duration-300 ${activeDay === 1 ? 'scale-105' : 'opacity-60 hover:opacity-80 active:scale-95'}`}
+                                                    className={`flex-1 sm:flex-none px-4 sm:px-5 md:px-6 py-3 sm:py-3 rounded-xl font-medium transition-all duration-300 ${activeDay === 1 ? 'scale-105' : 'opacity-70 hover:opacity-90 active:scale-95'}`}
                                                     onClick={() => handleDaySwitch(1)}
                                                     style={{
-                                                        background: activeDay === 1 ? currentColor?.gradient : 'rgba(15, 12, 25, 0.6)',
-                                                        border: `1px solid ${activeDay === 1 ? 'transparent' : 'rgba(139, 123, 181, 0.2)'}`,
+                                                        background: activeDay === 1 ? currentColor?.gradient : 'rgba(15, 12, 25, 0.7)',
+                                                        border: `1px solid ${activeDay === 1 ? 'transparent' : 'rgba(139, 123, 181, 0.3)'}`,
                                                         color: activeDay === 1 ? 'white' : '#EAEAEA',
-                                                        boxShadow: activeDay === 1 ? `0 10px 30px ${currentColor?.shadow}` : 'none'
+                                                        boxShadow: activeDay === 1 ? `0 10px 30px ${currentColor?.shadow}` : '0 2px 10px rgba(0,0,0,0.2)',
+                                                        minWidth: '120px'
                                                     }}
                                                 >
-                                                    <span className="block text-[10px] sm:text-sm opacity-70">Day-1</span>
-                                                    <span className="block text-sm sm:text-xl font-bold">Feb-27</span>
+                                                    <span className="block text-xs sm:text-sm opacity-90 font-semibold">Day-1</span>
+                                                    <span className="block text-base sm:text-xl font-bold">Feb-27</span>
                                                 </button>
                                                 <button
-                                                    className={`px-3 sm:px-5 md:px-6 py-2 sm:py-3 rounded-xl font-medium transition-all duration-300 ${activeDay === 2 ? 'scale-105' : 'opacity-60 hover:opacity-80 active:scale-95'}`}
+                                                    className={`flex-1 sm:flex-none px-4 sm:px-5 md:px-6 py-3 sm:py-3 rounded-xl font-medium transition-all duration-300 ${activeDay === 2 ? 'scale-105' : 'opacity-70 hover:opacity-90 active:scale-95'}`}
                                                     onClick={() => handleDaySwitch(2)}
                                                     style={{
-                                                        background: activeDay === 2 ? currentColor?.gradient : 'rgba(15, 12, 25, 0.6)',
-                                                        border: `1px solid ${activeDay === 2 ? 'transparent' : 'rgba(139, 123, 181, 0.2)'}`,
+                                                        background: activeDay === 2 ? currentColor?.gradient : 'rgba(15, 12, 25, 0.7)',
+                                                        border: `1px solid ${activeDay === 2 ? 'transparent' : 'rgba(139, 123, 181, 0.3)'}`,
                                                         color: activeDay === 2 ? 'white' : '#EAEAEA',
-                                                        boxShadow: activeDay === 2 ? `0 10px 30px ${currentColor?.shadow}` : 'none'
+                                                        boxShadow: activeDay === 2 ? `0 10px 30px ${currentColor?.shadow}` : '0 2px 10px rgba(0,0,0,0.2)',
+                                                        minWidth: '120px'
                                                     }}
                                                 >
-                                                    <span className="block text-[10px] sm:text-sm opacity-70">Day-2</span>
-                                                    <span className="block text-sm sm:text-xl font-bold">Feb-28</span>
+                                                    <span className="block text-xs sm:text-sm opacity-90 font-semibold">Day-2</span>
+                                                    <span className="block text-base sm:text-xl font-bold">Feb-28</span>
                                                 </button>
                                             </div>
                                         )}
