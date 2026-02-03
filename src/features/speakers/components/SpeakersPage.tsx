@@ -88,7 +88,7 @@ const SpeakersPage = () => {
                         {/* Speaker 1 */}
                         <div className="speaker-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
                             <div className="aspect-square mb-2 sm:mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-800">
-                                <img src="/images/1.png" alt="Dr. J A CHOWDARY" className="w-full h-full object-cover" loading="lazy" />
+                                <img src="/images/1.png" alt="Dr. J A CHOWDARY" className="w-full h-full object-cover" loading="eager" fetchPriority="high" />
                             </div>
                             <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 leading-tight" style={{ color: 'var(--color-text-primary)' }}>Dr. J A CHOWDARY</h3>
                             <p className="text-xs sm:text-sm mb-1 sm:mb-2 leading-tight" style={{ color: 'var(--color-accent)' }}>Founder - International Startup Foundation</p>
