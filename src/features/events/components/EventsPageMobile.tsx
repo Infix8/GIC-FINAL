@@ -2,9 +2,81 @@ import { useEffect, useRef, useState, useLayoutEffect } from 'react';
 import { useParams, useNavigate, Link } from '@tanstack/react-router';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { eventColors, baseEventsData, eventsData, type EventData, type TimelineItem } from '../constants/eventConstants';
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Event colors matching Structure component (25% dimmed)
+const eventColors = {
+    knowledgeBubble: {
+            {
+                title: "Day 2 - Technology Track B Panels (SCB Block - 700 capacity)",
+                content: [
+                    "Panel 1: Space & Defence Technologies",
+                    "Panel 2: Semiconductors & Advanced Electronics",
+                    "Panel 3: Advanced Materials & Nanotechnology",
+                    "Panel 4: Climate & Sustainability"
+                ]
+            },
+            {
+                title: "Networking & Engagement",
+                content: [
+                    "Technology showcase by innovators, startups, and companies",
+                    "Interactive demos and live demonstrations",
+                    "Investor and vendor pavilions",
+                    "Scheduled breaks with dedicated networking zones",
+                    "One-on-one meeting facilitation",
+                    "Attendee directory shared post-event"
+                ]
+            },
+            {
+                title: "Expected Deliverables",
+                content: [
+                    "Policy recommendations for deep-tech ecosystem development",
+                    "Partnerships between policymakers and innovators",
+                    "Funding opportunities identified and connected",
+                    "Technology roadmaps for priority sectors",
+                    "Media coverage and thought leadership articles"
+                ]
+            }
+        ],
+        timeline: {
+            day1: [
+                { time: "10:00 - 11:30", activity: "Inauguration & Keynote Sessions", details: "Opening remarks and keynote addresses by GIC Chair & Chief Guests (7 speakers)", type: "Ceremony" },
+                { time: "11:30 - 12:00", activity: "Tea Break & Networking", details: "Refreshments and exhibition walk", type: "Break" },
+                { time: "12:00 - 13:00", activity: "Panel: Entrepreneurship & India Mission", details: "National innovation ecosystem, government support, startup success stories (7 panelists)", type: "Panel" },
+                { time: "13:00 - 14:00", activity: "Panel: Policy Enablement & Vision 2047", details: "Policy frameworks, regulatory enablement, long-term technology roadmap (7 panelists)", type: "Panel" },
+                { time: "14:00 - 15:00", activity: "Lunch Break & Exhibition Walk", details: "Networking lunch and expo exploration", type: "Break" },
+                { time: "15:00 - 16:00", activity: "Panel: Entrepreneurship & Growth", details: "Scaling startups, investor relations, market expansion strategies (7 panelists)", type: "Panel" },
+                { time: "16:00 - 17:00", activity: "Panel: Data Centers & Infrastructure", details: "Deep-tech infrastructure, cloud ecosystems, investment opportunities (7 panelists)", type: "Panel" },
+                { time: "17:00 - 17:30", activity: "Coffee Break & Networking", details: "Evening networking session", type: "Break" }
+            ],
+            day2: [
+                { time: "10:30 - 11:30", activity: "Opening & Keynote Sessions", details: "Track welcome and keynote addresses by Chief Guests (7 speakers)", type: "Ceremony" },
+                { time: "11:30 - 12:00", activity: "Tea Break & Expo Walk", details: "Refreshments and exhibition", type: "Break" },
+                { time: "12:00 - 13:00", activity: "Panel: Space & Defence Technologies", details: "Frontier technology, national security, strategic initiatives (7 panelists)", type: "Panel" },
+                { time: "13:00 - 14:00", activity: "Panel: Semiconductors & Electronics", details: "Chip design, supply chain resilience, Make in India initiatives (7 panelists)", type: "Panel" },
+                { time: "14:00 - 15:00", activity: "Lunch Break & Exhibition Walk", details: "Continued networking", type: "Break" },
+                { time: "15:00 - 16:00", activity: "Panel: Advanced Materials & Nano", details: "Materials research, nanotechnology applications, industrial implementation (7 panelists)", type: "Panel" },
+                { time: "16:00 - 17:00", activity: "Panel: Climate & Sustainability", details: "Climate tech, sustainability solutions, renewable energy, green startups (7 panelists)", type: "Panel" },
+                { time: "17:00 - 17:30", activity: "Closing & Networking", details: "Closing remarks and final networking session", type: "Break" }
+            ]
+        }
+    }
+];
+
+/* Same order as Passes page: 1. Knowledge, 2. Alpha2Infiniti, 3. BusiTech Expo, 4. InnoVestors BootCamp, 5. Masterminds Congregation */
+const eventsOrder = [
+    "knowledge-bubble",
+    "alpha-to-infinity",
+    "business-tech-expo",
+    "investor-pitching",
+    "mastermind-congregation",
+] as const;
+
+const eventsData: EventData[] = eventsOrder.map(
+    (id) => baseEventsData.find((event) => event.id === id)!
+);
+
 const EventsPageMobile = () => {
     const pageRef = useRef<HTMLDivElement>(null);
     const timelineRef = useRef<HTMLDivElement>(null);
@@ -55,22 +127,9 @@ const EventsPageMobile = () => {
         if (!selectedEvent) return;
 
         const ctx = gsap.context(() => {
-            // Kill any existing scroll triggers for timeline items
-            ScrollTrigger.getAll().forEach(trigger => {
-                if (trigger.vars?.trigger?.classList?.contains('timeline-item')) {
-                    trigger.kill();
-                }
-            });
-
             const items = gsap.utils.toArray('.timeline-item');
-            if (items.length === 0) return;
-            
             items.forEach((item) => {
                 const el = item as HTMLElement;
-                // Ensure items start visible
-                gsap.set(el, { opacity: 1, y: 0 });
-                
-                // Create scroll-triggered animation
                 gsap.from(el, {
                     opacity: 0,
                     y: 40,
@@ -78,9 +137,8 @@ const EventsPageMobile = () => {
                     ease: "power2.out",
                     scrollTrigger: {
                         trigger: el,
-                        start: "top 85%",
+                        start: "top 80%",
                         toggleActions: "play none none reverse",
-                        once: true,
                     }
                 });
             });
@@ -162,7 +220,6 @@ const EventsPageMobile = () => {
     const handleDaySwitch = (day: 1 | 2) => {
         if (day === activeDay) return;
 
-        // Fade out current items
         gsap.to('.timeline-item', {
             opacity: 0,
             y: -20,
@@ -171,26 +228,6 @@ const EventsPageMobile = () => {
             ease: 'power2.in',
             onComplete: () => {
                 setActiveDay(day);
-                // Force scroll to top of timeline section
-                if (timelineRef.current) {
-                    timelineRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-                // Animate in new items after state update
-                setTimeout(() => {
-                    const newItems = gsap.utils.toArray('.timeline-item');
-                    if (newItems.length > 0) {
-                        gsap.fromTo(newItems, 
-                            { opacity: 0, y: 40 },
-                            { 
-                                opacity: 1, 
-                                y: 0,
-                                stagger: 0.05,
-                                duration: 0.6,
-                                ease: "power2.out"
-                            }
-                        );
-                    }
-                }, 100);
             }
         });
     };
@@ -298,19 +335,19 @@ const EventsPageMobile = () => {
         };
 
         return (
-                <div ref={pageRef} className="page-container events-page" style={{ background: 'var(--color-bg-primary)', scrollBehavior: 'smooth', paddingTop: 0 }}>
-                    {/* Hero Section with Countdown - Mobile View: No top padding, no back button */}
-                    <section className="relative min-h-[85vh] flex flex-col items-center justify-start text-center px-4 pt-0 pb-6 overflow-hidden">
+                <div ref={pageRef} className="page-container events-page sm:pt-[56px]" style={{ background: 'var(--color-bg-primary)', scrollBehavior: 'smooth', paddingTop: 0 }}>
+                    {/* Hero Section with Countdown */}
+                    <section className="relative min-h-[85vh] sm:min-h-screen flex flex-col items-center justify-start text-center px-4 sm:px-6 md:px-12 pt-0 pb-6 sm:pb-8 md:pb-10 overflow-hidden">
                         {/* Background Gradient - Extended to top */}
                         <div
-                            className="absolute inset-0 opacity-15 transition-opacity duration-300"
+                            className="absolute inset-0 opacity-15 sm:opacity-12 md:opacity-10 transition-opacity duration-300"
                             style={{ 
                                 background: currentColor?.gradient,
                                 zIndex: 0,
                                 pointerEvents: 'none'
                             }}
                         />
-                        <div className="relative z-10 max-w-4xl mx-auto w-full pt-0">
+                        <div className="relative z-10 max-w-4xl mx-auto mt-0 sm:mt-4 md:mt-8 w-full pt-0">
                             <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-0.5 sm:mb-3 md:mb-4 leading-tight transition-all duration-300" style={{ color: '#EAEAEA' }}>
                                 {selectedEvent.title.toUpperCase()}
                             </h1>
@@ -524,20 +561,12 @@ const EventsPageMobile = () => {
                                         )}
 
                                         <div ref={timelineRef} className="relative">
-                                            {timelineItems.length === 0 ? (
-                                                <div className="text-center py-8">
-                                                    <p className="text-lg" style={{ color: 'rgba(234, 234, 234, 0.6)' }}>
-                                                        No schedule available for this day.
-                                                    </p>
-                                                </div>
-                                            ) : (
                                             <div className="space-y-4 sm:space-y-5 md:space-y-6">
                                                 {hasPhases ? (
                                                     (timelineItems as { name: string; date: string; description: string }[]).map((phase, index) => (
                                                         <div
-                                                            key={`phase-${index}-${phase.date}`}
+                                                            key={index}
                                                             className="timeline-item flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 transition-all duration-300"
-                                                            style={{ opacity: 1 }}
                                                         >
                                                             <div
                                                                 className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center text-base sm:text-lg md:text-xl font-bold z-10 transition-all duration-300 mx-auto sm:mx-0"
@@ -580,9 +609,8 @@ const EventsPageMobile = () => {
                                                 ) : (
                                                     (timelineItems as TimelineItem[]).map((item, index) => (
                                                         <div
-                                                            key={`day${activeDay}-${index}-${item.time}`}
+                                                            key={index}
                                                             className="timeline-item flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 transition-all duration-300"
-                                                            style={{ opacity: 1 }}
                                                         >
                                                             <div
                                                                 className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center text-base sm:text-lg md:text-xl font-bold z-10 transition-all duration-300 mx-auto sm:mx-0"
@@ -630,7 +658,6 @@ const EventsPageMobile = () => {
                                                     ))
                                                 )}
                                             </div>
-                                            )}
                                         </div>
                                     </>
                                 );
