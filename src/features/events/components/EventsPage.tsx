@@ -832,7 +832,7 @@ const EventsPage = () => {
         };
 
         return (
-                <div ref={pageRef} className="page-container events-page" style={{ background: 'var(--color-bg-primary)' }}>
+                <div ref={pageRef} className="page-container events-page" style={{ background: 'var(--color-bg-primary)', scrollBehavior: 'smooth' }}>
                     {/* Background Gradient - Extends upward from top */}
                     <div
                         className="fixed opacity-10"
@@ -866,46 +866,46 @@ const EventsPage = () => {
                     </button>
 
                     {/* Hero Section with Countdown */}
-                    <section className="relative min-h-screen flex flex-col items-center justify-start text-center px-4 sm:px-6 md:px-12 pt-6 sm:pt-8 md:pt-10 pb-8 sm:pb-10 overflow-hidden">
-                        <div className="relative z-10 max-w-4xl mx-auto mt-4 sm:mt-6 md:mt-8 w-full">
-                            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-2 sm:mb-3 md:mb-4 leading-tight transition-all duration-300" style={{ color: '#EAEAEA' }}>
+                    <section className="relative min-h-[85vh] sm:min-h-screen flex flex-col items-center justify-start text-center px-4 sm:px-6 md:px-12 pt-4 sm:pt-6 md:pt-10 pb-6 sm:pb-8 md:pb-10 overflow-hidden">
+                        <div className="relative z-10 max-w-4xl mx-auto mt-2 sm:mt-4 md:mt-8 w-full">
+                            <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-1.5 sm:mb-3 md:mb-4 leading-tight transition-all duration-300" style={{ color: '#EAEAEA' }}>
                                 {selectedEvent.title.toUpperCase()}
                             </h1>
-                            <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-7 md:mb-8 transition-all duration-300" style={{ color: currentColor?.accent }}>
+                            <p className="text-sm sm:text-lg md:text-xl lg:text-2xl mb-4 sm:mb-6 md:mb-8 transition-all duration-300" style={{ color: currentColor?.accent }}>
                                 {getEventDate()}
                             </p>
                             
                             {/* Countdown Timer */}
-                            <div className="grid grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-8 mb-6 sm:mb-7 md:mb-8 w-full max-w-md sm:max-w-lg md:max-w-none mx-auto">
+                            <div className="grid grid-cols-4 gap-1.5 sm:gap-3 md:gap-4 lg:gap-8 mb-5 sm:mb-7 md:mb-8 w-full max-w-md sm:max-w-lg md:max-w-none mx-auto">
                                 <div className="text-center transition-all duration-300">
-                                    <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-1 sm:mb-2 transition-all duration-300" style={{ color: currentColor?.accent }}>
+                                    <div className="text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-0.5 sm:mb-2 transition-all duration-300" style={{ color: currentColor?.accent }}>
                                         {String(countdown.days).padStart(2, '0')}
                                     </div>
-                                    <div className="text-xs sm:text-sm md:text-base transition-all duration-300" style={{ color: 'rgba(234, 234, 234, 0.7)' }}>
+                                    <div className="text-[10px] sm:text-sm md:text-base transition-all duration-300" style={{ color: 'rgba(234, 234, 234, 0.7)' }}>
                                         Days
                                     </div>
                                 </div>
                                 <div className="text-center transition-all duration-300">
-                                    <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-1 sm:mb-2 transition-all duration-300" style={{ color: currentColor?.accent }}>
+                                    <div className="text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-0.5 sm:mb-2 transition-all duration-300" style={{ color: currentColor?.accent }}>
                                         {String(countdown.hours).padStart(2, '0')}
                                     </div>
-                                    <div className="text-xs sm:text-sm md:text-base transition-all duration-300" style={{ color: 'rgba(234, 234, 234, 0.7)' }}>
+                                    <div className="text-[10px] sm:text-sm md:text-base transition-all duration-300" style={{ color: 'rgba(234, 234, 234, 0.7)' }}>
                                         Hours
                                     </div>
                                 </div>
                                 <div className="text-center transition-all duration-300">
-                                    <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-1 sm:mb-2 transition-all duration-300" style={{ color: currentColor?.accent }}>
+                                    <div className="text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-0.5 sm:mb-2 transition-all duration-300" style={{ color: currentColor?.accent }}>
                                         {String(countdown.minutes).padStart(2, '0')}
                                     </div>
-                                    <div className="text-xs sm:text-sm md:text-base transition-all duration-300" style={{ color: 'rgba(234, 234, 234, 0.7)' }}>
+                                    <div className="text-[10px] sm:text-sm md:text-base transition-all duration-300" style={{ color: 'rgba(234, 234, 234, 0.7)' }}>
                                         Minutes
                                     </div>
                                 </div>
                                 <div className="text-center transition-all duration-300">
-                                    <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-1 sm:mb-2 transition-all duration-300" style={{ color: currentColor?.accent }}>
+                                    <div className="text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-0.5 sm:mb-2 transition-all duration-300" style={{ color: currentColor?.accent }}>
                                         {String(countdown.seconds).padStart(2, '0')}
                                     </div>
-                                    <div className="text-xs sm:text-sm md:text-base transition-all duration-300" style={{ color: 'rgba(234, 234, 234, 0.7)' }}>
+                                    <div className="text-[10px] sm:text-sm md:text-base transition-all duration-300" style={{ color: 'rgba(234, 234, 234, 0.7)' }}>
                                         Seconds
                                     </div>
                                 </div>
@@ -918,12 +918,12 @@ const EventsPage = () => {
                                          selectedEvent.id === "investor-pitching" || 
                                          selectedEvent.id === "mastermind-congregation" ||
                                          selectedEvent.id === "business-tech-expo") ? { event: selectedEvent.id } : undefined}
-                                className="inline-block px-6 sm:px-8 md:px-12 py-4 sm:py-5 md:py-6 rounded-full font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl cursor-pointer transition-all duration-300 hover:scale-105 active:scale-95 w-full sm:w-auto"
+                                className="inline-block px-5 sm:px-8 md:px-12 py-3 sm:py-5 md:py-6 rounded-full font-bold text-lg sm:text-2xl md:text-3xl lg:text-4xl cursor-pointer transition-all duration-300 hover:scale-105 active:scale-95 w-full sm:w-auto"
                                 style={{ 
                                     background: currentColor?.gradient,
                                     color: 'white',
                                     textDecoration: 'none',
-                                    minWidth: '200px'
+                                    minWidth: '180px'
                                 }}
                             >
                                 Register Now!
@@ -932,16 +932,16 @@ const EventsPage = () => {
                     </section>
 
                     {/* About Section */}
-                    <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 transition-all duration-300" style={{ background: 'var(--color-bg-primary)' }}>
+                    <section className="py-8 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 transition-all duration-300" style={{ background: 'var(--color-bg-primary)' }}>
                         <div className="max-w-4xl mx-auto">
-                            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-8 text-center transition-all duration-300" style={{ color: '#EAEAEA' }}>
+                            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-8 text-center transition-all duration-300" style={{ color: '#EAEAEA' }}>
                                 About
                             </h2>
-                            <div className="space-y-4 sm:space-y-5 md:space-y-6">
-                                <p className="text-base sm:text-lg md:text-xl leading-relaxed transition-all duration-300" style={{ color: 'rgba(234, 234, 234, 0.8)' }}>
+                            <div className="space-y-3 sm:space-y-5 md:space-y-6">
+                                <p className="text-sm sm:text-lg md:text-xl leading-relaxed transition-all duration-300" style={{ color: 'rgba(234, 234, 234, 0.8)' }}>
                                     {getEventAbout()}
                                 </p>
-                                <p className="text-base sm:text-lg md:text-xl leading-relaxed transition-all duration-300" style={{ color: 'rgba(234, 234, 234, 0.8)' }}>
+                                <p className="text-sm sm:text-lg md:text-xl leading-relaxed transition-all duration-300" style={{ color: 'rgba(234, 234, 234, 0.8)' }}>
                                     Join us at {selectedEvent.title} and be part of the Global Innovators Conclave, shaping the future of innovation and entrepreneurship.
                                 </p>
                             </div>
@@ -949,9 +949,9 @@ const EventsPage = () => {
                     </section>
 
                     {/* Why Participate Section */}
-                    <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 transition-all duration-300" style={{ background: 'rgba(15, 12, 25, 0.5)' }}>
+                    <section className="py-8 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 transition-all duration-300" style={{ background: 'rgba(15, 12, 25, 0.5)' }}>
                         <div className="max-w-6xl mx-auto">
-                            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-12 md:mb-16 text-center transition-all duration-300" style={{ color: '#EAEAEA' }}>
+                            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-12 md:mb-16 text-center transition-all duration-300" style={{ color: '#EAEAEA' }}>
                                 Why Participate?
                             </h2>
                             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-7 md:gap-8">
@@ -999,7 +999,7 @@ const EventsPage = () => {
 
                     {/* Sponsors Section - Only for Alpha 2 Infiniti */}
                     {selectedEvent.id === "alpha-to-infinity" && (
-                        <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 transition-all duration-300" style={{ background: 'var(--color-bg-primary)' }}>
+                        <section className="py-8 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 transition-all duration-300" style={{ background: 'var(--color-bg-primary)' }}>
                             <div className="max-w-6xl mx-auto">
                                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 md:mb-8 text-center transition-all duration-300" style={{ color: '#EAEAEA' }}>
                                     TITLE SPONSOR
@@ -1031,7 +1031,7 @@ const EventsPage = () => {
                     )}
 
                     {/* Timeline Section */}
-                    <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 transition-all duration-300" style={{ background: 'var(--color-bg-primary)' }}>
+                    <section className="py-8 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 transition-all duration-300" style={{ background: 'var(--color-bg-primary)' }}>
                         <div className="max-w-4xl mx-auto">
                             {(() => {
                                 const timelineItems = getTimelineItems();
@@ -1040,17 +1040,17 @@ const EventsPage = () => {
 
                                 return (
                                     <>
-                                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 md:mb-8 text-center transition-all duration-300" style={{ color: '#EAEAEA' }}>
+                                        <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-6 md:mb-8 text-center transition-all duration-300" style={{ color: '#EAEAEA' }}>
                                             {hasPhases ? 'Program Timeline' : 'Event Schedule'}
                                         </h2>
-                                        <p className="mb-6 sm:mb-7 md:mb-8 text-center text-base sm:text-lg transition-all duration-300" style={{ color: 'rgba(234, 234, 234, 0.6)' }}>
+                                        <p className="mb-4 sm:mb-7 md:mb-8 text-center text-sm sm:text-lg transition-all duration-300" style={{ color: 'rgba(234, 234, 234, 0.6)' }}>
                                             {hasPhases ? 'Multi-phase journey from training to finals' : 'Detailed agenda for each day'}
                                         </p>
 
                                         {hasMultipleDays && (
-                                            <div className="flex gap-3 sm:gap-4 mb-6 sm:mb-8 md:mb-10 justify-center">
+                                            <div className="flex gap-2 sm:gap-4 mb-4 sm:mb-8 md:mb-10 justify-center">
                                                 <button
-                                                    className={`px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 rounded-xl font-medium transition-all duration-300 ${activeDay === 1 ? 'scale-105' : 'opacity-60 hover:opacity-80 active:scale-95'}`}
+                                                    className={`px-3 sm:px-5 md:px-6 py-2 sm:py-3 rounded-xl font-medium transition-all duration-300 ${activeDay === 1 ? 'scale-105' : 'opacity-60 hover:opacity-80 active:scale-95'}`}
                                                     onClick={() => handleDaySwitch(1)}
                                                     style={{
                                                         background: activeDay === 1 ? currentColor?.gradient : 'rgba(15, 12, 25, 0.6)',
@@ -1059,11 +1059,11 @@ const EventsPage = () => {
                                                         boxShadow: activeDay === 1 ? `0 10px 30px ${currentColor?.shadow}` : 'none'
                                                     }}
                                                 >
-                                                    <span className="block text-xs sm:text-sm opacity-70">Day-1</span>
-                                                    <span className="block text-lg sm:text-xl font-bold">Feb-27</span>
+                                                    <span className="block text-[10px] sm:text-sm opacity-70">Day-1</span>
+                                                    <span className="block text-sm sm:text-xl font-bold">Feb-27</span>
                                                 </button>
                                                 <button
-                                                    className={`px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 rounded-xl font-medium transition-all duration-300 ${activeDay === 2 ? 'scale-105' : 'opacity-60 hover:opacity-80 active:scale-95'}`}
+                                                    className={`px-3 sm:px-5 md:px-6 py-2 sm:py-3 rounded-xl font-medium transition-all duration-300 ${activeDay === 2 ? 'scale-105' : 'opacity-60 hover:opacity-80 active:scale-95'}`}
                                                     onClick={() => handleDaySwitch(2)}
                                                     style={{
                                                         background: activeDay === 2 ? currentColor?.gradient : 'rgba(15, 12, 25, 0.6)',
@@ -1072,8 +1072,8 @@ const EventsPage = () => {
                                                         boxShadow: activeDay === 2 ? `0 10px 30px ${currentColor?.shadow}` : 'none'
                                                     }}
                                                 >
-                                                    <span className="block text-xs sm:text-sm opacity-70">Day-2</span>
-                                                    <span className="block text-lg sm:text-xl font-bold">Feb-28</span>
+                                                    <span className="block text-[10px] sm:text-sm opacity-70">Day-2</span>
+                                                    <span className="block text-sm sm:text-xl font-bold">Feb-28</span>
                                                 </button>
                                             </div>
                                         )}
@@ -1094,7 +1094,7 @@ const EventsPage = () => {
                                                 />
                                             </div>
 
-                                            <div className="space-y-4 sm:space-y-5 md:space-y-6">
+                                            <div className="space-y-3 sm:space-y-5 md:space-y-6">
                                                 {hasPhases ? (
                                                     (timelineItems as { name: string; date: string; description: string }[]).map((phase, index) => (
                                                         <div
@@ -1200,7 +1200,7 @@ const EventsPage = () => {
 
                     {/* Accommodation Section - Only for Alpha 2 Infiniti */}
                     {selectedEvent.id === "alpha-to-infinity" && (
-                        <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 transition-all duration-300" style={{ background: 'var(--color-bg-primary)' }}>
+                        <section className="py-8 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 transition-all duration-300" style={{ background: 'var(--color-bg-primary)' }}>
                             <div className="w-full max-w-7xl mx-auto">
                                 <Link
                                     to="/accommodation"
@@ -1252,9 +1252,9 @@ const EventsPage = () => {
                     )}
 
                     {/* FAQ Section */}
-                    <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 transition-all duration-300" style={{ background: 'rgba(15, 12, 25, 0.5)' }}>
+                    <section className="py-8 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 transition-all duration-300" style={{ background: 'rgba(15, 12, 25, 0.5)' }}>
                         <div className="max-w-4xl mx-auto">
-                            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-12 md:mb-16 text-center transition-all duration-300" style={{ color: '#EAEAEA' }}>
+                            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-12 md:mb-16 text-center transition-all duration-300" style={{ color: '#EAEAEA' }}>
                                 Frequently Asked Questions
                             </h2>
                             <div className="space-y-3 sm:space-y-4">
@@ -1307,12 +1307,12 @@ const EventsPage = () => {
                     </section>
 
                     {/* Contact Section */}
-                    <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 transition-all duration-300" style={{ background: 'var(--color-bg-primary)' }}>
+                    <section className="py-8 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 transition-all duration-300" style={{ background: 'var(--color-bg-primary)' }}>
                         <div className="max-w-4xl mx-auto text-center">
-                            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-7 md:mb-8 transition-all duration-300" style={{ color: '#EAEAEA' }}>
+                            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-7 md:mb-8 transition-all duration-300" style={{ color: '#EAEAEA' }}>
                                 Contact Us
                             </h2>
-                            <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed transition-all duration-300 break-words" style={{ color: 'rgba(234, 234, 234, 0.8)' }}>
+                            <p className="text-sm sm:text-lg md:text-xl lg:text-2xl leading-relaxed transition-all duration-300 break-words" style={{ color: 'rgba(234, 234, 234, 0.8)' }}>
                                 For all queries, please contact <a href="mailto:globalinnovatorsconclave@smec.ac.in" className="underline hover:opacity-80 transition-opacity duration-300" style={{ color: currentColor?.accent }}>globalinnovatorsconclave@smec.ac.in</a>
                             </p>
                         </div>
