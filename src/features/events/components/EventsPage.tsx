@@ -833,25 +833,10 @@ const EventsPage = () => {
 
         return (
                 <div ref={pageRef} className="page-container events-page" style={{ background: 'var(--color-bg-primary)', scrollBehavior: 'smooth' }}>
-                    {/* Background Gradient - Extends upward from top */}
-                    <div
-                        className="fixed opacity-10"
-                        style={{ 
-                            background: currentColor?.gradient,
-                            top: 0,
-                            left: 0,
-                            right: 0,
-                            width: '100%',
-                            height: '100vh',
-                            zIndex: 0,
-                            pointerEvents: 'none'
-                        }}
-                    />
-                    
                     {/* Back Button */}
                     <button
                         onClick={handleBackClick}
-                        className="fixed top-24 left-6 z-50 flex items-center gap-2 px-4 py-2 rounded-full transition-all hover:scale-105"
+                        className="fixed top-20 sm:top-24 left-4 sm:left-6 z-50 flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full transition-all duration-300 hover:scale-105 active:scale-95"
                         style={{
                             background: 'rgba(15, 12, 25, 0.9)',
                             border: '1px solid rgba(139, 123, 181, 0.3)',
@@ -859,14 +844,23 @@ const EventsPage = () => {
                             backdropFilter: 'blur(10px)'
                         }}
                     >
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <svg width="18" height="18" className="sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <path d="M19 12H5M12 19l-7-7 7-7" />
                         </svg>
-                        <span className="text-sm font-medium">All Events</span>
+                        <span className="text-xs sm:text-sm font-medium">All Events</span>
                     </button>
 
                     {/* Hero Section with Countdown */}
                     <section className="relative min-h-[85vh] sm:min-h-screen flex flex-col items-center justify-start text-center px-4 sm:px-6 md:px-12 pt-4 sm:pt-6 md:pt-10 pb-6 sm:pb-8 md:pb-10 overflow-hidden">
+                        {/* Background Gradient - Integrated into Hero Section */}
+                        <div
+                            className="absolute inset-0 opacity-15 sm:opacity-12 md:opacity-10 transition-opacity duration-300"
+                            style={{ 
+                                background: currentColor?.gradient,
+                                zIndex: 0,
+                                pointerEvents: 'none'
+                            }}
+                        />
                         <div className="relative z-10 max-w-4xl mx-auto mt-2 sm:mt-4 md:mt-8 w-full">
                             <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-1.5 sm:mb-3 md:mb-4 leading-tight transition-all duration-300" style={{ color: '#EAEAEA' }}>
                                 {selectedEvent.title.toUpperCase()}
