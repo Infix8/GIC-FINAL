@@ -35,22 +35,22 @@ const AccommodationPage = () => {
                         opacity: 1,
                     }}
                 >
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                        <div className="text-left">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6">
+                        <div className="flex-1 text-left">
                             <p
-                                className="text-xs font-semibold tracking-[0.15em] uppercase mb-1"
+                                className="text-xs sm:text-sm font-semibold tracking-[0.15em] uppercase mb-2 sm:mb-1"
                                 style={{ color: 'rgba(226, 218, 255, 0.85)' }}
                             >
                                 SMEC CAMPUS ACCOMMODATION
                             </p>
                             <h2
-                                className="text-xl sm:text-2xl font-bold"
+                                className="text-xl sm:text-2xl font-bold mb-3 sm:mb-2"
                                 style={{ color: 'var(--color-text-primary)' }}
                             >
                                 ₹2,500 per person
                             </h2>
                             <p
-                                className="mt-2 text-sm sm:text-base"
+                                className="mt-2 text-sm sm:text-base leading-relaxed"
                                 style={{ color: 'var(--color-text-secondary)' }}
                             >
                                 Entry permitted from <span style={{ color: 'var(--color-accent)', fontWeight: 600 }}>26<sup>th</sup> evening</span>{' '}
@@ -58,21 +58,21 @@ const AccommodationPage = () => {
                                 <span style={{ color: 'var(--color-accent)', fontWeight: 600 }}>1<sup>st</sup> March, 10:00 AM</span>.
                             </p>
                         </div>
-                        <div className="flex flex-col gap-2 text-sm sm:text-base text-right sm:text-left">
-                            <p style={{ color: 'rgba(226, 218, 255, 0.9)' }}>
+                        <div className="flex flex-col gap-2 sm:gap-3 text-sm sm:text-base text-left sm:text-right">
+                            <p className="leading-relaxed" style={{ color: 'rgba(226, 218, 255, 0.9)' }}>
                                 Ideal for outstation participants staying on campus.
                             </p>
-                            <p style={{ color: 'rgba(226, 218, 255, 0.75)' }}>
+                            <p className="leading-relaxed" style={{ color: 'rgba(226, 218, 255, 0.75)' }}>
                                 Please complete your registration to confirm accommodation.
                             </p>
                         </div>
                     </div>
-                    <div className="mt-5 flex justify-start sm:justify-end">
+                    <div className="mt-6 sm:mt-5 flex justify-center sm:justify-end">
                         <a
                             href="https://rzp.io/rzp/AccommodationBooking"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-semibold transition-all"
+                            className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-2.5 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-105 active:scale-95 w-full sm:w-auto"
                             style={{
                                 background: 'linear-gradient(90deg, rgba(139,123,181,0.9), rgba(107,91,149,0.9))',
                                 color: '#ffffff',
