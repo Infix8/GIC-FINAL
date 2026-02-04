@@ -979,7 +979,7 @@ const EventsPage = () => {
                                     border: '1px solid rgba(139, 123, 181, 0.2)'
                                 }}>
                                     <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 transition-all duration-300" style={{ color: currentColor?.accent }}>
-                                        6.5+ Lakhs
+                                        5L
                                     </div>
                                     <p className="text-base sm:text-lg leading-relaxed transition-all duration-300" style={{ color: 'rgba(234, 234, 234, 0.8)' }}>
                                         Worth prizes at stake, along with Certificate of Participation and T-Shirts
