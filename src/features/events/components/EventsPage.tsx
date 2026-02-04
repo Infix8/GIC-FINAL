@@ -569,7 +569,7 @@ const EventsPage = () => {
         const ctx = gsap.context(() => {
             // All animations removed - header and cards appear immediately
             gsap.set('.header-animate', { opacity: 1, y: 0 });
-            gsap.set('.event-card', { opacity: 1 });
+            gsap.set('.event-card', { opacity: 1, visibility: 'visible' });
         }, pageRef);
 
         return () => ctx.revert();
@@ -584,13 +584,17 @@ const EventsPage = () => {
         
         const ctx = gsap.context(() => {
             const items = gsap.utils.toArray('.timeline-item');
-            items.forEach((item, index) => {
-                const el = item as HTMLElement;
-                
-                if (isMobile) {
-                    // On mobile, show items immediately without animation
-                    gsap.set(el, { opacity: 1, y: 0 });
-                } else {
+            
+            if (isMobile) {
+                // On mobile, show all items immediately without any animation
+                items.forEach((item) => {
+                    const el = item as HTMLElement;
+                    gsap.set(el, { opacity: 1, y: 0, visibility: 'visible' });
+                });
+            } else {
+                // Desktop: animate items as they scroll into view
+                items.forEach((item, index) => {
+                    const el = item as HTMLElement;
                     // Reset initial state for desktop
                     gsap.set(el, { opacity: 0, y: 40 });
                     
@@ -608,8 +612,8 @@ const EventsPage = () => {
                             once: true
                         }
                     });
-                }
-            });
+                });
+            }
         }, timelineRef);
 
         return () => ctx.revert();
@@ -692,8 +696,20 @@ const EventsPage = () => {
         const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
         if (isMobile) {
-            // On mobile, just switch without animation
+            // On mobile, just switch without animation - ensure items are visible immediately
             setActiveDay(day);
+            // Force immediate visibility on mobile
+            setTimeout(() => {
+                const items = document.querySelectorAll('.timeline-item');
+                items.forEach((item) => {
+                    const el = item as HTMLElement;
+                    if (el) {
+                        el.style.opacity = '1';
+                        el.style.visibility = 'visible';
+                        el.style.transform = 'translateY(0)';
+                    }
+                });
+            }, 0);
             return;
         }
 
@@ -1050,80 +1066,85 @@ const EventsPage = () => {
                                         </p>
 
                                         {hasMultipleDays && (
-                                            <div className="flex gap-3 sm:gap-4 mb-5 sm:mb-8 md:mb-10 justify-center w-full px-2">
+                                            <div className="flex gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8 md:mb-10 justify-center w-full px-2 sm:px-4">
                                                 <button
-                                                    className={`flex-1 sm:flex-none px-4 sm:px-5 md:px-6 py-3 sm:py-3 rounded-xl font-medium transition-all duration-300 ${activeDay === 1 ? 'scale-105' : 'opacity-70 hover:opacity-90 active:scale-95'}`}
+                                                    className={`flex-1 sm:flex-none px-3 sm:px-4 md:px-5 lg:px-6 py-2.5 sm:py-3 rounded-lg sm:rounded-xl font-medium transition-all duration-200 ${activeDay === 1 ? 'scale-[1.02] sm:scale-105' : 'opacity-80 hover:opacity-100 active:scale-[0.98]'}`}
                                                     onClick={() => handleDaySwitch(1)}
                                                     style={{
-                                                        background: activeDay === 1 ? currentColor?.gradient : 'rgba(15, 12, 25, 0.7)',
-                                                        border: `1px solid ${activeDay === 1 ? 'transparent' : 'rgba(139, 123, 181, 0.3)'}`,
+                                                        background: activeDay === 1 ? currentColor?.gradient : 'rgba(15, 12, 25, 0.8)',
+                                                        border: `1px solid ${activeDay === 1 ? 'transparent' : 'rgba(139, 123, 181, 0.4)'}`,
                                                         color: activeDay === 1 ? 'white' : '#EAEAEA',
-                                                        boxShadow: activeDay === 1 ? `0 10px 30px ${currentColor?.shadow}` : '0 2px 10px rgba(0,0,0,0.2)',
-                                                        minWidth: '120px'
+                                                        boxShadow: activeDay === 1 ? `0 8px 25px ${currentColor?.shadow}` : '0 2px 8px rgba(0,0,0,0.3)',
+                                                        minWidth: '100px',
+                                                        minHeight: '60px'
                                                     }}
                                                 >
-                                                    <span className="block text-xs sm:text-sm opacity-90 font-semibold">Day-1</span>
-                                                    <span className="block text-base sm:text-xl font-bold">Feb-27</span>
+                                                    <span className="block text-[10px] sm:text-xs md:text-sm opacity-90 font-semibold">Day-1</span>
+                                                    <span className="block text-sm sm:text-base md:text-xl font-bold">Feb-27</span>
                                                 </button>
                                                 <button
-                                                    className={`flex-1 sm:flex-none px-4 sm:px-5 md:px-6 py-3 sm:py-3 rounded-xl font-medium transition-all duration-300 ${activeDay === 2 ? 'scale-105' : 'opacity-70 hover:opacity-90 active:scale-95'}`}
+                                                    className={`flex-1 sm:flex-none px-3 sm:px-4 md:px-5 lg:px-6 py-2.5 sm:py-3 rounded-lg sm:rounded-xl font-medium transition-all duration-200 ${activeDay === 2 ? 'scale-[1.02] sm:scale-105' : 'opacity-80 hover:opacity-100 active:scale-[0.98]'}`}
                                                     onClick={() => handleDaySwitch(2)}
                                                     style={{
-                                                        background: activeDay === 2 ? currentColor?.gradient : 'rgba(15, 12, 25, 0.7)',
-                                                        border: `1px solid ${activeDay === 2 ? 'transparent' : 'rgba(139, 123, 181, 0.3)'}`,
+                                                        background: activeDay === 2 ? currentColor?.gradient : 'rgba(15, 12, 25, 0.8)',
+                                                        border: `1px solid ${activeDay === 2 ? 'transparent' : 'rgba(139, 123, 181, 0.4)'}`,
                                                         color: activeDay === 2 ? 'white' : '#EAEAEA',
-                                                        boxShadow: activeDay === 2 ? `0 10px 30px ${currentColor?.shadow}` : '0 2px 10px rgba(0,0,0,0.2)',
-                                                        minWidth: '120px'
+                                                        boxShadow: activeDay === 2 ? `0 8px 25px ${currentColor?.shadow}` : '0 2px 8px rgba(0,0,0,0.3)',
+                                                        minWidth: '100px',
+                                                        minHeight: '60px'
                                                     }}
                                                 >
-                                                    <span className="block text-xs sm:text-sm opacity-90 font-semibold">Day-2</span>
-                                                    <span className="block text-base sm:text-xl font-bold">Feb-28</span>
+                                                    <span className="block text-[10px] sm:text-xs md:text-sm opacity-90 font-semibold">Day-2</span>
+                                                    <span className="block text-sm sm:text-base md:text-xl font-bold">Feb-28</span>
                                                 </button>
                                             </div>
                                         )}
 
-                                        <div ref={timelineRef} className="relative w-full">
+                                        <div ref={timelineRef} className="relative w-full" style={{ minHeight: '200px' }}>
                                             {timelineItems.length > 0 ? (
-                                                <div className="space-y-4 sm:space-y-5 md:space-y-6">
+                                                <div className="space-y-4 sm:space-y-5 md:space-y-6" style={{ opacity: 1, visibility: 'visible' }}>
                                                     {hasPhases ? (
                                                         (timelineItems as { name: string; date: string; description: string }[]).map((phase, index) => (
                                                             <div
                                                                 key={`phase-${activeDay}-${index}`}
-                                                                className="timeline-item flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 transition-all duration-300"
+                                                                className="timeline-item flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 transition-all duration-200"
+                                                                style={{ opacity: 1, visibility: 'visible' }}
                                                             >
                                                                 <div
-                                                                    className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center text-base sm:text-lg md:text-xl font-bold z-10 transition-all duration-300 mx-auto sm:mx-0"
+                                                                    className="flex-shrink-0 w-14 h-14 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center text-sm sm:text-base md:text-lg lg:text-xl font-bold z-10 transition-all duration-200 mx-auto sm:mx-0"
                                                                     style={{
                                                                         background: currentColor?.gradient,
                                                                         color: 'white',
-                                                                        boxShadow: `0 4px 20px ${currentColor?.shadow}`
+                                                                        boxShadow: `0 4px 20px ${currentColor?.shadow}`,
+                                                                        minWidth: '56px',
+                                                                        minHeight: '56px'
                                                                     }}
                                                                 >
                                                                     {String(index + 1).padStart(2, '0')}
                                                                 </div>
 
                                                                 <div
-                                                                    className="flex-1 p-4 sm:p-5 md:p-6 rounded-xl transition-all duration-300 w-full"
+                                                                    className="flex-1 p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl transition-all duration-200 w-full"
                                                                     style={{
-                                                                        background: 'rgba(15, 12, 25, 0.6)',
-                                                                        border: '1px solid rgba(139, 123, 181, 0.15)'
+                                                                        background: 'rgba(15, 12, 25, 0.7)',
+                                                                        border: '1px solid rgba(139, 123, 181, 0.2)'
                                                                     }}
                                                                 >
-                                                                    <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                                                                    <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2.5 sm:mb-3">
                                                                         <span
-                                                                            className="px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium transition-all duration-300"
+                                                                            className="px-2.5 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs md:text-sm font-medium transition-all duration-200"
                                                                             style={{
-                                                                                background: `${currentColor?.accent}20`,
+                                                                                background: `${currentColor?.accent}25`,
                                                                                 color: currentColor?.accent
                                                                             }}
                                                                         >
                                                                             {phase.date}
                                                                         </span>
                                                                     </div>
-                                                                    <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-2 sm:mb-3 transition-all duration-300" style={{ color: '#EAEAEA' }}>
+                                                                    <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold mb-2 sm:mb-2.5 transition-all duration-200 leading-tight" style={{ color: '#EAEAEA' }}>
                                                                         {phase.name}
                                                                     </h3>
-                                                                    <p className="text-xs sm:text-sm md:text-base leading-relaxed transition-all duration-300" style={{ color: 'rgba(234, 234, 234, 0.7)' }}>
+                                                                    <p className="text-xs sm:text-sm md:text-base leading-relaxed transition-all duration-200" style={{ color: 'rgba(234, 234, 234, 0.75)' }}>
                                                                         {phase.description}
                                                                     </p>
                                                                 </div>
@@ -1133,47 +1154,50 @@ const EventsPage = () => {
                                                         (timelineItems as TimelineItem[]).map((item, index) => (
                                                             <div
                                                                 key={`day-${activeDay}-item-${index}`}
-                                                                className="timeline-item flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 transition-all duration-300"
+                                                                className="timeline-item flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 transition-all duration-200"
+                                                                style={{ opacity: 1, visibility: 'visible' }}
                                                             >
                                                                 <div
-                                                                    className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center text-base sm:text-lg md:text-xl font-bold z-10 transition-all duration-300 mx-auto sm:mx-0"
+                                                                    className="flex-shrink-0 w-14 h-14 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center text-sm sm:text-base md:text-lg lg:text-xl font-bold z-10 transition-all duration-200 mx-auto sm:mx-0"
                                                                     style={{
                                                                         background: currentColor?.gradient,
                                                                         color: 'white',
-                                                                        boxShadow: `0 4px 20px ${currentColor?.shadow}`
+                                                                        boxShadow: `0 4px 20px ${currentColor?.shadow}`,
+                                                                        minWidth: '56px',
+                                                                        minHeight: '56px'
                                                                     }}
                                                                 >
                                                                     {String(index + 1).padStart(2, '0')}
                                                                 </div>
 
                                                                 <div
-                                                                    className="flex-1 p-4 sm:p-5 md:p-6 rounded-xl transition-all duration-300 w-full"
+                                                                    className="flex-1 p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl transition-all duration-200 w-full"
                                                                     style={{
-                                                                        background: 'rgba(15, 12, 25, 0.6)',
-                                                                        border: '1px solid rgba(139, 123, 181, 0.15)'
+                                                                        background: 'rgba(15, 12, 25, 0.7)',
+                                                                        border: '1px solid rgba(139, 123, 181, 0.2)'
                                                                     }}
                                                                 >
-                                                                    <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                                                                    <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2.5 sm:mb-3">
                                                                         <span
-                                                                            className="font-mono text-xs sm:text-sm md:text-base font-semibold transition-all duration-300"
+                                                                            className="font-mono text-xs sm:text-sm md:text-base font-semibold transition-all duration-200"
                                                                             style={{ color: currentColor?.accent }}
                                                                         >
                                                                             {item.time}
                                                                         </span>
                                                                         <span
-                                                                            className="px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium transition-all duration-300"
+                                                                            className="px-2.5 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs md:text-sm font-medium transition-all duration-200"
                                                                             style={{
-                                                                                background: `${currentColor?.accent}20`,
+                                                                                background: `${currentColor?.accent}25`,
                                                                                 color: currentColor?.accent
                                                                             }}
                                                                         >
                                                                             {item.type}
                                                                         </span>
                                                                     </div>
-                                                                    <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-2 sm:mb-3 transition-all duration-300" style={{ color: '#EAEAEA' }}>
+                                                                    <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold mb-2 sm:mb-2.5 transition-all duration-200 leading-tight" style={{ color: '#EAEAEA' }}>
                                                                         {item.activity}
                                                                     </h3>
-                                                                    <p className="text-xs sm:text-sm md:text-base leading-relaxed transition-all duration-300" style={{ color: 'rgba(234, 234, 234, 0.7)' }}>
+                                                                    <p className="text-xs sm:text-sm md:text-base leading-relaxed transition-all duration-200" style={{ color: 'rgba(234, 234, 234, 0.75)' }}>
                                                                         {item.details}
                                                                     </p>
                                                                 </div>
