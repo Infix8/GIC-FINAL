@@ -73,12 +73,18 @@ const HeroSection = () => {
       className="flowing-bg flowing-bg-hero"
       sx={{
         position: 'relative',
-        minHeight: { xs: 'calc(100vh - 5rem)', sm: 'calc(100vh - 6rem)', md: 'calc(100vh - 100px)' },
+        height: { xs: '100vh', sm: 'calc(100vh - 6rem)', md: 'calc(100vh - 100px)' },
+        minHeight: { xs: '100vh', sm: 'calc(100vh - 6rem)', md: 'calc(100vh - 100px)' },
+        maxHeight: { xs: '100vh', sm: 'none', md: 'none' },
         display: 'flex',
         alignItems: 'center',
+        justifyContent: 'center',
         // CRITICAL: Remove overflow:hidden on mobile to allow touch scrolling
         overflow: { xs: 'visible', md: 'hidden' },
         background: theme.palette.background.default,
+        // On mobile, ensure it fills the viewport completely
+        width: '100%',
+        mt: { xs: '-48px', sm: 0 }, // Negative margin to offset header padding on mobile
       }}
     >
       {/* Grid pattern - 5% visible */}
@@ -105,14 +111,18 @@ const HeroSection = () => {
         sx={{
           maxWidth: { xs: '100%', sm: '95%', md: '90%', lg: '85%', xl: '75%' },
           mx: 'auto',
-          pl: 0,
-          paddingLeft: 0,
+          pl: { xs: 2, sm: 3, md: 4 },
           pr: { xs: 2, sm: 3, md: 4 },
           pb: { xs: 2, sm: 3, md: 4, lg: 5, xl: 6 },
           pt: { xs: 2, sm: 3, md: 3, lg: 4 },
           position: 'relative',
           zIndex: 10,
           width: '100%',
+          height: { xs: '100%', sm: 'auto' },
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: { xs: 'center', sm: 'flex-start' },
+          overflow: 'visible',
         }}
       >
         {/* Title and Badge - Above Grid */}
