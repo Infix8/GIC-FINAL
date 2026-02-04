@@ -78,7 +78,7 @@ const Pillars = () => {
     }, [isMobile]);
 
     return (
-        <section ref={sectionRef} className="flowing-bg flowing-bg-pillars py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12" id="pillars" style={{ background: 'var(--color-bg-primary)' }}>
+        <section ref={sectionRef} className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12" id="pillars" style={{ background: 'var(--color-bg-primary)' }}>
             {/* Section header */}
             <div className="mb-8 sm:mb-10 md:mb-12">
                 <h2 
@@ -94,14 +94,12 @@ const Pillars = () => {
             </div>
 
             {/* Pillars grid */}
-            <div className="pillars-grid-new grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            <div className="pillars-grid-new grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-10">
                 {pillars.map((pillar, index) => (
                     <div
                         key={index}
-                        className="pillar-card-new p-4 sm:p-6 md:p-8 rounded-lg sm:rounded-xl card-hover-effect"
+                        className="pillar-card-new"
                         style={{
-                            background: 'var(--color-bg-secondary)',
-                            border: '1px solid rgba(139, 123, 181, 0.15)',
                             fontFamily: 'var(--font-primary)',
                         }}
                     >

@@ -60,52 +60,14 @@ const CountdownTimer: React.FC = () => {
   return (
     <Box
       component="section"
-      className="flowing-bg flowing-bg-countdown"
       sx={{
         position: 'relative',
         py: { xs: 4, sm: 5, lg: 6 },
         // CRITICAL: Remove overflow:hidden on mobile to allow touch scrolling
         overflow: { xs: 'visible', md: 'hidden' },
-        background: theme.palette.background.default,
+        background: 'var(--color-bg-primary)',
       }}
     >
-      {/* Background elements - static on mobile */}
-      {!isMobile && (
-        <Box
-          sx={{
-            position: 'absolute',
-            inset: 0,
-            overflow: 'hidden',
-          }}
-        >
-          <Box
-            sx={{
-              position: 'absolute',
-              top: 0,
-              left: '25%',
-              width: '500px',
-              height: '500px',
-              background: `linear-gradient(to bottom right, ${theme.palette.primary.main}40, ${theme.palette.secondary.main}33, ${theme.palette.secondary.light}26)`,
-              borderRadius: '50%',
-              filter: 'blur(60px)',
-              opacity: 0.5,
-            }}
-          />
-          <Box
-            sx={{
-              position: 'absolute',
-              bottom: 0,
-              right: '25%',
-              width: '400px',
-              height: '400px',
-              background: `linear-gradient(to top right, ${theme.palette.secondary.main}40, ${theme.palette.primary.main}33, ${theme.palette.secondary.light}33)`,
-              borderRadius: '50%',
-              filter: 'blur(60px)',
-              opacity: 0.5,
-            }}
-          />
-        </Box>
-      )}
 
       <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         {/* Header */}

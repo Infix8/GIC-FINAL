@@ -1347,14 +1347,21 @@ const EventsPage = () => {
         <div ref={pageRef} className="page-container events-page" style={{ background: 'var(--color-bg-primary)' }}>
             {/* Header and Events Grid in Single Frame */}
             <section className="pt-0 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 md:px-8 lg:px-12 -mt-6 md:-mt-[50px]">
-                <div className="max-w-7xl mx-auto">
+                <div className="max-w-7xl mx-auto w-full">
                     {/* Header */}
                     <div className="section-header-new header-animate mb-0">
                         <h1 className="section-title-new">Events</h1>
                     </div>
                     <p
-                        className="header-animate text-base sm:text-lg max-w-2xl mb-0 whitespace-nowrap pb-4 md:pb-[35px] -mt-7 sm:-mt-8"
-                        style={{ color: 'rgba(234, 234, 234, 0.6)' }}
+                        className="header-animate text-sm sm:text-base md:text-lg max-w-2xl mb-0 pb-4 md:pb-[35px] -mt-7 sm:-mt-8 leading-relaxed w-full"
+                        style={{ 
+                            color: 'rgba(234, 234, 234, 0.6)',
+                            wordWrap: 'break-word',
+                            overflowWrap: 'break-word',
+                            hyphens: 'auto',
+                            maxWidth: '100%',
+                            boxSizing: 'border-box'
+                        }}
                     >
                         Five transformative tracks spanning technical talent, startup validation, youth entrepreneurship, and policy dialogue.
                     </p>

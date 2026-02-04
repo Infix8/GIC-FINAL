@@ -123,7 +123,7 @@ const Structure = () => {
     return (
         <section
             ref={sectionRef}
-            className={`flowing-bg flowing-bg-structure pt-10 sm:pt-12 md:pt-14 pb-10 sm:pb-14 md:pb-16 px-6 md:px-12 flex flex-col items-center overflow-hidden relative ${sectionInView ? 'structure-in-view' : ''}`}
+            className={`pt-10 sm:pt-12 md:pt-14 pb-10 sm:pb-14 md:pb-16 px-6 md:px-12 flex flex-col items-center overflow-hidden relative ${sectionInView ? 'structure-in-view' : ''}`}
             id="structure"
             style={{
                 background: 'var(--color-bg-primary)'

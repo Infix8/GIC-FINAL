@@ -58,14 +58,9 @@ const Contact = () => {
         color: 'var(--color-text-primary)'
     };
 
-    const cardStyle = {
-        background: 'var(--color-bg-secondary)',
-        border: '1px solid rgba(139, 123, 181, 0.15)',
-        fontFamily: 'var(--font-primary)',
-    };
 
     return (
-        <section className="flowing-bg flowing-bg-contact py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12" id="contact" style={{ background: 'var(--color-bg-primary)' }}>
+        <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12" id="contact" style={{ background: 'var(--color-bg-primary)' }}>
             <div className="mb-8 sm:mb-10 md:mb-12">
                 <h2 
                     className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mt-2" 
@@ -79,10 +74,10 @@ const Contact = () => {
                 </h2>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12">
                 {/* Left Column: Info & Organizers */}
-                <div className="flex flex-col gap-4 sm:gap-6">
-                    <div className="p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl card-hover-effect" style={cardStyle}>
+                <div className="flex flex-col gap-6 sm:gap-8">
+                    <div style={{ fontFamily: 'var(--font-primary)' }}>
                         <h3 className="text-base sm:text-lg font-bold mb-3 sm:mb-4" style={{ color: 'var(--color-text-primary)' }}>Contact Details</h3>
                         <div className="space-y-2 sm:space-y-3">
                             <div className="flex items-center gap-2 sm:gap-3">
@@ -108,7 +103,7 @@ const Contact = () => {
                         </div>
                     </div>
 
-                    <div className="p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl card-hover-effect" style={cardStyle}>
+                    <div style={{ fontFamily: 'var(--font-primary)' }}>
                         <h3 className="text-base sm:text-lg font-bold mb-3 sm:mb-4" style={{ color: 'var(--color-text-primary)' }}>Organizing Committee</h3>
                         <div className="space-y-3 sm:space-y-4">
                             {[
@@ -127,7 +122,7 @@ const Contact = () => {
                 </div>
 
                 {/* Right Column: Contact Form */}
-                <div className="p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl" style={cardStyle}>
+                <div style={{ fontFamily: 'var(--font-primary)' }}>
                     <h3 className="text-xl sm:text-2xl font-bold mb-2" style={{ color: 'var(--color-accent)' }}>Register Interest</h3>
                     <p className="mb-4 sm:mb-6 text-sm sm:text-base" style={{ color: 'var(--color-text-muted)' }}>Send us a Message</p>
                     <iframe name="hidden_iframe" id="hidden_iframe" style={{ display: 'none' }}></iframe>

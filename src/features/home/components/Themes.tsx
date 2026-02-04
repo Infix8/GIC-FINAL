@@ -1,9 +1,6 @@
-
-import React from 'react';
-
 const Themes = () => {
     return (
-        <section className="flowing-bg flowing-bg-themes pt-12 sm:pt-16 md:pt-20 pb-0 sm:pb-0 md:pb-1 px-4 sm:px-6 md:px-12" id="themes" style={{ background: 'var(--color-bg-primary)' }}>
+        <section className="pt-12 sm:pt-16 md:pt-20 pb-0 sm:pb-0 md:pb-1 px-4 sm:px-6 md:px-12" id="themes" style={{ background: 'var(--color-bg-primary)' }}>
             <div className="max-w-7xl mx-auto">
                 <div className="mb-8 sm:mb-10 md:mb-12 text-center">
                     <h2 
@@ -17,12 +14,9 @@ const Themes = () => {
                         Key Themes
                     </h2>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-10 md:mb-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 md:gap-12 mb-8 sm:mb-10 md:mb-12">
                 <div
-                    className="p-4 sm:p-6 md:p-8 rounded-lg sm:rounded-xl card-hover-effect"
                     style={{
-                        background: 'var(--color-bg-secondary)',
-                        border: '1px solid rgba(139, 123, 181, 0.15)',
                         fontFamily: 'var(--font-primary)',
                     }}
                 >
@@ -38,10 +32,7 @@ const Themes = () => {
                     </ul>
                 </div>
                 <div
-                    className="p-4 sm:p-6 md:p-8 rounded-lg sm:rounded-xl card-hover-effect"
                     style={{
-                        background: 'var(--color-bg-secondary)',
-                        border: '1px solid rgba(139, 123, 181, 0.15)',
                         fontFamily: 'var(--font-primary)',
                     }}
                 >
