@@ -338,13 +338,15 @@ const EventsPageMobile = () => {
                 <div ref={pageRef} className="page-container events-page sm:pt-[56px]" style={{ background: 'var(--color-bg-primary)', scrollBehavior: 'smooth', paddingTop: 0 }}>
                     {/* Hero Section with Countdown */}
                     <section className="relative min-h-[85vh] sm:min-h-screen flex flex-col items-center justify-start text-center px-4 sm:px-6 md:px-12 pt-0 pb-6 sm:pb-8 md:pb-10 overflow-hidden">
-                        {/* Background Gradient - Extended to top */}
+                        {/* Background Gradient - Extended with fade effect */}
                         <div
-                            className="absolute inset-0 opacity-15 sm:opacity-12 md:opacity-10 transition-opacity duration-300"
+                            className="absolute left-0 right-0 -top-32 -bottom-32 opacity-15 sm:opacity-12 md:opacity-10 transition-opacity duration-300"
                             style={{ 
                                 background: currentColor?.gradient,
                                 zIndex: 0,
-                                pointerEvents: 'none'
+                                pointerEvents: 'none',
+                                maskImage: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 10%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,0.3) 90%, transparent 100%)',
+                                WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 10%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,0.3) 90%, transparent 100%)',
                             }}
                         />
                         <div className="relative z-10 max-w-4xl mx-auto mt-0 sm:mt-4 md:mt-8 w-full pt-0">
