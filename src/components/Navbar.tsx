@@ -56,7 +56,7 @@ const Navbar = () => {
             }`}>
             <div className="flex justify-between items-center max-w-7xl mx-auto w-full">
                 {/* Logo */}
-                <div className="z-50">
+                <div className="z-50 flex flex-col">
                     <Link to="/" className="block">
                         <img
                             src={logo}
@@ -65,6 +65,16 @@ const Navbar = () => {
                             style={{ filter: 'brightness(1.1) contrast(1.1)' }}
                         />
                     </Link>
+                    {/* Event Name - Mobile Only */}
+                    <div className="md:hidden pt-3">
+                        <h1 className="font-bold text-gic-lavender leading-tight" style={{ 
+                            fontFamily: 'var(--font-display)',
+                            letterSpacing: '0.05em',
+                            fontSize: 'clamp(0.875rem, 3vw, 1.125rem)'
+                        }}>
+                            GLOBAL INNOVATORS CONCLAVE 2026
+                        </h1>
+                    </div>
                 </div>
 
                 {/* Desktop Navigation - Centered Floating Pill */}

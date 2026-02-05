@@ -947,30 +947,20 @@ const EventsPage = () => {
                     {selectedEvent.id === "alpha-to-infinity" && (
                         <section className="py-8 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 transition-all duration-300" style={{ background: 'var(--color-bg-primary)' }}>
                             <div className="max-w-6xl mx-auto">
-                                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 md:mb-8 text-center transition-all duration-300" style={{ color: '#EAEAEA' }}>
-                                    TITLE SPONSOR
-                                </h2>
-                                <div className="flex justify-center items-center mb-8 sm:mb-12 md:mb-16 p-6 sm:p-7 md:p-8 rounded-2xl transition-all duration-300" style={{
-                                    background: 'rgba(15, 12, 25, 0.6)',
-                                    border: '1px solid rgba(139, 123, 181, 0.2)',
-                                    minHeight: '120px'
-                                }}>
-                                    <p className="text-lg sm:text-xl transition-all duration-300" style={{ color: 'rgba(234, 234, 234, 0.6)' }}>Sponsor Logo</p>
-                                </div>
-
                                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-7 md:mb-8 text-center transition-all duration-300" style={{ color: '#EAEAEA' }}>
                                     CHALLENGE SPONSORS
                                 </h2>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-7 md:gap-8">
-                                    {[1, 2].map((i) => (
-                                        <div key={i} className="flex justify-center items-center p-6 sm:p-7 md:p-8 rounded-2xl transition-all duration-300" style={{
-                                            background: 'rgba(15, 12, 25, 0.6)',
-                                            border: '1px solid rgba(139, 123, 181, 0.2)',
-                                            minHeight: '120px'
-                                        }}>
-                                            <p className="text-lg sm:text-xl transition-all duration-300" style={{ color: 'rgba(234, 234, 234, 0.6)' }}>Sponsor Logo {i}</p>
-                                        </div>
-                                    ))}
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 justify-items-center items-center">
+                                    <img 
+                                        src="/ekincareLogo.png" 
+                                        alt="Ekincare" 
+                                        className="w-auto h-24 sm:h-32 md:h-40 object-contain"
+                                    />
+                                    <img 
+                                        src="/capgeminiLogo1.png" 
+                                        alt="Capgemini" 
+                                        className="w-auto h-24 sm:h-32 md:h-40 object-contain"
+                                    />
                                 </div>
                             </div>
                         </section>

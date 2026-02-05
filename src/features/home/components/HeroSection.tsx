@@ -84,7 +84,7 @@ const HeroSection = () => {
         background: theme.palette.background.default,
         // On mobile, ensure it fills the viewport completely
         width: '100%',
-        mt: { xs: '-48px', sm: 0 }, // Negative margin to offset header padding on mobile
+        mt: { xs: '-80px', sm: 0 }, // Negative margin to offset header padding on mobile (updated for event name)
       }}
     >
       {/* Grid pattern - 5% visible */}

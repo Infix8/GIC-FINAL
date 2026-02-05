@@ -241,19 +241,36 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({
           transition: 'transform 0.3s',
         }}
       >
-        <Toolbar sx={{ justifyContent: 'space-between' }}>
-          {/* Logo */}
-          <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
-            <img
-              src={logoUrl}
-              alt="Logo"
-              style={{
-                height: '40px',
-                width: 'auto',
-                cursor: 'pointer',
-              }}
-            />
-          </Link>
+        <Toolbar sx={{ justifyContent: 'space-between', minHeight: { xs: 'auto', md: '64px' }, py: { xs: 1, md: 0 } }}>
+          {/* Logo and Event Name Container */}
+          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+            <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+              <img
+                src={logoUrl}
+                alt="Logo"
+                style={{
+                  height: '40px',
+                  width: 'auto',
+                  cursor: 'pointer',
+                }}
+              />
+            </Link>
+            {/* Event Name - Mobile Only */}
+            <Box sx={{ display: { xs: 'block', md: 'none' } }}>
+              <Typography
+                sx={{
+                  fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                  fontWeight: 700,
+                  color: 'primary.main',
+                  pt: 1,
+                  letterSpacing: '0.05em',
+                  lineHeight: 1.2,
+                }}
+              >
+                GLOBAL INNOVATORS CONCLAVE 2026
+              </Typography>
+            </Box>
+          </Box>
 
           {/* Desktop Navigation */}
           {!isMobile && (

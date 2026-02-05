@@ -73,7 +73,8 @@ export const Route = createRootRoute({
               sx={{
                 flex: '1 0 auto',
                 // Content starts just below header (banner 36px + toolbar 64px = 100px on desktop)
-                pt: { xs: 12, sm: 12, md: '100px' },
+                // Mobile: Increased padding to account for event name below logo (banner + toolbar + event name)
+                pt: { xs: 20, sm: 20, md: '100px' },
                 overflow: 'visible',
               }}
             >
