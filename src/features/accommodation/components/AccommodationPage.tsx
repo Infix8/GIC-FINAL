@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { Link } from '@tanstack/react-router';
 import gsap from 'gsap';
 
 const AccommodationPage = () => {
@@ -68,10 +69,9 @@ const AccommodationPage = () => {
                         </div>
                     </div>
                     <div className="mt-6 sm:mt-5 flex justify-center sm:justify-end">
-                        <a
-                            href="https://rzp.io/rzp/AccommodationBooking"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                        <Link
+                            to="/"
+                            hash="official-notice"
                             className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-2.5 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-105 active:scale-95 w-full sm:w-auto"
                             style={{
                                 background: 'linear-gradient(90deg, rgba(139,123,181,0.9), rgba(107,91,149,0.9))',
@@ -87,7 +87,7 @@ const AccommodationPage = () => {
                             }}
                         >
                             Buy Now
-                        </a>
+                        </Link>
                     </div>
                 </div>
 

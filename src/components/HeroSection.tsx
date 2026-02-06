@@ -355,7 +355,7 @@ const HeroSection = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row sm:flex-nowrap gap-3 sm:gap-4 pt-2 sm:pt-4">
-              <Link to="/passes" className="w-full sm:w-auto sm:flex-1">
+              <Link to="/" search={{}} hash="official-notice" className="w-full sm:w-auto sm:flex-1">
                 <Button size="xl" className="w-full sm:w-auto bg-gradient-to-r from-primary via-gic-violet to-primary hover:from-gic-violet hover:via-primary hover:to-gic-violet text-white rounded-full font-semibold shadow-lg shadow-primary/25 hover:shadow-primary/35 transition-all duration-200 hover:scale-105 active:scale-95">
                   Register
                   <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
@@ -426,9 +426,7 @@ const HeroSection = () => {
                 </div>
               </div>
 
-              <div
-                className="absolute top-1/2 -right-16 -translate-y-1/2 bg-gradient-to-br from-primary/10 via-gic-violet/10 to-primary/10 backdrop-blur-md rounded-full px-4 py-2 shadow-lg border border-gic-violet/25 z-20 shadow-primary/10 hover:scale-105 transition-transform duration-300"
-              >
+              <Link to="/" search={{}} hash="official-notice" className="absolute top-1/2 -right-16 -translate-y-1/2 bg-gradient-to-br from-primary/10 via-gic-violet/10 to-primary/10 backdrop-blur-md rounded-full px-4 py-2 shadow-lg border border-gic-violet/25 z-20 shadow-primary/10 hover:scale-105 transition-transform duration-300 block">
                 <div className="flex items-center gap-2">
                   <div className="flex -space-x-2">
                     {[...Array(3)].map((_, i) => (
@@ -440,7 +438,7 @@ const HeroSection = () => {
                   </div>
                   <span className="text-sm font-semibold text-gic-lavender">Register Now</span>
                 </div>
-              </div>
+              </Link>
 
             </Box>
           </Grid>

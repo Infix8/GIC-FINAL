@@ -4,6 +4,7 @@ import { SuspenseLoader } from '~components/SuspenseLoader/SuspenseLoader';
 import Footer from '@/components/Footer';
 import NavigationMenu from '@/components/NavigationMenu';
 import TopBanner from '@/components/TopBanner';
+import EventPostponementBanner, { EVENT_POSTPONEMENT_BANNER_HEIGHT } from '@/components/EventPostponementBanner';
 import SmoothScroll from '@/components/SmoothScroll';
 import BackgroundEffects from '@/components/BackgroundEffects';
 import { useGSAPAnimations } from '@/hooks/useGSAPAnimations';
@@ -37,6 +38,7 @@ export const Route = createRootRoute({
       {/* Fixed header (banner + nav) - excluded from mobile scroll reset so fixed works on mobile */}
       <Box className="app-header" component="header" sx={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1200 }}>
         <TopBanner />
+        <EventPostponementBanner />
         <NavigationMenu
           items={menuItems}
           socialItems={socialItems}
@@ -74,7 +76,7 @@ export const Route = createRootRoute({
                 flex: '1 0 auto',
                 // Content starts just below header (banner 36px + toolbar 64px = 100px on desktop)
                 // Mobile: Increased padding to account for event name below logo (banner + toolbar + event name)
-                pt: { xs: 20, sm: 20, md: '100px' },
+                pt: { xs: 25, sm: 25, md: `calc(100px + ${EVENT_POSTPONEMENT_BANNER_HEIGHT}px)` },
                 overflow: 'visible',
               }}
             >

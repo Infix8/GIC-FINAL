@@ -1,4 +1,4 @@
-import { useNavigate, useSearch } from '@tanstack/react-router';
+import { useNavigate, useSearch, Link } from '@tanstack/react-router';
 import { useEffect, useRef } from 'react';
 
 // Event colors matching EventsPage (same color scheme) + additional unique colors
@@ -291,10 +291,9 @@ const PassesPage = () => {
                                             {/* CTA Buttons */}
                                             {pass.paymentLink ? (
                                                 <div className="md:mt-auto space-y-3 md:space-y-4">
-                                                    <a
-                                                        href={pass.paymentLink}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
+                                                    <Link
+                                                        to="/"
+                                                        hash="official-notice"
                                                         className={`w-full md:w-auto rounded-lg font-bold transition-all duration-300 hover:scale-105 text-center block ${isHighlighted ? 'py-3 md:py-4 text-base md:text-lg' : 'py-2.5 md:py-3 text-sm md:text-base'}`}
                                                         style={{ 
                                                             background: 'rgba(255,255,255,0.95)', 
@@ -306,12 +305,11 @@ const PassesPage = () => {
                                                         }}
                                                     >
                                                         Buy Now
-                                                    </a>
+                                                    </Link>
                                                     {(pass as any).teamPassLink && (
-                                                        <a
-                                                            href={(pass as any).teamPassLink}
-                                                            target="_blank"
-                                                            rel="noopener noreferrer"
+                                                        <Link
+                                                            to="/"
+                                                            hash="official-notice"
                                                             className={`w-full md:w-auto rounded-lg font-bold transition-all duration-300 hover:scale-105 text-center block ${isHighlighted ? 'py-3 md:py-4 text-base md:text-lg' : 'py-2.5 md:py-3 text-sm md:text-base'}`}
                                                             style={{ 
                                                                 background: 'rgba(255,255,255,0.7)', 
@@ -323,7 +321,7 @@ const PassesPage = () => {
                                                             }}
                                                         >
                                                             Team Pass
-                                                        </a>
+                                                        </Link>
                                                     )}
                                                 </div>
                                             ) : (

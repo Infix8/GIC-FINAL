@@ -858,12 +858,8 @@ const EventsPage = () => {
                             </div>
 
                             <Link
-                                to="/passes"
-                                search={(selectedEvent.id === "alpha-to-infinity" || 
-                                         selectedEvent.id === "knowledge-bubble" || 
-                                         selectedEvent.id === "investor-pitching" || 
-                                         selectedEvent.id === "mastermind-congregation" ||
-                                         selectedEvent.id === "business-tech-expo") ? { event: selectedEvent.id } : undefined}
+                                to="/"
+                                hash="official-notice"
                                 className="inline-block px-5 sm:px-8 md:px-12 py-3 sm:py-5 md:py-6 rounded-full font-bold text-lg sm:text-2xl md:text-3xl lg:text-4xl cursor-pointer transition-all duration-300 hover:scale-105 active:scale-95 w-full sm:w-auto"
                                 style={{ 
                                     background: currentColor?.gradient,

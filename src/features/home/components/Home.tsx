@@ -4,6 +4,7 @@ import { SuspenseLoader } from '~components/SuspenseLoader/SuspenseLoader';
 
 // Lazy load heavy components for code splitting
 const HeroSection = lazy(() => import('./HeroSection'));
+const EventPostponementNotice = lazy(() => import('./EventPostponementNotice'));
 const CountdownTimer = lazy(() => import('./CountdownTimer'));
 const About = lazy(() => import('./About'));
 const Pillars = lazy(() => import('./Pillars'));
@@ -22,6 +23,9 @@ const Home: React.FC = () => {
         <div className="relative" style={{ background: 'var(--color-bg-primary)' }}>
             <SuspenseLoader>
                 <HeroSection />
+            </SuspenseLoader>
+            <SuspenseLoader>
+                <EventPostponementNotice />
             </SuspenseLoader>
             <SuspenseLoader>
                 <CountdownTimer />
