@@ -107,7 +107,7 @@ const EventPostponementNotice: React.FC = () => {
               mb: 2,
             }}
           >
-            After a comprehensive review of our current operational capacity, the organizing committee has made the difficult decision to <strong style={{ color: theme.palette.text.primary }}>postpone the event indefinitely</strong>.
+            After a comprehensive review in light of a technical issue, the organizing committee has made the difficult decision to <strong style={{ color: theme.palette.text.primary }}>postpone the event indefinitely</strong>.
           </Typography>
           <Typography
             sx={{
@@ -117,7 +117,7 @@ const EventPostponementNotice: React.FC = () => {
               mb: 2,
             }}
           >
-            This decision stems from unforeseen internal challenges. We are committed to delivering an event that meets the highest standards. We are suspending active planning and are <strong style={{ color: theme.palette.text.primary }}>not establishing a rescheduled timeline</strong> at this juncture. We will share further updates and next steps for registered participants as soon as information becomes available.
+            We are committed to delivering an event that meets the highest standards. We are suspending active planning and are <strong style={{ color: theme.palette.text.primary }}>not establishing a rescheduled timeline</strong> at this juncture. We will share further updates and next steps for registered participants as soon as information becomes available.
           </Typography>
           <Typography
             sx={{
